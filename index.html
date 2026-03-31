@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JW Digital | Websites & Marketing for Local Business</title>
-    <meta name="description" content="JW Digital builds high-performance websites, branding, and local SEO for small businesses — at a fraction of agency cost. Based in Colleyville, TX.">
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <title>JW Digital | Websites & Branding for Local Business</title>
+    <meta name="description" content="JW Digital builds high-performance websites, branding, and social presence for small businesses — at a fraction of agency cost. Based in Colleyville, TX.">
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -18,10 +18,10 @@
             --muted: #6b6b6b;
             --border: #e0dbd4;
             --white: #ffffff;
+            --green: #4ade80;
         }
 
         html { scroll-behavior: smooth; }
-
         body {
             font-family: 'DM Sans', sans-serif;
             background: var(--paper);
@@ -29,680 +29,352 @@
             overflow-x: hidden;
         }
 
-        /* NAV */
+        /* ── NAV ── */
         nav {
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            position: sticky; top: 0; z-index: 100;
             background: var(--paper);
             border-bottom: 1px solid var(--border);
-            padding: 0 40px;
-            height: 64px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            padding: 0 40px; height: 64px;
+            display: flex; align-items: center; justify-content: space-between;
         }
-
-        .nav-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 26px;
-            letter-spacing: 2px;
-            color: var(--ink);
-        }
-
+        .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
         .nav-logo span { color: var(--blue); }
-
         .nav-cta {
-            background: var(--ink);
-            color: var(--white);
-            padding: 10px 24px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            transition: background 0.2s;
+            background: var(--ink); color: var(--white);
+            padding: 10px 24px; border-radius: 4px;
+            font-size: 13px; font-weight: 600; letter-spacing: 0.05em;
+            text-decoration: none; transition: background 0.2s;
         }
-
         .nav-cta:hover { background: var(--blue); }
 
-        /* HERO */
+        /* ── HERO ── */
         .hero {
-            min-height: 90vh;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+            min-height: 88vh;
+            display: grid; grid-template-columns: 1fr 1fr;
             align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 80px 40px;
-            gap: 60px;
+            max-width: 1200px; margin: 0 auto;
+            padding: 80px 40px; gap: 60px;
         }
-
-        .hero-left { }
-
         .hero-eyebrow {
-            display: inline-flex;
-            align-items: center;
-            gap: 8px;
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--blue);
+            display: inline-flex; align-items: center; gap: 8px;
+            font-size: 11px; font-weight: 600; letter-spacing: 0.15em;
+            text-transform: uppercase; color: var(--blue);
             margin-bottom: 28px;
-            border: 1px solid var(--blue);
-            padding: 6px 14px;
-            border-radius: 2px;
+            border: 1px solid var(--blue); padding: 6px 14px; border-radius: 2px;
         }
-
         .hero-eyebrow::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--blue);
-            border-radius: 50%;
+            content: ''; width: 6px; height: 6px;
+            background: var(--blue); border-radius: 50%;
             animation: pulse 2s infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.3; }
-        }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
         h1 {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(64px, 7vw, 96px);
-            line-height: 0.95;
-            letter-spacing: 2px;
-            color: var(--ink);
+            font-size: clamp(60px, 6.5vw, 92px);
+            line-height: 0.95; letter-spacing: 2px;
             margin-bottom: 28px;
         }
-
         h1 .accent { color: var(--blue); }
 
         .hero-sub {
-            font-size: 17px;
-            color: var(--muted);
-            line-height: 1.7;
-            max-width: 420px;
-            margin-bottom: 40px;
-            font-weight: 400;
+            font-size: 17px; color: var(--muted);
+            line-height: 1.75; max-width: 420px;
+            margin-bottom: 40px; font-weight: 400;
         }
-
-        .hero-actions {
-            display: flex;
-            gap: 16px;
-            flex-wrap: wrap;
-        }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
         .btn-primary {
-            background: var(--blue);
-            color: var(--white);
-            padding: 16px 32px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            transition: background 0.2s, transform 0.1s;
-            display: inline-block;
+            background: var(--blue); color: var(--white);
+            padding: 16px 32px; border-radius: 4px;
+            font-size: 14px; font-weight: 700; letter-spacing: 0.05em;
+            text-decoration: none; transition: background 0.2s, transform 0.1s;
         }
-
         .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
 
         .btn-secondary {
-            background: transparent;
-            color: var(--ink);
-            padding: 16px 32px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 600;
-            letter-spacing: 0.05em;
-            text-decoration: none;
-            border: 1.5px solid var(--border);
+            background: transparent; color: var(--ink);
+            padding: 16px 32px; border-radius: 4px;
+            font-size: 14px; font-weight: 600; letter-spacing: 0.05em;
+            text-decoration: none; border: 1.5px solid var(--border);
             transition: border-color 0.2s;
         }
-
         .btn-secondary:hover { border-color: var(--ink); }
 
+        /* Hero right — compare panel */
         .hero-right {
-            background: var(--ink);
-            border-radius: 8px;
-            padding: 40px;
-            color: var(--white);
-            position: relative;
-            overflow: hidden;
+            background: var(--ink); border-radius: 8px;
+            padding: 40px; color: var(--white);
+            position: relative; overflow: hidden;
         }
-
         .hero-right::before {
-            content: '';
-            position: absolute;
-            top: -60px;
-            right: -60px;
-            width: 200px;
-            height: 200px;
-            background: var(--blue);
-            border-radius: 50%;
-            opacity: 0.15;
+            content: ''; position: absolute;
+            top: -60px; right: -60px;
+            width: 200px; height: 200px;
+            background: var(--blue); border-radius: 50%; opacity: 0.12;
         }
-
         .compare-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: #888;
-            margin-bottom: 24px;
+            font-size: 10px; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: #555; margin-bottom: 24px;
         }
-
         .compare-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 16px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
         }
-
         .compare-row:last-child { border-bottom: none; }
-
-        .compare-service {
-            font-size: 14px;
-            font-weight: 500;
-            color: #ccc;
-        }
-
-        .compare-prices {
-            display: flex;
-            gap: 24px;
-            align-items: center;
-        }
-
-        .price-agency {
-            font-size: 13px;
-            color: #555;
-            text-decoration: line-through;
-        }
-
-        .price-jw {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 22px;
-            color: var(--blue-light);
-            letter-spacing: 1px;
-        }
-
+        .compare-service { font-size: 14px; font-weight: 500; color: #bbb; }
+        .compare-prices { display: flex; gap: 20px; align-items: center; }
+        .price-agency { font-size: 13px; color: #444; text-decoration: line-through; }
+        .price-jw { font-family: 'Bebas Neue', sans-serif; font-size: 22px; color: var(--blue-light); letter-spacing: 1px; }
         .savings-badge {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            color: var(--ink);
-            background: #4ade80;
-            padding: 3px 8px;
-            border-radius: 2px;
-            text-transform: uppercase;
+            font-size: 9px; font-weight: 700; letter-spacing: 0.1em;
+            color: var(--ink); background: var(--green);
+            padding: 3px 8px; border-radius: 2px; text-transform: uppercase;
         }
 
-        /* SECTION SHARED */
+        /* ── SHARED SECTION ── */
         section { padding: 100px 40px; }
-
         .section-inner { max-width: 1200px; margin: 0 auto; }
-
         .section-label {
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.2em;
-            text-transform: uppercase;
-            color: var(--blue);
-            margin-bottom: 16px;
+            font-size: 10px; font-weight: 700;
+            letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--blue); margin-bottom: 16px;
         }
-
         h2 {
             font-family: 'Bebas Neue', sans-serif;
             font-size: clamp(40px, 5vw, 64px);
-            letter-spacing: 2px;
-            line-height: 1;
-            margin-bottom: 16px;
+            letter-spacing: 2px; line-height: 1; margin-bottom: 16px;
         }
-
         .section-sub {
-            font-size: 16px;
-            color: var(--muted);
-            line-height: 1.7;
-            max-width: 520px;
-            margin-bottom: 60px;
+            font-size: 16px; color: var(--muted);
+            line-height: 1.75; max-width: 520px; margin-bottom: 60px;
         }
 
-        /* WHY */
+        /* ── WHY ── */
         .why { background: var(--white); }
-
         .why-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2px;
-            background: var(--border);
+            display: grid; grid-template-columns: repeat(3,1fr);
+            gap: 2px; background: var(--border);
             border: 1px solid var(--border);
         }
-
-        .why-card {
-            background: var(--white);
-            padding: 40px 36px;
-        }
-
+        .why-card { background: var(--white); padding: 40px 36px; }
         .why-number {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 56px;
-            color: var(--blue);
-            letter-spacing: 2px;
-            line-height: 1;
-            margin-bottom: 16px;
-            opacity: 0.25;
+            font-size: 56px; color: var(--blue);
+            letter-spacing: 2px; line-height: 1;
+            margin-bottom: 16px; opacity: 0.2;
         }
+        .why-card h3 { font-size: 17px; font-weight: 700; margin-bottom: 12px; }
+        .why-card p { font-size: 14px; color: var(--muted); line-height: 1.75; }
 
-        .why-card h3 {
-            font-size: 17px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            letter-spacing: -0.01em;
-        }
-
-        .why-card p {
-            font-size: 14px;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        /* SERVICES / PRICING */
-        .services { background: var(--paper); }
+        /* ── PRICING ── */
+        .pricing-section { background: var(--paper); }
 
         .pricing-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 2px;
-            background: var(--border);
+            display: grid; grid-template-columns: repeat(3,1fr);
+            gap: 2px; background: var(--border);
             border: 1px solid var(--border);
         }
 
         .pricing-card {
-            background: var(--white);
-            padding: 40px 32px;
-            position: relative;
-            display: flex;
-            flex-direction: column;
+            background: var(--white); padding: 40px 32px;
+            display: flex; flex-direction: column; position: relative;
         }
-
-        .pricing-card.featured {
-            background: var(--ink);
-            color: var(--white);
-        }
+        .pricing-card.featured { background: var(--ink); color: var(--white); }
 
         .featured-badge {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            font-size: 9px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            background: var(--blue);
-            color: var(--white);
-            padding: 4px 10px;
-            border-radius: 2px;
+            position: absolute; top: 20px; right: 20px;
+            font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; background: var(--blue);
+            color: var(--white); padding: 4px 10px; border-radius: 2px;
         }
-
         .pricing-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--blue);
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--white);
-            font-size: 16px;
-            margin-bottom: 24px;
+            width: 40px; height: 40px; background: var(--blue);
+            border-radius: 4px; display: flex; align-items: center;
+            justify-content: center; color: var(--white);
+            font-size: 16px; margin-bottom: 24px;
         }
-
-        .pricing-card.featured .pricing-icon {
-            background: rgba(255,255,255,0.15);
-        }
+        .pricing-card.featured .pricing-icon { background: rgba(255,255,255,0.12); }
 
         .pricing-name {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 8px;
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 8px;
         }
-
-        .pricing-card.featured .pricing-name { color: rgba(255,255,255,0.5); }
+        .pricing-card.featured .pricing-name { color: rgba(255,255,255,0.4); }
 
         .pricing-price {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 52px;
-            letter-spacing: 1px;
-            line-height: 1;
-            color: var(--ink);
-            margin-bottom: 4px;
+            font-size: 56px; letter-spacing: 1px; line-height: 1;
+            color: var(--ink); margin-bottom: 4px;
         }
-
         .pricing-card.featured .pricing-price { color: var(--white); }
 
         .pricing-cadence {
-            font-size: 12px;
-            color: var(--muted);
-            margin-bottom: 8px;
-            font-weight: 500;
+            font-size: 12px; color: var(--muted);
+            margin-bottom: 8px; font-weight: 500;
         }
-
-        .pricing-card.featured .pricing-cadence { color: rgba(255,255,255,0.4); }
+        .pricing-card.featured .pricing-cadence { color: rgba(255,255,255,0.35); }
 
         .agency-comparison {
-            font-size: 12px;
-            color: #4ade80;
-            font-weight: 600;
-            margin-bottom: 28px;
+            font-size: 12px; color: var(--green);
+            font-weight: 600; margin-bottom: 28px;
         }
 
         .pricing-divider {
-            height: 1px;
-            background: var(--border);
-            margin-bottom: 24px;
+            height: 1px; background: var(--border); margin-bottom: 24px;
         }
-
         .pricing-card.featured .pricing-divider { background: rgba(255,255,255,0.1); }
 
         .pricing-includes {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
-            color: var(--muted);
-            margin-bottom: 16px;
+            font-size: 10px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 16px;
         }
+        .pricing-card.featured .pricing-includes { color: rgba(255,255,255,0.35); }
 
-        .pricing-card.featured .pricing-includes { color: rgba(255,255,255,0.4); }
-
-        .pricing-features {
-            list-style: none;
-            flex: 1;
-            margin-bottom: 32px;
-        }
-
+        .pricing-features { list-style: none; flex: 1; margin-bottom: 32px; }
         .pricing-features li {
-            font-size: 13.5px;
-            color: var(--ink);
-            padding: 7px 0;
-            border-bottom: 1px solid var(--border);
-            display: flex;
-            align-items: flex-start;
-            gap: 10px;
-            line-height: 1.4;
+            font-size: 13.5px; color: var(--ink);
+            padding: 8px 0; border-bottom: 1px solid var(--border);
+            display: flex; align-items: flex-start; gap: 10px; line-height: 1.4;
         }
-
         .pricing-card.featured .pricing-features li {
-            color: rgba(255,255,255,0.85);
-            border-bottom-color: rgba(255,255,255,0.08);
+            color: rgba(255,255,255,0.8);
+            border-bottom-color: rgba(255,255,255,0.07);
         }
-
         .pricing-features li:last-child { border-bottom: none; }
-
-        .pricing-features li i {
-            color: var(--blue-light);
-            font-size: 11px;
-            margin-top: 3px;
-            flex-shrink: 0;
-        }
-
-        .pricing-card.featured .pricing-features li i { color: #4ade80; }
+        .pricing-features li i { color: var(--blue-light); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+        .pricing-card.featured .pricing-features li i { color: var(--green); }
 
         .pricing-btn {
-            display: block;
-            text-align: center;
-            padding: 14px;
-            border-radius: 4px;
-            font-size: 13px;
-            font-weight: 700;
-            letter-spacing: 0.08em;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: all 0.2s;
-            border: 1.5px solid var(--border);
-            color: var(--ink);
+            display: block; text-align: center;
+            padding: 14px; border-radius: 4px;
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 0.08em; text-decoration: none;
+            text-transform: uppercase; transition: all 0.2s;
+            border: 1.5px solid var(--border); color: var(--ink);
         }
-
         .pricing-btn:hover { border-color: var(--ink); }
-
         .pricing-card.featured .pricing-btn {
-            background: var(--blue);
-            color: var(--white);
-            border-color: var(--blue);
+            background: var(--blue); color: var(--white); border-color: var(--blue);
         }
-
         .pricing-card.featured .pricing-btn:hover { background: var(--blue-light); }
 
-        /* BUNDLE */
+        /* ── BUNDLE ── */
         .bundle-section { background: var(--ink); color: var(--white); }
-
         .bundle-box {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 80px; align-items: center;
         }
-
         .bundle-left h2 { color: var(--white); }
-
-        .bundle-left .section-sub { color: rgba(255,255,255,0.5); }
-
+        .bundle-left .section-sub { color: rgba(255,255,255,0.45); }
         .bundle-tag {
-            display: inline-block;
-            background: var(--blue);
-            color: var(--white);
-            font-size: 10px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            padding: 5px 12px;
-            border-radius: 2px;
-            margin-bottom: 20px;
+            display: inline-block; background: var(--blue);
+            color: var(--white); font-size: 10px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 2px; margin-bottom: 20px;
         }
-
         .bundle-right {
             border: 1px solid rgba(255,255,255,0.1);
-            border-radius: 8px;
-            padding: 48px;
+            border-radius: 8px; padding: 48px;
         }
-
         .bundle-items { list-style: none; margin-bottom: 40px; }
-
         .bundle-items li {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 14px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.08);
+            display: flex; justify-content: space-between; align-items: center;
+            padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07);
             font-size: 14px;
         }
-
         .bundle-items li:last-child { border-bottom: none; }
-
-        .bundle-item-name { color: rgba(255,255,255,0.7); }
-
-        .bundle-item-price {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 22px;
-            letter-spacing: 1px;
-            color: #888;
-        }
+        .bundle-item-name { color: rgba(255,255,255,0.6); }
+        .bundle-item-price { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: #555; }
+        .bundle-item-free { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--green); }
 
         .bundle-total {
-            display: flex;
-            justify-content: space-between;
-            align-items: flex-end;
-            padding-top: 24px;
-            border-top: 1px solid rgba(255,255,255,0.15);
+            display: flex; justify-content: space-between; align-items: flex-end;
+            padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12);
         }
-
         .bundle-total-label {
-            font-size: 11px;
-            font-weight: 700;
-            letter-spacing: 0.15em;
-            text-transform: uppercase;
-            color: rgba(255,255,255,0.4);
+            font-size: 11px; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: rgba(255,255,255,0.35);
         }
-
+        .bundle-total-savings { font-size: 13px; color: var(--green); font-weight: 600; margin-top: 6px; }
         .bundle-total-price {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 64px;
-            line-height: 1;
-            letter-spacing: 2px;
-            color: var(--white);
+            font-size: 64px; line-height: 1; letter-spacing: 2px; color: var(--white);
         }
-
-        .bundle-total-savings {
-            font-size: 13px;
-            color: #4ade80;
-            font-weight: 600;
-            margin-top: 6px;
-        }
-
+        .bundle-was { font-size: 13px; color: #444; text-decoration: line-through; font-weight: 600; letter-spacing: 0.05em; text-align: right; }
         .bundle-cta {
-            display: block;
-            text-align: center;
-            background: var(--blue);
-            color: var(--white);
-            padding: 18px;
-            border-radius: 4px;
-            font-size: 14px;
-            font-weight: 700;
-            letter-spacing: 0.1em;
-            text-decoration: none;
-            text-transform: uppercase;
-            transition: background 0.2s;
+            display: block; text-align: center;
+            background: var(--blue); color: var(--white);
+            padding: 18px; border-radius: 4px;
+            font-size: 14px; font-weight: 700;
+            letter-spacing: 0.1em; text-decoration: none;
+            text-transform: uppercase; transition: background 0.2s;
             margin-top: 24px;
         }
-
         .bundle-cta:hover { background: var(--blue-light); }
 
-        /* PROCESS */
+        /* ── PROCESS ── */
         .process { background: var(--white); }
-
         .process-steps {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            position: relative;
+            display: grid; grid-template-columns: repeat(4,1fr); gap: 0;
+            border: 1px solid var(--border);
         }
-
         .process-step {
-            padding: 0 32px 0 0;
+            padding: 40px 32px;
+            border-right: 1px solid var(--border);
             position: relative;
         }
-
+        .process-step:last-child { border-right: none; }
         .step-number {
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 80px;
-            color: var(--blue);
-            opacity: 0.08;
-            line-height: 1;
-            margin-bottom: 8px;
-            letter-spacing: 2px;
+            font-size: 72px; color: var(--blue);
+            opacity: 0.08; line-height: 1; margin-bottom: 8px;
         }
+        .step-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
+        .step-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
 
-        .step-title {
-            font-size: 15px;
-            font-weight: 700;
-            margin-bottom: 10px;
-            letter-spacing: -0.01em;
-        }
-
-        .step-desc {
-            font-size: 13px;
-            color: var(--muted);
-            line-height: 1.7;
-        }
-
-        .step-connector {
-            position: absolute;
-            top: 40px;
-            right: -1px;
-            width: 32px;
-            height: 1px;
-            background: var(--border);
-        }
-
-        .process-step:last-child .step-connector { display: none; }
-
-        /* FOOTER */
+        /* ── FOOTER ── */
         footer {
-            background: var(--ink);
-            color: rgba(255,255,255,0.35);
-            padding: 40px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 16px;
+            background: var(--ink); color: rgba(255,255,255,0.3);
+            padding: 40px; display: flex;
+            justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 16px;
         }
-
-        .footer-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 22px;
-            letter-spacing: 2px;
-            color: var(--white);
-        }
-
+        .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--white); }
         .footer-logo span { color: var(--blue-light); }
-
-        footer p {
-            font-size: 11px;
-            font-weight: 600;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-        }
-
-        .footer-contact {
-            color: rgba(255,255,255,0.5);
-            font-size: 12px;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
+        footer p { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
+        .footer-contact { color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
         .footer-contact:hover { color: var(--white); }
 
-        /* RESPONSIVE */
-        @media (max-width: 900px) {
+        /* ── ANIMATIONS ── */
+        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── RESPONSIVE ── */
+        @media (max-width: 960px) {
             .hero { grid-template-columns: 1fr; padding: 60px 24px; min-height: auto; }
             .hero-right { display: none; }
             .why-grid, .pricing-grid { grid-template-columns: 1fr; }
-            .process-steps { grid-template-columns: 1fr 1fr; gap: 40px; }
             .bundle-box { grid-template-columns: 1fr; gap: 40px; }
+            .process-steps { grid-template-columns: 1fr 1fr; }
+            .process-step { border-right: none; border-bottom: 1px solid var(--border); }
+            .process-step:last-child { border-bottom: none; }
             section { padding: 72px 24px; }
             nav { padding: 0 24px; }
-            .step-connector { display: none; }
         }
-
-        @media (max-width: 600px) {
-            .pricing-grid, .process-steps { grid-template-columns: 1fr; }
-        }
-
-        /* ANIMATIONS */
-        .fade-up {
-            opacity: 0;
-            transform: translateY(24px);
-            transition: opacity 0.6s ease, transform 0.6s ease;
-        }
-
-        .fade-up.visible {
-            opacity: 1;
-            transform: translateY(0);
+        @media (max-width: 560px) {
+            .process-steps { grid-template-columns: 1fr; }
         }
     </style>
 </head>
 <body>
 
+    <!-- NAV -->
     <nav>
-        <div class="nav-logo">JW<span>DIGITAL</span></div>
+        <a href="#" class="nav-logo">JW<span>DIGITAL</span></a>
         <a href="sms:+18179199105" class="nav-cta">Get a Free Mockup →</a>
     </nav>
 
@@ -712,7 +384,7 @@
             <div class="hero-left">
                 <div class="hero-eyebrow">Colleyville, TX — Open for Business</div>
                 <h1>Agency Quality.<br><span class="accent">Without the</span><br>Agency Bill.</h1>
-                <p class="hero-sub">I build websites, branding, and local SEO for small businesses — the kind of work agencies charge $5,000+ for, done right, for a fraction of the cost.</p>
+                <p class="hero-sub">I build websites, brand identities, and social presence for small businesses — the kind of work agencies charge $5,000+ for, done right, for a fraction of the cost.</p>
                 <div class="hero-actions">
                     <a href="#pricing" class="btn-primary">See All Pricing</a>
                     <a href="sms:+18179199105" class="btn-secondary">Text Me a Question</a>
@@ -737,19 +409,19 @@
                     </div>
                 </div>
                 <div class="compare-row">
-                    <span class="compare-service">Local SEO / Month</span>
+                    <span class="compare-service">Social Launch</span>
                     <div class="compare-prices">
-                        <span class="price-agency">$1,500+</span>
-                        <span class="price-jw">$500</span>
-                        <span class="savings-badge">67% off</span>
+                        <span class="price-agency">$500+</span>
+                        <span class="price-jw">$150</span>
+                        <span class="savings-badge">70% off</span>
                     </div>
                 </div>
                 <div class="compare-row">
-                    <span class="compare-service">Site Maintenance</span>
+                    <span class="compare-service">Full Bundle</span>
                     <div class="compare-prices">
-                        <span class="price-agency">$400+</span>
-                        <span class="price-jw">$150</span>
-                        <span class="savings-badge">63% off</span>
+                        <span class="price-agency">$6,000+</span>
+                        <span class="price-jw">$1,100</span>
+                        <span class="savings-badge">82% off</span>
                     </div>
                 </div>
             </div>
@@ -761,7 +433,7 @@
         <div class="section-inner">
             <p class="section-label">Why JW Digital</p>
             <h2>No Account Managers.<br>No Markups. Just Work.</h2>
-            <p class="section-sub">Traditional agencies charge you for overhead you never see — I don't. You get direct access, fast turnaround, and work that actually performs.</p>
+            <p class="section-sub">Traditional agencies charge you for overhead you never see. You get direct access, fast turnaround, and work that actually performs.</p>
             <div class="why-grid">
                 <div class="why-card fade-up">
                     <div class="why-number">01</div>
@@ -770,27 +442,28 @@
                 </div>
                 <div class="why-card fade-up">
                     <div class="why-number">02</div>
-                    <h3>Built to Get You Found Locally</h3>
-                    <p>Every site ships with on-page SEO, Google Maps setup, and mobile-first design — because 85% of local searches happen on a phone and your site needs to be ready.</p>
+                    <h3>Free Mockup Before You Spend a Dollar</h3>
+                    <p>Text me what you do and I'll put together a mockup of your site or logo the same day. You see the vision before you commit to anything.</p>
                 </div>
                 <div class="why-card fade-up">
                     <div class="why-number">03</div>
                     <h3>Flat Rates. No Surprises.</h3>
-                    <p>You'll know the full price before we start. No hourly billing, no scope creep invoices, no retainer traps. Just a clear number for a clear deliverable.</p>
+                    <p>You'll know the full price before we start. No hourly billing, no scope creep invoices. Just a clear number for a clear deliverable.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- PRICING -->
-    <section class="services" id="pricing">
+    <section class="pricing-section" id="pricing">
         <div class="section-inner">
             <p class="section-label">Services & Pricing</p>
-            <h2>Pick What You Need.</h2>
-            <p class="section-sub">Every service is a flat rate. No hidden fees, no hourly surprises. Mix and match, or grab the bundle below and save.</p>
+            <h2>Three Ways to Get Started.</h2>
+            <p class="section-sub">Every service is a flat, one-time rate. Pick what you need, or grab the bundle and save.</p>
+
             <div class="pricing-grid">
 
-                <!-- Website -->
+                <!-- Website Build -->
                 <div class="pricing-card featured fade-up">
                     <div class="featured-badge">Most Popular</div>
                     <div class="pricing-icon"><i class="fa-solid fa-globe"></i></div>
@@ -799,76 +472,54 @@
                     <p class="pricing-cadence">One-time, flat rate</p>
                     <p class="agency-comparison">↑ Agencies charge $3,000–8,000</p>
                     <div class="pricing-divider"></div>
-                    <p class="pricing-includes">Includes</p>
+                    <p class="pricing-includes">What You Get</p>
                     <ul class="pricing-features">
-                        <li><i class="fa-solid fa-check"></i> Custom 5-section website</li>
-                        <li><i class="fa-solid fa-check"></i> Lead capture quote form</li>
-                        <li><i class="fa-solid fa-check"></i> Mobile-first, fast-loading</li>
-                        <li><i class="fa-solid fa-check"></i> On-page SEO setup</li>
-                        <li><i class="fa-solid fa-check"></i> Google Maps verification</li>
-                        <li><i class="fa-solid fa-check"></i> Instagram account setup</li>
-                        <li><i class="fa-solid fa-check"></i> 3x IG launch graphics</li>
-                        <li><i class="fa-solid fa-check"></i> Delivered in 48 hours</li>
+                        <li><i class="fa-solid fa-check"></i>Custom 5-section website</li>
+                        <li><i class="fa-solid fa-check"></i>Lead capture quote form</li>
+                        <li><i class="fa-solid fa-check"></i>Mobile-first, fast-loading design</li>
+                        <li><i class="fa-solid fa-check"></i>On-page SEO setup</li>
+                        <li><i class="fa-solid fa-check"></i>Google Maps verification</li>
+                        <li><i class="fa-solid fa-check"></i>Delivered in 48 hours</li>
                     </ul>
                     <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
                 </div>
 
-                <!-- Logo -->
+                <!-- Logo & Branding -->
                 <div class="pricing-card fade-up">
                     <div class="pricing-icon"><i class="fa-solid fa-pen-nib"></i></div>
                     <p class="pricing-name">Logo & Branding</p>
                     <div class="pricing-price">$300</div>
                     <p class="pricing-cadence">One-time, flat rate</p>
-                    <p class="agency-comparison" style="color:#4ade80;">↑ Agencies charge $1,500–5,000</p>
+                    <p class="agency-comparison" style="color: var(--green);">↑ Agencies charge $1,500–5,000</p>
                     <div class="pricing-divider"></div>
-                    <p class="pricing-includes">Includes</p>
+                    <p class="pricing-includes">What You Get</p>
                     <ul class="pricing-features">
-                        <li><i class="fa-solid fa-check"></i> Custom logo design</li>
-                        <li><i class="fa-solid fa-check"></i> 2 revision rounds</li>
-                        <li><i class="fa-solid fa-check"></i> Color palette & fonts</li>
-                        <li><i class="fa-solid fa-check"></i> All file formats (PNG, SVG, PDF)</li>
-                        <li><i class="fa-solid fa-check"></i> Business card template</li>
-                        <li><i class="fa-solid fa-check"></i> Full brand guide doc</li>
+                        <li><i class="fa-solid fa-check"></i>Custom logo design</li>
+                        <li><i class="fa-solid fa-check"></i>2 rounds of revisions</li>
+                        <li><i class="fa-solid fa-check"></i>Full color palette & font selection</li>
+                        <li><i class="fa-solid fa-check"></i>All file formats (PNG, SVG, PDF)</li>
+                        <li><i class="fa-solid fa-check"></i>Business card template</li>
+                        <li><i class="fa-solid fa-check"></i>Brand guide document</li>
                     </ul>
                     <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
                 </div>
 
-                <!-- SEO -->
+                <!-- Social Launch -->
                 <div class="pricing-card fade-up">
-                    <div class="pricing-icon"><i class="fa-solid fa-chart-line"></i></div>
-                    <p class="pricing-name">Local SEO</p>
-                    <div class="pricing-price">$500</div>
-                    <p class="pricing-cadence">Per month</p>
-                    <p class="agency-comparison" style="color:#4ade80;">↑ Agencies charge $1,500–3,000/mo</p>
-                    <div class="pricing-divider"></div>
-                    <p class="pricing-includes">Includes</p>
-                    <ul class="pricing-features">
-                        <li><i class="fa-solid fa-check"></i> Google Business optimization</li>
-                        <li><i class="fa-solid fa-check"></i> Local keyword targeting</li>
-                        <li><i class="fa-solid fa-check"></i> 2x monthly blog posts</li>
-                        <li><i class="fa-solid fa-check"></i> Citation building</li>
-                        <li><i class="fa-solid fa-check"></i> Monthly rank report</li>
-                        <li><i class="fa-solid fa-check"></i> Review strategy</li>
-                    </ul>
-                    <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
-                </div>
-
-                <!-- Maintenance -->
-                <div class="pricing-card fade-up">
-                    <div class="pricing-icon"><i class="fa-solid fa-shield-halved"></i></div>
-                    <p class="pricing-name">Site Maintenance</p>
+                    <div class="pricing-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <p class="pricing-name">Social Launch</p>
                     <div class="pricing-price">$150</div>
-                    <p class="pricing-cadence">Per month</p>
-                    <p class="agency-comparison" style="color:#4ade80;">↑ Agencies charge $300–500/mo</p>
+                    <p class="pricing-cadence">One-time, flat rate</p>
+                    <p class="agency-comparison" style="color: var(--green);">↑ Agencies charge $500–1,000</p>
                     <div class="pricing-divider"></div>
-                    <p class="pricing-includes">Includes</p>
+                    <p class="pricing-includes">What You Get</p>
                     <ul class="pricing-features">
-                        <li><i class="fa-solid fa-check"></i> Hosting included</li>
-                        <li><i class="fa-solid fa-check"></i> Unlimited minor edits</li>
-                        <li><i class="fa-solid fa-check"></i> Speed & uptime monitoring</li>
-                        <li><i class="fa-solid fa-check"></i> Security updates</li>
-                        <li><i class="fa-solid fa-check"></i> Priority support</li>
-                        <li><i class="fa-solid fa-check"></i> Monthly status report</li>
+                        <li><i class="fa-solid fa-check"></i>Instagram business account setup</li>
+                        <li><i class="fa-solid fa-check"></i>Profile optimized & branded</li>
+                        <li><i class="fa-solid fa-check"></i>3 custom launch graphics</li>
+                        <li><i class="fa-solid fa-check"></i>Caption copy for each post</li>
+                        <li><i class="fa-solid fa-check"></i>Hashtag & bio strategy</li>
+                        <li><i class="fa-solid fa-check"></i>Ready to post day one</li>
                     </ul>
                     <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
                 </div>
@@ -884,32 +535,32 @@
                 <div class="bundle-left">
                     <span class="bundle-tag">Best Value</span>
                     <h2>The Full Launch Bundle</h2>
-                    <p class="section-sub">Everything you need to go from zero to booked — website, brand identity, and a free first month of hosting. The fastest way to look like you've been in business for years.</p>
-                    <a href="sms:+18179199105" class="btn-primary" style="margin-top: 8px;">Claim This Bundle →</a>
+                    <p class="section-sub">Everything a new or growing business needs to look established from day one — website, brand identity, and a live social presence, all in one shot.</p>
+                    <a href="sms:+18179199105" class="btn-primary">Claim This Bundle →</a>
                 </div>
                 <div class="bundle-right">
                     <ul class="bundle-items">
                         <li>
-                            <span class="bundle-item-name">Custom Website Build</span>
+                            <span class="bundle-item-name">Website Build</span>
                             <span class="bundle-item-price">$750</span>
                         </li>
                         <li>
-                            <span class="bundle-item-name">Logo & Branding Package</span>
+                            <span class="bundle-item-name">Logo & Branding</span>
                             <span class="bundle-item-price">$300</span>
                         </li>
                         <li>
-                            <span class="bundle-item-name">First Month Maintenance</span>
-                            <span class="bundle-item-price" style="color: #4ade80;">FREE</span>
+                            <span class="bundle-item-name">Social Launch</span>
+                            <span class="bundle-item-free">FREE</span>
                         </li>
                     </ul>
                     <div class="bundle-total">
                         <div>
                             <p class="bundle-total-label">Bundle Price</p>
-                            <p class="bundle-total-savings">You save $300 vs. buying separately</p>
+                            <p class="bundle-total-savings">Social Launch included free — save $150</p>
                         </div>
                         <div style="text-align: right;">
-                            <p style="font-size: 13px; color: #555; text-decoration: line-through; font-weight: 600; letter-spacing: 0.05em;">$1,200</p>
-                            <div class="bundle-total-price">$900</div>
+                            <p class="bundle-was">$1,200</p>
+                            <div class="bundle-total-price">$1,100</div>
                         </div>
                     </div>
                     <a href="sms:+18179199105" class="bundle-cta">Text Me to Claim This Bundle</a>
@@ -923,30 +574,27 @@
         <div class="section-inner">
             <p class="section-label">How It Works</p>
             <h2>From Text to Live in 48 Hours.</h2>
-            <p class="section-sub" style="margin-bottom: 60px;">No discovery calls, no intake forms. Just a quick conversation and we're building.</p>
+            <p class="section-sub">No discovery calls, no intake forms. Just a quick conversation and we're building.</p>
             <div class="process-steps">
                 <div class="process-step fade-up">
-                    <div class="step-connector"></div>
                     <div class="step-number">01</div>
                     <h3 class="step-title">You Text Me</h3>
-                    <p class="step-desc">Tell me what you do, where you're based, and what you need. That's it. No forms, no calls required.</p>
+                    <p class="step-desc">Tell me what you do and what you need. That's it. No forms, no calls required.</p>
                 </div>
                 <div class="process-step fade-up">
-                    <div class="step-connector"></div>
                     <div class="step-number">02</div>
                     <h3 class="step-title">Free Mockup, Same Day</h3>
-                    <p class="step-desc">I'll put together a rough mockup of your site or logo so you can see the vision before spending a dollar.</p>
+                    <p class="step-desc">I'll put together a rough mockup of your site or logo so you can see the vision before spending anything.</p>
                 </div>
                 <div class="process-step fade-up">
-                    <div class="step-connector"></div>
                     <div class="step-number">03</div>
                     <h3 class="step-title">You Approve, I Build</h3>
-                    <p class="step-desc">Once you're happy with the direction, I collect 50% upfront and get to work. Fast.</p>
+                    <p class="step-desc">Happy with the direction? I collect 50% upfront and get to work immediately.</p>
                 </div>
                 <div class="process-step fade-up">
                     <div class="step-number">04</div>
                     <h3 class="step-title">Live in 48 Hours</h3>
-                    <p class="step-desc">Your site is live, your brand is ready, and you're open for business. Final 50% due on delivery.</p>
+                    <p class="step-desc">Your site is live, your brand is ready. Final 50% due on delivery.</p>
                 </div>
             </div>
         </div>
@@ -967,7 +615,6 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
     </script>
 
