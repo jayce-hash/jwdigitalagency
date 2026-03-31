@@ -479,6 +479,25 @@
         }
         .rbb-cta:hover { background: var(--blue); }
 
+        /* ── ABOUT ── */
+        .about-section { background: var(--white); }
+        .about-box {
+            display: grid; grid-template-columns: 1fr 2fr;
+            gap: 80px; align-items: start;
+            border-top: 1px solid var(--border);
+            padding-top: 60px;
+        }
+        .about-body {
+            font-size: 16px; color: var(--muted);
+            line-height: 1.8; margin-bottom: 20px;
+        }
+        .about-body:last-of-type { margin-bottom: 28px; }
+        .about-location {
+            font-size: 12px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--blue);
+        }
+
         /* ── ANIMATIONS ── */
         .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -492,7 +511,7 @@
             .process-steps { grid-template-columns: 1fr 1fr; }
             .process-step { border-right: none; border-bottom: 1px solid var(--border); }
             .process-step:last-child { border-bottom: none; }
-            .refresh-intro { grid-template-columns: 1fr; gap: 24px; }
+            .about-box { grid-template-columns: 1fr; gap: 32px; }
             .refresh-bundle-bar { flex-direction: column; align-items: flex-start; }
             section { padding: 72px 24px; }
             nav { padding: 0 24px; }
@@ -507,7 +526,7 @@
     <!-- NAV -->
     <nav>
         <a href="#" class="nav-logo">JW<span>DIGITAL</span></a>
-        <a href="sms:+18179199105" class="nav-cta">Get a Free Mockup →</a>
+        <a href="sms:+18173120040" class="nav-cta">Get a Free Mockup →</a>
     </nav>
 
     <!-- HERO -->
@@ -519,7 +538,7 @@
                 <p class="hero-sub">I build websites, brand identities, and social presence for small businesses — the kind of work agencies charge $5,000+ for, done right, for a fraction of the cost.</p>
                 <div class="hero-actions">
                     <a href="#pricing" class="btn-primary">See All Pricing</a>
-                    <a href="sms:+18179199105" class="btn-secondary">Text Me a Question</a>
+                    <a href="sms:+18173120040" class="btn-secondary">Text Me a Question</a>
                 </div>
             </div>
             <div class="hero-right">
@@ -613,7 +632,7 @@
                         <li><i class="fa-solid fa-check"></i>Google Maps verification</li>
                         <li><i class="fa-solid fa-check"></i>Delivered in 48 hours</li>
                     </ul>
-                    <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
+                    <a href="sms:+18173120040" class="pricing-btn">Get Started →</a>
                 </div>
 
                 <!-- Logo & Branding -->
@@ -633,7 +652,7 @@
                         <li><i class="fa-solid fa-check"></i>Business card template</li>
                         <li><i class="fa-solid fa-check"></i>Brand guide document</li>
                     </ul>
-                    <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
+                    <a href="sms:+18173120040" class="pricing-btn">Get Started →</a>
                 </div>
 
                 <!-- Social Launch -->
@@ -653,7 +672,7 @@
                         <li><i class="fa-solid fa-check"></i>Hashtag & bio strategy</li>
                         <li><i class="fa-solid fa-check"></i>Ready to post day one</li>
                     </ul>
-                    <a href="sms:+18179199105" class="pricing-btn">Get Started →</a>
+                    <a href="sms:+18173120040" class="pricing-btn">Get Started →</a>
                 </div>
 
             </div>
@@ -749,7 +768,7 @@
                         <li><i class="fa-solid fa-bolt"></i>All file formats (PNG, SVG, PDF)</li>
                         <li><i class="fa-solid fa-bolt"></i>Updated brand guide doc</li>
                     </ul>
-                    <a href="sms:+18179199105" class="refresh-btn">Get Started →</a>
+                    <a href="sms:+18173120040" class="refresh-btn">Get Started →</a>
                 </div>
 
                 <!-- Social Rebrand -->
@@ -820,6 +839,24 @@
                     <div class="step-number">04</div>
                     <h3 class="step-title">Live in 48 Hours</h3>
                     <p class="step-desc">Your site is live, your brand is ready. Final 50% due on delivery.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="about-section">
+        <div class="section-inner">
+            <div class="about-box">
+                <div class="about-left">
+                    <p class="section-label">About</p>
+                    <h2>One Person.<br>No Markup.</h2>
+                </div>
+                <div class="about-right">
+                    <p class="about-body">JW Digital is run by Jayce Wells — a marketing graduate from Liberty University and founder of Concerto, a live music app available on iOS and Android.</p>
+                    <p class="about-body">The agency side came out of a simple observation: most local businesses in DFW are losing customers every day to a bad website or a dead Instagram, and the agencies charging $5,000 to fix it aren't in any hurry to make it affordable.</p>
+                    <p class="about-body">JW Digital exists to close that gap. Flat rates, fast turnaround, and you deal with one person who actually cares whether it works.</p>
+                    <p class="about-location">Based in Colleyville, TX.</p>
                 </div>
             </div>
         </div>
