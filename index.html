@@ -349,6 +349,136 @@
         .footer-contact { color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
         .footer-contact:hover { color: var(--white); }
 
+        /* ── REFRESH SECTION ── */
+        .refresh-section { background: var(--white); }
+
+        .refresh-intro {
+            display: grid; grid-template-columns: 1fr 1fr;
+            gap: 60px; align-items: end; margin-bottom: 60px;
+        }
+
+        .refresh-tag {
+            display: inline-block; background: #fef3c7;
+            color: #92400e; font-size: 10px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            padding: 5px 12px; border-radius: 2px; margin-bottom: 16px;
+        }
+
+        .refresh-note {
+            font-size: 14px; color: var(--muted); line-height: 1.75;
+            border-left: 2px solid var(--border); padding-left: 20px;
+            align-self: flex-end;
+        }
+
+        .refresh-grid {
+            display: grid; grid-template-columns: repeat(3, 1fr);
+            gap: 2px; background: var(--border);
+            border: 1px solid var(--border); margin-bottom: 2px;
+        }
+
+        .refresh-card {
+            background: var(--paper); padding: 36px 32px;
+            display: flex; flex-direction: column;
+        }
+
+        .refresh-icon {
+            width: 36px; height: 36px; border: 1.5px solid var(--border);
+            border-radius: 4px; display: flex; align-items: center;
+            justify-content: center; color: var(--muted);
+            font-size: 14px; margin-bottom: 20px;
+        }
+
+        .refresh-name {
+            font-size: 11px; font-weight: 700;
+            letter-spacing: 0.15em; text-transform: uppercase;
+            color: var(--muted); margin-bottom: 8px;
+        }
+
+        .refresh-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 48px; letter-spacing: 1px; line-height: 1;
+            color: var(--ink); margin-bottom: 4px;
+        }
+
+        .refresh-was {
+            font-size: 12px; color: #bbb;
+            text-decoration: line-through; font-weight: 500;
+            margin-bottom: 6px;
+        }
+
+        .refresh-cadence {
+            font-size: 12px; color: var(--muted);
+            font-weight: 500; margin-bottom: 24px;
+        }
+
+        .refresh-divider { height: 1px; background: var(--border); margin-bottom: 20px; }
+
+        .refresh-features { list-style: none; flex: 1; margin-bottom: 28px; }
+        .refresh-features li {
+            font-size: 13px; color: var(--ink);
+            padding: 7px 0; border-bottom: 1px solid var(--border);
+            display: flex; align-items: flex-start; gap: 10px; line-height: 1.4;
+        }
+        .refresh-features li:last-child { border-bottom: none; }
+        .refresh-features li i { color: #f59e0b; font-size: 11px; margin-top: 3px; flex-shrink: 0; }
+
+        .refresh-btn {
+            display: block; text-align: center;
+            padding: 13px; border-radius: 4px;
+            font-size: 13px; font-weight: 700;
+            letter-spacing: 0.08em; text-decoration: none;
+            text-transform: uppercase; transition: all 0.2s;
+            border: 1.5px solid var(--border); color: var(--ink);
+            margin-top: auto;
+        }
+        .refresh-btn:hover { border-color: var(--ink); }
+
+        /* Refresh bundle bar */
+        .refresh-bundle-bar {
+            background: #fef3c7; border: 1px solid #fde68a;
+            padding: 28px 40px;
+            display: flex; justify-content: space-between; align-items: center;
+            flex-wrap: wrap; gap: 20px;
+        }
+
+        .rbb-left { display: flex; align-items: center; gap: 20px; flex-wrap: wrap; }
+
+        .rbb-label {
+            font-size: 10px; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: #92400e;
+        }
+
+        .rbb-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 28px; letter-spacing: 1px; color: var(--ink);
+        }
+
+        .rbb-items {
+            font-size: 13px; color: #78716c; font-weight: 500;
+        }
+
+        .rbb-right { display: flex; align-items: center; gap: 24px; flex-wrap: wrap; }
+
+        .rbb-was { font-size: 13px; color: #aaa; text-decoration: line-through; font-weight: 600; }
+
+        .rbb-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 44px; letter-spacing: 1px; color: var(--ink); line-height: 1;
+        }
+
+        .rbb-savings {
+            font-size: 12px; color: #92400e; font-weight: 700;
+        }
+
+        .rbb-cta {
+            background: var(--ink); color: var(--white);
+            padding: 14px 28px; border-radius: 4px;
+            font-size: 13px; font-weight: 700; letter-spacing: 0.08em;
+            text-decoration: none; text-transform: uppercase;
+            transition: background 0.2s; white-space: nowrap;
+        }
+        .rbb-cta:hover { background: var(--blue); }
+
         /* ── ANIMATIONS ── */
         .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
@@ -357,11 +487,13 @@
         @media (max-width: 960px) {
             .hero { grid-template-columns: 1fr; padding: 60px 24px; min-height: auto; }
             .hero-right { display: none; }
-            .why-grid, .pricing-grid { grid-template-columns: 1fr; }
+            .why-grid, .pricing-grid, .refresh-grid { grid-template-columns: 1fr; }
             .bundle-box { grid-template-columns: 1fr; gap: 40px; }
             .process-steps { grid-template-columns: 1fr 1fr; }
             .process-step { border-right: none; border-bottom: 1px solid var(--border); }
             .process-step:last-child { border-bottom: none; }
+            .refresh-intro { grid-template-columns: 1fr; gap: 24px; }
+            .refresh-bundle-bar { flex-direction: column; align-items: flex-start; }
             section { padding: 72px 24px; }
             nav { padding: 0 24px; }
         }
@@ -566,6 +698,99 @@
                     <a href="sms:+18179199105" class="bundle-cta">Text Me to Claim This Bundle</a>
                 </div>
             </div>
+        </div>
+    </section>
+
+    <!-- REFRESH -->
+    <section class="refresh-section" id="refresh">
+        <div class="section-inner">
+            <div class="refresh-intro">
+                <div>
+                    <span class="refresh-tag">Already Have Something?</span>
+                    <h2>Refresh Pricing.</h2>
+                    <p class="section-sub" style="margin-bottom: 0;">You've done the hard work of building a business. If you already have a site, logo, or social presence that just needs modernizing — you shouldn't pay full price.</p>
+                </div>
+                <p class="refresh-note">Refresh projects get the same turnaround and quality as a new build. You just pay less because the foundation is already there.</p>
+            </div>
+
+            <div class="refresh-grid">
+
+                <!-- Website Redesign -->
+                <div class="refresh-card fade-up">
+                    <div class="refresh-icon"><i class="fa-solid fa-rotate"></i></div>
+                    <p class="refresh-name">Website Redesign</p>
+                    <div class="refresh-price">$500</div>
+                    <p class="refresh-was">$750 for new builds</p>
+                    <p class="refresh-cadence">One-time, flat rate</p>
+                    <div class="refresh-divider"></div>
+                    <ul class="refresh-features">
+                        <li><i class="fa-solid fa-bolt"></i>Modern redesign of your existing site</li>
+                        <li><i class="fa-solid fa-bolt"></i>Your content, copy & photos kept</li>
+                        <li><i class="fa-solid fa-bolt"></i>Mobile-first rebuild</li>
+                        <li><i class="fa-solid fa-bolt"></i>On-page SEO refresh</li>
+                        <li><i class="fa-solid fa-bolt"></i>New lead capture form</li>
+                        <li><i class="fa-solid fa-bolt"></i>Delivered in 48 hours</li>
+                    </ul>
+                    <a href="sms:+18179199105" class="refresh-btn">Get Started →</a>
+                </div>
+
+                <!-- Logo Refresh -->
+                <div class="refresh-card fade-up">
+                    <div class="refresh-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <p class="refresh-name">Logo Refresh</p>
+                    <div class="refresh-price">$150</div>
+                    <p class="refresh-was">$300 for new logos</p>
+                    <p class="refresh-cadence">One-time, flat rate</p>
+                    <div class="refresh-divider"></div>
+                    <ul class="refresh-features">
+                        <li><i class="fa-solid fa-bolt"></i>Modernized version of your existing logo</li>
+                        <li><i class="fa-solid fa-bolt"></i>Updated colors & typography</li>
+                        <li><i class="fa-solid fa-bolt"></i>2 rounds of revisions</li>
+                        <li><i class="fa-solid fa-bolt"></i>All file formats (PNG, SVG, PDF)</li>
+                        <li><i class="fa-solid fa-bolt"></i>Updated brand guide doc</li>
+                    </ul>
+                    <a href="sms:+18179199105" class="refresh-btn">Get Started →</a>
+                </div>
+
+                <!-- Social Rebrand -->
+                <div class="refresh-card fade-up">
+                    <div class="refresh-icon"><i class="fa-brands fa-instagram"></i></div>
+                    <p class="refresh-name">Social Media Rebrand</p>
+                    <div class="refresh-price">$100</div>
+                    <p class="refresh-was">$150 for new accounts</p>
+                    <p class="refresh-cadence">One-time, flat rate</p>
+                    <div class="refresh-divider"></div>
+                    <ul class="refresh-features">
+                        <li><i class="fa-solid fa-bolt"></i>Profile & bio rewritten</li>
+                        <li><i class="fa-solid fa-bolt"></i>New profile photo & cover</li>
+                        <li><i class="fa-solid fa-bolt"></i>3 rebrand launch graphics</li>
+                        <li><i class="fa-solid fa-bolt"></i>Caption copy for each post</li>
+                        <li><i class="fa-solid fa-bolt"></i>Updated hashtag strategy</li>
+                    </ul>
+                    <a href="sms:+18179199105" class="refresh-btn">Get Started →</a>
+                </div>
+
+            </div>
+
+            <!-- Refresh Bundle Bar -->
+            <div class="refresh-bundle-bar">
+                <div class="rbb-left">
+                    <div>
+                        <p class="rbb-label">Refresh Bundle</p>
+                        <p class="rbb-title">All Three — Website + Logo + Social</p>
+                        <p class="rbb-items">Redesign · Logo Refresh · Social Rebrand</p>
+                    </div>
+                </div>
+                <div class="rbb-right">
+                    <div>
+                        <p class="rbb-was">$750 separately</p>
+                        <p class="rbb-price">$650</p>
+                        <p class="rbb-savings">Save $100 with the bundle</p>
+                    </div>
+                    <a href="sms:+18179199105" class="rbb-cta">Claim Refresh Bundle →</a>
+                </div>
+            </div>
+
         </div>
     </section>
 
