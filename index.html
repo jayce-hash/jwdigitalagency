@@ -608,7 +608,7 @@
         <div class="modal-body">
             <div class="modal-steps">
                 <div class="modal-step active" id="step-ind-1">1. Your Info</div>
-                <div class="modal-step" id="step-ind-2">2. Pay Deposit</div>
+                <div class="modal-step" id="step-ind-2">2. Payment</div>
                 <div class="modal-step" id="step-ind-3">3. Confirmed</div>
             </div>
 
@@ -709,16 +709,15 @@
                             <p class="form-file-names" id="fileNames"></p>
                         </div>
                     </div>
-                    <button type="submit" class="form-submit-btn">Save My Info &amp; Pay Deposit &rarr;</button>
+                    <button type="submit" class="form-submit-btn">Save My Info &amp; Continue to Payment &rarr;</button>
                 </form>
             </div>
 
-            <!-- STEP 2: Stripe Payment -->
             <div class="step-panel" id="step2">
                 <div class="zelle-box">
-                    <p class="zelle-label">50% Deposit Due Now to Reserve Your Spot</p>
+                    <p class="zelle-label">Total Due Today</p>
                     <div class="zelle-amount">$<span id="depositAmount">0</span></div>
-                    <p class="zelle-sub">Remaining balance due upon delivery. <strong id="fullPriceDisplay">$0 total</strong></p>
+                    <p class="zelle-sub">One-time, flat rate. No hidden fees, no balance due later.</p>
                 </div>
                 <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
                     <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
@@ -731,9 +730,9 @@
                         <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
                     </div>
                     <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
-                        <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, the 50% deposit is non-refundable. Final payment is due on delivery, not before.</p>
+                        <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, payment is non-refundable.</p>
                     </div>
-                    <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> Deposit and Lock In My Order &rarr;</button>
+                    <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> and Lock In My Order &rarr;</button>
                     <div id="stripe-processing" style="display:none;text-align:center;padding:16px;font-size:13px;color:var(--muted);font-weight:600">Processing your payment...</div>
                 </div>
             </div>
@@ -747,7 +746,7 @@
                     <div style="text-align:left;background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
                         <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
                             <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your deposit has been charged and your spot is reserved. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
+                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your payment is confirmed and your project is locked in. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
                         </div>
                         <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
                             <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
@@ -755,7 +754,7 @@
                         </div>
                         <div style="display:flex;gap:12px;align-items:flex-start">
                             <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Once you approve, pay the remaining 50% by card and everything goes live the same day.</p>
+                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Review what I send you, request any changes, and once you approve it goes live.</p>
                         </div>
                     </div>
                     <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
@@ -791,7 +790,7 @@
     document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 
     // Pricing
-    const PRICES = { "Website Build": 2, "Logo & Branding": 300, "Social Launch": 150, "Google Business Profile": 100, "Facebook Business Page": 100, "Email Signature": 50, "QR Code Business Cards": 75, "Review Response Management": 50, "Monthly Maintenance Retainer": 75 };
+    const PRICES = { "Website Build": 750, "Logo & Branding": 300, "Social Launch": 150, "Google Business Profile": 100, "Facebook Business Page": 100, "Email Signature": 50, "QR Code Business Cards": 75, "Review Response Management": 50, "Monthly Maintenance Retainer": 75 };
     const BUNDLE_DISCOUNT = 150;
     let currentDepositCents = 0;
     let currentServices = "";
@@ -816,9 +815,9 @@
 
         document.getElementById("formServices").value = names.join(", ");
         document.getElementById("formTotalPrice").value = "$" + total;
-        document.getElementById("formDepositHidden").value = Math.round(total / 2);
+        document.getElementById("formDepositHidden").value = total;
 
-        currentDepositCents = Math.round(total / 2) * 100;
+        currentDepositCents = total * 100;
         currentServices = names.join(", ");
     }
 
@@ -858,12 +857,10 @@
             return;
         }
         const total = parseInt(document.getElementById("formTotalPrice").value.replace("$",""));
-        const deposit = Math.round(total / 2);
         const services = document.getElementById("formServices").value;
 
-        document.getElementById("depositAmount").textContent = deposit;
-        document.getElementById("depositBtnAmount").textContent = deposit;
-        document.getElementById("fullPriceDisplay").textContent = "$" + total + " total";
+        document.getElementById("depositAmount").textContent = total;
+        document.getElementById("depositBtnAmount").textContent = total;
         document.getElementById("step2Services").textContent = services;
         document.getElementById("confirmServices").textContent = services;
 
