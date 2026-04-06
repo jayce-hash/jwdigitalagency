@@ -204,6 +204,16 @@
         .success-close:hover { background: var(--blue); }
         .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
+        /* Add-ons */
+        .addons-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
+        .addon-card { background: var(--white); padding: 28px 28px; display: flex; flex-direction: column; gap: 16px; }
+        .addon-header { display: flex; align-items: center; gap: 14px; }
+        .addon-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
+        .addon-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--blue); }
+        .addon-price span { font-family: "DM Sans", sans-serif; font-size: 11px; font-weight: 600; color: var(--muted); letter-spacing: 0.05em; text-transform: uppercase; }
+        .addon-features { list-style: none; display: flex; flex-direction: column; gap: 6px; flex: 1; }
+        .addon-features li { font-size: 12.5px; color: var(--muted); padding-left: 14px; position: relative; line-height: 1.5; }
+        .addon-features li::before { content: ""; position: absolute; left: 0; top: 7px; width: 5px; height: 5px; background: var(--blue); border-radius: 50%; opacity: 0.5; }
         /* Service selector */
         .service-selector { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
         .service-option { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none; }
@@ -220,7 +230,7 @@
         @media (max-width: 960px) {
             .hero { grid-template-columns: 1fr; padding: 60px 24px; min-height: auto; }
             .hero-right { display: none; }
-            .why-grid, .pricing-grid, .refresh-grid { grid-template-columns: 1fr; }
+            .why-grid, .pricing-grid, .refresh-grid, .addons-grid { grid-template-columns: 1fr; }
             .bundle-box { grid-template-columns: 1fr; gap: 40px; }
             .process-steps { grid-template-columns: 1fr 1fr; }
             .process-step { border-right: none; border-bottom: 1px solid var(--border); }
@@ -284,7 +294,7 @@
 
 <section class="pricing-section" id="pricing">
     <div class="section-inner">
-        <p class="section-label">Services &amp; Pricing</p>
+        <p class="section-label">Core Services</p>
         <h2>Three Ways to Get Started.</h2>
         <p class="section-sub">Every service is a flat, one-time rate. Pick what you need, or grab the bundle and save.</p>
         <div class="pricing-grid">
@@ -344,7 +354,121 @@
                 <button class="pricing-btn" onclick="openModal()">Get Started &rarr;</button>
             </div>
         </div>
+
+```
+    <!-- ADD-ONS -->
+    <div style="margin-top:60px">
+        <p class="section-label">Add-Ons</p>
+        <h2>Bolt On What You Need.</h2>
+        <p class="section-sub">Add any of these to your order at checkout. Each one is a flat, one-time rate unless noted.</p>
+        <div class="addons-grid">
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-brands fa-google"></i></div>
+                    <div>
+                        <p class="addon-name">Google Business Profile Optimization</p>
+                        <p class="addon-price">$100 <span>one-time</span></p>
+                    </div>
+                </div>
+                <ul class="addon-features">
+                    <li>Full profile audit and completion</li>
+                    <li>Optimized business description with local keywords</li>
+                    <li>Photo upload and categorization</li>
+                    <li>Services, hours, and service area setup</li>
+                    <li>Q&amp;A section populated</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-brands fa-facebook"></i></div>
+                    <div>
+                        <p class="addon-name">Facebook Business Page Setup</p>
+                        <p class="addon-price">$100 <span>one-time</span></p>
+                    </div>
+                </div>
+                <ul class="addon-features">
+                    <li>Page claimed, branded, and fully built out</li>
+                    <li>Cover photo, profile photo, and bio</li>
+                    <li>Services, hours, and contact info complete</li>
+                    <li>Linked to your website and Instagram</li>
+                    <li>Ready to start posting day one</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <p class="addon-name">Email Signature Design</p>
+                        <p class="addon-price">$50 <span>one-time</span></p>
+                    </div>
+                </div>
+                <ul class="addon-features">
+                    <li>Custom branded signature design</li>
+                    <li>Matches your logo, colors, and fonts</li>
+                    <li>Name, title, phone, website, and social links</li>
+                    <li>Works in Gmail, Outlook, and Apple Mail</li>
+                    <li>Install instructions included</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-qrcode"></i></div>
+                    <div>
+                        <p class="addon-name">QR Code Business Cards</p>
+                        <p class="addon-price">$75 <span>one-time</span></p>
+                    </div>
+                </div>
+                <ul class="addon-features">
+                    <li>Custom branded card design</li>
+                    <li>QR code links to your site or Google profile</li>
+                    <li>Print-ready file in all standard sizes</li>
+                    <li>Front and back design included</li>
+                    <li>Delivered as PDF ready to send to a printer</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-star"></i></div>
+                    <div>
+                        <p class="addon-name">Review Response Management</p>
+                        <p class="addon-price">$50 <span>per month</span></p>
+                    </div>
+                </div>
+                <ul class="addon-features">
+                    <li>Monthly monitoring of Google and Yelp reviews</li>
+                    <li>Professional responses written and posted</li>
+                    <li>Keeps your profile active and credible</li>
+                    <li>Helps convert new customers who read reviews</li>
+                    <li>Cancel anytime, no contracts</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-wrench"></i></div>
+                    <div>
+                        <p class="addon-name">Monthly Maintenance Retainer</p>
+                        <p class="addon-price">$75 <span>per month</span></p>
+                    </div>
+                </div>
+                <ul class="addon-features">
+                    <li>Up to 3 site updates per month</li>
+                    <li>New photos, hours changes, copy edits</li>
+                    <li>I check in with you every month proactively</li>
+                    <li>Priority turnaround on all requests</li>
+                    <li>Cancel anytime, no contracts</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+        </div>
     </div>
+</div>
+```
+
 </section>
 
 <section class="bundle-section">
@@ -501,29 +625,52 @@
                 <div class="form-group">
                     <label class="form-label">What Do You Need? Select All That Apply *</label>
                     <div class="service-selector">
+                        <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:4px 0">Core Services</p>
                         <div class="service-option" data-service="Website Build" data-price="750" onclick="toggleService(this)">
                             <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                            <div class="service-option-info">
-                                <span class="service-option-name">Website Build</span>
-                                <span class="service-option-desc">Custom 5-section site, SEO, mobile-first, delivered in 24hrs</span>
-                            </div>
+                            <div class="service-option-info"><span class="service-option-name">Website Build</span><span class="service-option-desc">Custom 5-section site, SEO, mobile-first, delivered in 24hrs</span></div>
                             <span class="service-option-price">$750</span>
                         </div>
                         <div class="service-option" data-service="Logo &amp; Branding" data-price="300" onclick="toggleService(this)">
                             <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                            <div class="service-option-info">
-                                <span class="service-option-name">Logo &amp; Branding</span>
-                                <span class="service-option-desc">Custom logo, color palette, brand guide, business card template</span>
-                            </div>
+                            <div class="service-option-info"><span class="service-option-name">Logo &amp; Branding</span><span class="service-option-desc">Custom logo, color palette, brand guide, business card template</span></div>
                             <span class="service-option-price">$300</span>
                         </div>
                         <div class="service-option" data-service="Social Launch" data-price="150" onclick="toggleService(this)">
                             <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                            <div class="service-option-info">
-                                <span class="service-option-name">Social Launch</span>
-                                <span class="service-option-desc">Instagram setup, 3 branded graphics, bio &amp; hashtag strategy</span>
-                            </div>
+                            <div class="service-option-info"><span class="service-option-name">Social Launch</span><span class="service-option-desc">Instagram setup, 3 branded graphics, bio &amp; hashtag strategy</span></div>
                             <span class="service-option-price">$150</span>
+                        </div>
+                        <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 0 4px">Add-Ons</p>
+                        <div class="service-option" data-service="Google Business Profile" data-price="100" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Google Business Profile Optimization</span><span class="service-option-desc">Full profile polish, local keywords, photos, hours and services</span></div>
+                            <span class="service-option-price">$100</span>
+                        </div>
+                        <div class="service-option" data-service="Facebook Business Page" data-price="100" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Facebook Business Page Setup</span><span class="service-option-desc">Fully built out, branded, and linked to your site and Instagram</span></div>
+                            <span class="service-option-price">$100</span>
+                        </div>
+                        <div class="service-option" data-service="Email Signature" data-price="50" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Email Signature Design</span><span class="service-option-desc">Branded signature for Gmail, Outlook, and Apple Mail</span></div>
+                            <span class="service-option-price">$50</span>
+                        </div>
+                        <div class="service-option" data-service="QR Code Business Cards" data-price="75" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">QR Code Business Cards</span><span class="service-option-desc">Custom design, print-ready PDF, links to your site or profile</span></div>
+                            <span class="service-option-price">$75</span>
+                        </div>
+                        <div class="service-option" data-service="Review Response Management" data-price="50" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Review Response Management</span><span class="service-option-desc">Monthly Google and Yelp review responses written and posted</span></div>
+                            <span class="service-option-price">$50<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
+                        </div>
+                        <div class="service-option" data-service="Monthly Maintenance Retainer" data-price="75" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Monthly Maintenance Retainer</span><span class="service-option-desc">Up to 3 site updates per month, proactive monthly check-in</span></div>
+                            <span class="service-option-price">$75<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
                         </div>
                     </div>
                     <!-- Bundle discount notice -->
@@ -622,7 +769,24 @@
 
 </div>
 
+<script src="https://js.stripe.com/v3/"></script>
+
 <script>
+    // Stripe setup
+    const stripe = Stripe("pk_test_51TJ5W7C3gY3jHe0oZBDEdaQ9nFOwzSpWkfEvoIk0MOBoh5QwiGkD3eypjhdwBDUI8Z1dLdSK7sNycH2EfYCxdhTP00Y8DKGDBz");
+    const elements = stripe.elements();
+    const cardElement = elements.create("card", {
+        style: {
+            base: { fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "#0a0a0a", "::placeholder": { color: "#b0a898" } },
+            invalid: { color: "#dc2626" }
+        }
+    });
+    cardElement.mount("#stripe-card-element");
+    cardElement.on("change", (e) => {
+        document.getElementById("stripe-card-errors").textContent = e.error ? e.error.message : "";
+    });
+
+    // Fade-up observer
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
             if (entry.isIntersecting) setTimeout(() => entry.target.classList.add("visible"), i * 80);
@@ -631,8 +795,10 @@
     document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 
     // Pricing
-    const PRICES = { "Website Build": 750, "Logo & Branding": 300, "Social Launch": 150 };
-    const BUNDLE_DISCOUNT = 150; // Social Launch free when all 3 selected
+    const PRICES = { "Website Build": 750, "Logo & Branding": 300, "Social Launch": 150, "Google Business Profile": 100, "Facebook Business Page": 100, "Email Signature": 50, "QR Code Business Cards": 75, "Review Response Management": 50, "Monthly Maintenance Retainer": 75 };
+    const BUNDLE_DISCOUNT = 150;
+    let currentDepositCents = 0;
+    let currentServices = "";
 
     function toggleService(el) {
         el.classList.toggle("selected");
@@ -648,19 +814,19 @@
 
         document.getElementById("bundleNotice").style.display = allThree ? "block" : "none";
         const bar = document.getElementById("serviceTotalBar");
-        if (names.length > 0) { bar.style.display = "flex"; }
-        else { bar.style.display = "none"; }
+        bar.style.display = names.length > 0 ? "flex" : "none";
         document.getElementById("liveTotalDisplay").textContent = "$" + total;
         document.getElementById("serviceError").style.display = "none";
 
-        // Store for step 2
         document.getElementById("formServices").value = names.join(", ");
         document.getElementById("formTotalPrice").value = "$" + total;
         document.getElementById("formDepositHidden").value = Math.round(total / 2);
+
+        currentDepositCents = Math.round(total / 2) * 100;
+        currentServices = names.join(", ");
     }
 
     function openModal() {
-        // Reset
         document.querySelectorAll(".service-option").forEach(el => el.classList.remove("selected"));
         document.getElementById("bundleNotice").style.display = "none";
         document.getElementById("serviceTotalBar").style.display = "none";
@@ -700,23 +866,67 @@
         const services = document.getElementById("formServices").value;
 
         document.getElementById("depositAmount").textContent = deposit;
+        document.getElementById("depositBtnAmount").textContent = deposit;
         document.getElementById("fullPriceDisplay").textContent = "$" + total + " total";
-        document.getElementById("memoServices").textContent = services;
+        document.getElementById("step2Services").textContent = services;
         document.getElementById("confirmServices").textContent = services;
 
+        // Submit intake form to Netlify
         fetch("/", { method: "POST", body: new FormData(e.target) })
-            .then(() => setStep(2)).catch(() => setStep(2));
+            .catch(() => {}); // fire and forget, move on regardless
+
+        setStep(2);
     }
 
-    function goToStep3() { setStep(3); }
+    async function handleStripePayment() {
+        const btn = document.getElementById("stripe-submit-btn");
+        const processing = document.getElementById("stripe-processing");
+        const errors = document.getElementById("stripe-card-errors");
 
-    function copyZelle() {
-        navigator.clipboard.writeText("8173120040").then(() => {
-            const btn = document.getElementById("copyBtn");
-            btn.textContent = "Copied!";
-            btn.classList.add("copied");
-            setTimeout(() => { btn.textContent = "Copy Number"; btn.classList.remove("copied"); }, 2000);
-        });
+        btn.style.display = "none";
+        processing.style.display = "block";
+        errors.textContent = "";
+
+        try {
+            // Step 1: Create PaymentIntent via Netlify Function
+            const customerName = document.querySelector("[name='first-name']").value + " " + document.querySelector("[name='last-name']").value;
+            const customerEmail = document.querySelector("[name='email']").value;
+
+            const response = await fetch("/.netlify/functions/create-payment-intent", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    amount: currentDepositCents,
+                    services: currentServices,
+                    customerName: customerName,
+                    customerEmail: customerEmail,
+                }),
+            });
+
+            const { clientSecret, error: serverError } = await response.json();
+
+            if (serverError) {
+                throw new Error(serverError);
+            }
+
+            // Step 2: Confirm card payment with Stripe
+            const { error: stripeError } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: { card: cardElement },
+                receipt_email: customerEmail,
+            });
+
+            if (stripeError) {
+                throw new Error(stripeError.message);
+            }
+
+            // Step 3: Success
+            setStep(3);
+
+        } catch (err) {
+            errors.textContent = err.message || "Something went wrong. Please try again.";
+            btn.style.display = "block";
+            processing.style.display = "none";
+        }
     }
 
     function updateFileNames(input) {
