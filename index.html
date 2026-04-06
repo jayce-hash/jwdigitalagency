@@ -567,29 +567,29 @@
             </form>
         </div>
 
-        <!-- STEP 2: Deposit -->
+        <!-- STEP 2: Stripe Payment -->
         <div class="step-panel" id="step2">
             <div class="zelle-box">
                 <p class="zelle-label">50% Deposit Due Now to Reserve Your Spot</p>
                 <div class="zelle-amount">$<span id="depositAmount">0</span></div>
                 <p class="zelle-sub">Remaining balance due upon delivery. <strong id="fullPriceDisplay">$0 total</strong></p>
-                <div class="zelle-to-box">
-                    <div><p class="zelle-to-label">Send Zelle To</p><p class="zelle-to-value">(817) 312-0040</p></div>
-                    <button class="zelle-copy-btn" id="copyBtn" onclick="copyZelle()">Copy Number</button>
-                </div>
             </div>
             <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
-                <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:12px">Include in Your Zelle Memo:</p>
-                <div style="display:flex;flex-direction:column;gap:8px">
-                    <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">1.</span><span>Your <strong>business name</strong></span></div>
-                    <div style="display:flex;gap:10px;font-size:13px"><span style="color:var(--blue);font-weight:700;flex-shrink:0">2.</span><span>Services ordered: <strong id="memoServices">—</strong></span></div>
+                <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
+                <p style="font-size:14px;color:var(--ink);font-weight:600" id="step2Services">--</p>
+            </div>
+            <div id="stripe-payment-form">
+                <div style="margin-bottom:16px">
+                    <label class="form-label" style="display:block;margin-bottom:8px">Card Details</label>
+                    <div id="stripe-card-element" style="background:var(--paper);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
+                    <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
                 </div>
+                <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
+                    <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, the 50% deposit is non-refundable. Final payment is due on delivery, not before.</p>
+                </div>
+                <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> Deposit and Lock In My Order &rarr;</button>
+                <div id="stripe-processing" style="display:none;text-align:center;padding:16px;font-size:13px;color:var(--muted);font-weight:600">Processing your payment...</div>
             </div>
-            <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
-                <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:10px">Refund Policy</p>
-                <p style="font-size:13px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Full refund</strong> if work has not yet started. Once work begins, the 50% deposit is non-refundable. Final payment is due on delivery, not before.</p>
-            </div>
-            <button class="modal-confirm-btn" onclick="goToStep3()">I&rsquo;ve Sent My Deposit, Confirm My Order &rarr;</button>
         </div>
 
         <!-- STEP 3: Confirmation -->
@@ -601,7 +601,7 @@
                 <div style="text-align:left;background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
                     <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
                         <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
-                        <p style="font-size:13px;color:var(--muted);line-height:1.6">I&rsquo;ll confirm your deposit and review your intake form within <strong style="color:var(--ink)">a few hours</strong>.</p>
+                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Your deposit has been charged and your spot is reserved. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
                     </div>
                     <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
                         <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
@@ -609,7 +609,7 @@
                     </div>
                     <div style="display:flex;gap:12px;align-items:flex-start">
                         <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
-                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Once you approve, send the remaining 50% via Zelle and everything goes live.</p>
+                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Once you approve, send the remaining 50% via Zelle to (817) 312-0040 and everything goes live the same day.</p>
                     </div>
                 </div>
                 <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
