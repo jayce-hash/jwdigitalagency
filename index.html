@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -273,6 +274,8 @@
     <a href="#" class="nav-logo">JW<span>DIGITAL</span></a>
     <div class="nav-links">
         <a href="#pricing" class="nav-link">Services</a>
+        <a href="#addons" class="nav-link">Add-Ons</a>
+        <a href="#bundle" class="nav-link">Bundle</a>
         <a href="#refresh" class="nav-link">Refresh</a>
         <a href="#about" class="nav-link">About</a>
         <a href="sms:+18173120040" class="nav-cta">Get a Free Mockup &rarr;</a>
@@ -283,7 +286,9 @@
 </nav>
 <div class="mobile-menu" id="mobileMenu">
     <a href="#pricing" onclick="closeMobileMenu()">Services</a>
-    <a href="#refresh" onclick="closeMobileMenu()">Refresh Pricing</a>
+    <a href="#addons" onclick="closeMobileMenu()">Add-Ons</a>
+    <a href="#bundle" onclick="closeMobileMenu()">Bundle</a>
+    <a href="#refresh" onclick="closeMobileMenu()">Refresh</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
     <a href="sms:+18173120040">Get a Free Mockup &rarr;</a>
 </div>
@@ -308,7 +313,6 @@
         </div>
     </div>
 </header>
-
 
 <section class="pricing-section" id="pricing">
     <div class="section-inner">
@@ -373,120 +377,123 @@
             </div>
         </div>
 
-        <!-- ADD-ONS -->
-        <div style="margin-top:60px">
-            <p class="section-label">Add-Ons</p>
-            <h2>Bolt On What You Need.</h2>
-            <p class="section-sub">Add any of these to your order at checkout. Each one is a flat, one-time rate unless noted.</p>
-            <div class="addons-grid">
-                <div class="addon-card fade-up">
-                    <div class="addon-header">
-                        <div class="pricing-icon" style="margin-bottom:0"><i class="fa-brands fa-google"></i></div>
-                        <div>
-                            <p class="addon-name">Google Business Profile Optimization</p>
-                            <p class="addon-price">$100 <span>one-time</span></p>
-                        </div>
+```
+    <!-- ADD-ONS -->
+    <div style="margin-top:60px" id="addons">
+        <p class="section-label">Add-Ons</p>
+        <h2>Bolt On What You Need.</h2>
+        <p class="section-sub">Add any of these to your order at checkout. Each one is a flat, one-time rate unless noted.</p>
+        <div class="addons-grid">
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-brands fa-google"></i></div>
+                    <div>
+                        <p class="addon-name">Google Business Profile Optimization</p>
+                        <p class="addon-price">$100 <span>one-time</span></p>
                     </div>
-                    <ul class="addon-features">
-                        <li>Full profile audit and completion</li>
-                        <li>Optimized business description with local keywords</li>
-                        <li>Photo upload and categorization</li>
-                        <li>Services, hours, and service area setup</li>
-                        <li>Q&amp;A section populated</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
                 </div>
-                <div class="addon-card fade-up">
-                    <div class="addon-header">
-                        <div class="pricing-icon" style="margin-bottom:0"><i class="fa-brands fa-facebook"></i></div>
-                        <div>
-                            <p class="addon-name">Facebook Business Page Setup</p>
-                            <p class="addon-price">$100 <span>one-time</span></p>
-                        </div>
+                <ul class="addon-features">
+                    <li>Full profile audit and completion</li>
+                    <li>Optimized business description with local keywords</li>
+                    <li>Photo upload and categorization</li>
+                    <li>Services, hours, and service area setup</li>
+                    <li>Q&amp;A section populated</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-brands fa-facebook"></i></div>
+                    <div>
+                        <p class="addon-name">Facebook Business Page Setup</p>
+                        <p class="addon-price">$100 <span>one-time</span></p>
                     </div>
-                    <ul class="addon-features">
-                        <li>Page claimed, branded, and fully built out</li>
-                        <li>Cover photo, profile photo, and bio</li>
-                        <li>Services, hours, and contact info complete</li>
-                        <li>Linked to your website and Instagram</li>
-                        <li>Ready to start posting day one</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
                 </div>
-                <div class="addon-card fade-up">
-                    <div class="addon-header">
-                        <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-envelope"></i></div>
-                        <div>
-                            <p class="addon-name">Email Signature Design</p>
-                            <p class="addon-price">$50 <span>one-time</span></p>
-                        </div>
+                <ul class="addon-features">
+                    <li>Page claimed, branded, and fully built out</li>
+                    <li>Cover photo, profile photo, and bio</li>
+                    <li>Services, hours, and contact info complete</li>
+                    <li>Linked to your website and Instagram</li>
+                    <li>Ready to start posting day one</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-envelope"></i></div>
+                    <div>
+                        <p class="addon-name">Email Signature Design</p>
+                        <p class="addon-price">$50 <span>one-time</span></p>
                     </div>
-                    <ul class="addon-features">
-                        <li>Custom branded signature design</li>
-                        <li>Matches your logo, colors, and fonts</li>
-                        <li>Name, title, phone, website, and social links</li>
-                        <li>Works in Gmail, Outlook, and Apple Mail</li>
-                        <li>Install instructions included</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
                 </div>
-                <div class="addon-card fade-up">
-                    <div class="addon-header">
-                        <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-qrcode"></i></div>
-                        <div>
-                            <p class="addon-name">QR Code Business Cards</p>
-                            <p class="addon-price">$75 <span>one-time</span></p>
-                        </div>
+                <ul class="addon-features">
+                    <li>Custom branded signature design</li>
+                    <li>Matches your logo, colors, and fonts</li>
+                    <li>Name, title, phone, website, and social links</li>
+                    <li>Works in Gmail, Outlook, and Apple Mail</li>
+                    <li>Install instructions included</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-qrcode"></i></div>
+                    <div>
+                        <p class="addon-name">QR Code Business Cards</p>
+                        <p class="addon-price">$75 <span>one-time</span></p>
                     </div>
-                    <ul class="addon-features">
-                        <li>Custom branded card design</li>
-                        <li>QR code links to your site or Google profile</li>
-                        <li>Print-ready file in all standard sizes</li>
-                        <li>Front and back design included</li>
-                        <li>Delivered as PDF ready to send to a printer</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
                 </div>
-                <div class="addon-card fade-up">
-                    <div class="addon-header">
-                        <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-star"></i></div>
-                        <div>
-                            <p class="addon-name">Review Response Management</p>
-                            <p class="addon-price">$50 <span>per month</span></p>
-                        </div>
+                <ul class="addon-features">
+                    <li>Custom branded card design</li>
+                    <li>QR code links to your site or Google profile</li>
+                    <li>Print-ready file in all standard sizes</li>
+                    <li>Front and back design included</li>
+                    <li>Delivered as PDF ready to send to a printer</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-star"></i></div>
+                    <div>
+                        <p class="addon-name">Review Response Management</p>
+                        <p class="addon-price">$50 <span>per month</span></p>
                     </div>
-                    <ul class="addon-features">
-                        <li>Monthly monitoring of Google and Yelp reviews</li>
-                        <li>Professional responses written and posted</li>
-                        <li>Keeps your profile active and credible</li>
-                        <li>Helps convert new customers who read reviews</li>
-                        <li>Cancel anytime, no contracts</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
                 </div>
-                <div class="addon-card fade-up">
-                    <div class="addon-header">
-                        <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-wrench"></i></div>
-                        <div>
-                            <p class="addon-name">Monthly Maintenance Retainer</p>
-                            <p class="addon-price">$75 <span>per month</span></p>
-                        </div>
+                <ul class="addon-features">
+                    <li>Monthly monitoring of Google and Yelp reviews</li>
+                    <li>Professional responses written and posted</li>
+                    <li>Keeps your profile active and credible</li>
+                    <li>Helps convert new customers who read reviews</li>
+                    <li>Cancel anytime, no contracts</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
+            </div>
+            <div class="addon-card fade-up">
+                <div class="addon-header">
+                    <div class="pricing-icon" style="margin-bottom:0"><i class="fa-solid fa-wrench"></i></div>
+                    <div>
+                        <p class="addon-name">Monthly Maintenance Retainer</p>
+                        <p class="addon-price">$75 <span>per month</span></p>
                     </div>
-                    <ul class="addon-features">
-                        <li>Up to 3 site updates per month</li>
-                        <li>New photos, hours changes, copy edits</li>
-                        <li>I check in with you every month proactively</li>
-                        <li>Priority turnaround on all requests</li>
-                        <li>Cancel anytime, no contracts</li>
-                    </ul>
-                    <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
                 </div>
+                <ul class="addon-features">
+                    <li>Up to 3 site updates per month</li>
+                    <li>New photos, hours changes, copy edits</li>
+                    <li>I check in with you every month proactively</li>
+                    <li>Priority turnaround on all requests</li>
+                    <li>Cancel anytime, no contracts</li>
+                </ul>
+                <button class="pricing-btn" onclick="openModal()" style="margin-top:auto">Add to Order &rarr;</button>
             </div>
         </div>
     </div>
+</div>
+```
+
 </section>
 
-<section class="bundle-section">
+<section class="bundle-section" id="bundle">
     <div class="bundle-box">
         <div class="bundle-left">
             <span class="bundle-tag">Best Value</span>
@@ -594,10 +601,14 @@
 <footer>
     <div class="footer-logo">JW<span>DIGITAL</span></div>
     <p>&copy; 2026 JW Digital, a DBA of Concerto LLC &middot; Colleyville, TX</p>
-    <a href="sms:+18173120040" class="footer-contact">Text: (817) 312-0040</a>
+    <div style="display:flex;gap:20px;align-items:center">
+        <a href="https://instagram.com/jwdigitalagency" target="_blank" class="footer-contact"><i class="fa-brands fa-instagram" style="margin-right:6px"></i>@jwdigitalagency</a>
+        <a href="sms:+18173120040" class="footer-contact">Text: (817) 312-0040</a>
+    </div>
 </footer>
 
 <!-- MODAL -->
+
 <div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
     <div class="modal" id="modal">
         <div class="modal-header">
@@ -612,160 +623,164 @@
                 <div class="modal-step" id="step-ind-3">3. Confirmed</div>
             </div>
 
-            <!-- STEP 1: Intake + Service Selection -->
-            <div class="step-panel active" id="step1">
-                <form class="intake-form" name="client-intake" method="POST" data-netlify="true" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
-                    <input type="hidden" name="form-name" value="client-intake">
-                    <input type="hidden" name="selected-services" id="formServices" value="">
-                    <input type="hidden" name="total-price" id="formTotalPrice" value="">
-                    <input type="hidden" name="deposit-amount" id="formDepositHidden" value="">
+```
+        <!-- STEP 1: Intake + Service Selection -->
+        <div class="step-panel active" id="step1">
+            <form class="intake-form" name="client-intake" method="POST" data-netlify="true" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
+                <input type="hidden" name="form-name" value="client-intake">
+                <input type="hidden" name="selected-services" id="formServices" value="">
+                <input type="hidden" name="total-price" id="formTotalPrice" value="">
+                <input type="hidden" name="deposit-amount" id="formDepositHidden" value="">
 
-                    <!-- Service Selector -->
-                    <div class="form-group">
-                        <label class="form-label">What Do You Need? Select All That Apply *</label>
-                        <div class="service-selector">
-                            <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:4px 0">Core Services</p>
-                            <div class="service-option" data-service="Website Build" data-price="750" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Website Build</span><span class="service-option-desc">Custom 5-section site, SEO, mobile-first, delivered in 24hrs</span></div>
-                                <span class="service-option-price">$750</span>
-                            </div>
-                            <div class="service-option" data-service="Logo &amp; Branding" data-price="300" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Logo &amp; Branding</span><span class="service-option-desc">Custom logo, color palette, brand guide, business card template</span></div>
-                                <span class="service-option-price">$300</span>
-                            </div>
-                            <div class="service-option" data-service="Social Launch" data-price="150" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Social Launch</span><span class="service-option-desc">Instagram setup, 3 branded graphics, bio &amp; hashtag strategy</span></div>
-                                <span class="service-option-price">$150</span>
-                            </div>
-                            <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 0 4px">Add-Ons</p>
-                            <div class="service-option" data-service="Google Business Profile" data-price="100" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Google Business Profile Optimization</span><span class="service-option-desc">Full profile polish, local keywords, photos, hours and services</span></div>
-                                <span class="service-option-price">$100</span>
-                            </div>
-                            <div class="service-option" data-service="Facebook Business Page" data-price="100" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Facebook Business Page Setup</span><span class="service-option-desc">Fully built out, branded, and linked to your site and Instagram</span></div>
-                                <span class="service-option-price">$100</span>
-                            </div>
-                            <div class="service-option" data-service="Email Signature" data-price="50" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Email Signature Design</span><span class="service-option-desc">Branded signature for Gmail, Outlook, and Apple Mail</span></div>
-                                <span class="service-option-price">$50</span>
-                            </div>
-                            <div class="service-option" data-service="QR Code Business Cards" data-price="75" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">QR Code Business Cards</span><span class="service-option-desc">Custom design, print-ready PDF, links to your site or profile</span></div>
-                                <span class="service-option-price">$75</span>
-                            </div>
-                            <div class="service-option" data-service="Review Response Management" data-price="50" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Review Response Management</span><span class="service-option-desc">Monthly Google and Yelp review responses written and posted</span></div>
-                                <span class="service-option-price">$50<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
-                            </div>
-                            <div class="service-option" data-service="Monthly Maintenance Retainer" data-price="75" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Monthly Maintenance Retainer</span><span class="service-option-desc">Up to 3 site updates per month, proactive monthly check-in</span></div>
-                                <span class="service-option-price">$75<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
-                            </div>
+                <!-- Service Selector -->
+                <div class="form-group">
+                    <label class="form-label">What Do You Need? Select All That Apply *</label>
+                    <div class="service-selector">
+                        <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:4px 0">Core Services</p>
+                        <div class="service-option" data-service="Website Build" data-price="750" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Website Build</span><span class="service-option-desc">Custom 5-section site, SEO, mobile-first, delivered in 24hrs</span></div>
+                            <span class="service-option-price">$750</span>
                         </div>
-                        <!-- Bundle discount notice -->
-                        <div id="bundleNotice" style="display:none;margin-top:10px;background:#e8f0ff;border:1px solid #b8ccff;border-radius:4px;padding:10px 14px;font-size:12px;color:var(--blue);font-weight:600">
-                            All 3 services selected. Full Launch Bundle applied! Social Launch is <strong>FREE</strong>. You save $150.
+                        <div class="service-option" data-service="Logo &amp; Branding" data-price="300" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Logo &amp; Branding</span><span class="service-option-desc">Custom logo, color palette, brand guide, business card template</span></div>
+                            <span class="service-option-price">$300</span>
                         </div>
-                        <div id="serviceTotalBar" style="display:none;margin-top:10px;background:var(--ink);border-radius:4px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
-                            <span style="font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Total</span>
-                            <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:white;letter-spacing:1px" id="liveTotalDisplay">$0</span>
+                        <div class="service-option" data-service="Social Launch" data-price="150" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Social Launch</span><span class="service-option-desc">Instagram setup, 3 branded graphics, bio &amp; hashtag strategy</span></div>
+                            <span class="service-option-price">$150</span>
                         </div>
-                        <p id="serviceError" style="display:none;color:#dc2626;font-size:12px;margin-top:6px;font-weight:600">Please select at least one service to continue.</p>
+                        <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 0 4px">Add-Ons</p>
+                        <div class="service-option" data-service="Google Business Profile" data-price="100" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Google Business Profile Optimization</span><span class="service-option-desc">Full profile polish, local keywords, photos, hours and services</span></div>
+                            <span class="service-option-price">$100</span>
+                        </div>
+                        <div class="service-option" data-service="Facebook Business Page" data-price="100" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Facebook Business Page Setup</span><span class="service-option-desc">Fully built out, branded, and linked to your site and Instagram</span></div>
+                            <span class="service-option-price">$100</span>
+                        </div>
+                        <div class="service-option" data-service="Email Signature" data-price="50" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Email Signature Design</span><span class="service-option-desc">Branded signature for Gmail, Outlook, and Apple Mail</span></div>
+                            <span class="service-option-price">$50</span>
+                        </div>
+                        <div class="service-option" data-service="QR Code Business Cards" data-price="75" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">QR Code Business Cards</span><span class="service-option-desc">Custom design, print-ready PDF, links to your site or profile</span></div>
+                            <span class="service-option-price">$75</span>
+                        </div>
+                        <div class="service-option" data-service="Review Response Management" data-price="50" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Review Response Management</span><span class="service-option-desc">Monthly Google and Yelp review responses written and posted</span></div>
+                            <span class="service-option-price">$50<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
+                        </div>
+                        <div class="service-option" data-service="Monthly Maintenance Retainer" data-price="75" onclick="toggleService(this)">
+                            <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
+                            <div class="service-option-info"><span class="service-option-name">Monthly Maintenance Retainer</span><span class="service-option-desc">Up to 3 site updates per month, proactive monthly check-in</span></div>
+                            <span class="service-option-price">$75<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
+                        </div>
                     </div>
+                    <!-- Bundle discount notice -->
+                    <div id="bundleNotice" style="display:none;margin-top:10px;background:#e8f0ff;border:1px solid #b8ccff;border-radius:4px;padding:10px 14px;font-size:12px;color:var(--blue);font-weight:600">
+                        All 3 services selected. Full Launch Bundle applied! Social Launch is <strong>FREE</strong>. You save $150.
+                    </div>
+                    <div id="serviceTotalBar" style="display:none;margin-top:10px;background:var(--ink);border-radius:4px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
+                        <span style="font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Total</span>
+                        <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:white;letter-spacing:1px" id="liveTotalDisplay">$0</span>
+                    </div>
+                    <p id="serviceError" style="display:none;color:#dc2626;font-size:12px;margin-top:6px;font-weight:600">Please select at least one service to continue.</p>
+                </div>
 
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" type="text" name="first-name" required placeholder="Joe"></div>
-                        <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" type="text" name="last-name" required placeholder="Smith"></div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" type="text" name="first-name" required placeholder="Joe"></div>
+                    <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" type="text" name="last-name" required placeholder="Smith"></div>
+                </div>
+                <div class="form-group"><label class="form-label">Business Name *</label><input class="form-input" type="text" name="business-name" required placeholder="Smith Plumbing LLC"></div>
+                <div class="form-row">
+                    <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" name="phone" required placeholder="(555) 123-4567"></div>
+                    <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" name="email" required placeholder="joe@smithplumbing.com"></div>
+                </div>
+                <div class="form-group"><label class="form-label">Business Address / City *</label><input class="form-input" type="text" name="address" required placeholder="123 Main St, Dallas, TX 75201"></div>
+                <div class="form-group"><label class="form-label">What Services Does Your Business Offer? *</label><textarea class="form-textarea" name="services-offered" required placeholder="List everything you offer, the more detail the better.&#10;&#10;Example: Residential plumbing, commercial drain cleaning, water heater installation, leak detection..."></textarea></div>
+                <div class="form-group"><label class="form-label">Who Is Your Target Customer?</label><input class="form-input" type="text" name="target-customer" placeholder="Homeowners in DFW, local restaurants, new construction builders..."></div>
+                <div class="form-group"><label class="form-label">Existing Website or Social Media?</label><input class="form-input" type="text" name="existing-presence" placeholder="yoursite.com or @handle, leave blank if none"></div>
+                <div class="form-group"><label class="form-label">Brand Colors or Style Preferences</label><input class="form-input" type="text" name="brand-style" placeholder="Blue and white, modern and clean, bold and industrial..."></div>
+                <div class="form-group"><label class="form-label">Competitors or Sites You Like the Look Of?</label><input class="form-input" type="text" name="inspiration" placeholder="URLs or business names to draw inspiration from"></div>
+                <div class="form-group"><label class="form-label">Anything Else I Should Know?</label><textarea class="form-textarea" name="notes" placeholder="Special requests, things to avoid, your story, anything that helps me build something that feels like you."></textarea></div>
+                <div class="form-group">
+                    <label class="form-label">Upload Photos, Logo, or Branding Files</label>
+                    <div class="form-file-box">
+                        <input type="file" name="files" multiple accept="image/*,.pdf,.svg,.ai,.eps" onchange="updateFileNames(this)">
+                        <div class="form-file-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
+                        <p class="form-file-text"><strong>Click to upload</strong> or drag and drop</p>
+                        <p class="form-file-text" style="font-size:11px;margin-top:4px">PNG, JPG, PDF, SVG, AI, photos of your work, your logo, anything visual</p>
+                        <p class="form-file-names" id="fileNames"></p>
                     </div>
-                    <div class="form-group"><label class="form-label">Business Name *</label><input class="form-input" type="text" name="business-name" required placeholder="Smith Plumbing LLC"></div>
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" name="phone" required placeholder="(555) 123-4567"></div>
-                        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" name="email" required placeholder="joe@smithplumbing.com"></div>
-                    </div>
-                    <div class="form-group"><label class="form-label">Business Address / City *</label><input class="form-input" type="text" name="address" required placeholder="123 Main St, Dallas, TX 75201"></div>
-                    <div class="form-group"><label class="form-label">What Services Does Your Business Offer? *</label><textarea class="form-textarea" name="services-offered" required placeholder="List everything you offer, the more detail the better.&#10;&#10;Example: Residential plumbing, commercial drain cleaning, water heater installation, leak detection..."></textarea></div>
-                    <div class="form-group"><label class="form-label">Who Is Your Target Customer?</label><input class="form-input" type="text" name="target-customer" placeholder="Homeowners in DFW, local restaurants, new construction builders..."></div>
-                    <div class="form-group"><label class="form-label">Existing Website or Social Media?</label><input class="form-input" type="text" name="existing-presence" placeholder="yoursite.com or @handle, leave blank if none"></div>
-                    <div class="form-group"><label class="form-label">Brand Colors or Style Preferences</label><input class="form-input" type="text" name="brand-style" placeholder="Blue and white, modern and clean, bold and industrial..."></div>
-                    <div class="form-group"><label class="form-label">Competitors or Sites You Like the Look Of?</label><input class="form-input" type="text" name="inspiration" placeholder="URLs or business names to draw inspiration from"></div>
-                    <div class="form-group"><label class="form-label">Anything Else I Should Know?</label><textarea class="form-textarea" name="notes" placeholder="Special requests, things to avoid, your story, anything that helps me build something that feels like you."></textarea></div>
-                    <div class="form-group">
-                        <label class="form-label">Upload Photos, Logo, or Branding Files</label>
-                        <div class="form-file-box">
-                            <input type="file" name="files" multiple accept="image/*,.pdf,.svg,.ai,.eps" onchange="updateFileNames(this)">
-                            <div class="form-file-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                            <p class="form-file-text"><strong>Click to upload</strong> or drag and drop</p>
-                            <p class="form-file-text" style="font-size:11px;margin-top:4px">PNG, JPG, PDF, SVG, AI, photos of your work, your logo, anything visual</p>
-                            <p class="form-file-names" id="fileNames"></p>
-                        </div>
-                    </div>
-                    <button type="submit" class="form-submit-btn">Save My Info &amp; Continue to Payment &rarr;</button>
-                </form>
+                </div>
+                <button type="submit" class="form-submit-btn">Save My Info &amp; Continue to Payment &rarr;</button>
+            </form>
+        </div>
+
+        <div class="step-panel" id="step2">
+            <div class="zelle-box">
+                <p class="zelle-label">Total Due Today</p>
+                <div class="zelle-amount">$<span id="depositAmount">0</span></div>
+                <p class="zelle-sub">One-time, flat rate. No hidden fees, no balance due later.</p>
             </div>
-
-            <div class="step-panel" id="step2">
-                <div class="zelle-box">
-                    <p class="zelle-label">Total Due Today</p>
-                    <div class="zelle-amount">$<span id="depositAmount">0</span></div>
-                    <p class="zelle-sub">One-time, flat rate. No hidden fees, no balance due later.</p>
-                </div>
-                <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
-                    <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
-                    <p style="font-size:14px;color:var(--ink);font-weight:600" id="step2Services">--</p>
-                </div>
-                <div id="stripe-payment-form">
-                    <div style="margin-bottom:16px">
-                        <label class="form-label" style="display:block;margin-bottom:8px">Card Details</label>
-                        <div id="stripe-card-element" style="background:var(--paper);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
-                        <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
-                    </div>
-                    <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
-                        <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, payment is non-refundable.</p>
-                    </div>
-                    <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> and Lock In My Order &rarr;</button>
-                    <div id="stripe-processing" style="display:none;text-align:center;padding:16px;font-size:13px;color:var(--muted);font-weight:600">Processing your payment...</div>
-                </div>
+            <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
+                <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
+                <p style="font-size:14px;color:var(--ink);font-weight:600" id="step2Services">--</p>
             </div>
-
-            <!-- STEP 3: Confirmation -->
-            <div class="step-panel" id="step3">
-                <div class="success-panel">
-                    <div class="success-icon"><i class="fa-solid fa-check"></i></div>
-                    <h3>You&rsquo;re Locked In!</h3>
-                    <p>Your order is confirmed. Here&rsquo;s what happens next:</p>
-                    <div style="text-align:left;background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
-                        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your payment is confirmed and your project is locked in. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
-                        </div>
-                        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your completed <strong style="color:var(--ink)" id="confirmServices">project</strong> will be delivered within <strong style="color:var(--ink)">24 hours</strong> by text or email.</p>
-                        </div>
-                        <div style="display:flex;gap:12px;align-items:flex-start">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Review what I send you, request any changes, and once you approve it goes live.</p>
-                        </div>
-                    </div>
-                    <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
-                    <button class="success-close" onclick="closeModal()">Back to Site</button>
+            <div id="stripe-payment-form">
+                <div style="margin-bottom:16px">
+                    <label class="form-label" style="display:block;margin-bottom:8px">Card Details</label>
+                    <div id="stripe-card-element" style="background:var(--paper);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
+                    <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
                 </div>
+                <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
+                    <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, payment is non-refundable.</p>
+                </div>
+                <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> and Lock In My Order &rarr;</button>
+                <div id="stripe-processing" style="display:none;text-align:center;padding:16px;font-size:13px;color:var(--muted);font-weight:600">Processing your payment...</div>
+            </div>
+        </div>
+
+        <!-- STEP 3: Confirmation -->
+        <div class="step-panel" id="step3">
+            <div class="success-panel">
+                <div class="success-icon"><i class="fa-solid fa-check"></i></div>
+                <h3>You&rsquo;re Locked In!</h3>
+                <p>Your order is confirmed. Here&rsquo;s what happens next:</p>
+                <div style="text-align:left;background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
+                    <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
+                        <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
+                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Your payment is confirmed and your project is locked in. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
+                    </div>
+                    <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
+                        <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
+                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Your completed <strong style="color:var(--ink)" id="confirmServices">project</strong> will be delivered within <strong style="color:var(--ink)">24 hours</strong> by text or email.</p>
+                    </div>
+                    <div style="display:flex;gap:12px;align-items:flex-start">
+                        <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
+                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Review what I send you, request any changes, and once you approve it goes live.</p>
+                    </div>
+                </div>
+                <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
+                <button class="success-close" onclick="closeModal()">Back to Site</button>
             </div>
         </div>
     </div>
 </div>
+```
+
+</div>
 
 <script src="https://js.stripe.com/v3/"></script>
+
 <script>
     // Stripe setup
     const stripe = Stripe("pk_live_51TJ5VwFpH0ol4JauvRNgXZk0J11VEOPPgPCKrgLCEGvMlQaujOW2BkXXLGu9pIYT1tDc9TTA539KudNEdRnvX5do00oEZHuCFB");
@@ -938,5 +953,6 @@
         document.getElementById("fileNames").textContent = Array.from(input.files).map(f => f.name).join(", ");
     }
 </script>
+
 </body>
 </html>
