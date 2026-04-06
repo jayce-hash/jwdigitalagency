@@ -20,8 +20,20 @@
         nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
         .nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
         .nav-logo span { color: var(--blue); }
+        .nav-links { display: flex; align-items: center; gap: 24px; }
+        .nav-link { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
+        .nav-link:hover { color: var(--ink); }
         .nav-cta { background: var(--ink); color: var(--white); padding: 10px 24px; border-radius: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s; }
         .nav-cta:hover { background: var(--blue); }
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
+        .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--paper); border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 4px; position: sticky; top: 64px; z-index: 99; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--blue); }
         .hero { min-height: 88vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; max-width: 1200px; margin: 0 auto; padding: 80px 40px; gap: 60px; }
         .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 28px; border: 1px solid var(--blue); padding: 6px 14px; border-radius: 2px; }
         .hero-eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
@@ -206,6 +218,10 @@
         .fade-up.visible { opacity: 1; transform: translateY(0); }
         /* Add-ons */
         .addons-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); }
+        @media (max-width: 960px) {
+            .addons-grid { background: transparent; border: none; gap: 12px; }
+            .addon-card { border: 1px solid var(--border); border-radius: 6px; }
+        }
         .addon-card { background: var(--white); padding: 28px 28px; display: flex; flex-direction: column; gap: 16px; }
         .addon-header { display: flex; align-items: center; gap: 14px; }
         .addon-name { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 4px; line-height: 1.3; }
@@ -228,6 +244,8 @@
         .service-option-desc { font-size: 11px; color: var(--muted); }
         .service-option-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--blue); flex-shrink: 0; }
         @media (max-width: 960px) {
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
             .hero { grid-template-columns: 1fr; padding: 60px 24px; min-height: auto; }
             .hero-right { display: none; }
             .why-grid, .pricing-grid, .refresh-grid, .addons-grid { grid-template-columns: 1fr; }
@@ -255,8 +273,22 @@
 
 <nav>
     <a href="#" class="nav-logo">JW<span>DIGITAL</span></a>
-    <a href="sms:+18173120040" class="nav-cta">Get a Free Mockup &rarr;</a>
+    <div class="nav-links">
+        <a href="#pricing" class="nav-link">Services</a>
+        <a href="#refresh" class="nav-link">Refresh</a>
+        <a href="#about" class="nav-link">About</a>
+        <a href="sms:+18173120040" class="nav-cta">Get a Free Mockup &rarr;</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
 </nav>
+<div class="mobile-menu" id="mobileMenu">
+    <a href="#pricing" onclick="closeMobileMenu()">Services</a>
+    <a href="#refresh" onclick="closeMobileMenu()">Refresh Pricing</a>
+    <a href="#about" onclick="closeMobileMenu()">About</a>
+    <a href="sms:+18173120040">Get a Free Mockup &rarr;</a>
+</div>
 
 <header>
     <div class="hero">
@@ -278,19 +310,6 @@
         </div>
     </div>
 </header>
-
-<section class="why">
-    <div class="section-inner">
-        <p class="section-label">Why JW Digital</p>
-        <h2>No Account Managers.<br>No Markups. Just Results.</h2>
-        <p class="section-sub">Agencies sell you a process. JW Digital sells you the finished product at a price that actually makes sense for a small business.</p>
-        <div class="why-grid">
-            <div class="why-card fade-up"><div class="why-number">01</div><h3>You Pay for Work, Not Overhead</h3><p>Agencies charge $3,000&ndash;8,000 for a website because they&rsquo;re paying for office space, account managers, and layers of staff you never interact with. JW Digital is one person doing the work, which means you get agency-quality output without the agency markup.</p></div>
-            <div class="why-card fade-up"><div class="why-number">02</div><h3>Delivered in 24 Hours, Not 6 Weeks</h3><p>Traditional agencies drag projects out over weeks of calls, revisions, and unnecessary approvals because that&rsquo;s how they justify their rates. Once you submit your intake form and deposit, I get to work immediately and deliver within 24 hours.</p></div>
-            <div class="why-card fade-up"><div class="why-number">03</div><h3>One Flat Rate, No Surprises</h3><p>Agencies bill hourly and expand scope until the invoice is double what you expected. Every JW Digital service has a single flat price that you know upfront before you spend anything, and that number never changes.</p></div>
-        </div>
-    </div>
-</section>
 
 <section class="pricing-section" id="pricing">
     <div class="section-inner">
@@ -562,21 +581,7 @@
     </div>
 </section>
 
-<section class="process">
-    <div class="section-inner">
-        <p class="section-label">How It Works</p>
-        <h2>Two Ways to Get Started.</h2>
-        <p class="section-sub">Buy directly on the site in minutes, or text me if you want a free mockup first or need a custom refresh quote. Either way, you&rsquo;re working directly with the person doing the job.</p>
-        <div class="process-steps">
-            <div class="process-step fade-up"><div class="step-number">01</div><h3 class="step-title">Buy Online or Text Me</h3><p class="step-desc">Hit Get Started, pick your services, and fill out the form in a few minutes. Prefer to see a mockup first or need a refresh quote? Text (817) 312-0040 and you&rsquo;ll hear back the same day.</p></div>
-            <div class="process-step fade-up"><div class="step-number">02</div><h3 class="step-title">Fill Out Your Intake Form</h3><p class="step-desc">Tell me about your business, your services, your style preferences, and upload any photos or branding you have. The more detail you provide, the better the final product will be.</p></div>
-            <div class="process-step fade-up"><div class="step-number">03</div><h3 class="step-title">Send Your 50% Deposit via Zelle</h3><p class="step-desc">Send half the total to (817) 312-0040 via Zelle, free and instant with no card fees. I confirm receipt and get started right away. Nothing begins without a deposit in hand.</p></div>
-            <div class="process-step fade-up"><div class="step-number">04</div><h3 class="step-title">Approve and Go Live</h3><p class="step-desc">Your completed project lands in your text or email within 24 hours. Once you give the green light, send the remaining 50% via Zelle and everything goes live the same day.</p></div>
-        </div>
-    </div>
-</section>
-
-<section class="about-section">
+<section class="about-section" id="about">
     <div class="section-inner">
         <div class="about-box">
             <div class="about-left"><p class="section-label">About</p><h2>One Person.<br>No Markup.</h2></div>
@@ -756,7 +761,7 @@
                     </div>
                     <div style="display:flex;gap:12px;align-items:flex-start">
                         <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
-                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Once you approve, send the remaining 50% via Zelle to (817) 312-0040 and everything goes live the same day.</p>
+                        <p style="font-size:13px;color:var(--muted);line-height:1.6">Once you approve, pay the remaining 50% by card and everything goes live the same day.</p>
                     </div>
                 </div>
                 <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
@@ -927,6 +932,18 @@
             btn.style.display = "block";
             processing.style.display = "none";
         }
+    }
+
+    // Hamburger menu
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobileMenu");
+    hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        mobileMenu.classList.toggle("open");
+    });
+    function closeMobileMenu() {
+        hamburger.classList.remove("open");
+        mobileMenu.classList.remove("open");
     }
 
     function updateFileNames(input) {
