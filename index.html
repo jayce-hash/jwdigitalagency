@@ -63,7 +63,7 @@
         .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 420px; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
         
-        /* PURE CSS HERO RIGHT */
+        /* HERO RIGHT GRAPHIC */
         .hero-right { background: var(--ink); border-radius: 12px; padding: 48px; color: var(--white); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 24px 48px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.1); }
         .hero-right::before { content: ""; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: var(--blue); border-radius: 50%; opacity: 0.15; filter: blur(60px); pointer-events: none; }
         .hero-right::after { content: ""; position: absolute; bottom: -100px; left: -100px; width: 250px; height: 250px; background: var(--green); border-radius: 50%; opacity: 0.1; filter: blur(60px); pointer-events: none; }
@@ -107,8 +107,6 @@
         .bundle-item-free { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--green); }
         .bundle-total { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); }
         .bundle-total-price { font-family: "Bebas Neue", sans-serif; font-size: 64px; line-height: 1; letter-spacing: 2px; color: var(--white); }
-        .bundle-cta { display: block; width: 100%; text-align: center; background: var(--blue); color: var(--white); padding: 18px; border-radius: 4px; font-size: 14px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; transition: background 0.2s; margin-top: 24px; cursor: pointer; border: none; font-family: "DM Sans", sans-serif; }
-        .bundle-cta:hover { background: var(--blue-light); }
         
         .alacarte-header { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; text-align: center; }
         .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
@@ -122,7 +120,7 @@
         .pricing-features li { font-size: 13.5px; color: var(--ink); padding: 8px 0; border-bottom: 1px solid var(--surface); display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
         .pricing-features li:last-child { border-bottom: none; }
         .pricing-features li i { color: var(--blue); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
-        .pricing-btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--ink); cursor: pointer; background: transparent; font-family: "DM Sans", sans-serif; }
+        .pricing-btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--ink); cursor: pointer; background: transparent; font-family: "DM Sans", sans-serif; text-decoration: none; }
         .pricing-btn:hover { border-color: var(--ink); }
 
         /* REFRESH BANNER */
@@ -145,68 +143,6 @@
         .footer-contact { color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
         .footer-contact:hover { color: var(--white); }
 
-        /* MODAL */
-        .modal-overlay { display: none; position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.75); backdrop-filter: blur(4px); align-items: center; justify-content: center; padding: 20px; }
-        .modal-overlay.active { display: flex; }
-        .modal { background: var(--white); border-radius: 8px; width: 100%; max-width: 580px; max-height: 92vh; overflow-y: auto; position: relative; }
-        .modal-header { background: var(--ink); padding: 32px 40px 28px; position: sticky; top: 0; z-index: 1; }
-        .modal-close { position: absolute; top: 20px; right: 24px; background: none; border: none; color: rgba(255,255,255,0.4); font-size: 20px; cursor: pointer; transition: color 0.2s; }
-        .modal-close:hover { color: var(--white); }
-        .modal-title { font-family: "Bebas Neue", sans-serif; font-size: 32px; letter-spacing: 2px; color: var(--white); line-height: 1; margin-bottom: 4px; }
-        .modal-price { font-family: "Bebas Neue", sans-serif; font-size: 44px; color: var(--blue-light); letter-spacing: 1px; }
-        .modal-body { padding: 32px 40px; }
-        .modal-steps { display: flex; margin-bottom: 32px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-        .modal-step { flex: 1; padding: 10px 8px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border-right: 1px solid var(--border); transition: all 0.2s; }
-        .modal-step:last-child { border-right: none; }
-        .modal-step.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
-        .modal-step.done { background: var(--ink); color: rgba(255,255,255,0.4); border-color: var(--ink); }
-        .step-panel { display: none; }
-        .step-panel.active { display: block; }
-        
-        .intake-form { display: flex; flex-direction: column; gap: 18px; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .form-group { display: flex; flex-direction: column; gap: 6px; }
-        .form-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-        .form-input, .form-select, .form-textarea { background: var(--surface); border: 1.5px solid var(--border); border-radius: 4px; padding: 12px 14px; font-size: 14px; color: var(--ink); font-family: "DM Sans", sans-serif; transition: border-color 0.2s; outline: none; width: 100%; }
-        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--blue); background: var(--white); }
-        .form-textarea { resize: vertical; min-height: 90px; }
-        .form-file-box { background: var(--surface); border: 1.5px dashed var(--border); border-radius: 4px; padding: 24px; text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative; }
-        .form-file-box:hover { border-color: var(--blue); background: var(--white); }
-        .form-file-box input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-        .form-file-icon { font-size: 24px; color: var(--muted); margin-bottom: 8px; }
-        .form-file-text { font-size: 13px; color: var(--muted); }
-        .form-file-text strong { color: var(--ink); }
-        .form-file-names { font-size: 12px; color: var(--blue); margin-top: 8px; min-height: 16px; }
-        .form-submit-btn { display: block; width: 100%; background: var(--blue); color: var(--white); padding: 16px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; margin-top: 8px; }
-        .form-submit-btn:hover { background: var(--blue-light); }
-        
-        .service-selector { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-        .service-option { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none; }
-        .service-option:hover { border-color: var(--blue); }
-        .service-option.selected { border-color: var(--blue); background: #f0f4ff; }
-        .service-option-check { width: 20px; height: 20px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-        .service-option-check i { font-size: 10px; color: white; display: none; }
-        .service-option.selected .service-option-check { background: var(--blue); border-color: var(--blue); }
-        .service-option.selected .service-option-check i { display: block; }
-        .service-option-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-        .service-option-name { font-size: 14px; font-weight: 700; color: var(--ink); }
-        .service-option-desc { font-size: 11px; color: var(--muted); }
-        .service-option-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--blue); flex-shrink: 0; }
-
-        .zelle-box { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; margin-bottom: 24px; text-align: center; }
-        .zelle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-        .zelle-amount { font-family: "Bebas Neue", sans-serif; font-size: 52px; letter-spacing: 2px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-        .zelle-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
-        .modal-confirm-btn { display: block; width: 100%; background: var(--ink); color: var(--white); padding: 16px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; margin-top: 24px; }
-        .modal-confirm-btn:hover { background: var(--blue); }
-        
-        .success-panel { text-align: center; padding: 20px 0; }
-        .success-icon { width: 64px; height: 64px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; color: var(--ink); }
-        .success-panel h3 { font-family: "Bebas Neue", sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 12px; }
-        .success-panel p { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 380px; margin: 0 auto 24px; }
-        .success-close { display: inline-block; background: var(--ink); color: var(--white); padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; }
-        .success-close:hover { background: var(--blue); }
-
         @media (max-width: 960px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
@@ -222,9 +158,6 @@
             .about-box { grid-template-columns: 1fr; gap: 32px; }
             section { padding: 72px 24px; }
             nav { padding: 0 24px; }
-            .form-row { grid-template-columns: 1fr; }
-            .modal-body { padding: 24px; }
-            .modal-header { padding: 24px; }
         }
         @media (max-width: 560px) {
             .process-steps { grid-template-columns: 1fr; }
@@ -252,7 +185,7 @@
     <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
     <a href="#refresh" onclick="closeMobileMenu()">Refresh</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="get-started.html" class="nav-cta">Get Started &rarr;</a>
+    <a href="get-started.html">Get Started &rarr;</a>
 </div>
 
 <header>
@@ -262,7 +195,7 @@
             <h1>Agency Quality.<br><span class="accent">Without the</span><br>Agency Bill.</h1>
             <p class="hero-sub">I build websites, brand identities, and social presence for small businesses, the kind of work agencies charge $5,000+ for, done right and delivered in a fraction of the time for a fraction of the cost.</p>
             <div class="hero-actions">
-                <a href="get-started.html" class="nav-cta">Get Started &rarr;</a>
+                <a href="get-started.html" class="btn-primary">Get Started &rarr;</a>
                 <a href="sms:+18173120040" class="btn-secondary">Text Me a Question</a>
             </div>
         </div>
@@ -304,7 +237,7 @@
         <div class="process-step">
             <div class="step-number">01</div>
             <div class="step-title">Select & Intake</div>
-            <p class="step-desc">Pick your package, fill out a simple intake form with your details, and lock in your project.</p>
+            <p class="step-desc">Pick your package on the checkout page, fill out a simple intake form, and lock in your project.</p>
         </div>
         <div class="process-step">
             <div class="step-number">02</div>
@@ -345,7 +278,7 @@
                 <span class="bundle-tag">Best Value</span>
                 <h3>The Full Launch Bundle</h3>
                 <p>Everything a new or growing business needs to look established from day one: a custom website, professional brand identity, and a ready-to-go social presence, all in one shot.</p>
-                <button class="btn-primary" onclick="openModal()" style="border:none; width: max-content;">Get Started &rarr;</button>
+                <a href="get-started.html" class="btn-primary" style="width: max-content;">Get Started &rarr;</a>
             </div>
             <div class="bundle-featured-right">
                 <ul class="bundle-items">
@@ -381,7 +314,7 @@
                     <li><i class="fa-solid fa-check"></i>On-page SEO setup</li>
                     <li><i class="fa-solid fa-check"></i>Delivered in 24 hours</li>
                 </ul>
-                <button class="pricing-btn" onclick="openModal()">Get Started &rarr;</button>
+                <a href="get-started.html" class="pricing-btn">Get Started &rarr;</a>
             </div>
             
             <div class="pricing-card fade-up">
@@ -397,7 +330,7 @@
                     <li><i class="fa-solid fa-check"></i>All file formats provided</li>
                     <li><i class="fa-solid fa-check"></i>Brand guide document</li>
                 </ul>
-                <button class="pricing-btn" onclick="openModal()">Get Started &rarr;</button>
+                <a href="get-started.html" class="pricing-btn">Get Started &rarr;</a>
             </div>
 
             <div class="pricing-card fade-up">
@@ -413,7 +346,7 @@
                     <li><i class="fa-solid fa-check"></i>Hashtag &amp; bio strategy</li>
                     <li><i class="fa-solid fa-check"></i>Ready to post day one</li>
                 </ul>
-                <a href="get-started.html" class="nav-cta">Get Started &rarr;</a>
+                <a href="get-started.html" class="pricing-btn">Get Started &rarr;</a>
             </div>
         </div>
     </div>
@@ -453,189 +386,8 @@
     </div>
 </footer>
 
-<div class="modal-overlay" id="modalOverlay" onclick="handleOverlayClick(event)">
-    <div class="modal" id="modal">
-        <div class="modal-header">
-            <a href="get-started.html" class="nav-cta">Get Started &rarr;</a>
-            <div class="modal-price">JW Digital New Project</div>
-        </div>
-        <div class="modal-body">
-            <div class="modal-steps">
-                <div class="modal-step active" id="step-ind-1">1. Your Info</div>
-                <div class="modal-step" id="step-ind-2">2. Payment</div>
-                <div class="modal-step" id="step-ind-3">3. Confirmed</div>
-            </div>
-
-            <div class="step-panel active" id="step1">
-                <form class="intake-form" name="client-intake" method="POST" data-netlify="true" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
-                    <input type="hidden" name="form-name" value="client-intake">
-                    <input type="hidden" name="selected-services" id="formServices" value="">
-                    <input type="hidden" name="total-price" id="formTotalPrice" value="">
-                    <input type="hidden" name="deposit-amount" id="formDepositHidden" value="">
-
-                    <div class="form-group">
-                        <label class="form-label">What Do You Need? Select All That Apply *</label>
-                        <div class="service-selector">
-                            <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:4px 0">Core Services</p>
-                            
-                            <div class="service-option" data-service="Website Build" data-price="750" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Website Build</span><span class="service-option-desc">Custom 5-section site, SEO, mobile-first, delivered in 24hrs</span></div>
-                                <span class="service-option-price">$750</span>
-                            </div>
-                            
-                            <div class="service-option" data-service="Logo &amp; Branding" data-price="300" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Logo &amp; Branding</span><span class="service-option-desc">Custom logo, color palette, brand guide, business card template</span></div>
-                                <span class="service-option-price">$300</span>
-                            </div>
-                            
-                            <div class="service-option" data-service="Social Launch" data-price="150" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Social Launch</span><span class="service-option-desc">Instagram setup, 3 branded graphics, bio &amp; hashtag strategy</span></div>
-                                <span class="service-option-price">$150</span>
-                            </div>
-
-                            <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 0 4px">Add-Ons</p>
-                            
-                            <div class="service-option" data-service="Google Business Profile" data-price="100" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Google Business Profile Optimization</span><span class="service-option-desc">Full profile polish, local keywords, photos, hours and services</span></div>
-                                <span class="service-option-price">$100</span>
-                            </div>
-                            <div class="service-option" data-service="Facebook Business Page" data-price="100" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Facebook Business Page Setup</span><span class="service-option-desc">Fully built out, branded, and linked to your site and Instagram</span></div>
-                                <span class="service-option-price">$100</span>
-                            </div>
-                            <div class="service-option" data-service="Email Signature" data-price="50" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Email Signature Design</span><span class="service-option-desc">Branded signature for Gmail, Outlook, and Apple Mail</span></div>
-                                <span class="service-option-price">$50</span>
-                            </div>
-                            <div class="service-option" data-service="QR Code Business Cards" data-price="75" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">QR Code Business Cards</span><span class="service-option-desc">Custom design, print-ready PDF, links to your site or profile</span></div>
-                                <span class="service-option-price">$75</span>
-                            </div>
-                            <div class="service-option" data-service="Review Response Management" data-price="50" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Review Response Management</span><span class="service-option-desc">Monthly Google and Yelp review responses written and posted</span></div>
-                                <span class="service-option-price">$50<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
-                            </div>
-                            <div class="service-option" data-service="Monthly Maintenance Retainer" data-price="75" onclick="toggleService(this)">
-                                <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Monthly Maintenance Retainer</span><span class="service-option-desc">Up to 3 site updates per month, proactive monthly check-in</span></div>
-                                <span class="service-option-price">$75<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
-                            </div>
-                        </div>
-                        
-                        <div id="bundleNotice" style="display:none;margin-top:10px;background:#e8f0ff;border:1px solid #b8ccff;border-radius:4px;padding:10px 14px;font-size:12px;color:var(--blue);font-weight:600">
-                            All 3 services selected. Full Launch Bundle applied! Social Launch is <strong>FREE</strong>. You save $150.
-                        </div>
-                        <div id="serviceTotalBar" style="display:none;margin-top:10px;background:var(--ink);border-radius:4px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
-                            <span style="font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Total</span>
-                            <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:white;letter-spacing:1px" id="liveTotalDisplay">$0</span>
-                        </div>
-                        <p id="serviceError" style="display:none;color:#dc2626;font-size:12px;margin-top:6px;font-weight:600">Please select at least one service to continue.</p>
-                    </div>
-
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" type="text" name="first-name" required placeholder="Joe"></div>
-                        <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" type="text" name="last-name" required placeholder="Smith"></div>
-                    </div>
-                    <div class="form-group"><label class="form-label">Business Name *</label><input class="form-input" type="text" name="business-name" required placeholder="Smith Plumbing LLC"></div>
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" name="phone" required placeholder="(555) 123-4567"></div>
-                        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" name="email" required placeholder="joe@smithplumbing.com"></div>
-                    </div>
-                    <div class="form-group"><label class="form-label">Business Address / City *</label><input class="form-input" type="text" name="address" required placeholder="123 Main St, Dallas, TX 75201"></div>
-                    <div class="form-group"><label class="form-label">What Services Does Your Business Offer? *</label><textarea class="form-textarea" name="services-offered" required placeholder="List everything you offer, the more detail the better.&#10;&#10;Example: Residential plumbing, commercial drain cleaning, water heater installation..."></textarea></div>
-                    <div class="form-group"><label class="form-label">Who Is Your Target Customer?</label><input class="form-input" type="text" name="target-customer" placeholder="Homeowners in DFW, local restaurants, new construction builders..."></div>
-                    <div class="form-group"><label class="form-label">Existing Website or Social Media?</label><input class="form-input" type="text" name="existing-presence" placeholder="yoursite.com or @handle, leave blank if none"></div>
-                    <div class="form-group"><label class="form-label">Brand Colors or Style Preferences</label><input class="form-input" type="text" name="brand-style" placeholder="Blue and white, modern and clean, bold and industrial..."></div>
-                    <div class="form-group"><label class="form-label">Competitors or Sites You Like the Look Of?</label><input class="form-input" type="text" name="inspiration" placeholder="URLs or business names to draw inspiration from"></div>
-                    <div class="form-group"><label class="form-label">Anything Else I Should Know?</label><textarea class="form-textarea" name="notes" placeholder="Special requests, things to avoid, your story, anything that helps me build something that feels like you."></textarea></div>
-                    <div class="form-group">
-                        <label class="form-label">Upload Photos, Logo, or Branding Files</label>
-                        <div class="form-file-box">
-                            <input type="file" name="files" multiple accept="image/*,.pdf,.svg,.ai,.eps" onchange="updateFileNames(this)">
-                            <div class="form-file-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
-                            <p class="form-file-text"><strong>Click to upload</strong> or drag and drop</p>
-                            <p class="form-file-text" style="font-size:11px;margin-top:4px">PNG, JPG, PDF, SVG, AI, photos of your work, your logo, anything visual</p>
-                            <p class="form-file-names" id="fileNames"></p>
-                        </div>
-                    </div>
-                    <button type="submit" class="form-submit-btn">Save My Info &amp; Continue to Payment &rarr;</button>
-                </form>
-            </div>
-
-            <div class="step-panel" id="step2">
-                <div class="zelle-box">
-                    <p class="zelle-label">Total Due Today</p>
-                    <div class="zelle-amount">$<span id="depositAmount">0</span></div>
-                    <p class="zelle-sub">One-time, flat rate. No hidden fees, no balance due later.</p>
-                </div>
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
-                    <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
-                    <p style="font-size:14px;color:var(--ink);font-weight:600" id="step2Services">--</p>
-                </div>
-                <div id="stripe-payment-form">
-                    <div style="margin-bottom:16px">
-                        <label class="form-label" style="display:block;margin-bottom:8px">Card Details</label>
-                        <div id="stripe-card-element" style="background:var(--surface);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
-                        <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
-                    </div>
-                    <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
-                        <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, payment is non-refundable.</p>
-                    </div>
-                    <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> and Lock In My Order &rarr;</button>
-                    <div id="stripe-processing" style="display:none;text-align:center;padding:16px;font-size:13px;color:var(--muted);font-weight:600">Processing your payment...</div>
-                </div>
-            </div>
-
-            <div class="step-panel" id="step3">
-                <div class="success-panel">
-                    <div class="success-icon"><i class="fa-solid fa-check"></i></div>
-                    <h3>You&rsquo;re Locked In!</h3>
-                    <p>Your order is confirmed. Here&rsquo;s what happens next:</p>
-                    <div style="text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
-                        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your payment is confirmed and your project is locked in. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
-                        </div>
-                        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your completed <strong style="color:var(--ink)" id="confirmServices">project</strong> will be delivered within <strong style="color:var(--ink)">24 hours</strong> by text or email.</p>
-                        </div>
-                        <div style="display:flex;gap:12px;align-items:flex-start">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Review what I send you, request any changes, and once you approve it goes live.</p>
-                        </div>
-                    </div>
-                    <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
-                    <button class="success-close" onclick="closeModal()">Back to Site</button>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script src="https://js.stripe.com/v3/"></script>
 <script>
-    const stripe = Stripe("pk_live_51TJ5VwFpH0ol4JauvRNgXZk0J11VEOPPgPCKrgLCEGvMlQaujOW2BkXXLGu9pIYT1tDc9TTA539KudNEdRnvX5do00oEZHuCFB");
-    const elements = stripe.elements();
-    const cardElement = elements.create("card", {
-        style: {
-            base: { fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "#0a0a0a", "::placeholder": { color: "#b0a898" } },
-            invalid: { color: "#dc2626" }
-        }
-    });
-    cardElement.mount("#stripe-card-element");
-    cardElement.on("change", (e) => {
-        document.getElementById("stripe-card-errors").textContent = e.error ? e.error.message : "";
-    });
-
+    // Fade-up animations
     const observer = new IntersectionObserver((entries) => {
         entries.forEach((entry, i) => {
             if (entry.isIntersecting) setTimeout(() => entry.target.classList.add("visible"), i * 80);
@@ -643,129 +395,7 @@
     }, { threshold: 0.1 });
     document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
 
-    const PRICES = { "Website Build": 750, "Logo & Branding": 300, "Social Launch": 150, "Google Business Profile": 100, "Facebook Business Page": 100, "Email Signature": 50, "QR Code Business Cards": 75, "Review Response Management": 50, "Monthly Maintenance Retainer": 75 };
-    const BUNDLE_DISCOUNT = 150;
-    let currentDepositCents = 0;
-    let currentServices = "";
-
-    function toggleService(el) {
-        el.classList.toggle("selected");
-        recalculate();
-    }
-
-    function recalculate() {
-        const selected = Array.from(document.querySelectorAll(".service-option.selected"));
-        const names = selected.map(el => el.dataset.service.replace("&amp;","&"));
-        let total = names.reduce((sum, n) => sum + (PRICES[n] || 0), 0);
-        const hasCore1 = names.includes("Website Build");
-        const hasCore2 = names.includes("Logo & Branding");
-        const hasCore3 = names.includes("Social Launch");
-        const allThree = hasCore1 && hasCore2 && hasCore3;
-        
-        if (allThree) total -= BUNDLE_DISCOUNT;
-
-        document.getElementById("bundleNotice").style.display = allThree ? "block" : "none";
-        const bar = document.getElementById("serviceTotalBar");
-        bar.style.display = names.length > 0 ? "flex" : "none";
-        document.getElementById("liveTotalDisplay").textContent = "$" + total;
-        document.getElementById("serviceError").style.display = "none";
-
-        document.getElementById("formServices").value = names.join(", ");
-        document.getElementById("formTotalPrice").value = "$" + total;
-        document.getElementById("formDepositHidden").value = total;
-
-        currentDepositCents = total * 100;
-        currentServices = names.join(", ");
-    }
-
-    function openModal() {
-        document.querySelectorAll(".service-option").forEach(el => el.classList.remove("selected"));
-        document.getElementById("bundleNotice").style.display = "none";
-        document.getElementById("serviceTotalBar").style.display = "none";
-        document.getElementById("liveTotalDisplay").textContent = "$0";
-        document.getElementById("serviceError").style.display = "none";
-        setStep(1);
-        document.getElementById("modalOverlay").classList.add("active");
-        document.body.style.overflow = "hidden";
-    }
-
-    function closeModal() {
-        document.getElementById("modalOverlay").classList.remove("active");
-        document.body.style.overflow = "";
-    }
-
-    function handleOverlayClick(e) { if (e.target === document.getElementById("modalOverlay")) closeModal(); }
-
-    function setStep(n) {
-        [1,2,3].forEach(i => {
-            document.getElementById("step" + i).classList.toggle("active", i === n);
-            const ind = document.getElementById("step-ind-" + i);
-            ind.classList.remove("active","done");
-            if (i === n) ind.classList.add("active");
-            if (i < n) ind.classList.add("done");
-        });
-    }
-
-    function handleSubmit(e) {
-        e.preventDefault();
-        const selected = document.querySelectorAll(".service-option.selected");
-        if (selected.length === 0) {
-            document.getElementById("serviceError").style.display = "block";
-            return;
-        }
-        const total = parseInt(document.getElementById("formTotalPrice").value.replace("$",""));
-        const services = document.getElementById("formServices").value;
-
-        document.getElementById("depositAmount").textContent = total;
-        document.getElementById("depositBtnAmount").textContent = total;
-        document.getElementById("step2Services").textContent = services;
-        document.getElementById("confirmServices").textContent = services;
-
-        fetch("/", { method: "POST", body: new FormData(e.target) }).catch(() => {});
-        setStep(2);
-    }
-
-    async function handleStripePayment() {
-        const btn = document.getElementById("stripe-submit-btn");
-        const processing = document.getElementById("stripe-processing");
-        const errors = document.getElementById("stripe-card-errors");
-
-        btn.style.display = "none";
-        processing.style.display = "block";
-        errors.textContent = "";
-
-        try {
-            const customerName = document.querySelector("[name='first-name']").value + " " + document.querySelector("[name='last-name']").value;
-            const customerEmail = document.querySelector("[name='email']").value;
-
-            const response = await fetch("/.netlify/functions/create-payment-intent", {
-                method: "POST",
-                headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    amount: currentDepositCents,
-                    services: currentServices,
-                    customerName: customerName,
-                    customerEmail: customerEmail,
-                }),
-            });
-
-            const { clientSecret, error: serverError } = await response.json();
-            if (serverError) throw new Error(serverError);
-
-            const { error: stripeError } = await stripe.confirmCardPayment(clientSecret, {
-                payment_method: { card: cardElement },
-                receipt_email: customerEmail,
-            });
-
-            if (stripeError) throw new Error(stripeError.message);
-            setStep(3);
-        } catch (err) {
-            errors.textContent = err.message || "Something went wrong. Please try again.";
-            btn.style.display = "block";
-            processing.style.display = "none";
-        }
-    }
-
+    // Mobile Menu
     const hamburger = document.getElementById("hamburger");
     const mobileMenu = document.getElementById("mobileMenu");
     hamburger.addEventListener("click", () => {
@@ -775,10 +405,6 @@
     function closeMobileMenu() {
         hamburger.classList.remove("open");
         mobileMenu.classList.remove("open");
-    }
-
-    function updateFileNames(input) {
-        document.getElementById("fileNames").textContent = Array.from(input.files).map(f => f.name).join(", ");
     }
 </script>
 
