@@ -10,21 +10,21 @@
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --ink: #0a0a0a; --paper: #f5f2ee; --blue: #1a4fff;
-            --blue-light: #3b6bff; --muted: #6b6b6b; --border: #e0dbd4;
+            --ink: #0a0a0a; --paper: #ffffff; --surface: #fafafa; --blue: #1a4fff;
+            --blue-light: #3b6bff; --muted: #6b6b6b; --border: #e5e5e5;
             --white: #ffffff; --green: #4ade80;
         }
         html { scroll-behavior: smooth; }
         body { font-family: "DM Sans", sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
         
         /* NAV */
-        nav { position: sticky; top: 0; z-index: 100; background: var(--paper); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+        nav { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
         .nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
         .nav-logo span { color: var(--blue); }
         .nav-links { display: flex; align-items: center; gap: 24px; }
         .nav-link { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
         .nav-link:hover { color: var(--ink); }
-        .nav-cta { background: var(--ink); color: var(--white); padding: 10px 24px; border-radius: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s; }
+        .nav-cta { background: var(--ink); color: var(--white); padding: 10px 24px; border-radius: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; font-family: "DM Sans", sans-serif; }
         .nav-cta:hover { background: var(--blue); }
         
         /* MOBILE MENU */
@@ -52,7 +52,7 @@
         /* BUTTONS */
         .btn-primary { background: var(--blue); color: var(--white); padding: 16px 32px; border-radius: 4px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s, transform 0.1s; display: inline-block; cursor: pointer; border: none; font-family: "DM Sans", sans-serif; }
         .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
-        .btn-secondary { background: transparent; color: var(--ink); padding: 16px 32px; border-radius: 4px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); transition: border-color 0.2s; }
+        .btn-secondary { background: transparent; color: var(--ink); padding: 16px 32px; border-radius: 4px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); transition: border-color 0.2s; display: inline-block; }
         .btn-secondary:hover { border-color: var(--ink); }
 
         /* HERO */
@@ -62,13 +62,19 @@
         @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
         .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 420px; margin-bottom: 40px; }
         .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-        .hero-right { background: url('https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&q=80&w=800') center/cover; border-radius: 8px; height: 100%; min-height: 500px; position: relative; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.05); }
-        .hero-right::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to top right, rgba(10,10,10,0.8), transparent); }
+        
+        /* PURE CSS HERO RIGHT */
+        .hero-right { background: var(--ink); border-radius: 12px; padding: 48px; color: var(--white); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 24px 48px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.1); }
+        .hero-right::before { content: ""; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: var(--blue); border-radius: 50%; opacity: 0.15; filter: blur(60px); pointer-events: none; }
+        .hero-right::after { content: ""; position: absolute; bottom: -100px; left: -100px; width: 250px; height: 250px; background: var(--green); border-radius: 50%; opacity: 0.1; filter: blur(60px); pointer-events: none; }
+        .hero-stat-row { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .hero-stat-row:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .hero-stat-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
 
         /* PROCESS SECTION */
         .process { padding: 40px 40px 100px; }
-        .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); background: var(--white); border-radius: 8px; overflow: hidden; }
-        .process-step { padding: 40px 32px; border-right: 1px solid var(--border); }
+        .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); background: var(--surface); border-radius: 8px; overflow: hidden; }
+        .process-step { padding: 40px 32px; border-right: 1px solid var(--border); background: var(--white); }
         .process-step:last-child { border-right: none; }
         .step-number { font-family: "Bebas Neue", sans-serif; font-size: 72px; color: var(--blue); opacity: 0.1; line-height: 1; margin-bottom: 8px; }
         .step-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
@@ -86,7 +92,7 @@
         .savings-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--ink); background: var(--green); padding: 4px 8px; border-radius: 2px; text-transform: uppercase; }
 
         /* PRICING & BUNDLE */
-        .pricing-section { background: var(--paper); }
+        .pricing-section { background: var(--white); }
         .bundle-featured { background: var(--ink); color: var(--white); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; margin-bottom: 80px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
         .bundle-featured-left { padding: 60px; position: relative; }
         .bundle-tag { display: inline-block; background: var(--blue); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 20px; }
@@ -105,22 +111,22 @@
         .bundle-cta:hover { background: var(--blue-light); }
         
         .alacarte-header { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; text-align: center; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
         .pricing-card { background: var(--white); padding: 40px 32px; display: flex; flex-direction: column; }
-        .pricing-icon { width: 40px; height: 40px; background: var(--paper); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 16px; margin-bottom: 24px; }
+        .pricing-icon { width: 40px; height: 40px; background: var(--surface); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 16px; margin-bottom: 24px; border: 1px solid var(--border); }
         .pricing-name { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
         .pricing-price { font-family: "Bebas Neue", sans-serif; font-size: 48px; letter-spacing: 1px; line-height: 1; color: var(--ink); margin-bottom: 4px; }
         .pricing-cadence { font-size: 12px; color: var(--muted); margin-bottom: 24px; font-weight: 500; }
         .pricing-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
         .pricing-features { list-style: none; flex: 1; margin-bottom: 32px; }
-        .pricing-features li { font-size: 13.5px; color: var(--ink); padding: 8px 0; border-bottom: 1px solid var(--paper); display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
+        .pricing-features li { font-size: 13.5px; color: var(--ink); padding: 8px 0; border-bottom: 1px solid var(--surface); display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
         .pricing-features li:last-child { border-bottom: none; }
         .pricing-features li i { color: var(--blue); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
         .pricing-btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--ink); cursor: pointer; background: transparent; font-family: "DM Sans", sans-serif; }
         .pricing-btn:hover { border-color: var(--ink); }
 
         /* REFRESH BANNER */
-        .refresh-banner-wrap { padding: 40px; }
+        .refresh-banner-wrap { padding: 40px; background: var(--white); }
         .refresh-banner { background: var(--blue); border-radius: 8px; padding: 60px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px; box-shadow: 0 20px 40px rgba(26, 79, 255, 0.15); }
         .refresh-banner h2 { color: var(--white); margin-bottom: 12px; }
         .refresh-banner p { color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.6; max-width: 500px; }
@@ -150,10 +156,10 @@
         .modal-price { font-family: "Bebas Neue", sans-serif; font-size: 44px; color: var(--blue-light); letter-spacing: 1px; }
         .modal-body { padding: 32px 40px; }
         .modal-steps { display: flex; margin-bottom: 32px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-        .modal-step { flex: 1; padding: 10px 8px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--paper); border-right: 1px solid var(--border); transition: all 0.2s; }
+        .modal-step { flex: 1; padding: 10px 8px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border-right: 1px solid var(--border); transition: all 0.2s; }
         .modal-step:last-child { border-right: none; }
-        .modal-step.active { background: var(--blue); color: var(--white); }
-        .modal-step.done { background: var(--ink); color: rgba(255,255,255,0.4); }
+        .modal-step.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
+        .modal-step.done { background: var(--ink); color: rgba(255,255,255,0.4); border-color: var(--ink); }
         .step-panel { display: none; }
         .step-panel.active { display: block; }
         
@@ -161,11 +167,11 @@
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-group { display: flex; flex-direction: column; gap: 6px; }
         .form-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-        .form-input, .form-select, .form-textarea { background: var(--paper); border: 1.5px solid var(--border); border-radius: 4px; padding: 12px 14px; font-size: 14px; color: var(--ink); font-family: "DM Sans", sans-serif; transition: border-color 0.2s; outline: none; width: 100%; }
-        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--blue); }
+        .form-input, .form-select, .form-textarea { background: var(--surface); border: 1.5px solid var(--border); border-radius: 4px; padding: 12px 14px; font-size: 14px; color: var(--ink); font-family: "DM Sans", sans-serif; transition: border-color 0.2s; outline: none; width: 100%; }
+        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--blue); background: var(--white); }
         .form-textarea { resize: vertical; min-height: 90px; }
-        .form-file-box { background: var(--paper); border: 1.5px dashed var(--border); border-radius: 4px; padding: 24px; text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative; }
-        .form-file-box:hover { border-color: var(--blue); }
+        .form-file-box { background: var(--surface); border: 1.5px dashed var(--border); border-radius: 4px; padding: 24px; text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative; }
+        .form-file-box:hover { border-color: var(--blue); background: var(--white); }
         .form-file-box input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
         .form-file-icon { font-size: 24px; color: var(--muted); margin-bottom: 8px; }
         .form-file-text { font-size: 13px; color: var(--muted); }
@@ -187,7 +193,7 @@
         .service-option-desc { font-size: 11px; color: var(--muted); }
         .service-option-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--blue); flex-shrink: 0; }
 
-        .zelle-box { background: var(--paper); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; margin-bottom: 24px; text-align: center; }
+        .zelle-box { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; margin-bottom: 24px; text-align: center; }
         .zelle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
         .zelle-amount { font-family: "Bebas Neue", sans-serif; font-size: 52px; letter-spacing: 2px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
         .zelle-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
@@ -205,7 +211,6 @@
             .nav-links { display: none; }
             .hamburger { display: flex; }
             .hero { grid-template-columns: 1fr; padding: 60px 24px; min-height: auto; }
-            .hero-right { display: none; }
             .process-steps { grid-template-columns: 1fr 1fr; }
             .process-step { border-right: none; border-bottom: 1px solid var(--border); }
             .process-step:last-child { border-bottom: none; }
@@ -235,7 +240,7 @@
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="#refresh" class="nav-link">Refresh</a>
         <a href="#about" class="nav-link">About</a>
-        <a href="sms:+18173120040" class="nav-cta">Get a Free Mockup &rarr;</a>
+        <button onclick="openModal()" class="nav-cta">Get Started &rarr;</button>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -247,7 +252,7 @@
     <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
     <a href="#refresh" onclick="closeMobileMenu()">Refresh</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="sms:+18173120040">Get a Free Mockup &rarr;</a>
+    <a href="#" onclick="openModal(); closeMobileMenu();">Get Started &rarr;</a>
 </div>
 
 <header>
@@ -257,12 +262,38 @@
             <h1>Agency Quality.<br><span class="accent">Without the</span><br>Agency Bill.</h1>
             <p class="hero-sub">I build websites, brand identities, and social presence for small businesses, the kind of work agencies charge $5,000+ for, done right and delivered in a fraction of the time for a fraction of the cost.</p>
             <div class="hero-actions">
-                <a href="#pricing" class="btn-primary">View Pricing</a>
+                <a href="#pricing" class="btn-primary">Get Started &rarr;</a>
                 <a href="sms:+18173120040" class="btn-secondary">Text Me a Question</a>
             </div>
         </div>
         <div class="hero-right">
+            <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px;">The JW Digital Guarantee</p>
+            <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 48px); letter-spacing: 1px; line-height: 1.1; margin-bottom: 36px; position: relative; z-index: 2;">No hidden fees.<br>No endless meetings.<br>Just results.</h3>
+            
+            <div style="position: relative; z-index: 2;">
+                <div class="hero-stat-row">
+                    <div class="hero-stat-icon" style="background: rgba(26, 79, 255, 0.2); color: var(--blue-light);"><i class="fa-solid fa-bolt"></i></div>
+                    <div>
+                        <p style="font-size: 15px; font-weight: 700; color: white;">24-Hour Delivery</p>
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">On core website builds</p>
+                    </div>
+                </div>
+                <div class="hero-stat-row">
+                    <div class="hero-stat-icon" style="background: rgba(74, 222, 128, 0.15); color: var(--green);"><i class="fa-solid fa-tag"></i></div>
+                    <div>
+                        <p style="font-size: 15px; font-weight: 700; color: white;">Flat-Rate Pricing</p>
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">What you see is what you pay</p>
+                    </div>
+                </div>
+                <div class="hero-stat-row">
+                    <div class="hero-stat-icon" style="background: rgba(255, 255, 255, 0.08); color: white;"><i class="fa-solid fa-handshake"></i></div>
+                    <div>
+                        <p style="font-size: 15px; font-weight: 700; color: white;">Direct Access</p>
+                        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">One point of contact, always</p>
+                    </div>
+                </div>
             </div>
+        </div>
     </div>
 </header>
 
@@ -314,7 +345,7 @@
                 <span class="bundle-tag">Best Value</span>
                 <h3>The Full Launch Bundle</h3>
                 <p>Everything a new or growing business needs to look established from day one: a custom website, professional brand identity, and a ready-to-go social presence, all in one shot.</p>
-                <button class="btn-primary" onclick="openModal()" style="border:none; width: max-content;">Claim This Bundle &rarr;</button>
+                <button class="btn-primary" onclick="openModal()" style="border:none; width: max-content;">Get Started &rarr;</button>
             </div>
             <div class="bundle-featured-right">
                 <ul class="bundle-items">
@@ -546,17 +577,17 @@
                     <div class="zelle-amount">$<span id="depositAmount">0</span></div>
                     <p class="zelle-sub">One-time, flat rate. No hidden fees, no balance due later.</p>
                 </div>
-                <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
+                <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
                     <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
                     <p style="font-size:14px;color:var(--ink);font-weight:600" id="step2Services">--</p>
                 </div>
                 <div id="stripe-payment-form">
                     <div style="margin-bottom:16px">
                         <label class="form-label" style="display:block;margin-bottom:8px">Card Details</label>
-                        <div id="stripe-card-element" style="background:var(--paper);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
+                        <div id="stripe-card-element" style="background:var(--surface);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
                         <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
                     </div>
-                    <div style="background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
+                    <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
                         <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, payment is non-refundable.</p>
                     </div>
                     <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> and Lock In My Order &rarr;</button>
@@ -569,7 +600,7 @@
                     <div class="success-icon"><i class="fa-solid fa-check"></i></div>
                     <h3>You&rsquo;re Locked In!</h3>
                     <p>Your order is confirmed. Here&rsquo;s what happens next:</p>
-                    <div style="text-align:left;background:var(--paper);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
+                    <div style="text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
                         <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
                             <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
                             <p style="font-size:13px;color:var(--muted);line-height:1.6">Your payment is confirmed and your project is locked in. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
