@@ -232,23 +232,85 @@
             .about-sticky { position: static; }
         }
         @media (max-width: 768px) {
+            /* NAV */
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            nav { padding: 0 24px; }
-            .hero-inner { padding: 120px 24px 72px; }
-            .belief-wrap, .process-wrap, .pricing-wrap, .about-wrap { padding: 80px 24px; }
-            .compare-outer, .refresh-wrap { padding: 0 24px 80px; }
-            .refresh-banner { padding: 44px 28px; }
-            .cta-wrap { padding: 80px 24px; }
-            footer { padding: 32px 24px; }
+            nav { padding: 0 20px; }
+
+            /* HERO */
+            .hero-inner { grid-template-columns: 1fr; padding: 100px 20px 64px; gap: 40px; min-height: auto; }
+            h1 { font-size: clamp(56px, 14vw, 80px); }
+            .hero-sub { font-size: 15px; max-width: 100%; }
+            .hero-actions { flex-direction: column; align-items: stretch; }
+            .hero-actions a { text-align: center; }
+            .hero-card { padding: 32px 24px; }
+            .hero-card-headline { font-size: 28px; margin-bottom: 28px; }
+            .hero-eyebrow { font-size: 9px; flex-wrap: wrap; }
+
+            /* BELIEF */
+            .belief-wrap { padding: 72px 20px; }
+            .belief-quote { font-size: clamp(26px, 7vw, 40px); }
+
+            /* PROCESS */
+            .process-wrap { padding: 72px 20px; }
+            .process-header { flex-direction: column; align-items: flex-start; margin-bottom: 40px; gap: 20px; }
             .process-grid { grid-template-columns: 1fr; }
-            .pricing-grid { grid-template-columns: 1fr; background: transparent; border: none; gap: 16px; }
-            .pricing-card { border: 1px solid var(--border); border-radius: 4px; }
-            .bundle-left, .bundle-right { padding: 36px 24px; }
-            .compare-head, .compare-row { padding-left: 24px; padding-right: 24px; }
+            .process-step { padding: 32px 24px; }
+            .step-num { font-size: 64px; }
+
+            /* COMPARISON */
+            .compare-outer { padding: 0 20px 72px; }
+            .compare-head { padding: 24px 20px; flex-direction: column; align-items: flex-start; gap: 4px; }
             .compare-col-labels { display: none; }
+            .compare-row { padding: 16px 20px; flex-direction: column; align-items: flex-start; gap: 10px; }
+            .compare-prices { gap: 12px; }
+            .price-agency { min-width: auto; }
+            .price-jw { min-width: auto; font-size: 22px; }
+            .compare-row.total-row .price-jw { font-size: 28px; }
+
+            /* PRICING */
+            .pricing-wrap { padding: 72px 20px; }
+            .pricing-header { margin-bottom: 40px; }
+            .bundle-card { grid-template-columns: 1fr; }
+            .bundle-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+            .bundle-left { padding: 36px 24px; }
+            .bundle-right { padding: 36px 24px; }
+            .bundle-total-price { font-size: 52px; }
+            .alacarte-label { margin-bottom: 20px; }
+            .pricing-grid { grid-template-columns: 1fr; background: transparent; border: none; gap: 16px; }
+            .pricing-card { border: 1px solid var(--border); border-radius: 4px; padding: 32px 24px; }
+            .pricing-price { font-size: 48px; }
+
+            /* REFRESH */
+            .refresh-wrap { padding: 0 20px 72px; }
+            .refresh-banner { grid-template-columns: 1fr; padding: 40px 24px; gap: 32px; }
+
+            /* ABOUT */
+            .about-wrap { padding: 72px 20px; }
+            .about-inner { grid-template-columns: 1fr; gap: 40px; }
+            .about-sticky { position: static; }
+            .about-body { font-size: 15px; }
+            .about-conviction { font-size: 17px; }
+
+            /* CTA */
+            .cta-wrap { padding: 72px 20px; }
+            .cta-sub { font-size: 15px; }
+            .cta-actions { flex-direction: column; align-items: stretch; }
+            .cta-actions a { text-align: center; padding: 18px 24px; }
+
+            /* FOOTER */
+            footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; gap: 16px; }
+            .footer-links { flex-direction: column; gap: 12px; }
+
+            /* CURSOR OFF */
             body { cursor: auto; }
-            .cursor, .cursor-ring { display: none; }
+            .cursor { display: none; }
+        }
+
+        @media (max-width: 400px) {
+            h1 { font-size: 52px; }
+            .hero-eyebrow { font-size: 8px; letter-spacing: 0.12em; }
+            .bundle-total-price { font-size: 44px; }
         }
     </style>
 </head>
