@@ -335,19 +335,63 @@
 
         /* RESPONSIVE */
         @media (max-width: 960px) {
+            /* Collapse split layout to single column */
             .split-layout { grid-template-columns: 1fr; }
-            .sidebar { position: static; height: auto; padding: 48px 32px; border-right: none; border-bottom: 1px solid var(--border-dark); }
-            .form-panel { padding: 48px 32px; }
+            .sidebar {
+                position: static; height: auto;
+                padding: 40px 20px 32px;
+                border-right: none;
+                border-bottom: 1px solid var(--border-dark);
+            }
+            /* Sidebar: compact on tablet/mobile — hide promises, keep headline + sub */
+            .sidebar-promises { display: none; }
+            .sidebar-footer { display: none; }
+            .sidebar-headline { font-size: 36px; margin-bottom: 12px; }
+            .sidebar-sub { margin-bottom: 0; font-size: 14px; }
+            .form-panel { padding: 40px 20px; }
         }
+
         @media (max-width: 640px) {
-            .checkout-nav { padding: 0 24px; }
+            /* NAV */
+            .checkout-nav { padding: 0 20px; }
+            .nav-logo { font-size: 22px; }
+
+            /* FORM */
             .form-row { grid-template-columns: 1fr; }
-            .form-panel { padding: 32px 20px; }
-            .sidebar { padding: 40px 20px; }
-            .payment-amount-card { padding: 32px 24px; }
-            .payment-amount { font-size: 56px; }
+            .form-panel { padding: 28px 16px; }
+            .form-input, .form-select, .form-textarea { font-size: 16px; } /* Prevents iOS zoom */
+
+            /* PROGRESS STEPS */
+            .modal-steps { margin-bottom: 32px; }
+            .modal-step { font-size: 8px; padding: 12px 4px; letter-spacing: 0.08em; }
+
+            /* SERVICE OPTIONS */
+            .service-option { flex-wrap: wrap; gap: 10px; padding: 14px 12px; }
+            .service-option-price { width: 100%; text-align: right; font-size: 20px; }
+
+            /* TOTAL BAR */
+            .total-bar-amount { font-size: 26px; }
+
+            /* PAYMENT STEP */
+            .payment-amount-card { padding: 28px 20px; }
+            .payment-amount { font-size: 52px; }
+            .services-summary { padding: 16px 18px; }
+            .modal-confirm-btn { font-size: 11px; padding: 16px; }
+
+            /* SUCCESS */
+            .success-panel { padding: 20px 0 0; }
+            .success-panel h3 { font-size: 36px; }
+            .success-steps { padding: 24px 20px; }
+            .success-close { padding: 14px 28px; }
+
+            /* CURSOR OFF */
             body { cursor: auto; }
-            .cursor, .cursor-ring { display: none; }
+            .cursor { display: none; }
+        }
+
+        @media (max-width: 400px) {
+            .payment-amount { font-size: 44px; }
+            .sidebar-headline { font-size: 30px; }
         }
     </style>
 </head>
