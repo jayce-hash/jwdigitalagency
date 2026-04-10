@@ -3,123 +3,416 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Get Started | JW Digital</title>
+    <title>Start Your Project | JW Digital</title>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --ink: #0a0a0a; --paper: #ffffff; --surface: #fafafa; --blue: #1a4fff;
-            --blue-light: #3b6bff; --muted: #6b6b6b; --border: #e5e5e5;
+            --ink: #0a0a0a; --paper: #ffffff; --surface: #f5f5f3;
+            --blue: #1a4fff; --blue-light: #3b6bff; --blue-glow: rgba(26,79,255,0.18);
+            --muted: #6b6b6b; --border: #e0e0e0; --border-dark: rgba(255,255,255,0.08);
             --white: #ffffff; --green: #4ade80;
         }
-        body { font-family: "DM Sans", sans-serif; background: var(--surface); color: var(--ink); line-height: 1.5; }
 
-        /* CHECKOUT LAYOUT */
-        .checkout-nav { background: var(--white); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; position: sticky; top: 0; z-index: 100; }
-        .nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
+        html { scroll-behavior: smooth; }
+        body { font-family: "DM Sans", sans-serif; background: var(--ink); color: var(--white); line-height: 1.5; overflow-x: hidden; cursor: none; min-height: 100vh; }
+
+        /* GRAIN */
+        body::before { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.025; pointer-events: none; z-index: 9000; }
+
+        /* CURSOR */
+        .cursor { width: 10px; height: 10px; background: var(--blue); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--blue); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.5; transition: width 0.3s, height 0.3s, opacity 0.3s; }
+        .cursor.active { width: 16px; height: 16px; background: var(--blue-light); }
+        .cursor-ring.active { width: 56px; height: 56px; opacity: 0.15; }
+
+        /* GRID BACKGROUND */
+        .page-grid { position: fixed; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.02) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.02) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; z-index: 0; }
+
+        /* GLOW BLOB */
+        .page-blob { position: fixed; width: 500px; height: 500px; background: var(--blue); border-radius: 50%; filter: blur(120px); opacity: 0.07; top: -200px; right: -100px; pointer-events: none; z-index: 0; }
+
+        /* NAV */
+        .checkout-nav {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+            height: 68px; display: flex; align-items: center; justify-content: space-between;
+            padding: 0 48px;
+            background: rgba(10,10,10,0.85);
+            border-bottom: 1px solid var(--border-dark);
+            backdrop-filter: blur(16px);
+        }
+        .nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
         .nav-logo span { color: var(--blue); }
-        .back-link { font-size: 12px; font-weight: 700; color: var(--muted); text-decoration: none; text-transform: uppercase; letter-spacing: 0.1em; transition: color 0.2s; }
-        .back-link:hover { color: var(--ink); }
+        .back-link { font-size: 10px; font-weight: 700; color: rgba(255,255,255,0.35); text-decoration: none; text-transform: uppercase; letter-spacing: 0.15em; transition: color 0.2s; display: flex; align-items: center; gap: 8px; cursor: none; }
+        .back-link:hover { color: var(--white); }
 
-        .checkout-container { max-width: 700px; margin: 40px auto; padding: 0 20px 100px; }
-        .checkout-card { background: var(--white); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; box-shadow: 0 20px 40px rgba(0,0,0,0.04); }
+        /* PAGE LAYOUT */
+        .page-wrap { position: relative; z-index: 1; padding-top: 68px; min-height: 100vh; display: flex; flex-direction: column; }
 
-        .checkout-header { background: var(--ink); padding: 40px; color: var(--white); }
-        .checkout-title { font-family: "Bebas Neue", sans-serif; font-size: 40px; letter-spacing: 2px; line-height: 1; margin-bottom: 8px; }
-        .checkout-subtitle { color: var(--blue-light); font-family: "Bebas Neue", sans-serif; font-size: 24px; letter-spacing: 1px; opacity: 0.9; }
+        /* SPLIT LAYOUT */
+        .split-layout { display: grid; grid-template-columns: 380px 1fr; min-height: calc(100vh - 68px); }
 
-        .checkout-body { padding: 40px; }
+        /* LEFT PANEL — sticky brand sidebar */
+        .sidebar {
+            background: rgba(255,255,255,0.02);
+            border-right: 1px solid var(--border-dark);
+            padding: 64px 48px;
+            position: sticky;
+            top: 68px;
+            height: calc(100vh - 68px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            overflow: hidden;
+        }
+        .sidebar::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, var(--blue), var(--blue-light), transparent);
+        }
+        .sidebar-eyebrow {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.25em;
+            text-transform: uppercase; color: var(--blue); margin-bottom: 20px;
+            display: flex; align-items: center; gap: 10px;
+        }
+        .sidebar-eyebrow::before { content: ""; width: 20px; height: 1px; background: var(--blue); }
+        .sidebar-headline {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: clamp(40px, 3.5vw, 52px);
+            letter-spacing: 2px; line-height: 0.95;
+            color: var(--white); margin-bottom: 24px;
+        }
+        .sidebar-sub { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.8; font-weight: 300; margin-bottom: 48px; }
+        .sidebar-promises { display: flex; flex-direction: column; gap: 16px; }
+        .sidebar-promise { display: flex; align-items: flex-start; gap: 14px; }
+        .promise-icon {
+            width: 32px; height: 32px; border-radius: 6px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 12px; flex-shrink: 0; margin-top: 1px;
+        }
+        .promise-title { font-size: 13px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+        .promise-desc { font-size: 11px; color: rgba(255,255,255,0.4); line-height: 1.6; }
+        .sidebar-footer { font-size: 10px; color: rgba(255,255,255,0.2); letter-spacing: 0.1em; text-transform: uppercase; font-weight: 600; }
+
+        /* RIGHT PANEL — form area */
+        .form-panel { padding: 64px 72px; }
 
         /* PROGRESS STEPS */
-        .modal-steps { display: flex; margin-bottom: 32px; border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
-        .modal-step { flex: 1; padding: 12px 8px; text-align: center; font-size: 10px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); background: var(--surface); border-right: 1px solid var(--border); transition: all 0.2s; }
+        .modal-steps {
+            display: flex; margin-bottom: 48px;
+            border: 1px solid var(--border-dark);
+            border-radius: 4px; overflow: hidden;
+        }
+        .modal-step {
+            flex: 1; padding: 13px 8px; text-align: center;
+            font-size: 9px; font-weight: 700; letter-spacing: 0.15em;
+            text-transform: uppercase; color: rgba(255,255,255,0.3);
+            background: rgba(255,255,255,0.02);
+            border-right: 1px solid var(--border-dark);
+            transition: all 0.3s;
+        }
         .modal-step:last-child { border-right: none; }
         .modal-step.active { background: var(--blue); color: var(--white); border-color: var(--blue); }
-        .modal-step.done { background: var(--ink); color: rgba(255,255,255,0.4); border-color: var(--ink); }
+        .modal-step.done { background: rgba(26,79,255,0.12); color: var(--blue); border-color: rgba(26,79,255,0.2); }
 
         .step-panel { display: none; }
         .step-panel.active { display: block; }
 
         /* FORM STYLES */
-        .intake-form { display: flex; flex-direction: column; gap: 18px; }
+        .intake-form { display: flex; flex-direction: column; gap: 20px; }
+
+        .form-section-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.2em;
+            text-transform: uppercase; color: rgba(255,255,255,0.3);
+            padding: 16px 0 8px;
+            border-top: 1px solid var(--border-dark);
+            margin-top: 8px;
+        }
+        .form-section-label:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .form-group { display: flex; flex-direction: column; gap: 6px; }
-        .form-label { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); }
-        .form-input, .form-select, .form-textarea { background: var(--surface); border: 1.5px solid var(--border); border-radius: 4px; padding: 12px 14px; font-size: 14px; color: var(--ink); font-family: "DM Sans", sans-serif; transition: border-color 0.2s; outline: none; width: 100%; }
-        .form-input:focus, .form-select:focus, .form-textarea:focus { border-color: var(--blue); background: var(--white); }
-        .form-textarea { resize: vertical; min-height: 90px; }
-        
-        .form-file-box { background: var(--surface); border: 1.5px dashed var(--border); border-radius: 4px; padding: 24px; text-align: center; cursor: pointer; transition: border-color 0.2s; position: relative; }
-        .form-file-box:hover { border-color: var(--blue); background: var(--white); }
-        .form-file-box input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
-        .form-file-icon { font-size: 24px; color: var(--muted); margin-bottom: 8px; }
-        .form-file-text { font-size: 13px; color: var(--muted); }
-        .form-file-text strong { color: var(--ink); }
-        .form-file-names { font-size: 12px; color: var(--blue); margin-top: 8px; min-height: 16px; }
-        
-        .form-submit-btn { display: block; width: 100%; background: var(--blue); color: var(--white); padding: 16px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; margin-top: 8px; }
-        .form-submit-btn:hover { background: var(--blue-light); }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-label {
+            font-size: 9px; font-weight: 700; letter-spacing: 0.18em;
+            text-transform: uppercase; color: rgba(255,255,255,0.4);
+        }
+        .form-input, .form-select, .form-textarea {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px; padding: 14px 16px;
+            font-size: 14px; color: var(--white);
+            font-family: "DM Sans", sans-serif;
+            transition: border-color 0.2s, background 0.2s;
+            outline: none; width: 100%;
+            font-weight: 300;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(255,255,255,0.2); }
+        .form-input:focus, .form-select:focus, .form-textarea:focus {
+            border-color: var(--blue);
+            background: rgba(26,79,255,0.06);
+        }
+        .form-select { color: rgba(255,255,255,0.7); appearance: none; }
+        .form-select option { background: var(--ink); color: var(--white); }
+        .form-textarea { resize: vertical; min-height: 100px; }
 
         /* SERVICE SELECTOR */
-        .service-selector { display: flex; flex-direction: column; gap: 8px; margin-top: 6px; }
-        .service-option { display: flex; align-items: center; gap: 16px; padding: 14px 16px; border: 1.5px solid var(--border); border-radius: 6px; cursor: pointer; transition: all 0.2s; background: var(--white); user-select: none; }
-        .service-option:hover { border-color: var(--blue); }
-        .service-option.selected { border-color: var(--blue); background: #f0f4ff; }
-        .service-option-check { width: 20px; height: 20px; border: 1.5px solid var(--border); border-radius: 4px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-        .service-option-check i { font-size: 10px; color: white; display: none; }
+        .service-selector { display: flex; flex-direction: column; gap: 8px; }
+        .service-sub-label {
+            font-size: 8px; font-weight: 700; letter-spacing: 0.2em;
+            text-transform: uppercase; color: rgba(255,255,255,0.2);
+            padding: 8px 0 2px;
+        }
+        .service-option {
+            display: flex; align-items: center; gap: 16px;
+            padding: 16px 18px;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px; cursor: none;
+            transition: all 0.2s;
+            background: rgba(255,255,255,0.02);
+            user-select: none;
+        }
+        .service-option:hover { border-color: rgba(26,79,255,0.5); background: rgba(26,79,255,0.04); }
+        .service-option.selected { border-color: var(--blue); background: rgba(26,79,255,0.1); }
+        .service-option-check {
+            width: 20px; height: 20px;
+            border: 1.5px solid rgba(255,255,255,0.2);
+            border-radius: 4px; display: flex;
+            align-items: center; justify-content: center;
+            flex-shrink: 0; transition: all 0.2s;
+        }
+        .service-option-check i { font-size: 9px; color: white; display: none; }
         .service-option.selected .service-option-check { background: var(--blue); border-color: var(--blue); }
         .service-option.selected .service-option-check i { display: block; }
-        .service-option-info { flex: 1; display: flex; flex-direction: column; gap: 2px; }
-        .service-option-name { font-size: 14px; font-weight: 700; color: var(--ink); }
-        .service-option-desc { font-size: 11px; color: var(--muted); }
-        .service-option-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--blue); flex-shrink: 0; }
+        .service-option-info { flex: 1; display: flex; flex-direction: column; gap: 3px; }
+        .service-option-name { font-size: 13px; font-weight: 700; color: var(--white); }
+        .service-option-desc { font-size: 11px; color: rgba(255,255,255,0.35); line-height: 1.5; }
+        .service-option-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--blue-light); flex-shrink: 0; }
 
-        /* STEP 2 - PAYMENT */
-        .zelle-box { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 28px 32px; margin-bottom: 24px; text-align: center; }
-        .zelle-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); margin-bottom: 12px; }
-        .zelle-amount { font-family: "Bebas Neue", sans-serif; font-size: 52px; letter-spacing: 2px; color: var(--ink); line-height: 1; margin-bottom: 6px; }
-        .zelle-sub { font-size: 13px; color: var(--muted); margin-bottom: 24px; }
-        .modal-confirm-btn { display: block; width: 100%; background: var(--ink); color: var(--white); padding: 16px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; margin-top: 24px; }
-        .modal-confirm-btn:hover { background: var(--blue); }
+        /* TOTAL BAR */
+        .bundle-notice {
+            display: none; margin-top: 10px;
+            background: rgba(26,79,255,0.12);
+            border: 1px solid rgba(26,79,255,0.3);
+            border-radius: 4px; padding: 12px 16px;
+            font-size: 12px; color: var(--blue-light); font-weight: 600;
+        }
+        .total-bar {
+            display: none; margin-top: 12px;
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 4px; padding: 16px 20px;
+            justify-content: space-between; align-items: center;
+        }
+        .total-bar-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+        .total-bar-amount { font-family: "Bebas Neue", sans-serif; font-size: 32px; color: var(--white); letter-spacing: 1px; }
+        .service-error { display: none; color: #f87171; font-size: 12px; margin-top: 8px; font-weight: 600; }
 
-        /* STEP 3 - SUCCESS */
-        .success-panel { text-align: center; padding: 20px 0; }
-        .success-icon { width: 64px; height: 64px; background: var(--green); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 24px; font-size: 28px; color: var(--ink); }
-        .success-panel h3 { font-family: "Bebas Neue", sans-serif; font-size: 32px; letter-spacing: 2px; margin-bottom: 12px; }
-        .success-panel p { font-size: 14px; color: var(--muted); line-height: 1.75; max-width: 380px; margin: 0 auto 24px; }
-        .success-close { display: inline-block; background: var(--ink); color: var(--white); padding: 14px 32px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; border: none; cursor: pointer; font-family: "DM Sans", sans-serif; transition: background 0.2s; text-decoration: none; }
-        .success-close:hover { background: var(--blue); }
+        /* FILE UPLOAD */
+        .form-file-box {
+            background: rgba(255,255,255,0.02);
+            border: 1px dashed rgba(255,255,255,0.12);
+            border-radius: 4px; padding: 28px;
+            text-align: center; cursor: none;
+            transition: border-color 0.2s, background 0.2s;
+            position: relative;
+        }
+        .form-file-box:hover { border-color: var(--blue); background: rgba(26,79,255,0.04); }
+        .form-file-box input[type="file"] { position: absolute; inset: 0; opacity: 0; cursor: none; width: 100%; height: 100%; }
+        .form-file-icon { font-size: 22px; color: rgba(255,255,255,0.2); margin-bottom: 10px; }
+        .form-file-text { font-size: 13px; color: rgba(255,255,255,0.35); }
+        .form-file-text strong { color: rgba(255,255,255,0.7); }
+        .form-file-names { font-size: 11px; color: var(--blue-light); margin-top: 10px; min-height: 16px; }
 
-        @media (max-width: 600px) {
-            .form-row { grid-template-columns: 1fr; }
-            .checkout-body { padding: 24px; }
-            .checkout-header { padding: 32px 24px; }
+        /* SUBMIT BTN */
+        .form-submit-btn {
+            display: block; width: 100%;
+            background: var(--blue); color: var(--white);
+            padding: 18px; border-radius: 4px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; border: none; cursor: none;
+            font-family: "DM Sans", sans-serif;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+            margin-top: 8px;
+        }
+        .form-submit-btn:hover { background: var(--blue-light); box-shadow: 0 0 32px var(--blue-glow); transform: translateY(-1px); }
+
+        /* STEP 2 — PAYMENT */
+        .payment-amount-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px; padding: 40px 48px;
+            margin-bottom: 24px; text-align: center;
+            position: relative; overflow: hidden;
+        }
+        .payment-amount-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--blue-light), transparent); }
+        .payment-label { font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 16px; }
+        .payment-amount { font-family: "Bebas Neue", sans-serif; font-size: 72px; letter-spacing: 2px; color: var(--white); line-height: 1; margin-bottom: 8px; }
+        .payment-sub { font-size: 13px; color: rgba(255,255,255,0.35); font-weight: 300; }
+
+        .services-summary {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 6px; padding: 20px 24px;
+            margin-bottom: 24px;
+        }
+        .services-summary-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+        .services-summary-value { font-size: 14px; color: var(--white); font-weight: 600; }
+
+        .card-label { font-size: 9px; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(255,255,255,0.4); display: block; margin-bottom: 10px; }
+        #stripe-card-element {
+            background: rgba(255,255,255,0.04);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 4px; padding: 16px;
+            transition: border-color 0.2s;
+            margin-bottom: 8px;
+        }
+        #stripe-card-errors { color: #f87171; font-size: 12px; margin-bottom: 16px; font-weight: 600; min-height: 18px; }
+
+        .refund-note {
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.06);
+            border-radius: 6px; padding: 16px 20px;
+            margin: 20px 0;
+            font-size: 12px; color: rgba(255,255,255,0.35); line-height: 1.7;
+        }
+        .refund-note strong { color: rgba(255,255,255,0.6); }
+
+        .modal-confirm-btn {
+            display: block; width: 100%;
+            background: var(--blue); color: var(--white);
+            padding: 18px; border-radius: 4px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; border: none; cursor: none;
+            font-family: "DM Sans", sans-serif;
+            transition: background 0.2s, box-shadow 0.2s, transform 0.15s;
+        }
+        .modal-confirm-btn:hover { background: var(--blue-light); box-shadow: 0 0 32px var(--blue-glow); transform: translateY(-1px); }
+        #stripe-processing { display: none; text-align: center; padding: 20px; font-size: 13px; color: rgba(255,255,255,0.4); font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; }
+
+        /* STEP 3 — SUCCESS */
+        .success-panel { text-align: center; padding: 40px 0 20px; }
+        .success-icon {
+            width: 72px; height: 72px;
+            background: var(--green); border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            margin: 0 auto 32px; font-size: 28px; color: var(--ink);
+        }
+        .success-panel h3 {
+            font-family: "Bebas Neue", sans-serif;
+            font-size: 48px; letter-spacing: 2px;
+            color: var(--white); margin-bottom: 16px;
+        }
+        .success-panel > p { font-size: 15px; color: rgba(255,255,255,0.4); line-height: 1.75; max-width: 400px; margin: 0 auto 40px; font-weight: 300; }
+        .success-steps {
+            text-align: left;
+            background: rgba(255,255,255,0.02);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 8px; padding: 32px;
+            margin: 0 auto 40px; max-width: 480px;
+        }
+        .success-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+        .success-step:last-child { margin-bottom: 0; }
+        .success-step-num {
+            background: var(--blue); color: white; border-radius: 50%;
+            width: 24px; height: 24px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 700; flex-shrink: 0; margin-top: 1px;
+        }
+        .success-step p { font-size: 13px; color: rgba(255,255,255,0.5); line-height: 1.7; font-weight: 300; }
+        .success-step p strong { color: var(--white); font-weight: 600; }
+        .success-contact { font-size: 12px; color: rgba(255,255,255,0.3); margin-bottom: 32px; }
+        .success-contact strong { color: rgba(255,255,255,0.6); }
+        .success-close {
+            display: inline-block;
+            background: transparent; color: rgba(255,255,255,0.6);
+            padding: 16px 40px; border-radius: 4px;
+            font-size: 12px; font-weight: 700; letter-spacing: 0.12em;
+            text-transform: uppercase; border: 1px solid rgba(255,255,255,0.15);
+            text-decoration: none; transition: border-color 0.2s, color 0.2s; cursor: none;
+        }
+        .success-close:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
+
+        /* RESPONSIVE */
+        @media (max-width: 960px) {
+            .split-layout { grid-template-columns: 1fr; }
+            .sidebar { position: static; height: auto; padding: 48px 32px; border-right: none; border-bottom: 1px solid var(--border-dark); }
+            .form-panel { padding: 48px 32px; }
+        }
+        @media (max-width: 640px) {
             .checkout-nav { padding: 0 24px; }
+            .form-row { grid-template-columns: 1fr; }
+            .form-panel { padding: 32px 20px; }
+            .sidebar { padding: 40px 20px; }
+            .payment-amount-card { padding: 32px 24px; }
+            .payment-amount { font-size: 56px; }
+            body { cursor: auto; }
+            .cursor, .cursor-ring { display: none; }
         }
     </style>
 </head>
 <body>
 
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+<div class="page-grid"></div>
+<div class="page-blob"></div>
+
+<!-- NAV -->
 <nav class="checkout-nav">
     <a href="index.html" class="nav-logo">JW<span>DIGITAL</span></a>
-    <a href="index.html" class="back-link">&larr; Back to Site</a>
+    <a href="index.html" class="back-link"><i class="fa-solid fa-arrow-left" style="font-size:10px"></i> Back to Site</a>
 </nav>
 
-<div class="checkout-container">
-    <div class="checkout-card">
-        <div class="checkout-header">
-            <div class="checkout-title">Get Started</div>
-            <div class="checkout-subtitle">JW Digital New Project</div>
-        </div>
+<div class="page-wrap">
+    <div class="split-layout">
 
-        <div class="checkout-body">
+        <!-- ═══ SIDEBAR ═══ -->
+        <aside class="sidebar">
+            <div>
+                <div class="sidebar-eyebrow">New Project</div>
+                <div class="sidebar-headline">Let's Build<br>Something<br>That Works.</div>
+                <p class="sidebar-sub">Five minutes of your time. A project brief that actually gives me what I need. Results in 24 hours.</p>
+                <div class="sidebar-promises">
+                    <div class="sidebar-promise">
+                        <div class="promise-icon" style="background:rgba(26,79,255,0.15);color:var(--blue-light)"><i class="fa-solid fa-bolt"></i></div>
+                        <div>
+                            <div class="promise-title">Delivered in 24 Hours</div>
+                            <div class="promise-desc">Not three weeks. Not pending approval. Done.</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-promise">
+                        <div class="promise-icon" style="background:rgba(74,222,128,0.1);color:var(--green)"><i class="fa-solid fa-tag"></i></div>
+                        <div>
+                            <div class="promise-title">Flat Rate, No Surprises</div>
+                            <div class="promise-desc">What you see is what you pay. Full stop.</div>
+                        </div>
+                    </div>
+                    <div class="sidebar-promise">
+                        <div class="promise-icon" style="background:rgba(255,255,255,0.05);color:rgba(255,255,255,0.6)"><i class="fa-solid fa-handshake"></i></div>
+                        <div>
+                            <div class="promise-title">One Person, All In</div>
+                            <div class="promise-desc">You talk to the person doing the work. Every time.</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sidebar-footer">JW Digital &nbsp;&bull;&nbsp; Nationwide</div>
+        </aside>
+
+        <!-- ═══ FORM PANEL ═══ -->
+        <main class="form-panel">
+
+            <!-- PROGRESS -->
             <div class="modal-steps">
                 <div class="modal-step active" id="step-ind-1">1. Your Info</div>
                 <div class="modal-step" id="step-ind-2">2. Payment</div>
                 <div class="modal-step" id="step-ind-3">3. Confirmed</div>
             </div>
 
+            <!-- ═══ STEP 1 ═══ -->
             <div class="step-panel active" id="step1">
                 <form class="intake-form" name="client-intake" method="POST" data-netlify="true" enctype="multipart/form-data" onsubmit="handleSubmit(event)">
                     <input type="hidden" name="form-name" value="client-intake">
@@ -127,173 +420,295 @@
                     <input type="hidden" name="total-price" id="formTotalPrice" value="">
                     <input type="hidden" name="deposit-amount" id="formDepositHidden" value="">
 
+                    <!-- SERVICE SELECTION -->
                     <div class="form-group">
-                        <label class="form-label">What Do You Need? Select All That Apply *</label>
+                        <div class="form-section-label">What Are We Building?</div>
                         <div class="service-selector">
-                            <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:4px 0">Core Services</p>
-                            
+                            <div class="service-sub-label">Core Services</div>
+
                             <div class="service-option" data-service="Website Build" data-price="750" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Website Build</span><span class="service-option-desc">Custom 5-section site, SEO, mobile-first, delivered in 24hrs</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Website Build</span>
+                                    <span class="service-option-desc">Custom 5-section site — mobile-first, fast-loading, built to convert, delivered in 24 hours</span>
+                                </div>
                                 <span class="service-option-price">$750</span>
                             </div>
-                            
+
                             <div class="service-option" data-service="Logo &amp; Branding" data-price="300" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Logo &amp; Branding</span><span class="service-option-desc">Custom logo, color palette, brand guide, business card template</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Logo &amp; Branding</span>
+                                    <span class="service-option-desc">Custom logo, full color palette, typography, brand guide, every file format you'll need</span>
+                                </div>
                                 <span class="service-option-price">$300</span>
                             </div>
-                            
+
                             <div class="service-option" data-service="Social Launch" data-price="150" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Social Launch</span><span class="service-option-desc">Instagram setup, 3 branded graphics, bio &amp; hashtag strategy</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Social Launch</span>
+                                    <span class="service-option-desc">Instagram profile built and optimized, 3 custom launch graphics, bio and hashtag strategy</span>
+                                </div>
                                 <span class="service-option-price">$150</span>
                             </div>
 
-                            <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);padding:8px 0 4px">Add-Ons</p>
-                            
+                            <div class="service-sub-label" style="margin-top:4px">Add-Ons</div>
+
                             <div class="service-option" data-service="Google Business Profile" data-price="100" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Google Business Profile Optimization</span><span class="service-option-desc">Full profile polish, local keywords, photos, hours and services</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Google Business Profile Optimization</span>
+                                    <span class="service-option-desc">Get found locally — full profile polish, local keywords, photos, hours, and services</span>
+                                </div>
                                 <span class="service-option-price">$100</span>
                             </div>
+
                             <div class="service-option" data-service="Facebook Business Page" data-price="100" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Facebook Business Page Setup</span><span class="service-option-desc">Fully built out, branded, and linked to your site and Instagram</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Facebook Business Page Setup</span>
+                                    <span class="service-option-desc">Fully built, branded, and linked to your site and Instagram</span>
+                                </div>
                                 <span class="service-option-price">$100</span>
                             </div>
+
                             <div class="service-option" data-service="Email Signature" data-price="50" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Email Signature Design</span><span class="service-option-desc">Branded signature for Gmail, Outlook, and Apple Mail</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Email Signature Design</span>
+                                    <span class="service-option-desc">Every email becomes a brand impression — works in Gmail, Outlook, and Apple Mail</span>
+                                </div>
                                 <span class="service-option-price">$50</span>
                             </div>
+
                             <div class="service-option" data-service="QR Code Business Cards" data-price="75" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">QR Code Business Cards</span><span class="service-option-desc">Custom design, print-ready PDF, links to your site or profile</span></div>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">QR Code Business Cards</span>
+                                    <span class="service-option-desc">Custom-designed, print-ready PDF linking to your site or profile</span>
+                                </div>
                                 <span class="service-option-price">$75</span>
                             </div>
+
                             <div class="service-option" data-service="Review Response Management" data-price="50" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Review Response Management</span><span class="service-option-desc">Monthly Google and Yelp review responses written and posted</span></div>
-                                <span class="service-option-price">$50<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Review Response Management</span>
+                                    <span class="service-option-desc">Monthly Google and Yelp responses written and posted</span>
+                                </div>
+                                <span class="service-option-price">$50<span style="font-size:10px;color:rgba(255,255,255,0.3);font-weight:600">/mo</span></span>
                             </div>
+
                             <div class="service-option" data-service="Monthly Maintenance Retainer" data-price="75" onclick="toggleService(this)">
                                 <div class="service-option-check"><i class="fa-solid fa-check"></i></div>
-                                <div class="service-option-info"><span class="service-option-name">Monthly Maintenance Retainer</span><span class="service-option-desc">Up to 3 site updates per month, proactive monthly check-in</span></div>
-                                <span class="service-option-price">$75<span style="font-size:10px;font-weight:600;color:var(--muted)">/mo</span></span>
+                                <div class="service-option-info">
+                                    <span class="service-option-name">Monthly Maintenance Retainer</span>
+                                    <span class="service-option-desc">Up to 3 site updates per month plus a proactive check-in</span>
+                                </div>
+                                <span class="service-option-price">$75<span style="font-size:10px;color:rgba(255,255,255,0.3);font-weight:600">/mo</span></span>
                             </div>
                         </div>
-                        
-                        <div id="bundleNotice" style="display:none;margin-top:10px;background:#e8f0ff;border:1px solid #b8ccff;border-radius:4px;padding:10px 14px;font-size:12px;color:var(--blue);font-weight:600">
-                            All 3 services selected. Full Launch Bundle applied! Social Launch is <strong>FREE</strong>. You save $150.
+
+                        <div class="bundle-notice" id="bundleNotice">
+                            All 3 core services selected — Full Launch Bundle applied. Social Launch is <strong>FREE</strong>. You save $150.
                         </div>
-                        <div id="serviceTotalBar" style="display:none;margin-top:10px;background:var(--ink);border-radius:4px;padding:12px 16px;display:flex;justify-content:space-between;align-items:center">
-                            <span style="font-size:12px;color:rgba(255,255,255,0.5);font-weight:600;letter-spacing:0.08em;text-transform:uppercase">Total</span>
-                            <span style="font-family:'Bebas Neue',sans-serif;font-size:28px;color:white;letter-spacing:1px" id="liveTotalDisplay">$0</span>
+                        <div class="total-bar" id="serviceTotalBar">
+                            <span class="total-bar-label">Your Total</span>
+                            <span class="total-bar-amount" id="liveTotalDisplay">$0</span>
                         </div>
-                        <p id="serviceError" style="display:none;color:#dc2626;font-size:12px;margin-top:6px;font-weight:600">Please select at least one service to continue.</p>
+                        <p class="service-error" id="serviceError">Please select at least one service to continue.</p>
+                    </div>
+
+                    <!-- CONTACT INFO -->
+                    <div class="form-section-label">Your Details</div>
+
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label class="form-label">First Name *</label>
+                            <input class="form-input" type="text" name="first-name" required placeholder="Joe">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Last Name *</label>
+                            <input class="form-input" type="text" name="last-name" required placeholder="Smith">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Business Name *</label>
+                        <input class="form-input" type="text" name="business-name" required placeholder="Smith Plumbing LLC">
                     </div>
 
                     <div class="form-row">
-                        <div class="form-group"><label class="form-label">First Name *</label><input class="form-input" type="text" name="first-name" required placeholder="Joe"></div>
-                        <div class="form-group"><label class="form-label">Last Name *</label><input class="form-input" type="text" name="last-name" required placeholder="Smith"></div>
+                        <div class="form-group">
+                            <label class="form-label">Best Phone Number *</label>
+                            <input class="form-input" type="tel" name="phone" required placeholder="(555) 123-4567">
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label">Email Address *</label>
+                            <input class="form-input" type="email" name="email" required placeholder="joe@smithplumbing.com">
+                        </div>
                     </div>
-                    <div class="form-group"><label class="form-label">Business Name *</label><input class="form-input" type="text" name="business-name" required placeholder="Smith Plumbing LLC"></div>
-                    <div class="form-row">
-                        <div class="form-group"><label class="form-label">Phone *</label><input class="form-input" type="tel" name="phone" required placeholder="(555) 123-4567"></div>
-                        <div class="form-group"><label class="form-label">Email *</label><input class="form-input" type="email" name="email" required placeholder="joe@smithplumbing.com"></div>
-                    </div>
-                    <div class="form-group"><label class="form-label">Business Address / City *</label><input class="form-input" type="text" name="address" required placeholder="123 Main St, Dallas, TX 75201"></div>
-                    <div class="form-group"><label class="form-label">What Services Does Your Business Offer? *</label><textarea class="form-textarea" name="services-offered" required placeholder="List everything you offer, the more detail the better.&#10;&#10;Example: Residential plumbing, commercial drain cleaning, water heater installation..."></textarea></div>
-                    <div class="form-group"><label class="form-label">Who Is Your Target Customer?</label><input class="form-input" type="text" name="target-customer" placeholder="Homeowners in DFW, local restaurants, new construction builders..."></div>
-                    <div class="form-group"><label class="form-label">Existing Website or Social Media?</label><input class="form-input" type="text" name="existing-presence" placeholder="yoursite.com or @handle, leave blank if none"></div>
-                    <div class="form-group"><label class="form-label">Brand Colors or Style Preferences</label><input class="form-input" type="text" name="brand-style" placeholder="Blue and white, modern and clean, bold and industrial..."></div>
-                    <div class="form-group"><label class="form-label">Competitors or Sites You Like the Look Of?</label><input class="form-input" type="text" name="inspiration" placeholder="URLs or business names to draw inspiration from"></div>
-                    <div class="form-group"><label class="form-label">Anything Else I Should Know?</label><textarea class="form-textarea" name="notes" placeholder="Special requests, things to avoid, your story, anything that helps me build something that feels like you."></textarea></div>
-                    
+
                     <div class="form-group">
-                        <label class="form-label">Upload Photos, Logo, or Branding Files</label>
+                        <label class="form-label">Business Address or City *</label>
+                        <input class="form-input" type="text" name="address" required placeholder="123 Main St, Dallas, TX 75201">
+                    </div>
+
+                    <!-- PROJECT CONTEXT -->
+                    <div class="form-section-label">Tell Me About Your Business</div>
+
+                    <div class="form-group">
+                        <label class="form-label">What Does Your Business Actually Do? *</label>
+                        <textarea class="form-textarea" name="services-offered" required placeholder="Be specific — the more detail you give me, the better this turns out.&#10;&#10;Example: Residential plumbing, commercial drain cleaning, emergency water heater repair for homeowners in Tarrant County..."></textarea>
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Who Is Your Ideal Customer?</label>
+                        <input class="form-input" type="text" name="target-customer" placeholder="Homeowners in DFW, local restaurants, new construction contractors...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Current Website or Social? (Leave Blank If None)</label>
+                        <input class="form-input" type="text" name="existing-presence" placeholder="yoursite.com or @handle">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Any Colors or Style Direction in Mind?</label>
+                        <input class="form-input" type="text" name="brand-style" placeholder="Navy and gold, modern and minimal, bold and industrial...">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Websites or Competitors Whose Look You Like?</label>
+                        <input class="form-input" type="text" name="inspiration" placeholder="URLs or business names — I'll use these as reference, not blueprint">
+                    </div>
+
+                    <div class="form-group">
+                        <label class="form-label">Anything Else That Would Help Me Build This Right?</label>
+                        <textarea class="form-textarea" name="notes" placeholder="Special requests, things to avoid, your story, your biggest complaint about how you currently look online — anything that helps me build something that actually feels like you."></textarea>
+                    </div>
+
+                    <!-- FILE UPLOAD -->
+                    <div class="form-section-label">Assets &amp; Files</div>
+
+                    <div class="form-group">
+                        <label class="form-label">Upload Photos, Your Logo, or Any Branding Files</label>
                         <div class="form-file-box">
                             <input type="file" name="files" multiple accept="image/*,.pdf,.svg,.ai,.eps" onchange="updateFileNames(this)">
                             <div class="form-file-icon"><i class="fa-solid fa-cloud-arrow-up"></i></div>
                             <p class="form-file-text"><strong>Click to upload</strong> or drag and drop</p>
-                            <p class="form-file-text" style="font-size:11px;margin-top:4px">PNG, JPG, PDF, SVG, AI, photos of your work, your logo, anything visual</p>
+                            <p class="form-file-text" style="font-size:11px;margin-top:6px;color:rgba(255,255,255,0.2)">Photos of your work, your current logo, inspiration images — anything visual that gives me a starting point</p>
                             <p class="form-file-names" id="fileNames"></p>
                         </div>
                     </div>
-                    
-                    <button type="submit" class="form-submit-btn">Save My Info &amp; Continue to Payment &rarr;</button>
+
+                    <button type="submit" class="form-submit-btn">Lock In My Info &amp; Choose Payment &rarr;</button>
                 </form>
             </div>
 
+            <!-- ═══ STEP 2 — PAYMENT ═══ -->
             <div class="step-panel" id="step2">
-                <div class="zelle-box">
-                    <p class="zelle-label">Total Due Today</p>
-                    <div class="zelle-amount">$<span id="depositAmount">0</span></div>
-                    <p class="zelle-sub">One-time, flat rate. No hidden fees, no balance due later.</p>
+                <div class="payment-amount-card">
+                    <div class="payment-label">Total Due Today</div>
+                    <div class="payment-amount">$<span id="depositAmount">0</span></div>
+                    <div class="payment-sub">Flat rate. No balance due later. No surprise invoices. Ever.</div>
                 </div>
-                <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin-bottom:16px">
-                    <p style="font-size:10px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:var(--muted);margin-bottom:6px">Services Ordered</p>
-                    <p style="font-size:14px;color:var(--ink);font-weight:600" id="step2Services">--</p>
+
+                <div class="services-summary">
+                    <div class="services-summary-label">What You're Getting</div>
+                    <div class="services-summary-value" id="step2Services">—</div>
                 </div>
-                <div id="stripe-payment-form">
-                    <div style="margin-bottom:16px">
-                        <label class="form-label" style="display:block;margin-bottom:8px">Card Details</label>
-                        <div id="stripe-card-element" style="background:var(--surface);border:1.5px solid var(--border);border-radius:4px;padding:14px 14px;font-size:14px;transition:border-color 0.2s"></div>
-                        <div id="stripe-card-errors" style="color:#dc2626;font-size:12px;margin-top:8px;font-weight:600"></div>
-                    </div>
-                    <div style="background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:16px 20px;margin-bottom:16px">
-                        <p style="font-size:11px;color:var(--muted);line-height:1.7"><strong style="color:var(--ink)">Refund policy:</strong> Full refund if work has not yet started. Once work begins, payment is non-refundable.</p>
-                    </div>
-                    <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">Pay $<span id="depositBtnAmount">0</span> and Lock In My Order &rarr;</button>
-                    <div id="stripe-processing" style="display:none;text-align:center;padding:16px;font-size:13px;color:var(--muted);font-weight:600">Processing your payment...</div>
+
+                <label class="card-label">Card Details</label>
+                <div id="stripe-card-element"></div>
+                <div id="stripe-card-errors"></div>
+
+                <div class="refund-note">
+                    <strong>Refund policy:</strong> Full refund if work hasn't started. Once I begin building, payment is non-refundable — because by then, I'm already halfway done.
                 </div>
+
+                <button id="stripe-submit-btn" class="modal-confirm-btn" onclick="handleStripePayment()">
+                    Pay $<span id="depositBtnAmount">0</span> &mdash; Start My Project &rarr;
+                </button>
+                <div id="stripe-processing">Processing your payment&hellip;</div>
             </div>
 
+            <!-- ═══ STEP 3 — CONFIRMATION ═══ -->
             <div class="step-panel" id="step3">
                 <div class="success-panel">
                     <div class="success-icon"><i class="fa-solid fa-check"></i></div>
-                    <h3>You&rsquo;re Locked In!</h3>
-                    <p>Your order is confirmed. Here&rsquo;s what happens next:</p>
-                    <div style="text-align:left;background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:0 auto 24px;max-width:420px">
-                        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">1</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your payment is confirmed and your project is locked in. I&rsquo;ll review your intake form and reach out within <strong style="color:var(--ink)">a few hours</strong> to confirm everything.</p>
+                    <h3>You're In. Let's Get to Work.</h3>
+                    <p>Payment confirmed. Your project is locked in and the clock is already running. Here's exactly what happens next:</p>
+                    <div class="success-steps">
+                        <div class="success-step">
+                            <div class="success-step-num">1</div>
+                            <p>I'll review your intake and reach out within <strong>a few hours</strong> to confirm I have everything I need before diving in.</p>
                         </div>
-                        <div style="display:flex;gap:12px;align-items:flex-start;margin-bottom:14px">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">2</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Your completed <strong style="color:var(--ink)" id="confirmServices">project</strong> will be delivered within <strong style="color:var(--ink)">24 hours</strong> by text or email.</p>
+                        <div class="success-step">
+                            <div class="success-step-num">2</div>
+                            <p>Your <strong id="confirmServices">project</strong> will be delivered within <strong>24 hours</strong> by text or email — ready for your review.</p>
                         </div>
-                        <div style="display:flex;gap:12px;align-items:flex-start">
-                            <span style="background:var(--blue);color:white;border-radius:50%;width:22px;height:22px;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0">3</span>
-                            <p style="font-size:13px;color:var(--muted);line-height:1.6">Review what I send you, request any changes, and once you approve it goes live.</p>
+                        <div class="success-step">
+                            <div class="success-step-num">3</div>
+                            <p>Tell me what to change, I'll refine it, and once you say go — <strong>it's live and it's yours.</strong></p>
                         </div>
                     </div>
-                    <p style="font-size:12px;color:var(--muted);margin-bottom:24px">Questions? Text me anytime at <strong style="color:var(--ink)">(817) 312-0040</strong>.</p>
-                    <a href="index.html" class="success-close">Back to Site</a>
+                    <p class="success-contact">Questions before then? Text anytime: <strong>(817) 312-0040</strong></p>
+                    <a href="index.html" class="success-close">Back to the Site</a>
                 </div>
             </div>
 
-        </div>
+        </main>
     </div>
 </div>
 
 <script src="https://js.stripe.com/v3/"></script>
 <script>
+    /* CURSOR */
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
+    });
+    (function animRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+        requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('active'); ring.classList.add('active'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('active'); ring.classList.remove('active'); });
+    });
+
+    /* STRIPE */
     const stripe = Stripe("pk_live_51TJ5VwFpH0ol4JauvRNgXZk0J11VEOPPgPCKrgLCEGvMlQaujOW2BkXXLGu9pIYT1tDc9TTA539KudNEdRnvX5do00oEZHuCFB");
     const elements = stripe.elements();
     const cardElement = elements.create("card", {
         style: {
-            base: { fontFamily: '"DM Sans", sans-serif', fontSize: "15px", color: "#0a0a0a", "::placeholder": { color: "#b0a898" } },
-            invalid: { color: "#dc2626" }
+            base: {
+                fontFamily: '"DM Sans", sans-serif',
+                fontSize: "15px",
+                color: "#ffffff",
+                fontWeight: "300",
+                "::placeholder": { color: "rgba(255,255,255,0.2)" }
+            },
+            invalid: { color: "#f87171" }
         }
     });
     cardElement.mount("#stripe-card-element");
-    cardElement.on("change", (e) => {
+    cardElement.on("change", e => {
         document.getElementById("stripe-card-errors").textContent = e.error ? e.error.message : "";
     });
 
-    const PRICES = { "Website Build": 750, "Logo & Branding": 300, "Social Launch": 150, "Google Business Profile": 100, "Facebook Business Page": 100, "Email Signature": 50, "QR Code Business Cards": 75, "Review Response Management": 50, "Monthly Maintenance Retainer": 75 };
+    /* PRICING LOGIC */
+    const PRICES = {
+        "Website Build": 750, "Logo & Branding": 300, "Social Launch": 150,
+        "Google Business Profile": 100, "Facebook Business Page": 100,
+        "Email Signature": 50, "QR Code Business Cards": 75,
+        "Review Response Management": 50, "Monthly Maintenance Retainer": 75
+    };
     const BUNDLE_DISCOUNT = 150;
     let currentDepositCents = 0;
     let currentServices = "";
@@ -305,13 +720,9 @@
 
     function recalculate() {
         const selected = Array.from(document.querySelectorAll(".service-option.selected"));
-        const names = selected.map(el => el.dataset.service.replace("&amp;","&"));
+        const names = selected.map(el => el.dataset.service.replace("&amp;", "&"));
         let total = names.reduce((sum, n) => sum + (PRICES[n] || 0), 0);
-        const hasCore1 = names.includes("Website Build");
-        const hasCore2 = names.includes("Logo & Branding");
-        const hasCore3 = names.includes("Social Launch");
-        const allThree = hasCore1 && hasCore2 && hasCore3;
-        
+        const allThree = names.includes("Website Build") && names.includes("Logo & Branding") && names.includes("Social Launch");
         if (allThree) total -= BUNDLE_DISCOUNT;
 
         document.getElementById("bundleNotice").style.display = allThree ? "block" : "none";
@@ -323,20 +734,19 @@
         document.getElementById("formServices").value = names.join(", ");
         document.getElementById("formTotalPrice").value = "$" + total;
         document.getElementById("formDepositHidden").value = total;
-
         currentDepositCents = total * 100;
         currentServices = names.join(", ");
     }
 
     function setStep(n) {
-        [1,2,3].forEach(i => {
+        [1, 2, 3].forEach(i => {
             document.getElementById("step" + i).classList.toggle("active", i === n);
             const ind = document.getElementById("step-ind-" + i);
-            ind.classList.remove("active","done");
+            ind.classList.remove("active", "done");
             if (i === n) ind.classList.add("active");
             if (i < n) ind.classList.add("done");
         });
-        window.scrollTo(0,0);
+        window.scrollTo(0, 0);
     }
 
     function handleSubmit(e) {
@@ -346,7 +756,7 @@
             document.getElementById("serviceError").style.display = "block";
             return;
         }
-        const total = parseInt(document.getElementById("formTotalPrice").value.replace("$",""));
+        const total = parseInt(document.getElementById("formTotalPrice").value.replace("$", ""));
         const services = document.getElementById("formServices").value;
 
         document.getElementById("depositAmount").textContent = total;
@@ -374,12 +784,7 @@
             const response = await fetch("/.netlify/functions/create-payment-intent", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({
-                    amount: currentDepositCents,
-                    services: currentServices,
-                    customerName: customerName,
-                    customerEmail: customerEmail,
-                }),
+                body: JSON.stringify({ amount: currentDepositCents, services: currentServices, customerName, customerEmail }),
             });
 
             const { clientSecret, error: serverError } = await response.json();
@@ -403,6 +808,5 @@
         document.getElementById("fileNames").textContent = Array.from(input.files).map(f => f.name).join(", ");
     }
 </script>
-
 </body>
 </html>
