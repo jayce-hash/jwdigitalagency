@@ -3,177 +3,270 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JW Digital | Websites & Branding for Local Business</title>
-    <meta name="description" content="JW Digital builds high-performance websites, branding, and social presence for small businesses at a fraction of agency cost. Based in Colleyville, TX.">
+    <title>JW Digital — Agency Quality. Without the Agency Bill.</title>
+    <meta name="description" content="JW Digital builds high-performance websites, brand identities, and social presence for businesses everywhere — at a fraction of what agencies charge.">
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         :root {
-            --ink: #0a0a0a; --paper: #ffffff; --surface: #fafafa; --blue: #1a4fff;
-            --blue-light: #3b6bff; --muted: #6b6b6b; --border: #e5e5e5;
+            --ink: #0a0a0a; --paper: #ffffff; --surface: #f5f5f3;
+            --blue: #1a4fff; --blue-light: #3b6bff; --blue-glow: rgba(26,79,255,0.18);
+            --muted: #6b6b6b; --border: #e0e0e0; --border-dark: rgba(255,255,255,0.08);
             --white: #ffffff; --green: #4ade80;
         }
         html { scroll-behavior: smooth; }
-        body { font-family: "DM Sans", sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; }
-        
+        body { font-family: "DM Sans", sans-serif; background: var(--paper); color: var(--ink); overflow-x: hidden; cursor: none; }
+
+        /* CURSOR */
+        .cursor { width: 10px; height: 10px; background: var(--blue); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor-ring { width: 36px; height: 36px; border: 1.5px solid var(--blue); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9998; transform: translate(-50%,-50%); opacity: 0.5; transition: width 0.3s, height 0.3s, opacity 0.3s; }
+        .cursor.active { width: 16px; height: 16px; background: var(--blue-light); }
+        .cursor-ring.active { width: 56px; height: 56px; opacity: 0.15; }
+
+        /* GRAIN */
+        body::before { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.028; pointer-events: none; z-index: 9000; }
+
         /* NAV */
-        nav { position: sticky; top: 0; z-index: 100; background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(8px); border-bottom: 1px solid var(--border); padding: 0 40px; height: 64px; display: flex; align-items: center; justify-content: space-between; }
-        .nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 26px; letter-spacing: 2px; color: var(--ink); text-decoration: none; }
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 68px; display: flex; align-items: center; justify-content: space-between; padding: 0 48px; transition: background 0.4s, border-color 0.4s; }
+        nav.scrolled { background: rgba(10,10,10,0.93); border-bottom: 1px solid var(--border-dark); backdrop-filter: blur(16px); }
+        .nav-logo { font-family: "Bebas Neue", sans-serif; font-size: 28px; letter-spacing: 3px; color: var(--white); text-decoration: none; }
         .nav-logo span { color: var(--blue); }
-        .nav-links { display: flex; align-items: center; gap: 24px; }
-        .nav-link { font-size: 13px; font-weight: 600; color: var(--muted); text-decoration: none; letter-spacing: 0.03em; transition: color 0.2s; }
-        .nav-link:hover { color: var(--ink); }
-        .nav-cta { background: var(--ink); color: var(--white); padding: 10px 24px; border-radius: 4px; font-size: 13px; font-weight: 600; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s; cursor: pointer; border: none; font-family: "DM Sans", sans-serif; }
-        .nav-cta:hover { background: var(--blue); }
-        
-        /* MOBILE MENU */
-        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: pointer; padding: 4px; }
-        .hamburger span { display: block; width: 22px; height: 2px; background: var(--ink); border-radius: 2px; transition: all 0.3s; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .nav-links { display: flex; align-items: center; gap: 36px; }
+        .nav-link { font-size: 11px; font-weight: 700; color: rgba(255,255,255,0.5); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link::after { content: ""; position: absolute; bottom: -4px; left: 0; width: 0; height: 1px; background: var(--blue); transition: width 0.25s; }
+        .nav-link:hover { color: var(--white); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-cta { background: var(--blue); color: var(--white); padding: 11px 26px; border-radius: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, box-shadow 0.2s, transform 0.15s; cursor: none; }
+        .nav-cta:hover { background: var(--blue-light); box-shadow: 0 0 28px var(--blue-glow); transform: translateY(-1px); }
+
+        /* HAMBURGER */
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; cursor: none; padding: 4px; }
+        .hamburger span { display: block; width: 22px; height: 1.5px; background: var(--white); border-radius: 2px; transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .mobile-menu { display: none; flex-direction: column; background: var(--paper); border-bottom: 1px solid var(--border); padding: 16px 24px; gap: 4px; position: sticky; top: 64px; z-index: 99; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 1px solid var(--border-dark); padding: 20px 24px; gap: 4px; position: fixed; top: 68px; left: 0; right: 0; z-index: 99; }
         .mobile-menu.open { display: flex; }
-        .mobile-menu a { font-size: 14px; font-weight: 600; color: var(--ink); text-decoration: none; padding: 10px 0; border-bottom: 1px solid var(--border); }
+        .mobile-menu a { font-size: 13px; font-weight: 700; color: rgba(255,255,255,0.6); text-decoration: none; padding: 12px 0; border-bottom: 1px solid var(--border-dark); letter-spacing: 0.08em; text-transform: uppercase; }
         .mobile-menu a:last-child { border-bottom: none; color: var(--blue); }
-        
-        /* GLOBALS & UTILS */
-        section { padding: 100px 40px; }
-        .section-inner { max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 16px; }
-        h1 { font-family: "Bebas Neue", sans-serif; font-size: clamp(60px, 6.5vw, 92px); line-height: 0.95; letter-spacing: 2px; margin-bottom: 28px; }
-        h1 .accent { color: var(--blue); }
-        h2 { font-family: "Bebas Neue", sans-serif; font-size: clamp(40px, 5vw, 64px); letter-spacing: 2px; line-height: 1; margin-bottom: 16px; }
-        .section-sub { font-size: 16px; color: var(--muted); line-height: 1.75; max-width: 520px; margin-bottom: 60px; }
-        .fade-up { opacity: 0; transform: translateY(20px); transition: opacity 0.55s ease, transform 0.55s ease; }
+
+        /* ANIMATIONS */
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.7s cubic-bezier(0.22,1,0.36,1), transform 0.7s cubic-bezier(0.22,1,0.36,1); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        
-        /* BUTTONS */
-        .btn-primary { background: var(--blue); color: var(--white); padding: 16px 32px; border-radius: 4px; font-size: 14px; font-weight: 700; letter-spacing: 0.05em; text-decoration: none; transition: background 0.2s, transform 0.1s; display: inline-block; cursor: pointer; border: none; font-family: "DM Sans", sans-serif; }
-        .btn-primary:hover { background: var(--blue-light); transform: translateY(-1px); }
-        .btn-secondary { background: transparent; color: var(--ink); padding: 16px 32px; border-radius: 4px; font-size: 14px; font-weight: 600; text-decoration: none; border: 1.5px solid var(--border); transition: border-color 0.2s; display: inline-block; }
-        .btn-secondary:hover { border-color: var(--ink); }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
+        @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+        @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
 
         /* HERO */
-        .hero { min-height: 85vh; display: grid; grid-template-columns: 1fr 1fr; align-items: center; max-width: 1200px; margin: 0 auto; padding: 80px 40px; gap: 60px; }
-        .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); margin-bottom: 28px; border: 1px solid var(--blue); padding: 6px 14px; border-radius: 2px; }
+        .hero-wrap { min-height: 100vh; background: var(--ink); position: relative; overflow: hidden; display: flex; flex-direction: column; }
+        .hero-blob { position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none; }
+        .hero-blob-1 { width: 600px; height: 600px; background: var(--blue); opacity: 0.12; top: -200px; right: -100px; animation: float 8s ease-in-out infinite; }
+        .hero-blob-2 { width: 350px; height: 350px; background: var(--blue-light); opacity: 0.07; bottom: -80px; left: 8%; animation: float 12s ease-in-out infinite reverse; }
+        .hero-blob-3 { width: 180px; height: 180px; background: var(--green); opacity: 0.06; top: 45%; left: 52%; animation: float 15s ease-in-out infinite; }
+        .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px); background-size: 80px 80px; pointer-events: none; }
+        .hero-inner { flex: 1; max-width: 1200px; width: 100%; margin: 0 auto; padding: 160px 48px 100px; display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; position: relative; z-index: 2; }
+        .hero-eyebrow { display: inline-flex; align-items: center; gap: 10px; font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 32px; }
         .hero-eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--blue); border-radius: 50%; animation: pulse 2s infinite; }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
-        .hero-sub { font-size: 17px; color: var(--muted); line-height: 1.75; max-width: 420px; margin-bottom: 40px; }
-        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
-        
-        /* HERO RIGHT GRAPHIC */
-        .hero-right { background: var(--ink); border-radius: 12px; padding: 48px; color: var(--white); position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; box-shadow: 0 24px 48px rgba(0,0,0,0.12); border: 1px solid rgba(255,255,255,0.1); }
-        .hero-right::before { content: ""; position: absolute; top: -100px; right: -100px; width: 300px; height: 300px; background: var(--blue); border-radius: 50%; opacity: 0.15; filter: blur(60px); pointer-events: none; }
-        .hero-right::after { content: ""; position: absolute; bottom: -100px; left: -100px; width: 250px; height: 250px; background: var(--green); border-radius: 50%; opacity: 0.1; filter: blur(60px); pointer-events: none; }
-        .hero-stat-row { display: flex; align-items: center; gap: 16px; padding-bottom: 20px; margin-bottom: 20px; border-bottom: 1px solid rgba(255,255,255,0.07); }
-        .hero-stat-row:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
-        .hero-stat-icon { width: 44px; height: 44px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; }
+        .hero-eyebrow::after { content: ""; width: 40px; height: 1px; background: var(--blue); opacity: 0.4; }
+        h1 { font-family: "Bebas Neue", sans-serif; font-size: clamp(68px, 7.5vw, 108px); line-height: 0.92; letter-spacing: 2px; color: var(--white); margin-bottom: 32px; }
+        h1 em { font-style: normal; color: transparent; -webkit-text-stroke: 1.5px var(--blue); }
+        .hero-sub { font-size: 16px; color: rgba(255,255,255,0.5); line-height: 1.85; max-width: 400px; margin-bottom: 48px; font-weight: 300; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; align-items: center; }
+        .btn-primary { background: var(--blue); color: var(--white); padding: 16px 36px; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: background 0.2s, box-shadow 0.2s, transform 0.15s; display: inline-block; cursor: none; border: none; font-family: "DM Sans", sans-serif; }
+        .btn-primary:hover { background: var(--blue-light); box-shadow: 0 0 32px var(--blue-glow); transform: translateY(-2px); }
+        .btn-ghost { background: transparent; color: rgba(255,255,255,0.6); padding: 16px 36px; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.15); transition: border-color 0.2s, color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost:hover { border-color: rgba(255,255,255,0.4); color: var(--white); }
 
-        /* PROCESS SECTION */
-        .process { padding: 40px 40px 100px; }
-        .process-steps { display: grid; grid-template-columns: repeat(4,1fr); gap: 0; border: 1px solid var(--border); background: var(--surface); border-radius: 8px; overflow: hidden; }
-        .process-step { padding: 40px 32px; border-right: 1px solid var(--border); background: var(--white); }
-        .process-step:last-child { border-right: none; }
-        .step-number { font-family: "Bebas Neue", sans-serif; font-size: 72px; color: var(--blue); opacity: 0.1; line-height: 1; margin-bottom: 8px; }
-        .step-title { font-size: 15px; font-weight: 700; margin-bottom: 10px; }
-        .step-desc { font-size: 13px; color: var(--muted); line-height: 1.75; }
+        /* HERO CARD */
+        .hero-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.08); border-radius: 12px; padding: 48px; position: relative; overflow: hidden; backdrop-filter: blur(8px); }
+        .hero-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 1px; background: linear-gradient(90deg, transparent, var(--blue), transparent); }
+        .hero-card-label { font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px; }
+        .hero-card-headline { font-family: "Bebas Neue", sans-serif; font-size: clamp(30px, 3vw, 42px); letter-spacing: 1px; line-height: 1.1; color: var(--white); margin-bottom: 40px; }
+        .hero-stat-row { display: flex; align-items: center; gap: 18px; padding: 20px 0; border-bottom: 1px solid rgba(255,255,255,0.06); }
+        .hero-stat-row:last-child { border-bottom: none; padding-bottom: 0; }
+        .hero-stat-icon { width: 40px; height: 40px; border-radius: 8px; display: flex; align-items: center; justify-content: center; font-size: 14px; flex-shrink: 0; }
+        .hero-stat-title { font-size: 14px; font-weight: 700; color: var(--white); margin-bottom: 2px; }
+        .hero-stat-desc { font-size: 12px; color: rgba(255,255,255,0.4); }
+
+        /* TICKER */
+        .ticker-wrap { background: var(--blue); overflow: hidden; padding: 14px 0; position: relative; z-index: 3; }
+        .ticker-track { display: flex; white-space: nowrap; animation: marquee 28s linear infinite; width: max-content; }
+        .ticker-item { font-family: "Bebas Neue", sans-serif; font-size: 15px; letter-spacing: 3px; color: rgba(255,255,255,0.9); padding: 0 32px; display: inline-flex; align-items: center; gap: 32px; }
+        .ticker-dot { width: 4px; height: 4px; background: rgba(255,255,255,0.4); border-radius: 50%; display: inline-block; flex-shrink: 0; }
+
+        /* GLOBALS */
+        .section-label { font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; display: flex; align-items: center; gap: 12px; }
+        .section-label::before { content: ""; width: 24px; height: 1px; background: var(--blue); }
+        h2 { font-family: "Bebas Neue", sans-serif; font-size: clamp(44px, 5.5vw, 72px); letter-spacing: 2px; line-height: 0.95; margin-bottom: 20px; }
+        .section-sub { font-size: 16px; color: var(--muted); line-height: 1.8; max-width: 500px; font-weight: 300; }
+
+        /* BELIEF */
+        .belief-wrap { background: var(--ink); padding: 100px 48px; position: relative; overflow: hidden; }
+        .belief-wrap::before { content: ""; position: absolute; inset: 0; background-image: linear-gradient(rgba(26,79,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(26,79,255,0.04) 1px, transparent 1px); background-size: 60px 60px; }
+        .belief-inner { max-width: 900px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+        .belief-quote { font-family: "Bebas Neue", sans-serif; font-size: clamp(32px, 4.5vw, 56px); letter-spacing: 2px; color: var(--white); line-height: 1.1; margin-bottom: 24px; }
+        .belief-quote span { color: var(--blue); }
+        .belief-attr { font-size: 11px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+
+        /* PROCESS */
+        .process-wrap { background: var(--surface); padding: 120px 48px; }
+        .process-header { max-width: 1200px; margin: 0 auto 72px; display: flex; justify-content: space-between; align-items: flex-end; flex-wrap: wrap; gap: 32px; }
+        .process-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(4,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+        .process-step { background: var(--white); padding: 48px 36px; transition: background 0.3s; }
+        .process-step:hover { background: var(--ink); }
+        .process-step:hover .step-num { color: var(--white); opacity: 0.08; }
+        .process-step:hover .step-title { color: var(--white); }
+        .process-step:hover .step-desc { color: rgba(255,255,255,0.5); }
+        .step-num { font-family: "Bebas Neue", sans-serif; font-size: 88px; color: var(--blue); opacity: 0.08; line-height: 1; margin-bottom: 4px; transition: color 0.3s, opacity 0.3s; }
+        .step-title { font-size: 14px; font-weight: 700; color: var(--ink); margin-bottom: 12px; transition: color 0.3s; }
+        .step-desc { font-size: 13px; color: var(--muted); line-height: 1.8; transition: color 0.3s; }
 
         /* COMPARISON */
-        .comparison-wrap { background: var(--ink); color: var(--white); border-radius: 8px; padding: 40px; max-width: 800px; margin: 0 auto; box-shadow: 0 20px 40px rgba(0,0,0,0.1); }
-        .compare-label { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.4); margin-bottom: 24px; text-align: center; }
-        .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.07); }
+        .compare-outer { padding: 0 48px 120px; background: var(--surface); }
+        .compare-wrap { max-width: 860px; margin: 0 auto; background: var(--ink); border-radius: 8px; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+        .compare-head { padding: 36px 48px 28px; border-bottom: 1px solid rgba(255,255,255,0.06); display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
+        .compare-head-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); }
+        .compare-col-labels { display: flex; gap: 60px; }
+        .compare-col-label { font-size: 9px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: rgba(255,255,255,0.3); text-align: right; min-width: 80px; }
+        .compare-col-label.ours { color: var(--blue); }
+        .compare-row { display: flex; justify-content: space-between; align-items: center; padding: 22px 48px; border-bottom: 1px solid rgba(255,255,255,0.05); transition: background 0.2s; flex-wrap: wrap; gap: 12px; }
         .compare-row:last-child { border-bottom: none; }
-        .compare-service { font-size: 15px; font-weight: 500; color: #e0dbd4; }
-        .compare-prices { display: flex; gap: 20px; align-items: center; }
-        .price-agency { font-size: 14px; color: rgba(255,255,255,0.4); text-decoration: line-through; }
-        .price-jw { font-family: "Bebas Neue", sans-serif; font-size: 24px; color: var(--blue-light); letter-spacing: 1px; }
-        .savings-badge { font-size: 9px; font-weight: 700; letter-spacing: 0.1em; color: var(--ink); background: var(--green); padding: 4px 8px; border-radius: 2px; text-transform: uppercase; }
+        .compare-row:hover { background: rgba(255,255,255,0.02); }
+        .compare-service { font-size: 14px; font-weight: 500; color: rgba(255,255,255,0.75); }
+        .compare-prices { display: flex; gap: 24px; align-items: center; flex-wrap: wrap; }
+        .price-agency { font-size: 13px; color: rgba(255,255,255,0.25); text-decoration: line-through; text-align: right; min-width: 90px; }
+        .price-jw { font-family: "Bebas Neue", sans-serif; font-size: 26px; color: var(--blue-light); letter-spacing: 1px; min-width: 70px; text-align: right; }
+        .savings-badge { font-size: 8px; font-weight: 700; letter-spacing: 0.12em; color: var(--ink); background: var(--green); padding: 4px 10px; border-radius: 2px; text-transform: uppercase; white-space: nowrap; }
+        .compare-row.total-row { background: rgba(26,79,255,0.06); }
+        .compare-row.total-row .compare-service { color: var(--white); font-weight: 700; font-size: 15px; }
+        .compare-row.total-row .price-jw { color: var(--white); font-size: 32px; }
 
-        /* PRICING & BUNDLE */
-        .pricing-section { background: var(--white); }
-        .bundle-featured { background: var(--ink); color: var(--white); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; margin-bottom: 80px; box-shadow: 0 20px 40px rgba(0,0,0,0.08); }
-        .bundle-featured-left { padding: 60px; position: relative; }
-        .bundle-tag { display: inline-block; background: var(--blue); color: var(--white); font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; padding: 5px 12px; border-radius: 2px; margin-bottom: 20px; }
-        .bundle-featured-left h3 { font-family: "Bebas Neue", sans-serif; font-size: 48px; letter-spacing: 1px; line-height: 1; margin-bottom: 16px; }
-        .bundle-featured-left p { color: rgba(255,255,255,0.6); font-size: 15px; line-height: 1.7; margin-bottom: 32px; }
-        .bundle-featured-right { background: rgba(255,255,255,0.03); padding: 60px; display: flex; flex-direction: column; justify-content: center; }
-        .bundle-items { list-style: none; margin-bottom: 32px; }
-        .bundle-items li { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-bottom: 1px solid rgba(255,255,255,0.07); font-size: 14px; }
+        /* PRICING */
+        .pricing-wrap { background: var(--white); padding: 120px 48px; }
+        .pricing-header { max-width: 1200px; margin: 0 auto 72px; }
+        .bundle-card { max-width: 1200px; margin: 0 auto 80px; background: var(--ink); border-radius: 8px; display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); position: relative; }
+        .bundle-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--blue-light), var(--blue)); }
+        .bundle-left { padding: 64px; position: relative; overflow: hidden; }
+        .bundle-left::after { content: ""; position: absolute; bottom: -120px; right: -120px; width: 300px; height: 300px; background: var(--blue); border-radius: 50%; opacity: 0.06; filter: blur(60px); }
+        .bundle-tag { display: inline-block; background: var(--blue); color: var(--white); font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; padding: 6px 14px; border-radius: 2px; margin-bottom: 24px; }
+        .bundle-left h3 { font-family: "Bebas Neue", sans-serif; font-size: clamp(32px, 3.5vw, 48px); letter-spacing: 1px; line-height: 1.05; color: var(--white); margin-bottom: 20px; }
+        .bundle-left p { font-size: 15px; color: rgba(255,255,255,0.5); line-height: 1.75; margin-bottom: 40px; font-weight: 300; max-width: 360px; }
+        .bundle-right { background: rgba(255,255,255,0.025); border-left: 1px solid rgba(255,255,255,0.06); padding: 64px; display: flex; flex-direction: column; justify-content: center; }
+        .bundle-items { list-style: none; margin-bottom: 36px; }
+        .bundle-items li { display: flex; justify-content: space-between; align-items: center; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,0.06); font-size: 14px; }
         .bundle-items li:last-child { border-bottom: none; }
-        .bundle-item-name { color: rgba(255,255,255,0.8); }
-        .bundle-item-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: rgba(255,255,255,0.4); }
+        .bundle-item-name { color: rgba(255,255,255,0.7); }
+        .bundle-item-price { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: rgba(255,255,255,0.3); }
         .bundle-item-free { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 1px; color: var(--green); }
-        .bundle-total { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 24px; border-top: 1px solid rgba(255,255,255,0.12); }
-        .bundle-total-price { font-family: "Bebas Neue", sans-serif; font-size: 64px; line-height: 1; letter-spacing: 2px; color: var(--white); }
-        
-        .alacarte-header { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); margin-bottom: 24px; text-align: center; }
-        .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 8px; overflow: hidden; }
-        .pricing-card { background: var(--white); padding: 40px 32px; display: flex; flex-direction: column; }
-        .pricing-icon { width: 40px; height: 40px; background: var(--surface); border-radius: 4px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 16px; margin-bottom: 24px; border: 1px solid var(--border); }
-        .pricing-name { font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: var(--ink); margin-bottom: 8px; }
-        .pricing-price { font-family: "Bebas Neue", sans-serif; font-size: 48px; letter-spacing: 1px; line-height: 1; color: var(--ink); margin-bottom: 4px; }
-        .pricing-cadence { font-size: 12px; color: var(--muted); margin-bottom: 24px; font-weight: 500; }
-        .pricing-divider { height: 1px; background: var(--border); margin-bottom: 24px; }
-        .pricing-features { list-style: none; flex: 1; margin-bottom: 32px; }
-        .pricing-features li { font-size: 13.5px; color: var(--ink); padding: 8px 0; border-bottom: 1px solid var(--surface); display: flex; align-items: flex-start; gap: 10px; line-height: 1.4; }
+        .bundle-total { display: flex; justify-content: space-between; align-items: flex-end; padding-top: 28px; border-top: 1px solid rgba(255,255,255,0.1); }
+        .bundle-total-label { font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(255,255,255,0.3); margin-bottom: 8px; }
+        .bundle-savings { font-size: 12px; color: var(--green); font-weight: 600; }
+        .bundle-total-price { font-family: "Bebas Neue", sans-serif; font-size: 72px; line-height: 1; letter-spacing: 2px; color: var(--white); }
+        .bundle-crossed { font-size: 14px; color: rgba(255,255,255,0.3); text-decoration: line-through; font-weight: 600; text-align: right; margin-bottom: 4px; }
+        .alacarte-label { max-width: 1200px; margin: 0 auto 28px; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--muted); text-align: center; }
+        .pricing-grid { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: repeat(3,1fr); gap: 1px; background: var(--border); border: 1px solid var(--border); border-radius: 4px; overflow: hidden; }
+        .pricing-card { background: var(--white); padding: 44px 36px; display: flex; flex-direction: column; transition: background 0.3s; }
+        .pricing-card:hover { background: var(--surface); }
+        .pricing-icon { width: 40px; height: 40px; background: var(--surface); border-radius: 6px; display: flex; align-items: center; justify-content: center; color: var(--blue); font-size: 15px; margin-bottom: 28px; border: 1px solid var(--border); }
+        .pricing-name { font-size: 10px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--ink); margin-bottom: 10px; }
+        .pricing-price { font-family: "Bebas Neue", sans-serif; font-size: 56px; letter-spacing: 1px; line-height: 1; color: var(--ink); margin-bottom: 4px; }
+        .pricing-cadence { font-size: 11px; color: var(--muted); margin-bottom: 28px; font-weight: 500; }
+        .pricing-divider { height: 1px; background: var(--border); margin-bottom: 28px; }
+        .pricing-features { list-style: none; flex: 1; margin-bottom: 36px; }
+        .pricing-features li { font-size: 13px; color: var(--ink); padding: 10px 0; border-bottom: 1px solid rgba(0,0,0,0.04); display: flex; align-items: flex-start; gap: 12px; line-height: 1.45; }
         .pricing-features li:last-child { border-bottom: none; }
-        .pricing-features li i { color: var(--blue); font-size: 11px; margin-top: 3px; flex-shrink: 0; }
-        .pricing-btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 4px; font-size: 13px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--ink); cursor: pointer; background: transparent; font-family: "DM Sans", sans-serif; text-decoration: none; }
-        .pricing-btn:hover { border-color: var(--ink); }
+        .pricing-features li i { color: var(--blue); font-size: 10px; margin-top: 4px; flex-shrink: 0; }
+        .pricing-btn { display: block; width: 100%; text-align: center; padding: 14px; border-radius: 3px; font-size: 11px; font-weight: 700; letter-spacing: 0.12em; text-transform: uppercase; transition: all 0.2s; border: 1.5px solid var(--border); color: var(--ink); cursor: none; background: transparent; font-family: "DM Sans", sans-serif; text-decoration: none; }
+        .pricing-btn:hover { border-color: var(--blue); color: var(--blue); }
 
-        /* REFRESH BANNER */
-        .refresh-banner-wrap { padding: 40px; background: var(--white); }
-        .refresh-banner { background: var(--blue); border-radius: 8px; padding: 60px; max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 40px; box-shadow: 0 20px 40px rgba(26, 79, 255, 0.15); }
-        .refresh-banner h2 { color: var(--white); margin-bottom: 12px; }
-        .refresh-banner p { color: rgba(255,255,255,0.8); font-size: 16px; line-height: 1.6; max-width: 500px; }
+        /* REFRESH */
+        .refresh-wrap { padding: 0 48px 120px; background: var(--white); }
+        .refresh-banner { max-width: 1200px; margin: 0 auto; background: var(--ink); border-radius: 8px; padding: 80px; display: grid; grid-template-columns: 1fr auto; gap: 60px; align-items: center; position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,0.06); }
+        .refresh-banner::before { content: ""; position: absolute; top: -200px; right: -200px; width: 500px; height: 500px; background: var(--blue); border-radius: 50%; opacity: 0.07; filter: blur(80px); }
+        .refresh-banner::after { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 2px; background: linear-gradient(90deg, var(--blue), var(--blue-light), transparent); }
+        .refresh-eyebrow { display: inline-block; font-size: 9px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 20px; }
+        .refresh-banner h2 { color: var(--white); margin-bottom: 16px; }
+        .refresh-banner p { color: rgba(255,255,255,0.5); font-size: 16px; line-height: 1.75; font-weight: 300; }
+        .btn-light { background: var(--white); color: var(--ink); padding: 18px 40px; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; white-space: nowrap; transition: transform 0.15s, box-shadow 0.2s; display: inline-block; cursor: none; flex-shrink: 0; }
+        .btn-light:hover { transform: translateY(-2px); box-shadow: 0 12px 32px rgba(0,0,0,0.3); }
 
         /* ABOUT */
-        .about-section { background: var(--white); }
-        .about-box { display: grid; grid-template-columns: 1fr 2fr; gap: 80px; align-items: start; border-top: 1px solid var(--border); padding-top: 60px; }
-        .about-body { font-size: 16px; color: var(--muted); line-height: 1.8; margin-bottom: 20px; }
-        .about-location { font-size: 12px; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; color: var(--blue); }
+        .about-wrap { background: var(--white); padding: 120px 48px; border-top: 1px solid var(--border); }
+        .about-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 2fr; gap: 100px; align-items: start; }
+        .about-sticky { position: sticky; top: 100px; }
+        .about-body { font-size: 17px; color: var(--muted); line-height: 1.85; margin-bottom: 24px; font-weight: 300; }
+        .about-body strong { color: var(--ink); font-weight: 600; }
+        .about-conviction { font-size: 20px; font-weight: 600; color: var(--ink); line-height: 1.6; padding: 32px 0; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); margin: 36px 0; }
+        .about-location { font-size: 10px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); display: flex; align-items: center; gap: 10px; }
+        .about-location::before { content: ""; width: 20px; height: 1px; background: var(--blue); }
+
+        /* CLOSING CTA */
+        .cta-wrap { background: var(--blue); padding: 120px 48px; position: relative; overflow: hidden; }
+        .cta-wrap::before { content: ""; position: absolute; top: -300px; left: 50%; transform: translateX(-50%); width: 800px; height: 800px; background: rgba(255,255,255,0.05); border-radius: 50%; }
+        .cta-inner { max-width: 700px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+        .cta-eyebrow { font-size: 9px; font-weight: 700; letter-spacing: 0.25em; text-transform: uppercase; color: rgba(255,255,255,0.5); margin-bottom: 24px; }
+        .cta-wrap h2 { color: var(--white); margin-bottom: 20px; }
+        .cta-sub { font-size: 17px; color: rgba(255,255,255,0.65); line-height: 1.75; margin-bottom: 48px; font-weight: 300; }
+        .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+        .btn-white { background: var(--white); color: var(--blue); padding: 18px 44px; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; transition: transform 0.15s, box-shadow 0.2s; display: inline-block; cursor: none; }
+        .btn-white:hover { transform: translateY(-2px); box-shadow: 0 12px 40px rgba(0,0,0,0.25); }
+        .btn-outline-white { background: transparent; color: rgba(255,255,255,0.7); padding: 18px 44px; border-radius: 3px; font-size: 12px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; text-decoration: none; border: 1px solid rgba(255,255,255,0.3); transition: border-color 0.2s, color 0.2s; display: inline-block; cursor: none; }
+        .btn-outline-white:hover { border-color: rgba(255,255,255,0.7); color: var(--white); }
 
         /* FOOTER */
-        footer { background: var(--ink); color: rgba(255,255,255,0.3); padding: 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .footer-logo { font-family: "Bebas Neue", sans-serif; font-size: 22px; letter-spacing: 2px; color: var(--white); }
-        .footer-logo span { color: var(--blue-light); }
-        footer p { font-size: 11px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; }
-        .footer-contact { color: rgba(255,255,255,0.45); font-size: 12px; font-weight: 500; text-decoration: none; transition: color 0.2s; }
+        footer { background: #050505; padding: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 20px; border-top: 1px solid rgba(255,255,255,0.05); }
+        .footer-logo { font-family: "Bebas Neue", sans-serif; font-size: 24px; letter-spacing: 3px; color: var(--white); }
+        .footer-logo span { color: var(--blue); }
+        footer p { font-size: 10px; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: rgba(255,255,255,0.2); }
+        .footer-links { display: flex; gap: 24px; align-items: center; }
+        .footer-contact { color: rgba(255,255,255,0.35); font-size: 11px; font-weight: 600; text-decoration: none; letter-spacing: 0.06em; transition: color 0.2s; }
         .footer-contact:hover { color: var(--white); }
 
-        @media (max-width: 960px) {
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .hero-inner { grid-template-columns: 1fr; padding: 140px 32px 80px; gap: 48px; }
+            .process-grid { grid-template-columns: 1fr 1fr; }
+            .bundle-card { grid-template-columns: 1fr; }
+            .bundle-right { border-left: none; border-top: 1px solid rgba(255,255,255,0.06); }
+            .refresh-banner { grid-template-columns: 1fr; }
+            .about-inner { grid-template-columns: 1fr; gap: 48px; }
+            .about-sticky { position: static; }
+        }
+        @media (max-width: 768px) {
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .hero { grid-template-columns: 1fr; padding: 60px 24px; min-height: auto; }
-            .process-steps { grid-template-columns: 1fr 1fr; }
-            .process-step { border-right: none; border-bottom: 1px solid var(--border); }
-            .process-step:last-child { border-bottom: none; }
-            .bundle-featured { grid-template-columns: 1fr; }
-            .bundle-featured-left, .bundle-featured-right { padding: 40px 24px; }
-            .pricing-grid { grid-template-columns: 1fr; background: transparent; border: none; gap: 16px; }
-            .pricing-card { border: 1px solid var(--border); border-radius: 8px; }
-            .refresh-banner { flex-direction: column; align-items: flex-start; padding: 40px 24px; }
-            .about-box { grid-template-columns: 1fr; gap: 32px; }
-            section { padding: 72px 24px; }
             nav { padding: 0 24px; }
-        }
-        @media (max-width: 560px) {
-            .process-steps { grid-template-columns: 1fr; }
+            .hero-inner { padding: 120px 24px 72px; }
+            .belief-wrap, .process-wrap, .pricing-wrap, .about-wrap { padding: 80px 24px; }
+            .compare-outer, .refresh-wrap { padding: 0 24px 80px; }
+            .refresh-banner { padding: 44px 28px; }
+            .cta-wrap { padding: 80px 24px; }
+            footer { padding: 32px 24px; }
+            .process-grid { grid-template-columns: 1fr; }
+            .pricing-grid { grid-template-columns: 1fr; background: transparent; border: none; gap: 16px; }
+            .pricing-card { border: 1px solid var(--border); border-radius: 4px; }
+            .bundle-left, .bundle-right { padding: 36px 24px; }
+            .compare-head, .compare-row { padding-left: 24px; padding-right: 24px; }
+            .compare-col-labels { display: none; }
+            body { cursor: auto; }
+            .cursor, .cursor-ring { display: none; }
         }
     </style>
 </head>
 <body>
 
-<nav>
+<div class="cursor" id="cursor"></div>
+<div class="cursor-ring" id="cursorRing"></div>
+
+<nav id="mainNav">
     <a href="#" class="nav-logo">JW<span>DIGITAL</span></a>
     <div class="nav-links">
         <a href="#process" class="nav-link">Process</a>
         <a href="#pricing" class="nav-link">Pricing</a>
         <a href="#refresh" class="nav-link">Refresh</a>
         <a href="#about" class="nav-link">About</a>
-        <a href="get-started.html" class="nav-cta">Get Started &rarr;</a>
+        <a href="get-started.html" class="nav-cta">Start a Project &rarr;</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -185,228 +278,302 @@
     <a href="#pricing" onclick="closeMobileMenu()">Pricing</a>
     <a href="#refresh" onclick="closeMobileMenu()">Refresh</a>
     <a href="#about" onclick="closeMobileMenu()">About</a>
-    <a href="get-started.html">Get Started &rarr;</a>
+    <a href="get-started.html">Start a Project &rarr;</a>
 </div>
 
-<header>
-    <div class="hero fade-up">
-        <div class="hero-left">
-            <div class="hero-eyebrow">Colleyville, TX &nbsp;&bull;&nbsp; Open for Business</div>
-            <h1>Agency Quality.<br><span class="accent">Without the</span><br>Agency Bill.</h1>
-            <p class="hero-sub">I build websites, brand identities, and social presence for small businesses, the kind of work agencies charge $5,000+ for, done right and delivered in a fraction of the time for a fraction of the cost.</p>
+<!-- HERO -->
+<section class="hero-wrap">
+    <div class="hero-blob hero-blob-1"></div>
+    <div class="hero-blob hero-blob-2"></div>
+    <div class="hero-blob hero-blob-3"></div>
+    <div class="hero-grid"></div>
+    <div class="hero-inner">
+        <div class="fade-up">
+            <div class="hero-eyebrow">Agency Quality. Without the Agency Bill.</div>
+            <h1>Your Brand<br>Deserves<br>to <em>Win.</em></h1>
+            <p class="hero-sub">Right now, someone is searching for exactly what you do. What they find — your website, your brand, your social presence — is closing the sale before you ever pick up the phone. JW Digital makes sure that moment works in your favor.</p>
             <div class="hero-actions">
-                <a href="get-started.html" class="btn-primary">Get Started &rarr;</a>
-                <a href="sms:+18173120040" class="btn-secondary">Text Me a Question</a>
+                <a href="get-started.html" class="btn-primary">Start Your Project &rarr;</a>
+                <a href="sms:+18173120040" class="btn-ghost">Text a Question</a>
             </div>
         </div>
-        <div class="hero-right">
-            <p style="font-size: 11px; font-weight: 700; letter-spacing: 0.2em; text-transform: uppercase; color: var(--blue); margin-bottom: 24px;">The JW Digital Guarantee</p>
-            <h3 style="font-family: 'Bebas Neue', sans-serif; font-size: clamp(36px, 4vw, 48px); letter-spacing: 1px; line-height: 1.1; margin-bottom: 36px; position: relative; z-index: 2;">No hidden fees.<br>No endless meetings.<br>Just results.</h3>
-            
-            <div style="position: relative; z-index: 2;">
-                <div class="hero-stat-row">
-                    <div class="hero-stat-icon" style="background: rgba(26, 79, 255, 0.2); color: var(--blue-light);"><i class="fa-solid fa-bolt"></i></div>
-                    <div>
-                        <p style="font-size: 15px; font-weight: 700; color: white;">24-Hour Delivery</p>
-                        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">On core website builds</p>
-                    </div>
-                </div>
-                <div class="hero-stat-row">
-                    <div class="hero-stat-icon" style="background: rgba(74, 222, 128, 0.15); color: var(--green);"><i class="fa-solid fa-tag"></i></div>
-                    <div>
-                        <p style="font-size: 15px; font-weight: 700; color: white;">Flat-Rate Pricing</p>
-                        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">What you see is what you pay</p>
-                    </div>
-                </div>
-                <div class="hero-stat-row">
-                    <div class="hero-stat-icon" style="background: rgba(255, 255, 255, 0.08); color: white;"><i class="fa-solid fa-handshake"></i></div>
-                    <div>
-                        <p style="font-size: 15px; font-weight: 700; color: white;">Direct Access</p>
-                        <p style="font-size: 13px; color: rgba(255,255,255,0.5); margin-top: 2px;">One point of contact, always</p>
-                    </div>
-                </div>
+        <div class="hero-card fade-up" style="transition-delay:0.15s">
+            <div class="hero-card-label">The JW Digital Standard</div>
+            <div class="hero-card-headline">You know what you're getting.<br>And exactly what it costs.</div>
+            <div class="hero-stat-row">
+                <div class="hero-stat-icon" style="background:rgba(26,79,255,0.15);color:var(--blue-light)"><i class="fa-solid fa-bolt"></i></div>
+                <div><div class="hero-stat-title">Live in 24 Hours</div><div class="hero-stat-desc">Core builds delivered fast — not in three weeks</div></div>
             </div>
-        </div>
-    </div>
-</header>
-
-<section class="process section-inner fade-up" id="process">
-    <p class="section-label">The Process</p>
-    <h2>How It Works.</h2>
-    <div class="process-steps">
-        <div class="process-step">
-            <div class="step-number">01</div>
-            <div class="step-title">Select & Intake</div>
-            <p class="step-desc">Pick your package on the checkout page, fill out a simple intake form, and lock in your project.</p>
-        </div>
-        <div class="process-step">
-            <div class="step-number">02</div>
-            <div class="step-title">The Build</div>
-            <p class="step-desc">I get to work immediately building your assets. No endless meetings, just focused design and development.</p>
-        </div>
-        <div class="process-step">
-            <div class="step-number">03</div>
-            <div class="step-title">Review & Revise</div>
-            <p class="step-desc">You receive your fully functional site or branding within days. We tweak and polish until it's perfect.</p>
-        </div>
-        <div class="process-step">
-            <div class="step-number">04</div>
-            <div class="step-title">Launch</div>
-            <p class="step-desc">I hand over the keys, transfer ownership, and your business is officially live and looking incredible.</p>
-        </div>
-    </div>
-</section>
-
-<section class="section-inner fade-up" style="padding: 40px 40px 80px;">
-    <div class="comparison-wrap">
-        <p class="compare-label">What Others Charge vs. JW Digital</p>
-        <div class="compare-row"><span class="compare-service">Website Build</span><div class="compare-prices"><span class="price-agency">$3,000+</span><span class="price-jw">$750</span><span class="savings-badge">75% off</span></div></div>
-        <div class="compare-row"><span class="compare-service">Logo &amp; Branding</span><div class="compare-prices"><span class="price-agency">$1,500+</span><span class="price-jw">$300</span><span class="savings-badge">80% off</span></div></div>
-        <div class="compare-row"><span class="compare-service">Social Launch</span><div class="compare-prices"><span class="price-agency">$500+</span><span class="price-jw">$150</span><span class="savings-badge">70% off</span></div></div>
-        <div class="compare-row"><span class="compare-service" style="font-weight:700; color:white">Full Launch Bundle</span><div class="compare-prices"><span class="price-agency">$6,000+</span><span class="price-jw" style="color:white">$1,100</span><span class="savings-badge">82% off</span></div></div>
-    </div>
-</section>
-
-<section class="pricing-section" id="pricing">
-    <div class="section-inner">
-        <p class="section-label">Pricing</p>
-        <h2>Transparent, Flat Rates.</h2>
-        <p class="section-sub">Get everything you need to launch, or pick exactly what you need. Add-ons available at checkout.</p>
-
-        <div class="bundle-featured fade-up">
-            <div class="bundle-featured-left">
-                <span class="bundle-tag">Best Value</span>
-                <h3>The Full Launch Bundle</h3>
-                <p>Everything a new or growing business needs to look established from day one: a custom website, professional brand identity, and a ready-to-go social presence, all in one shot.</p>
-                <a href="get-started.html" class="btn-primary" style="width: max-content;">Get Started &rarr;</a>
+            <div class="hero-stat-row">
+                <div class="hero-stat-icon" style="background:rgba(74,222,128,0.1);color:var(--green)"><i class="fa-solid fa-tag"></i></div>
+                <div><div class="hero-stat-title">Flat-Rate Pricing, Always</div><div class="hero-stat-desc">No hourly billing. No discovery fees. No surprises.</div></div>
             </div>
-            <div class="bundle-featured-right">
-                <ul class="bundle-items">
-                    <li><span class="bundle-item-name">Website Build</span><span class="bundle-item-price">$750</span></li>
-                    <li><span class="bundle-item-name">Logo &amp; Branding</span><span class="bundle-item-price">$300</span></li>
-                    <li><span class="bundle-item-name">Social Launch</span><span class="bundle-item-free">FREE</span></li>
-                </ul>
-                <div class="bundle-total">
-                    <div>
-                        <p style="font-size:11px;font-weight:700;letter-spacing:0.15em;text-transform:uppercase;color:rgba(255,255,255,0.4)">Total Price</p>
-                        <p style="font-size:12px;color:var(--green);font-weight:600;margin-top:6px">Saving you $150</p>
-                    </div>
-                    <div style="text-align:right">
-                        <p style="font-size:13px;color:rgba(255,255,255,0.4);text-decoration:line-through;font-weight:600">$1,200</p>
-                        <div class="bundle-total-price">$1,100</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <p class="alacarte-header">Or Choose A La Carte Services</p>
-        <div class="pricing-grid">
-            <div class="pricing-card fade-up">
-                <div class="pricing-icon"><i class="fa-solid fa-globe"></i></div>
-                <p class="pricing-name">Website Build</p>
-                <div class="pricing-price">$750</div>
-                <p class="pricing-cadence">One-time, flat rate</p>
-                <div class="pricing-divider"></div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i>Custom 5-section website</li>
-                    <li><i class="fa-solid fa-check"></i>Lead capture quote form</li>
-                    <li><i class="fa-solid fa-check"></i>Mobile-first, fast-loading design</li>
-                    <li><i class="fa-solid fa-check"></i>On-page SEO setup</li>
-                    <li><i class="fa-solid fa-check"></i>Delivered in 24 hours</li>
-                </ul>
-                <a href="get-started.html" class="pricing-btn">Get Started &rarr;</a>
-            </div>
-            
-            <div class="pricing-card fade-up">
-                <div class="pricing-icon"><i class="fa-solid fa-pen-nib"></i></div>
-                <p class="pricing-name">Logo &amp; Branding</p>
-                <div class="pricing-price">$300</div>
-                <p class="pricing-cadence">One-time, flat rate</p>
-                <div class="pricing-divider"></div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i>Custom logo design</li>
-                    <li><i class="fa-solid fa-check"></i>2 rounds of revisions</li>
-                    <li><i class="fa-solid fa-check"></i>Full color palette &amp; fonts</li>
-                    <li><i class="fa-solid fa-check"></i>All file formats provided</li>
-                    <li><i class="fa-solid fa-check"></i>Brand guide document</li>
-                </ul>
-                <a href="get-started.html" class="pricing-btn">Get Started &rarr;</a>
-            </div>
-
-            <div class="pricing-card fade-up">
-                <div class="pricing-icon"><i class="fa-brands fa-instagram"></i></div>
-                <p class="pricing-name">Social Launch</p>
-                <div class="pricing-price">$150</div>
-                <p class="pricing-cadence">One-time, flat rate</p>
-                <div class="pricing-divider"></div>
-                <ul class="pricing-features">
-                    <li><i class="fa-solid fa-check"></i>Business account setup</li>
-                    <li><i class="fa-solid fa-check"></i>Profile optimized &amp; branded</li>
-                    <li><i class="fa-solid fa-check"></i>3 custom launch graphics</li>
-                    <li><i class="fa-solid fa-check"></i>Hashtag &amp; bio strategy</li>
-                    <li><i class="fa-solid fa-check"></i>Ready to post day one</li>
-                </ul>
-                <a href="get-started.html" class="pricing-btn">Get Started &rarr;</a>
+            <div class="hero-stat-row">
+                <div class="hero-stat-icon" style="background:rgba(255,255,255,0.06);color:rgba(255,255,255,0.7)"><i class="fa-solid fa-handshake"></i></div>
+                <div><div class="hero-stat-title">One Person, Fully Accountable</div><div class="hero-stat-desc">You talk to the person doing the work — every time</div></div>
             </div>
         </div>
     </div>
 </section>
 
-<div class="refresh-banner-wrap fade-up" id="refresh">
-    <div class="refresh-banner">
-        <div>
-            <span style="display:inline-block; background:rgba(255,255,255,0.2); color:white; font-size:10px; font-weight:700; letter-spacing:0.15em; text-transform:uppercase; padding:5px 12px; border-radius:2px; margin-bottom:16px;">Already Have Something?</span>
-            <h2>Refresh Your Existing Brand.</h2>
-            <p>You’ve done the hard work. If your site, logo, or social presence just needs modernizing, you shouldn’t pay full price. Refreshes get the same premium quality at a fraction of the cost.</p>
-        </div>
-        <a href="sms:+18173120040" class="btn-primary" style="background: var(--white); color: var(--blue);">Text Me for a Custom Rate &rarr;</a>
+<!-- TICKER -->
+<div class="ticker-wrap">
+    <div class="ticker-track">
+        <span class="ticker-item">Websites <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Brand Identity <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Social Launch <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Flat-Rate Pricing <span class="ticker-dot"></span></span>
+        <span class="ticker-item">24-Hour Delivery <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Premium Quality <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Nationwide <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Websites <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Brand Identity <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Social Launch <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Flat-Rate Pricing <span class="ticker-dot"></span></span>
+        <span class="ticker-item">24-Hour Delivery <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Premium Quality <span class="ticker-dot"></span></span>
+        <span class="ticker-item">Nationwide <span class="ticker-dot"></span></span>
     </div>
 </div>
 
-<section class="about-section" id="about">
-    <div class="section-inner">
-        <div class="about-box fade-up">
-            <div class="about-left"><p class="section-label">About</p><h2>One Person.<br>No Markup.</h2></div>
-            <div class="about-right">
-                <p class="about-body">JW Digital is run by Jayce, a marketing graduate from Liberty University and founder of Concerto, a live music app available on iOS and Android.</p>
-                <p class="about-body">The agency side came out of a simple observation: most local businesses in DFW are losing customers every day to a bad website or a dead Instagram, and the agencies charging $5,000 to fix it aren&rsquo;t in any hurry to make it affordable.</p>
-                <p class="about-body">JW Digital exists to close that gap. Flat rates, fast turnaround, and you deal with one person who actually cares whether it works.</p>
-                <p class="about-location">Based in Colleyville, TX.</p>
+<!-- BELIEF -->
+<div class="belief-wrap">
+    <div class="belief-inner fade-up">
+        <div class="belief-quote">"Most businesses don't have a<br>marketing problem. They have a<br><span>first-impression problem.</span>"</div>
+        <div class="belief-attr">— The reason JW Digital exists</div>
+    </div>
+</div>
+
+<!-- PROCESS -->
+<div class="process-wrap" id="process">
+    <div class="process-header fade-up">
+        <div>
+            <div class="section-label">The Process</div>
+            <h2>Simple.<br>Fast. Done.</h2>
+        </div>
+        <p class="section-sub">No kickoff decks. No weekly status calls. No waiting three weeks to see a draft. From the moment you sign on, here's exactly what happens.</p>
+    </div>
+    <div class="process-grid fade-up">
+        <div class="process-step">
+            <div class="step-num">01</div>
+            <div class="step-title">Pick Your Package</div>
+            <p class="step-desc">Choose what you need and fill out a short intake form. Your project is locked in and the clock starts immediately.</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">02</div>
+            <div class="step-title">We Build</div>
+            <p class="step-desc">Work begins the same day. No committees, no briefings — focused design and development from someone who does this full-time.</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">03</div>
+            <div class="step-title">You Review</div>
+            <p class="step-desc">Your finished website or brand arrives within 24 hours. We refine together until every detail is right.</p>
+        </div>
+        <div class="process-step">
+            <div class="step-num">04</div>
+            <div class="step-title">You Launch</div>
+            <p class="step-desc">Full ownership transferred. Everything handed over clean. Your business goes live looking like it's been established for years.</p>
+        </div>
+    </div>
+</div>
+
+<!-- COMPARISON -->
+<div class="compare-outer">
+    <div class="compare-wrap fade-up">
+        <div class="compare-head">
+            <div class="compare-head-label">What Agencies Charge vs. JW Digital</div>
+            <div class="compare-col-labels">
+                <div class="compare-col-label">Agency Rate</div>
+                <div class="compare-col-label ours">JW Digital</div>
+            </div>
+        </div>
+        <div class="compare-row">
+            <span class="compare-service">Website Build</span>
+            <div class="compare-prices"><span class="savings-badge">Up to 91% off</span><span class="price-agency">$3,000–$8,000</span><span class="price-jw">$750</span></div>
+        </div>
+        <div class="compare-row">
+            <span class="compare-service">Logo &amp; Branding</span>
+            <div class="compare-prices"><span class="savings-badge">Up to 93% off</span><span class="price-agency">$1,500–$4,000</span><span class="price-jw">$300</span></div>
+        </div>
+        <div class="compare-row">
+            <span class="compare-service">Social Launch</span>
+            <div class="compare-prices"><span class="savings-badge">Up to 90% off</span><span class="price-agency">$500–$1,500</span><span class="price-jw">$150</span></div>
+        </div>
+        <div class="compare-row total-row">
+            <span class="compare-service">Full Launch Bundle</span>
+            <div class="compare-prices"><span class="savings-badge">Up to 93% off</span><span class="price-agency">$6,000–$15,000</span><span class="price-jw">$1,100</span></div>
+        </div>
+    </div>
+</div>
+
+<!-- PRICING -->
+<div class="pricing-wrap" id="pricing">
+    <div class="pricing-header fade-up">
+        <div class="section-label">Pricing</div>
+        <h2>Know the Number<br>Before You Call.</h2>
+        <p class="section-sub" style="margin-top:16px">Every price is posted because you shouldn't have to sit through a discovery call just to find out you can afford it. Pick what fits — or take everything.</p>
+    </div>
+    <div class="bundle-card fade-up">
+        <div class="bundle-left">
+            <span class="bundle-tag">Best Value</span>
+            <h3>Everything You Need to Launch, In One Shot.</h3>
+            <p>A website that converts. A brand that looks established. A social presence ready to post on day one. Most businesses need all three — this is how you get all three without paying three bills.</p>
+            <a href="get-started.html" class="btn-primary">Build My Brand &rarr;</a>
+        </div>
+        <div class="bundle-right">
+            <ul class="bundle-items">
+                <li><span class="bundle-item-name">Website Build</span><span class="bundle-item-price">$750</span></li>
+                <li><span class="bundle-item-name">Logo &amp; Branding</span><span class="bundle-item-price">$300</span></li>
+                <li><span class="bundle-item-name">Social Launch</span><span class="bundle-item-free">FREE</span></li>
+            </ul>
+            <div class="bundle-total">
+                <div>
+                    <div class="bundle-total-label">Your Total</div>
+                    <div class="bundle-savings">$150 back in your pocket</div>
+                </div>
+                <div style="text-align:right">
+                    <div class="bundle-crossed">$1,200</div>
+                    <div class="bundle-total-price">$1,100</div>
+                </div>
             </div>
         </div>
     </div>
-</section>
+    <div class="alacarte-label fade-up">Or Choose À La Carte</div>
+    <div class="pricing-grid fade-up">
+        <div class="pricing-card">
+            <div class="pricing-icon"><i class="fa-solid fa-globe"></i></div>
+            <div class="pricing-name">Website Build</div>
+            <div class="pricing-price">$750</div>
+            <div class="pricing-cadence">One-time · Flat rate</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+                <li><i class="fa-solid fa-check"></i>Custom 5-section site built from scratch</li>
+                <li><i class="fa-solid fa-check"></i>Lead capture form — inquiries come to you</li>
+                <li><i class="fa-solid fa-check"></i>Mobile-first, loads under 2 seconds</li>
+                <li><i class="fa-solid fa-check"></i>On-page SEO so Google can find you</li>
+                <li><i class="fa-solid fa-check"></i>Delivered in 24 hours, not 3 weeks</li>
+            </ul>
+            <a href="get-started.html" class="pricing-btn">Get My Website &rarr;</a>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-icon"><i class="fa-solid fa-pen-nib"></i></div>
+            <div class="pricing-name">Logo &amp; Branding</div>
+            <div class="pricing-price">$300</div>
+            <div class="pricing-cadence">One-time · Flat rate</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+                <li><i class="fa-solid fa-check"></i>Custom logo — not a template, not a stock mark</li>
+                <li><i class="fa-solid fa-check"></i>2 rounds of revisions until it's right</li>
+                <li><i class="fa-solid fa-check"></i>Color palette and typography that hold together</li>
+                <li><i class="fa-solid fa-check"></i>Every file format you'll ever need</li>
+                <li><i class="fa-solid fa-check"></i>Brand guide so your look stays consistent</li>
+            </ul>
+            <a href="get-started.html" class="pricing-btn">Get My Brand &rarr;</a>
+        </div>
+        <div class="pricing-card">
+            <div class="pricing-icon"><i class="fa-brands fa-instagram"></i></div>
+            <div class="pricing-name">Social Launch</div>
+            <div class="pricing-price">$150</div>
+            <div class="pricing-cadence">One-time · Flat rate</div>
+            <div class="pricing-divider"></div>
+            <ul class="pricing-features">
+                <li><i class="fa-solid fa-check"></i>Business profile built and optimized correctly</li>
+                <li><i class="fa-solid fa-check"></i>Bio and profile that makes people stay</li>
+                <li><i class="fa-solid fa-check"></i>3 custom launch graphics, ready to post</li>
+                <li><i class="fa-solid fa-check"></i>Hashtag and bio strategy that drives reach</li>
+                <li><i class="fa-solid fa-check"></i>Hand it off — you're already ahead</li>
+            </ul>
+            <a href="get-started.html" class="pricing-btn">Launch My Social &rarr;</a>
+        </div>
+    </div>
+</div>
 
+<!-- REFRESH -->
+<div class="refresh-wrap fade-up" id="refresh">
+    <div class="refresh-banner">
+        <div style="position:relative;z-index:2">
+            <div class="refresh-eyebrow">Already Have Something?</div>
+            <h2>It Might Just Need a New Coat of Paint.</h2>
+            <p>A site that worked three years ago isn't doing the same job today. If your brand feels dated, your website looks amateur, or your Instagram is embarrassing you — a refresh gets you back to where you should be, without paying to start over.</p>
+        </div>
+        <a href="sms:+18173120040" class="btn-light" style="position:relative;z-index:2">Text for a Custom Rate &rarr;</a>
+    </div>
+</div>
+
+<!-- ABOUT -->
+<div class="about-wrap" id="about">
+    <div class="about-inner fade-up">
+        <div class="about-sticky">
+            <div class="section-label">About</div>
+            <h2>Built Out of<br>Frustration.</h2>
+        </div>
+        <div>
+            <p class="about-body">JW Digital is run by <strong>Jayce</strong> — a marketing graduate from Liberty University and the founder of Concerto, a live music discovery app on iOS and Android. But the agency didn't come from a business plan. It came from a pattern.</p>
+            <p class="about-body">Good businesses with bad websites. Talented owners who paid $5,000 to an agency and waited 12 weeks for something that looked like it was designed by committee. Instagram pages sitting empty while the competition posted every day.</p>
+            <p class="about-body">The gap between what businesses <strong>need</strong> and what they can actually <strong>afford</strong> shouldn't be that wide. JW Digital exists to close it — flat rates, fast turnaround, one person who answers your calls, does the work, and genuinely cares whether it performs.</p>
+            <div class="about-conviction">"If your business is worth running, it's worth looking the part — no matter where you are or how big you are."</div>
+            <div class="about-location">Serving Businesses Nationwide &nbsp;&mdash;&nbsp; Based in Colleyville, TX</div>
+        </div>
+    </div>
+</div>
+
+<!-- CLOSING CTA -->
+<div class="cta-wrap fade-up">
+    <div class="cta-inner">
+        <div class="cta-eyebrow">Ready When You Are</div>
+        <h2>Stop Losing Business to a Bad First Impression.</h2>
+        <p class="cta-sub">Every day with a weak website is a day you handed a potential customer to your competitor. It takes five minutes to start — and 24 hours to see the result.</p>
+        <div class="cta-actions">
+            <a href="get-started.html" class="btn-white">Start My Project &rarr;</a>
+            <a href="sms:+18173120040" class="btn-outline-white">Text a Question First</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
 <footer>
     <div class="footer-logo">JW<span>DIGITAL</span></div>
-    <p>&copy; 2026 JW Digital, a DBA of Concerto LLC &middot; Colleyville, TX</p>
-    <div style="display:flex;gap:20px;align-items:center">
+    <p>&copy; 2026 JW Digital, a DBA of Concerto LLC</p>
+    <div class="footer-links">
         <a href="https://instagram.com/jwdigitalagency" target="_blank" class="footer-contact"><i class="fa-brands fa-instagram" style="margin-right:6px"></i>@jwdigitalagency</a>
         <a href="sms:+18173120040" class="footer-contact">Text: (817) 312-0040</a>
     </div>
 </footer>
 
 <script>
-    // Fade-up animations
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach((entry, i) => {
-            if (entry.isIntersecting) setTimeout(() => entry.target.classList.add("visible"), i * 80);
-        });
-    }, { threshold: 0.1 });
-    document.querySelectorAll(".fade-up").forEach(el => observer.observe(el));
-
-    // Mobile Menu
-    const hamburger = document.getElementById("hamburger");
-    const mobileMenu = document.getElementById("mobileMenu");
-    hamburger.addEventListener("click", () => {
-        hamburger.classList.toggle("open");
-        mobileMenu.classList.toggle("open");
+    /* CURSOR */
+    const cursor = document.getElementById('cursor');
+    const ring = document.getElementById('cursorRing');
+    let mx = 0, my = 0, rx = 0, ry = 0;
+    document.addEventListener('mousemove', e => {
+        mx = e.clientX; my = e.clientY;
+        cursor.style.transform = `translate(${mx}px,${my}px) translate(-50%,-50%)`;
     });
-    function closeMobileMenu() {
-        hamburger.classList.remove("open");
-        mobileMenu.classList.remove("open");
-    }
-</script>
+    (function animRing() {
+        rx += (mx - rx) * 0.12; ry += (my - ry) * 0.12;
+        ring.style.transform = `translate(${rx}px,${ry}px) translate(-50%,-50%)`;
+        requestAnimationFrame(animRing);
+    })();
+    document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', () => { cursor.classList.add('active'); ring.classList.add('active'); });
+        el.addEventListener('mouseleave', () => { cursor.classList.remove('active'); ring.classList.remove('active'); });
+    });
 
+    /* NAV */
+    const nav = document.getElementById('mainNav');
+    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 40));
+
+    /* FADE UP */
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+    /* MOBILE MENU */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+    function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+</script>
 </body>
 </html>
