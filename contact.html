@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Contact — JW Digital</title>
     <meta name="description" content="Begin a project with JW Digital. Brand identity, web presence, and digital strategy for businesses that take their image seriously.">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,7 +14,7 @@
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
         }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; }
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
@@ -76,7 +76,7 @@
         .form-input, .form-select, .form-textarea {
             background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.1);
             border-radius: 1px; padding: 14px 16px; font-size: 14px; color: var(--platinum);
-            font-family: 'Geist', sans-serif; font-weight: 300;
+            font-family: 'DM Sans', sans-serif; font-weight: 300;
             transition: border-color 0.2s, background 0.2s; outline: none; width: 100%;
         }
         .form-input::placeholder, .form-textarea::placeholder { color: rgba(244,244,242,0.18); }
@@ -101,7 +101,7 @@
         .service-check.checked .check-price { color: var(--silver); }
 
         /* SUBMIT */
-        .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'Geist', sans-serif; transition: background 0.2s; margin-top: 8px; }
+        .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
         .form-submit:hover { background: var(--white); }
         .form-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.25); line-height: 1.7; text-align: center; margin-top: 8px; }
 
@@ -152,14 +152,13 @@
 <nav>
     <a href="/index.html" class="nav-logo">
         <div class="nav-logo-rule"></div>
-        <div class="nav-logo-word">JW Digital</div>
+        <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
         <a href="/services.html" class="nav-link">Services</a>
-        <a href="/index.html#process" class="nav-link">Process</a>
         <a href="/work.html" class="nav-link">Work</a>
-        <a href="/index.html#about" class="nav-link">About</a>
-        <a href="/contact.html" class="nav-cta" style="background:var(--platinum);color:var(--ink);">Begin a Project</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/portal.html" class="nav-cta" style="background:var(--platinum);color:var(--ink);">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -168,10 +167,9 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <a href="/services.html" onclick="closeMobileMenu()">Services</a>
-    <a href="/index.html#process" onclick="closeMobileMenu()">Process</a>
     <a href="/work.html" onclick="closeMobileMenu()">Work</a>
-    <a href="/index.html#about" onclick="closeMobileMenu()">About</a>
-    <a href="/contact.html">Begin a Project</a>
+    <a href="/contact.html" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal.html">Login</a>
 </div>
 
 <div class="page-wrap">
@@ -186,7 +184,7 @@
         <div class="contact-details">
             <div class="contact-detail">
                 <div class="contact-detail-label">Email</div>
-                <div class="contact-detail-value"><a href="mailto:jwdigitaltx@gmail.com">jwdigitaltx@gmail.com</a></div>
+                <div class="contact-detail-value"><a href="/cdn-cgi/l/email-protection#ea809d8e838d839e8b869e92aa8d878b8386c4898587"><span class="__cf_email__" data-cfemail="432934272a242a37222f373b03242e222a2f6d202c2e">[email&#160;protected]</span></a></div>
             </div>
             <div class="contact-detail">
                 <div class="contact-detail-label">Response Time</div>
@@ -328,17 +326,18 @@
 <footer>
     <div class="footer-logo">
         <div class="footer-logo-rule"></div>
-        <div class="footer-logo-word">JW Digital</div>
+        <div class="footer-logo-word">JW/DIGITAL</div>
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
+        <a href="/services.html" class="footer-link">Services</a>
         <a href="/work.html" class="footer-link">Work</a>
         <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="https://instagram.com/jwdigitalagency" target="_blank" class="footer-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="/portal.html" class="footer-link">Login</a>
     </div>
 </footer>
 
-<script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => { cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`; });
     document.querySelectorAll('a,button,div[onclick]').forEach(el => {
@@ -364,11 +363,4 @@
         e.preventDefault();
         const checked = document.querySelectorAll('.service-check.checked');
         if (checked.length === 0) { alert('Please select at least one service.'); return; }
-        fetch('/', { method: 'POST', body: new FormData(e.target) }).catch(() => {});
-        document.getElementById('inquiryForm').style.display = 'none';
-        document.getElementById('successWrap').classList.add('visible');
-        window.scrollTo(0, 0);
-    }
-</script>
-</body>
-</html>
+        fetch('/', { method: 'POST', body: new
