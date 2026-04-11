@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work — JW Digital</title>
+    <meta name="description" content="Selected work from JW Digital. Brand identity, web presence, and digital strategy.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
+        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
+        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
+        .nav-link:hover { color: var(--platinum); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: var(--platinum); }
+        .nav-link.active::after { width: 100%; }
+        .nav-cta { font-size: 10px; font-weight: 500; color: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid rgba(244,244,242,0.22); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
+        .nav-cta:hover { background: var(--platinum); color: var(--ink); border-color: var(--platinum); }
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
+
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'Geist', sans-serif; }
+        .btn-primary:hover { background: var(--white); }
+        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
+
+        /* PAGE HEADER */
+        .page-header { padding: 160px 56px 96px; max-width: 1200px; margin: 0 auto; }
+        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
+        h1 em { font-style: italic; color: var(--silver); }
+        .page-header-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 480px; }
+
+        /* COMING SOON STATE */
+        .coming-wrap { padding: 0 56px 160px; }
+        .coming-inner { max-width: 1200px; margin: 0 auto; }
+        .coming-rule { height: 0.5px; background: rgba(244,244,242,0.08); margin-bottom: 80px; }
+
+        /* PLACEHOLDER GRID */
+        .placeholder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(244,244,242,0.06); border: 0.5px solid rgba(244,244,242,0.06); border-radius: 2px; overflow: hidden; margin-bottom: 80px; }
+        .placeholder-card { background: var(--smoke); aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; position: relative; overflow: hidden; transition: background 0.4s; }
+        .placeholder-card:hover { background: #383838; }
+        .placeholder-card::before { content: ""; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
+        .placeholder-card-num { font-family: 'DM Serif Display', serif; font-size: 120px; color: rgba(244,244,242,0.03); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; pointer-events: none; }
+        .placeholder-card-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.15); margin-bottom: 8px; position: relative; z-index: 1; }
+        .placeholder-card-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: rgba(244,244,242,0.2); position: relative; z-index: 1; }
+        .placeholder-card.featured { grid-column: span 2; aspect-ratio: 16/7; }
+
+        /* STATEMENT */
+        .statement-wrap { background: var(--smoke); padding: 120px 56px; border-top: 0.5px solid rgba(244,244,242,0.07); }
+        .statement-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
+        .statement-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(26px, 3vw, 40px); color: var(--platinum); line-height: 1.4; }
+        .statement-quote span { color: var(--silver); }
+        .statement-right { display: flex; flex-direction: column; gap: 32px; }
+        .statement-body { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; }
+        .statement-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+
+        /* FOOTER */
+        footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
+        .footer-logo { display: inline-flex; flex-direction: column; }
+        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
+        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
+        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-link:hover { color: var(--platinum); }
+
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; height: 64px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .page-header { padding: 100px 24px 64px; }
+            .coming-wrap { padding: 0 24px 96px; }
+            .placeholder-grid { grid-template-columns: 1fr; }
+            .placeholder-card.featured { grid-column: span 1; aspect-ratio: 4/3; }
+            .statement-wrap { padding: 80px 24px; }
+            .statement-inner { grid-template-columns: 1fr; gap: 48px; }
+            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
+            .footer-links { justify-content: flex-start; }
+            .footer-copy { text-align: left; }
+            body { cursor: auto; }
+            .cursor { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+    <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-rule"></div>
+        <div class="nav-logo-word">JW Digital</div>
+    </a>
+    <div class="nav-links">
+        <a href="/services.html" class="nav-link">Services</a>
+        <a href="/index.html#process" class="nav-link">Process</a>
+        <a href="/work.html" class="nav-link active">Work</a>
+        <a href="/index.html#about" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-cta">Begin a Project</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/services.html" onclick="closeMobileMenu()">Services</a>
+    <a href="/index.html#process" onclick="closeMobileMenu()">Process</a>
+    <a href="/work.html" onclick="closeMobileMenu()">Work</a>
+    <a href="/index.html#about" onclick="closeMobileMenu()">About</a>
+    <a href="/contact.html">Begin a Project</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header fade-up">
+    <div class="section-label">Selected Work</div>
+    <h1>The Work<br><em>In Progress.</em></h1>
+    <p class="page-header-sub">Case studies and project documentation are being compiled. This page will serve as the record of every engagement — the brief, the build, and the result.</p>
+</div>
+
+<!-- PLACEHOLDER STATE -->
+<div class="coming-wrap">
+    <div class="coming-inner">
+        <div class="coming-rule"></div>
+        <div class="placeholder-grid fade-up">
+            <div class="placeholder-card featured">
+                <div class="placeholder-card-num">01</div>
+                <div class="placeholder-card-label">Coming Soon</div>
+                <div class="placeholder-card-title">Featured Project</div>
+            </div>
+            <div class="placeholder-card">
+                <div class="placeholder-card-num">02</div>
+                <div class="placeholder-card-label">Coming Soon</div>
+                <div class="placeholder-card-title">Brand Identity</div>
+            </div>
+            <div class="placeholder-card">
+                <div class="placeholder-card-num">03</div>
+                <div class="placeholder-card-label">Coming Soon</div>
+                <div class="placeholder-card-title">Web Presence</div>
+            </div>
+            <div class="placeholder-card">
+                <div class="placeholder-card-num">04</div>
+                <div class="placeholder-card-label">Coming Soon</div>
+                <div class="placeholder-card-title">Social Launch</div>
+            </div>
+            <div class="placeholder-card">
+                <div class="placeholder-card-num">05</div>
+                <div class="placeholder-card-label">Coming Soon</div>
+                <div class="placeholder-card-title">Full Launch</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- STATEMENT -->
+<div class="statement-wrap fade-up">
+    <div class="statement-inner">
+        <div class="statement-quote">"Every project that ships becomes part of this record. The work is how we're judged — <span>not the pitch.</span>"</div>
+        <div class="statement-right">
+            <p class="statement-body">JW Digital is early in its public chapter. The engagements are underway, the results are accumulating, and this page will reflect that work as it's documented and cleared for publication. Check back — or better yet, be part of what gets added here.</p>
+            <div class="statement-actions">
+                <a href="/contact.html" class="btn-primary">Begin a Project</a>
+                <a href="/services.html" class="btn-ghost">View Services</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+<footer>
+    <div class="footer-logo">
+        <div class="footer-logo-rule"></div>
+        <div class="footer-logo-word">JW Digital</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
+    <div class="footer-links">
+        <a href="/work.html" class="footer-link">Work</a>
+        <a href="/contact.html" class="footer-link">Contact</a>
+        <a href="https://instagram.com/jwdigitalagency" target="_blank" class="footer-link"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+</footer>
+
+<script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => { cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`; });
+    document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+    function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+</script>
+</body>
+</html>
