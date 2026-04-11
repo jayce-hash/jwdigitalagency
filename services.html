@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Services — JW Digital</title>
     <meta name="description" content="Nine offerings. Flat rates. No hidden scope. JW Digital builds the digital presence serious businesses deserve.">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,7 +14,7 @@
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
         }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
         /* CURSOR */
@@ -50,7 +50,7 @@
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
         /* BUTTONS */
-        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'Geist', sans-serif; }
+        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
         .btn-primary:hover { background: var(--white); }
         .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
         .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
@@ -172,14 +172,13 @@
 <nav>
     <a href="/index.html" class="nav-logo">
         <div class="nav-logo-rule"></div>
-        <div class="nav-logo-word">JW DIGITAL</div>
+        <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
         <a href="/services.html" class="nav-link active">Services</a>
-        <a href="/index.html#process" class="nav-link">Process</a>
         <a href="/work.html" class="nav-link">Work</a>
-        <a href="/index.html#about" class="nav-link">About</a>
-        <a href="/contact.html" class="nav-cta">Begin a Project</a>
+        <a href="/contact.html" class="nav-link">Contact</a>
+        <a href="/portal.html" class="nav-cta">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -188,10 +187,9 @@
 
 <div class="mobile-menu" id="mobileMenu">
     <a href="/services.html" onclick="closeMobileMenu()">Services</a>
-    <a href="/index.html#process" onclick="closeMobileMenu()">Process</a>
     <a href="/work.html" onclick="closeMobileMenu()">Work</a>
-    <a href="/index.html#about" onclick="closeMobileMenu()">About</a>
-    <a href="/contact.html">Begin a Project</a>
+    <a href="/contact.html" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal.html">Login</a>
 </div>
 
 <!-- PAGE HEADER -->
@@ -395,13 +393,14 @@
 <footer>
     <div class="footer-logo">
         <div class="footer-logo-rule"></div>
-        <div class="footer-logo-word">JW DIGITAL</div>
+        <div class="footer-logo-word">JW/DIGITAL</div>
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
+        <a href="/services.html" class="footer-link">Services</a>
         <a href="/work.html" class="footer-link">Work</a>
         <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="https://instagram.com/jwdigitalagency" target="_blank" class="footer-link"><i class="fa-brands fa-instagram"></i></a>
+        <a href="/portal.html" class="footer-link">Login</a>
     </div>
 </footer>
 
