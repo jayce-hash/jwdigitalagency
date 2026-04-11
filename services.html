@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Services — JW Digital</title>
+    <meta name="description" content="Nine offerings. Flat rates. No hidden scope. JW Digital builds the digital presence serious businesses deserve.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+
+        /* CURSOR */
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
+        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
+        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
+        .nav-link:hover { color: var(--platinum); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: var(--platinum); }
+        .nav-link.active::after { width: 100%; }
+        .nav-cta { font-size: 10px; font-weight: 500; color: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid rgba(244,244,242,0.22); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
+        .nav-cta:hover { background: var(--platinum); color: var(--ink); border-color: var(--platinum); }
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
+
+        /* ANIMATIONS */
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* BUTTONS */
+        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'Geist', sans-serif; }
+        .btn-primary:hover { background: var(--white); }
+        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
+
+        /* PAGE HEADER */
+        .page-header { padding: 160px 56px 80px; max-width: 1200px; margin: 0 auto; }
+        .page-header-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
+        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; }
+        h1 em { font-style: italic; color: var(--silver); }
+        .page-header-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; }
+
+        /* SERVICES GRID */
+        .services-wrap { padding: 0 56px 80px; }
+        .services-inner { max-width: 1200px; margin: 0 auto; }
+        .services-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 0.5px solid rgba(244,244,242,0.08); }
+        .service-card { padding: 52px 44px; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); position: relative; transition: background 0.4s; }
+        .service-card:hover { background: var(--smoke); }
+        .service-card:nth-child(3n) { border-right: none; }
+        .service-card:nth-last-child(-n+3) { border-bottom: none; }
+        .service-num { font-family: 'DM Serif Display', serif; font-size: 11px; color: rgba(244,244,242,0.2); margin-bottom: 28px; }
+        .service-icon { position: absolute; top: 52px; right: 44px; font-size: 13px; color: rgba(244,244,242,0.12); transition: color 0.3s, transform 0.3s; }
+        .service-card:hover .service-icon { color: var(--silver); transform: translate(2px,-2px); }
+        .service-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); margin-bottom: 16px; line-height: 1.2; }
+        .service-desc { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.85; margin-bottom: 36px; }
+        .service-footer { display: flex; justify-content: space-between; align-items: flex-end; border-top: 0.5px solid rgba(244,244,242,0.07); padding-top: 20px; }
+        .service-price { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--platinum); line-height: 1; }
+        .service-cadence { font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.25); }
+
+        /* BUNDLE */
+        .bundle-wrap { padding: 0 56px 160px; }
+        .bundle-inner { max-width: 1200px; margin: 0 auto; }
+        .bundle-card { background: var(--platinum); border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
+        .bundle-left { padding: 72px 64px; }
+        .bundle-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--fog); display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+        .bundle-eyebrow::before { content: ""; width: 24px; height: 0.5px; background: var(--fog); display: block; }
+        .bundle-left h2 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 56px); color: var(--ink); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 20px; font-weight: 400; }
+        .bundle-left h2 em { font-style: italic; }
+        .bundle-left p { font-size: 14px; font-weight: 300; color: rgba(26,26,26,0.5); line-height: 1.85; margin-bottom: 40px; max-width: 380px; }
+        .btn-ink { font-size: 11px; font-weight: 500; color: var(--platinum); background: var(--ink); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; }
+        .btn-ink:hover { background: var(--smoke); }
+        .bundle-right { background: var(--smoke); padding: 72px 64px; display: flex; flex-direction: column; justify-content: center; }
+        .bundle-items { list-style: none; margin-bottom: 40px; }
+        .bundle-item { display: flex; justify-content: space-between; align-items: center; padding: 18px 0; border-bottom: 0.5px solid rgba(244,244,242,0.07); }
+        .bundle-item:last-child { border-bottom: none; }
+        .bundle-item-name { font-size: 14px; font-weight: 300; color: rgba(244,244,242,0.65); }
+        .bundle-item-price { font-family: 'DM Serif Display', serif; font-size: 20px; color: rgba(244,244,242,0.3); }
+        .bundle-item-free { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--silver); font-style: italic; }
+        .bundle-total { border-top: 0.5px solid rgba(244,244,242,0.15); padding-top: 28px; display: flex; justify-content: space-between; align-items: flex-end; }
+        .bundle-total-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.3); margin-bottom: 8px; }
+        .bundle-savings { font-size: 12px; font-weight: 300; color: var(--silver); }
+        .bundle-price { font-family: 'DM Serif Display', serif; font-size: 72px; color: var(--platinum); line-height: 1; }
+        .bundle-was { font-size: 13px; color: rgba(244,244,242,0.25); text-decoration: line-through; font-weight: 400; text-align: right; margin-bottom: 4px; }
+
+        /* CTA */
+        .cta-strip { background: var(--smoke); padding: 120px 56px; border-top: 0.5px solid rgba(244,244,242,0.07); }
+        .cta-strip-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 48px; }
+        .cta-strip h2 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 64px); color: var(--platinum); line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; }
+        .cta-strip h2 em { font-style: italic; color: var(--silver); }
+        .cta-strip-right { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
+        .cta-strip-sub { font-size: 13px; font-weight: 300; color: var(--fog); text-align: right; max-width: 280px; line-height: 1.8; }
+
+        /* FOOTER */
+        footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
+        .footer-logo { display: inline-flex; flex-direction: column; }
+        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
+        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
+        .footer-copy { font-size: 10px; font-weight: 400; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-link:hover { color: var(--platinum); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .page-header-inner { grid-template-columns: 1fr; gap: 32px; }
+            .services-grid { grid-template-columns: 1fr 1fr; }
+            .service-card:nth-child(3n) { border-right: 0.5px solid rgba(244,244,242,0.08); }
+            .service-card:nth-child(2n) { border-right: none; }
+            .service-card:nth-last-child(-n+3) { border-bottom: 0.5px solid rgba(244,244,242,0.08); }
+            .service-card:nth-last-child(-n+2) { border-bottom: none; }
+            .bundle-card { grid-template-columns: 1fr; }
+            .bundle-right { border-top: 0.5px solid rgba(244,244,242,0.07); }
+            .cta-strip-inner { flex-direction: column; align-items: flex-start; }
+            .cta-strip-right { align-items: flex-start; }
+            .cta-strip-sub { text-align: left; }
+            footer { grid-template-columns: 1fr 1fr; }
+            .footer-copy { text-align: left; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; height: 64px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .page-header { padding: 100px 24px 56px; }
+            .services-wrap, .bundle-wrap, .cta-strip { padding-left: 24px; padding-right: 24px; }
+            .services-grid { grid-template-columns: 1fr; }
+            .service-card { border-right: none; }
+            .service-card:nth-child(n) { border-bottom: 0.5px solid rgba(244,244,242,0.08); border-right: none; }
+            .service-card:last-child { border-bottom: none; }
+            .bundle-left, .bundle-right { padding: 48px 32px; }
+            .bundle-price { font-size: 56px; }
+            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
+            .footer-links { justify-content: flex-start; }
+            .footer-copy { text-align: left; }
+            body { cursor: auto; }
+            .cursor { display: none; }
+        }
+        @media (max-width: 480px) {
+            h1 { font-size: 48px; }
+            .service-card { padding: 36px 24px; }
+            .service-icon { top: 36px; right: 24px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+    <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-rule"></div>
+        <div class="nav-logo-word">JW Digital</div>
+    </a>
+    <div class="nav-links">
+        <a href="/services.html" class="nav-link active">Services</a>
+        <a href="/index.html#process" class="nav-link">Process</a>
+        <a href="/work.html" class="nav-link">Work</a>
+        <a href="/index.html#about" class="nav-link">About</a>
+        <a href="/contact.html" class="nav-cta">Begin a Project</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/services.html" onclick="closeMobileMenu()">Services</a>
+    <a href="/index.html#process" onclick="closeMobileMenu()">Process</a>
+    <a href="/work.html" onclick="closeMobileMenu()">Work</a>
+    <a href="/index.html#about" onclick="closeMobileMenu()">About</a>
+    <a href="/contact.html">Begin a Project</a>
+</div>
+
+<!-- PAGE HEADER -->
+<div class="page-header">
+    <div class="page-header-inner fade-up">
+        <div>
+            <div class="section-label">Services</div>
+            <h1>Nine Offerings.<br><em>One Standard.</em></h1>
+        </div>
+        <p class="page-header-sub">Every engagement is scoped precisely, priced transparently, and executed without exception. Select what your business needs — individually or as a complete launch.</p>
+    </div>
+</div>
+
+<!-- SERVICES GRID -->
+<div class="services-wrap">
+    <div class="services-inner">
+        <div class="services-grid fade-up">
+
+            <div class="service-card">
+                <div class="service-num">01</div>
+                <i class="fa-solid fa-globe service-icon"></i>
+                <div class="service-name">Website Build</div>
+                <div class="service-desc">A custom, fast-loading, mobile-first website built to convert visitors into clients. Every section crafted for your business specifically — not a template dressed up as custom work. On-page SEO included. Delivered in 24 hours.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$750</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">02</div>
+                <i class="fa-solid fa-pen-nib service-icon"></i>
+                <div class="service-name">Logo &amp; Branding</div>
+                <div class="service-desc">A custom mark, complete color system, and typography selection that holds together across every surface. Two rounds of revision. Every file format. A full brand guide your team can actually use.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$300</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">03</div>
+                <i class="fa-brands fa-instagram service-icon"></i>
+                <div class="service-name">Social Launch</div>
+                <div class="service-desc">Profile built, optimized, and branded. Three custom launch graphics designed and ready to post. Bio and hashtag strategy built for reach, not just aesthetics. Day one ready.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$150</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">04</div>
+                <i class="fa-brands fa-google service-icon"></i>
+                <div class="service-name">Google Business Profile</div>
+                <div class="service-desc">Full optimization — local keywords, photos, hours, services, and every field Google uses to decide whether to surface you when it matters. Built correctly once, performing indefinitely.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$100</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">05</div>
+                <i class="fa-brands fa-facebook service-icon"></i>
+                <div class="service-name">Facebook Business Page</div>
+                <div class="service-desc">Built, branded, and fully linked to your site and Instagram. The presence your business needs on the platform your customers are already using — set up properly without consuming your time.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$100</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">06</div>
+                <i class="fa-solid fa-envelope service-icon"></i>
+                <div class="service-name">Email Signature</div>
+                <div class="service-desc">Every email you send is a brand impression. A custom-designed signature that works across Gmail, Outlook, and Apple Mail — and makes that impression count every single time.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$50</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">07</div>
+                <i class="fa-solid fa-qrcode service-icon"></i>
+                <div class="service-name">QR Code Business Cards</div>
+                <div class="service-desc">Custom-designed and print-ready. Links directly to your site, portfolio, or social profile. The card that actually moves the conversation forward instead of disappearing into a wallet.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$75</div>
+                        <div class="service-cadence">One-time engagement</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">08</div>
+                <i class="fa-solid fa-star service-icon"></i>
+                <div class="service-name">Review Response Management</div>
+                <div class="service-desc">Google and Yelp review responses written and posted on your behalf every month. Your reputation actively managed, your voice maintained consistently, without you lifting a finger.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$50</div>
+                        <div class="service-cadence">Monthly retainer</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+            <div class="service-card">
+                <div class="service-num">09</div>
+                <i class="fa-solid fa-arrows-rotate service-icon"></i>
+                <div class="service-name">Monthly Maintenance Retainer</div>
+                <div class="service-desc">Up to three site updates per month and a proactive monthly check-in. Your site stays current, accurate, and performing — with someone watching it so you don't have to.</div>
+                <div class="service-footer">
+                    <div>
+                        <div class="service-price">$75</div>
+                        <div class="service-cadence">Monthly retainer</div>
+                    </div>
+                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- BUNDLE -->
+<div class="bundle-wrap">
+    <div class="bundle-inner fade-up">
+        <div class="bundle-card">
+            <div class="bundle-left">
+                <div class="bundle-eyebrow">The Full Launch</div>
+                <h2>Everything<br>at <em>Once.</em></h2>
+                <p>The three core offerings — website, brand identity, and social presence — commissioned together. The complete digital foundation a business needs to launch or relaunch with authority. Social Launch included at no additional cost.</p>
+                <a href="/contact.html" class="btn-ink">Begin a Project</a>
+            </div>
+            <div class="bundle-right">
+                <ul class="bundle-items">
+                    <li class="bundle-item">
+                        <span class="bundle-item-name">Website Build</span>
+                        <span class="bundle-item-price">$750</span>
+                    </li>
+                    <li class="bundle-item">
+                        <span class="bundle-item-name">Logo &amp; Branding</span>
+                        <span class="bundle-item-price">$300</span>
+                    </li>
+                    <li class="bundle-item">
+                        <span class="bundle-item-name">Social Launch</span>
+                        <span class="bundle-item-free">Included</span>
+                    </li>
+                </ul>
+                <div class="bundle-total">
+                    <div>
+                        <div class="bundle-total-label">Total Investment</div>
+                        <div class="bundle-savings">$150 saved</div>
+                    </div>
+                    <div>
+                        <div class="bundle-was">$1,200</div>
+                        <div class="bundle-price">$1,100</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CTA STRIP -->
+<div class="cta-strip fade-up">
+    <div class="cta-strip-inner">
+        <h2>Ready to<br><em>Begin?</em></h2>
+        <div class="cta-strip-right">
+            <p class="cta-strip-sub">Every project starts with a brief inquiry. No discovery calls, no lengthy onboarding — just a conversation about what you need.</p>
+            <a href="/contact.html" class="btn-primary">Begin a Project</a>
+        </div>
+    </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+    <div class="footer-logo">
+        <div class="footer-logo-rule"></div>
+        <div class="footer-logo-word">JW Digital</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
+    <div class="footer-links">
+        <a href="/work.html" class="footer-link">Work</a>
+        <a href="/contact.html" class="footer-link">Contact</a>
+        <a href="https://instagram.com/jwdigitalagency" target="_blank" class="footer-link"><i class="fa-brands fa-instagram"></i></a>
+    </div>
+</footer>
+
+<script>
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
+    });
+    document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+    function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+</script>
+</body>
+</html>
