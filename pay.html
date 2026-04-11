@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment — JW Digital</title>
+    <meta name="robots" content="noindex, nofollow">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        :root {
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; display: flex; flex-direction: column; }
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+
+        /* NAV — minimal, no public links */
+        nav { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; border-bottom: 0.5px solid rgba(244,244,242,0.07); position: relative; z-index: 10; }
+        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
+        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-secure { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); display: flex; align-items: center; gap: 8px; }
+        .nav-secure i { font-size: 10px; }
+
+        /* MAIN */
+        main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 24px; position: relative; z-index: 1; }
+        .pay-card { width: 100%; max-width: 560px; }
+
+        /* GATE SCREEN */
+        .gate-screen { }
+        .gate-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+        .gate-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        .gate-headline { font-family: 'DM Serif Display', serif; font-size: 48px; line-height: 0.92; color: var(--platinum); margin-bottom: 16px; font-weight: 400; }
+        .gate-headline em { font-style: italic; color: var(--silver); }
+        .gate-sub { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.8; margin-bottom: 48px; }
+        .gate-input-wrap { display: flex; gap: 0; margin-bottom: 16px; }
+        .gate-input { flex: 1; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.15); border-right: none; border-radius: 1px 0 0 1px; padding: 16px 20px; font-size: 16px; color: var(--platinum); font-family: 'Geist', sans-serif; font-weight: 300; outline: none; transition: border-color 0.2s; letter-spacing: 0.08em; text-transform: uppercase; }
+        .gate-input::placeholder { color: rgba(244,244,242,0.2); text-transform: none; letter-spacing: 0; }
+        .gate-input:focus { border-color: rgba(244,244,242,0.35); }
+        .gate-btn { background: var(--platinum); color: var(--ink); padding: 16px 32px; border: none; border-radius: 0 1px 1px 0; font-family: 'Geist', sans-serif; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; cursor: none; transition: background 0.2s; white-space: nowrap; }
+        .gate-btn:hover { background: var(--white); }
+        .gate-error { font-size: 12px; font-weight: 400; color: #f87171; margin-top: 8px; display: none; }
+
+        /* PAYMENT SCREEN */
+        .payment-screen { display: none; }
+        .payment-screen.active { display: block; }
+
+        /* AMOUNT DISPLAY */
+        .amount-card { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.08); border-radius: 2px; padding: 40px 44px; margin-bottom: 28px; position: relative; overflow: hidden; }
+        .amount-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 0.5px; background: linear-gradient(90deg, var(--silver), rgba(194,194,194,0.1)); }
+        .amount-label { font-size: 9px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: rgba(244,244,242,0.3); margin-bottom: 12px; }
+        .amount-figure { font-family: 'DM Serif Display', serif; font-size: 72px; color: var(--platinum); line-height: 1; margin-bottom: 8px; }
+        .amount-sub { font-size: 12px; font-weight: 300; color: var(--fog); }
+
+        /* SERVICES SUMMARY */
+        .summary-card { background: rgba(244,244,242,0.03); border: 0.5px solid rgba(244,244,242,0.07); border-radius: 2px; padding: 20px 24px; margin-bottom: 28px; }
+        .summary-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.25); margin-bottom: 10px; }
+        .summary-value { font-size: 14px; font-weight: 300; color: rgba(244,244,242,0.6); line-height: 1.7; }
+
+        /* STRIPE CARD */
+        .card-section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.3); margin-bottom: 10px; display: block; }
+        #stripe-card-element { background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.12); border-radius: 1px; padding: 16px; margin-bottom: 8px; transition: border-color 0.2s; }
+        #stripe-card-errors { color: #f87171; font-size: 12px; margin-bottom: 16px; min-height: 18px; font-weight: 400; }
+
+        /* REFUND */
+        .refund-note { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.06); border-radius: 1px; padding: 14px 18px; margin-bottom: 24px; font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.3); line-height: 1.7; }
+        .refund-note strong { color: rgba(244,244,242,0.5); font-weight: 500; }
+
+        /* PAY BUTTON */
+        .pay-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'Geist', sans-serif; transition: background 0.2s; }
+        .pay-btn:hover { background: var(--white); }
+        .pay-processing { display: none; text-align: center; padding: 20px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.3); }
+
+        /* SUCCESS SCREEN */
+        .success-screen { display: none; text-align: center; padding: 40px 0; }
+        .success-screen.active { display: block; }
+        .success-glyph { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 80px; color: var(--silver); line-height: 1; margin-bottom: 32px; }
+        .success-head { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--platinum); margin-bottom: 16px; font-weight: 400; }
+        .success-body { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 380px; margin: 0 auto 12px; }
+        .success-steps { background: rgba(244,244,242,0.03); border: 0.5px solid rgba(244,244,242,0.07); border-radius: 2px; padding: 28px 32px; margin: 32px auto; max-width: 420px; text-align: left; }
+        .success-step { display: flex; gap: 16px; align-items: flex-start; margin-bottom: 20px; }
+        .success-step:last-child { margin-bottom: 0; }
+        .step-n { font-family: 'DM Serif Display', serif; font-size: 13px; color: var(--silver); flex-shrink: 0; margin-top: 1px; }
+        .step-t { font-size: 13px; font-weight: 300; color: rgba(244,244,242,0.5); line-height: 1.7; }
+        .step-t strong { color: var(--platinum); font-weight: 500; }
+        .success-home { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.35); background: transparent; text-decoration: none; padding: 14px 32px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.12); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; margin-top: 16px; }
+        .success-home:hover { color: var(--platinum); border-color: rgba(244,244,242,0.3); }
+
+        @media (max-width: 640px) {
+            nav { padding: 0 24px; }
+            main { padding: 48px 16px; }
+            .gate-headline { font-size: 36px; }
+            .gate-input-wrap { flex-direction: column; }
+            .gate-input { border-right: 0.5px solid rgba(244,244,242,0.15); border-radius: 1px 1px 0 0; border-bottom: none; }
+            .gate-btn { border-radius: 0 0 1px 1px; }
+            .amount-card { padding: 32px 28px; }
+            .amount-figure { font-size: 56px; }
+            body { cursor: auto; }
+            .cursor { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+    <a href="/index.html" class="nav-logo">
+        <div class="nav-logo-rule"></div>
+        <div class="nav-logo-word">JW Digital</div>
+    </a>
+    <div class="nav-secure"><i class="fa-solid fa-lock"></i> Secure Payment</div>
+</nav>
+
+<main>
+    <div class="pay-card">
+
+        <!-- GATE: token entry -->
+        <div class="gate-screen" id="gateScreen">
+            <div class="gate-label">Client Access</div>
+            <div class="gate-headline">Enter Your<br><em>Access Code.</em></div>
+            <p class="gate-sub">Your access code was provided with your project confirmation. Enter it below to proceed to payment.</p>
+            <div class="gate-input-wrap">
+                <input class="gate-input" type="text" id="tokenInput" placeholder="e.g. JWD-2026-XXXX" maxlength="20" autocomplete="off" autocapitalize="characters">
+                <button class="gate-btn" onclick="validateToken()">Continue →</button>
+            </div>
+            <p class="gate-error" id="gateError">That code doesn't match any active project. Please check your confirmation and try again.</p>
+        </div>
+
+        <!-- PAYMENT FORM -->
+        <div class="payment-screen" id="paymentScreen">
+            <div class="amount-card">
+                <div class="amount-label">Total Due</div>
+                <div class="amount-figure">$<span id="displayAmount">0</span></div>
+                <div class="amount-sub">One-time payment &mdash; no additional charges</div>
+            </div>
+
+            <div class="summary-card">
+                <div class="summary-label">Project Scope</div>
+                <div class="summary-value" id="displayServices">—</div>
+            </div>
+
+            <label class="card-section-label">Card Details</label>
+            <div id="stripe-card-element"></div>
+            <div id="stripe-card-errors"></div>
+
+            <div class="refund-note">
+                <strong>Refund policy:</strong> Full refund if work has not started. Once the build begins, payment is non-refundable.
+            </div>
+
+            <button class="pay-btn" id="payBtn" onclick="handlePayment()">Pay $<span id="payBtnAmount">0</span> &mdash; Confirm Project</button>
+            <div class="pay-processing" id="payProcessing">Processing&hellip;</div>
+        </div>
+
+        <!-- SUCCESS -->
+        <div class="success-screen" id="successScreen">
+            <div class="success-glyph">&#10003;</div>
+            <div class="success-head">Payment Confirmed.</div>
+            <p class="success-body">Your project is locked in. Here's what happens next:</p>
+            <div class="success-steps">
+                <div class="success-step">
+                    <div class="step-n">01</div>
+                    <p class="step-t">We'll review your intake and reach out within <strong>a few hours</strong> to confirm we have everything we need before starting.</p>
+                </div>
+                <div class="success-step">
+                    <div class="step-n">02</div>
+                    <p class="step-t">Your completed work will be delivered within <strong>24 hours</strong> by email — ready for your review.</p>
+                </div>
+                <div class="success-step">
+                    <div class="step-n">03</div>
+                    <p class="step-t">Review, request any refinements, and once you approve — <strong>it's yours entirely.</strong></p>
+                </div>
+            </div>
+            <a href="/index.html" class="success-home">Return to Site</a>
+        </div>
+
+    </div>
+</main>
+
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    /* CURSOR */
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => { cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`; });
+    document.querySelectorAll('a,button,input').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+
+    /* TOKEN REGISTRY
+       Format: 'TOKEN-CODE': { amount: dollars, services: 'description' }
+       Add a new entry here for each client before sending them the URL.
+       Tokens are case-insensitive — entered tokens are uppercased before comparison. */
+    const TOKENS = {
+        'JWD-2026-DEMO': { amount: 750, services: 'Website Build' },
+        /* Add client tokens here:
+        'JWD-2026-XXXX': { amount: 1100, services: 'Website Build, Logo & Branding, Social Launch' },
+        */
+    };
+
+    let currentAmount = 0;
+    let currentServices = '';
+
+    function validateToken() {
+        const raw = document.getElementById('tokenInput').value.trim().toUpperCase();
+        const match = TOKENS[raw];
+        if (!match) {
+            document.getElementById('gateError').style.display = 'block';
+            return;
+        }
+        currentAmount = match.amount;
+        currentServices = match.services;
+        document.getElementById('gateError').style.display = 'none';
+        document.getElementById('gateScreen').style.display = 'none';
+        document.getElementById('displayAmount').textContent = match.amount.toLocaleString();
+        document.getElementById('payBtnAmount').textContent = match.amount.toLocaleString();
+        document.getElementById('displayServices').textContent = match.services;
+        document.getElementById('paymentScreen').classList.add('active');
+    }
+
+    /* Allow Enter key on token input */
+    document.getElementById('tokenInput').addEventListener('keydown', e => {
+        if (e.key === 'Enter') validateToken();
+    });
+
+    /* STRIPE */
+    const stripe = Stripe('pk_live_51TJ5VwFpH0ol4JauvRNgXZk0J11VEOPPgPCKrgLCEGvMlQaujOW2BkXXLGu9pIYT1tDc9TTA539KudNEdRnvX5do00oEZHuCFB');
+    const elements = stripe.elements();
+    const cardElement = elements.create('card', {
+        style: {
+            base: {
+                fontFamily: '"Geist", sans-serif', fontSize: '15px',
+                color: '#F4F4F2', fontWeight: '300',
+                '::placeholder': { color: 'rgba(244,244,242,0.2)' }
+            },
+            invalid: { color: '#f87171' }
+        }
+    });
+    cardElement.mount('#stripe-card-element');
+    cardElement.on('change', e => {
+        document.getElementById('stripe-card-errors').textContent = e.error ? e.error.message : '';
+    });
+
+    async function handlePayment() {
+        const btn = document.getElementById('payBtn');
+        const proc = document.getElementById('payProcessing');
+        const errors = document.getElementById('stripe-card-errors');
+        btn.style.display = 'none';
+        proc.style.display = 'block';
+        errors.textContent = '';
+        try {
+            const res = await fetch('/.netlify/functions/create-payment-intent', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ amount: currentAmount * 100, services: currentServices })
+            });
+            const { clientSecret, error: serverError } = await res.json();
+            if (serverError) throw new Error(serverError);
+            const { error: stripeError } = await stripe.confirmCardPayment(clientSecret, {
+                payment_method: { card: cardElement }
+            });
+            if (stripeError) throw new Error(stripeError.message);
+            document.getElementById('paymentScreen').classList.remove('active');
+            document.getElementById('successScreen').classList.add('active');
+        } catch (err) {
+            errors.textContent = err.message || 'Something went wrong. Please try again.';
+            btn.style.display = 'block';
+            proc.style.display = 'none';
+        }
+    }
+</script>
+</body>
+</html>
