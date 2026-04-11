@@ -180,36 +180,34 @@ function showPortal(user) {
     if(user.Status === "In Progress") badge.classList.add('badge-progress');
     if(user.Status === "Complete") badge.classList.add('badge-complete');
 
-    // --- SMART PAYMENT LOGIC ---
+// --- SMART PAYMENT LOGIC (FIXED) ---
     const isPaid = String(user.Paid).toUpperCase() === "TRUE";
     const paymentStatus = document.getElementById('paymentStatus');
     const paymentCard = document.getElementById('paymentCard');
     
-    // Use the link from the spreadsheet, or default to the $1 link if empty
-    const customLink = user.Link || "https://buy.stripe.com/28E7sL1wkgPO7RN56BfQI00";
+    // 1. First, find and remove any old button if it exists to prevent duplicates
+    const oldBtn = document.getElementById('payBtn');
+    if (oldBtn) oldBtn.remove();
 
-    let payBtn = document.getElementById('payBtn');
+    const customLink = user.Link || "https://buy.stripe.com/28E7sL1wkgPO7RN56BfQI00";
 
     if(isPaid) {
         paymentStatus.style.display = "block";
-        if(payBtn) payBtn.remove(); 
     } else {
         paymentStatus.style.display = "none";
-        if(!payBtn) {
-            const newBtn = document.createElement('a');
-            newBtn.id = "payBtn";
-            newBtn.href = customLink; // This is the dynamic part!
-            newBtn.target = "_blank";
-            newBtn.className = "login-btn";
-            newBtn.style.textDecoration = "none";
-            newBtn.style.display = "inline-block";
-            newBtn.style.textAlign = "center";
-            newBtn.style.marginTop = "20px";
-            newBtn.innerText = "Complete Payment →";
-            paymentCard.appendChild(newBtn);
-        } else {
-            payBtn.href = customLink; // Update existing button link
-        }
+        // 2. Create the new button
+        const newBtn = document.createElement('a');
+        newBtn.id = "payBtn";
+        newBtn.href = customLink;
+        newBtn.target = "_blank";
+        newBtn.className = "login-btn";
+        newBtn.style.textDecoration = "none";
+        newBtn.style.display = "inline-block";
+        newBtn.style.textAlign = "center";
+        newBtn.style.marginTop = "20px";
+        newBtn.innerText = "Complete Payment →";
+        paymentCard.appendChild(newBtn);
+      }
     }
 }
 
