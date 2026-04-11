@@ -15,9 +15,11 @@
         }
         html { scroll-behavior: smooth; }
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); min-height: 100vh; display: flex; flex-direction: column; cursor: none; overflow-x: hidden; }
-        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+        
+        /* Optimized Grain Effect */
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.04; pointer-events: none; z-index: 9000; }
 
-        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; will-change: transform; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
 
         nav { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; border-bottom: 0.5px solid rgba(244,244,242,0.07); position: relative; z-index: 10; flex-shrink: 0; }
@@ -36,7 +38,7 @@
 
         .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; margin-bottom: 12px; }
         .login-input::placeholder { color: rgba(244,244,242,0.2); }
-        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; transition: background 0.2s; }
+        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; transition: background 0.2s; text-decoration: none; }
         .login-btn:hover { background: var(--white); }
         .login-error { font-size: 12px; color: #f87171; margin-top: 10px; display: none; }
 
@@ -48,6 +50,7 @@
         .status-row { display: flex; justify-content: space-between; padding: 14px 0; border-top: 0.5px solid rgba(244,244,242,0.07); font-size: 13px; }
         .status-badge { text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; padding: 4px 12px; border: 0.5px solid rgba(244,244,242,0.2); }
         .badge-progress { color: #fbbf24; border-color: #fbbf24; }
+        .badge-complete { color: #4ade80; border-color: #4ade80; }
 
         .payment-card { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.07); padding: 36px 40px; margin-bottom: 20px; }
         .payment-amount { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--platinum); }
@@ -98,17 +101,11 @@
         <div class="payment-card" id="paymentCard">
             <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(244,244,242,0.25); margin-bottom:15px;">Invoice</div>
             <div class="payment-amount" id="paymentAmount">$0</div>
-            
-            <div id="paymentPrompt">
-                <a id="stripeLink" href="https://buy.stripe.com/28E7sL1wkgPO7RN56BfQI00" target="_blank" class="login-btn" style="text-decoration:none; display:inline-block; text-align:center; margin-top:20px;">
-                    Complete Payment →
-                </a>
-            </div>
 
             <div id="paymentStatus" style="margin-top:15px; font-size:12px; color:#4ade80; display:none;">
                 <i class="fa-solid fa-circle-check"></i> Payment Confirmed
             </div>
-        </div>
+            </div>
     </div>
 </main>
 
@@ -121,11 +118,20 @@
     // CURSOR LOGIC
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
-        cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
+        cursor.style.left = e.clientX + 'px';
+        cursor.style.top = e.clientY + 'px';
     });
-    document.querySelectorAll('a,button,input').forEach(el => {
-        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
-        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    
+    document.addEventListener('mouseover', e => {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') {
+            cursor.classList.add('active');
+        }
+    });
+
+    document.addEventListener('mouseout', e => {
+        if (e.target.tagName === 'A' || e.target.tagName === 'BUTTON' || e.target.tagName === 'INPUT') {
+            cursor.classList.remove('active');
+        }
     });
 
     // DATABASE LOGIC (STEIN)
@@ -162,54 +168,51 @@
         }
     }
 
-function showPortal(user) {
-    document.getElementById('loginScreen').classList.remove('active');
-    document.getElementById('portalScreen').classList.add('active');
+    function showPortal(user) {
+        document.getElementById('loginScreen').classList.remove('active');
+        document.getElementById('portalScreen').classList.add('active');
 
-    document.getElementById('portalGreeting').innerHTML = `Hello, <em>${user.Name.split(' ')[0]}.</em>`;
-    document.getElementById('portalBusiness').innerText = user.Business;
-    document.getElementById('portalProject').innerText = user.Project;
-    document.getElementById('portalDeliverable').innerText = user.Deliverable || "—";
-    document.getElementById('portalNotes').innerText = user.Notes || "—";
-    document.getElementById('paymentAmount').innerText = `$${user.Amount}`;
+        document.getElementById('portalGreeting').innerHTML = `Hello, <em>${user.Name.split(' ')[0]}.</em>`;
+        document.getElementById('portalBusiness').innerText = user.Business;
+        document.getElementById('portalProject').innerText = user.Project;
+        document.getElementById('portalDeliverable').innerText = user.Deliverable || "—";
+        document.getElementById('portalNotes').innerText = user.Notes || "—";
+        document.getElementById('paymentAmount').innerText = `$${user.Amount}`;
 
-    const badge = document.getElementById('statusBadge');
-    badge.innerText = user.Status;
-    
-    badge.className = "status-badge"; 
-    if(user.Status === "In Progress") badge.classList.add('badge-progress');
-    if(user.Status === "Complete") badge.classList.add('badge-complete');
+        const badge = document.getElementById('statusBadge');
+        badge.innerText = user.Status;
+        
+        badge.className = "status-badge"; 
+        if(user.Status === "In Progress") badge.classList.add('badge-progress');
+        if(user.Status === "Complete") badge.classList.add('badge-complete');
 
-// --- SMART PAYMENT LOGIC (FIXED) ---
-    const isPaid = String(user.Paid).toUpperCase() === "TRUE";
-    const paymentStatus = document.getElementById('paymentStatus');
-    const paymentCard = document.getElementById('paymentCard');
-    
-    // 1. First, find and remove any old button if it exists to prevent duplicates
-    const oldBtn = document.getElementById('payBtn');
-    if (oldBtn) oldBtn.remove();
+        // --- SMART PAYMENT LOGIC ---
+        const isPaid = String(user.Paid).toUpperCase() === "TRUE";
+        const paymentStatus = document.getElementById('paymentStatus');
+        const paymentCard = document.getElementById('paymentCard');
+        
+        // Remove existing button if it exists to prevent duplicates
+        const oldBtn = document.getElementById('payBtn');
+        if (oldBtn) oldBtn.remove();
 
-    const customLink = user.Link || "https://buy.stripe.com/28E7sL1wkgPO7RN56BfQI00";
+        const customLink = user.Link || "https://buy.stripe.com/28E7sL1wkgPO7RN56BfQI00";
 
-    if(isPaid) {
-        paymentStatus.style.display = "block";
-    } else {
-        paymentStatus.style.display = "none";
-        // 2. Create the new button
-        const newBtn = document.createElement('a');
-        newBtn.id = "payBtn";
-        newBtn.href = customLink;
-        newBtn.target = "_blank";
-        newBtn.className = "login-btn";
-        newBtn.style.textDecoration = "none";
-        newBtn.style.display = "inline-block";
-        newBtn.style.textAlign = "center";
-        newBtn.style.marginTop = "20px";
-        newBtn.innerText = "Complete Payment →";
-        paymentCard.appendChild(newBtn);
-      }
+        if(isPaid) {
+            paymentStatus.style.display = "block";
+        } else {
+            paymentStatus.style.display = "none";
+            const newBtn = document.createElement('a');
+            newBtn.id = "payBtn";
+            newBtn.href = customLink;
+            newBtn.target = "_blank";
+            newBtn.className = "login-btn";
+            newBtn.style.display = "inline-block";
+            newBtn.style.textAlign = "center";
+            newBtn.style.marginTop = "20px";
+            newBtn.innerText = "Complete Payment →";
+            paymentCard.appendChild(newBtn);
+        }
     }
-}
 
     function handleLogout() {
         location.reload();
