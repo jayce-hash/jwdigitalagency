@@ -72,7 +72,7 @@
 
 <main>
     <div class="screen active" id="loginScreen">
-        <div class="screen-label">Identity Verification</div>
+        <div class="screen-label">Client Portal</div>
         <div class="screen-headline">Welcome<br><em>Back.</em></div>
         <input class="login-input" type="email" id="emailInput" placeholder="your@email.com">
         <button class="login-btn" id="loginBtn" onclick="handleLogin()">Access My Portal →</button>
@@ -130,7 +130,7 @@
 
     // DATABASE LOGIC (STEIN)
     const STEIN_ID = "69da885bbb16885eb7bcf43d";
-    const SHEET_NAME = "Sheet1"; 
+    const SHEET_NAME = "Clients"; 
 
     async function handleLogin() {
         const email = document.getElementById('emailInput').value.trim().toLowerCase();
