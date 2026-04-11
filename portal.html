@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal — JW Digital</title>
     <meta name="robots" content="noindex, nofollow">
-    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=Geist:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -14,7 +14,7 @@
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
         }
         html { scroll-behavior: smooth; }
-        body { font-family: 'Geist', sans-serif; background: var(--ink); color: var(--platinum); min-height: 100vh; display: flex; flex-direction: column; cursor: none; overflow-x: hidden; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); min-height: 100vh; display: flex; flex-direction: column; cursor: none; overflow-x: hidden; }
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
@@ -44,10 +44,10 @@
 
         /* LOGIN FORM */
         .login-input-wrap { position: relative; margin-bottom: 12px; }
-        .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'Geist', sans-serif; font-weight: 300; outline: none; transition: border-color 0.2s, background 0.2s; }
+        .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'DM Sans', sans-serif; font-weight: 300; outline: none; transition: border-color 0.2s, background 0.2s; }
         .login-input::placeholder { color: rgba(244,244,242,0.2); }
         .login-input:focus { border-color: rgba(244,244,242,0.3); background: rgba(244,244,242,0.06); }
-        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'Geist', sans-serif; transition: background 0.2s; margin-top: 16px; }
+        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 16px; }
         .login-btn:hover { background: var(--white); }
         .login-error { font-size: 12px; color: #f87171; margin-top: 10px; display: none; font-weight: 300; }
         .login-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.22); line-height: 1.7; margin-top: 20px; }
@@ -57,7 +57,7 @@
         .portal-greeting { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 0.95; color: var(--platinum); font-weight: 400; }
         .portal-greeting em { font-style: italic; color: var(--silver); }
         .portal-business { font-size: 12px; font-weight: 300; color: var(--fog); margin-top: 10px; letter-spacing: 0.04em; }
-        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); border-radius: 1px; padding: 8px 16px; cursor: none; font-family: 'Geist', sans-serif; transition: color 0.2s, border-color 0.2s; }
+        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); border-radius: 1px; padding: 8px 16px; cursor: none; font-family: 'DM Sans', sans-serif; transition: color 0.2s, border-color 0.2s; }
         .logout-btn:hover { color: rgba(244,244,242,0.6); border-color: rgba(244,244,242,0.2); }
 
         /* STATUS CARD */
@@ -94,7 +94,7 @@
         #stripe-card-errors { color: #f87171; font-size: 12px; margin-bottom: 16px; min-height: 18px; }
         .refund-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.25); line-height: 1.7; margin-bottom: 20px; }
         .refund-note strong { color: rgba(244,244,242,0.4); font-weight: 500; }
-        .pay-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'Geist', sans-serif; transition: background 0.2s; }
+        .pay-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
         .pay-btn:hover { background: var(--white); }
         .pay-processing { display: none; text-align: center; padding: 18px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.28); }
 
@@ -131,7 +131,7 @@
 <nav>
     <a href="/index.html" class="nav-logo">
         <div class="nav-logo-rule"></div>
-        <div class="nav-logo-word">JW Digital</div>
+        <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-right"><i class="fa-solid fa-lock"></i> Client Portal</div>
 </nav>
@@ -147,7 +147,7 @@
             <input class="login-input" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
         </div>
         <button class="login-btn" onclick="handleLogin()">Access My Portal →</button>
-        <p class="login-error" id="loginError">No project found for that email. Please check the address or contact us at jwdigitaltx@gmail.com.</p>
+        <p class="login-error" id="loginError">No project found for that email. Please check the address or contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="f59f82919c929c819499818db59298949c99db969a98">[email&#160;protected]</a>.</p>
         <p class="login-note">Don't have a project yet? <a href="/contact.html" style="color:rgba(244,244,242,0.45);text-decoration:none;">Begin an inquiry →</a></p>
     </div>
 
@@ -209,7 +209,7 @@
                 Questions about your project?<br>
                 <strong>Reach out directly at any time.</strong>
             </div>
-            <a href="mailto:jwdigitaltx@gmail.com" class="contact-link">Email Us →</a>
+            <a href="/cdn-cgi/l/email-protection#b7ddc0d3ded0dec3d6dbc3cff7d0dad6dedb99d4d8da" class="contact-link">Email Us →</a>
         </div>
 
     </div>
@@ -221,7 +221,7 @@
     <a href="/index.html" class="footer-back">← Back to Site</a>
 </footer>
 
-<script src="https://js.stripe.com/v3/"></script>
+<script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script src="https://js.stripe.com/v3/"></script>
 <script>
     /* ─────────────────────────────────────────────────────
        CLIENT REGISTRY
@@ -274,7 +274,7 @@
     const cardElement = elements.create('card', {
         style: {
             base: {
-                fontFamily: '"Geist", sans-serif', fontSize: '15px',
+                fontFamily: '"DM Sans", sans-serif', fontSize: '15px',
                 color: '#F4F4F2', fontWeight: '300',
                 '::placeholder': { color: 'rgba(244,244,242,0.2)' }
             },
@@ -403,13 +403,3 @@
             /* Mark as paid in UI — in production you'd update your backend here */
             document.getElementById('stripeForm').style.display = 'none';
             document.getElementById('paidState').style.display = 'flex';
-            renderBadge('In Progress');
-        } catch (err) {
-            errors.textContent = err.message || 'Something went wrong. Please try again.';
-            btn.style.display = 'block';
-            proc.style.display = 'none';
-        }
-    }
-</script>
-</body>
-</html>
