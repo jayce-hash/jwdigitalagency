@@ -37,6 +37,7 @@
         .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; margin-bottom: 12px; }
         .login-input::placeholder { color: rgba(244,244,242,0.2); }
         .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; transition: background 0.2s; }
+        .login-btn:hover { background: var(--white); }
         .login-error { font-size: 12px; color: #f87171; margin-top: 10px; display: none; }
 
         .portal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
@@ -94,19 +95,19 @@
             <div class="status-row"><span>Notes</span><span id="portalNotes" style="max-width:200px; text-align:right;"></span></div>
         </div>
 
-        <div class="payment-card">
-    <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(244,244,242,0.25); margin-bottom:15px;">Invoice</div>
-    <div class="payment-amount" id="paymentAmount">$0</div>
-    
-    <div id="paymentPrompt">
-        <a id="stripeLink" href="PASTE_YOUR_STRIPE_LINK_HERE" target="_blank" class="login-btn" style="text-decoration:none; display:inline-block; text-align:center; margin-top:20px;">
-            Complete Payment →
-        </a>
-    </div>
+        <div class="payment-card" id="paymentCard">
+            <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(244,244,242,0.25); margin-bottom:15px;">Invoice</div>
+            <div class="payment-amount" id="paymentAmount">$0</div>
+            
+            <div id="paymentPrompt">
+                <a id="stripeLink" href="https://buy.stripe.com/28E7sL1wkgPO7RN56BfQI00" target="_blank" class="login-btn" style="text-decoration:none; display:inline-block; text-align:center; margin-top:20px;">
+                    Complete Payment →
+                </a>
+            </div>
 
-    <div id="paymentStatus" style="margin-top:15px; font-size:12px; color:#4ade80; display:none;">
-        <i class="fa-solid fa-circle-check"></i> Payment Confirmed
-    </div>
+            <div id="paymentStatus" style="margin-top:15px; font-size:12px; color:#4ade80; display:none;">
+                <i class="fa-solid fa-circle-check"></i> Payment Confirmed
+            </div>
         </div>
     </div>
 </main>
@@ -129,7 +130,7 @@
 
     // DATABASE LOGIC (STEIN)
     const STEIN_ID = "69da885bbb16885eb7bcf43d";
-    const SHEET_NAME = "Clients"; // Change this if you renamed your tab!
+    const SHEET_NAME = "Sheet1"; 
 
     async function handleLogin() {
         const email = document.getElementById('emailInput').value.trim().toLowerCase();
@@ -140,11 +141,9 @@
         btn.innerText = "Searching...";
 
         try {
-            // This URL combines your ID + Sheet Name to avoid the "Not Found" error
             const response = await fetch(`https://api.steinhq.com/v1/storages/${STEIN_ID}/${SHEET_NAME}`);
             const data = await response.json();
 
-            // Find the user
             const user = data.find(row => row.Email && row.Email.toLowerCase() === email);
 
             if (!user) {
@@ -177,11 +176,23 @@
         // Status Badge color
         const badge = document.getElementById('statusBadge');
         badge.innerText = user.Status;
-        if(user.Status === "In Progress") badge.classList.add('badge-progress');
+        if(user.Status === "In Progress") {
+            badge.classList.add('badge-progress');
+        } else {
+            badge.classList.remove('badge-progress');
+        }
 
-        // Paid Logic
-        if(String(user.Paid).toUpperCase() === "TRUE") {
-            document.getElementById('paymentStatus').style.display = "block";
+        // AUTO-HIDE PAYMENT LOGIC
+        const isPaid = String(user.Paid).toUpperCase() === "TRUE";
+        const paymentPrompt = document.getElementById('paymentPrompt');
+        const paymentStatus = document.getElementById('paymentStatus');
+
+        if(isPaid) {
+            paymentPrompt.style.display = "none";
+            paymentStatus.style.display = "block";
+        } else {
+            paymentPrompt.style.display = "block";
+            paymentStatus.style.display = "none";
         }
     }
 
