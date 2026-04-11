@@ -20,86 +20,43 @@
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
 
-        /* NAV */
         nav { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; border-bottom: 0.5px solid rgba(244,244,242,0.07); position: relative; z-index: 10; flex-shrink: 0; }
-        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
-        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); text-decoration: none; }
         .nav-right { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.25); display: flex; align-items: center; gap: 10px; }
-        .nav-right i { font-size: 10px; }
 
-        /* MAIN */
         main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 24px; position: relative; z-index: 1; }
-
-        /* SCREENS */
         .screen { display: none; width: 100%; max-width: 520px; }
         .screen.active { display: block; }
 
-        /* SHARED ELEMENTS */
         .screen-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
         .screen-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
         .screen-headline { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 56px); line-height: 0.92; color: var(--platinum); margin-bottom: 16px; font-weight: 400; }
         .screen-headline em { font-style: italic; color: var(--silver); }
         .screen-sub { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; margin-bottom: 48px; }
 
-        /* FORMS */
-        .login-input-wrap { position: relative; margin-bottom: 12px; }
-        .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'DM Sans', sans-serif; font-weight: 300; outline: none; transition: border-color 0.2s, background 0.2s; }
+        .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; margin-bottom: 12px; }
         .login-input::placeholder { color: rgba(244,244,242,0.2); }
-        .login-input:focus { border-color: rgba(244,244,242,0.3); background: rgba(244,244,242,0.06); }
-        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 16px; }
-        .login-btn:hover { background: var(--white); }
-        .login-error { font-size: 12px; color: #f87171; margin-top: 10px; display: none; font-weight: 300; }
-        .login-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.22); line-height: 1.7; margin-top: 20px; }
+        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; transition: background 0.2s; }
+        .login-error { font-size: 12px; color: #f87171; margin-top: 10px; display: none; }
 
-        /* PORTAL DASHBOARD */
-        .portal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; flex-wrap: wrap; gap: 16px; }
-        .portal-greeting { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 0.95; color: var(--platinum); font-weight: 400; }
-        .portal-greeting em { font-style: italic; color: var(--silver); }
-        .portal-business { font-size: 12px; font-weight: 300; color: var(--fog); margin-top: 10px; letter-spacing: 0.04em; }
-        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); border-radius: 1px; padding: 8px 16px; cursor: none; font-family: 'DM Sans', sans-serif; transition: color 0.2s, border-color 0.2s; }
+        .portal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
+        .portal-greeting { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 0.95; color: var(--platinum); }
+        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); padding: 8px 16px; cursor: none; }
 
-        .status-card { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.08); border-radius: 2px; padding: 36px 40px; margin-bottom: 20px; position: relative; overflow: hidden; }
-        .status-card::before { content: ""; position: absolute; top: 0; left: 0; right: 0; height: 0.5px; background: linear-gradient(90deg, var(--silver), rgba(194,194,194,0.08)); }
-        .status-card-label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); margin-bottom: 20px; }
-        .status-project { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--platinum); margin-bottom: 20px; line-height: 1.2; }
-        .status-row { display: flex; justify-content: space-between; align-items: center; padding: 14px 0; border-top: 0.5px solid rgba(244,244,242,0.07); }
-        .status-row:first-of-type { border-top: none; padding-top: 0; }
-        .status-key { font-size: 11px; font-weight: 400; color: rgba(244,244,242,0.3); letter-spacing: 0.06em; }
-        .status-val { font-size: 13px; font-weight: 400; color: rgba(244,244,242,0.7); text-align: right; }
-        .status-badge { display: inline-flex; align-items: center; gap: 6px; font-size: 10px; font-weight: 500; letter-spacing: 0.14em; text-transform: uppercase; padding: 5px 14px; border-radius: 1px; }
-        .badge-pending { background: rgba(194,194,194,0.08); color: var(--silver); border: 0.5px solid rgba(194,194,194,0.2); }
-        .badge-progress { background: rgba(251,191,36,0.08); color: #fbbf24; border: 0.5px solid rgba(251,191,36,0.2); }
-        .badge-review { background: rgba(96,165,250,0.08); color: #60a5fa; border: 0.5px solid rgba(96,165,250,0.2); }
-        .badge-complete { background: rgba(74,222,128,0.08); color: #4ade80; border: 0.5px solid rgba(74,222,128,0.2); }
-        .badge-dot { width: 5px; height: 5px; border-radius: 50%; background: currentColor; flex-shrink: 0; }
+        .status-card { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.08); padding: 36px 40px; margin-bottom: 20px; }
+        .status-row { display: flex; justify-content: space-between; padding: 14px 0; border-top: 0.5px solid rgba(244,244,242,0.07); font-size: 13px; }
+        .status-badge { text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; padding: 4px 12px; border: 0.5px solid rgba(244,244,242,0.2); }
+        .badge-progress { color: #fbbf24; border-color: #fbbf24; }
 
-        .payment-card { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.07); border-radius: 2px; padding: 36px 40px; margin-bottom: 20px; }
-        .payment-amount { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--platinum); line-height: 1; margin-bottom: 6px; }
-        .payment-cadence { font-size: 11px; font-weight: 300; color: var(--fog); margin-bottom: 28px; }
+        .payment-card { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.07); padding: 36px 40px; margin-bottom: 20px; }
+        .payment-amount { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--platinum); }
 
-        .paid-state { display: flex; align-items: center; gap: 12px; padding: 16px 20px; background: rgba(74,222,128,0.06); border: 0.5px solid rgba(74,222,128,0.18); border-radius: 1px; }
-        .paid-icon { font-size: 14px; color: #4ade80; }
-        .paid-text { font-size: 13px; font-weight: 300; color: rgba(244,244,242,0.55); }
-        .paid-text strong { color: #4ade80; font-weight: 500; }
-
-        #stripe-card-element { background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.12); border-radius: 1px; padding: 16px; margin-bottom: 8px; }
-        #stripe-card-errors { color: #f87171; font-size: 12px; margin-bottom: 16px; min-height: 18px; }
-        .pay-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; }
-        .pay-processing { display: none; text-align: center; padding: 18px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.28); }
-
-        .contact-card { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.07); border-radius: 2px; padding: 28px 40px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; }
-        .contact-link { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.45); text-decoration: none; border: 0.5px solid rgba(244,244,242,0.12); border-radius: 1px; padding: 10px 20px; transition: color 0.2s, border-color 0.2s; white-space: nowrap; cursor: none; }
-
-        footer { border-top: 0.5px solid rgba(244,244,242,0.07); padding: 32px 56px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; position: relative; z-index: 1; flex-shrink: 0; }
-        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.18); letter-spacing: 0.08em; }
-        .footer-back { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.25); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        footer { border-top: 0.5px solid rgba(244,244,242,0.07); padding: 32px 56px; display: flex; justify-content: space-between; font-size: 10px; color: rgba(244,244,242,0.18); }
 
         @media (max-width: 640px) {
-            nav { padding: 0 24px; }
-            main { padding: 48px 16px; align-items: flex-start; padding-top: 48px; }
-            .screen { max-width: 100%; }
-            body { cursor: auto; }
+            nav, footer { padding: 24px; }
             .cursor { display: none; }
+            body { cursor: auto; }
         }
     </style>
 </head>
@@ -108,74 +65,52 @@
 <div class="cursor" id="cursor"></div>
 
 <nav>
-    <a href="/index.html" class="nav-logo">
-        <div class="nav-logo-word">JW/DIGITAL</div>
-    </a>
+    <a href="/index.html" class="nav-logo-word">JW/DIGITAL</a>
     <div class="nav-right"><i class="fa-solid fa-lock"></i> Client Portal</div>
 </nav>
 
 <main>
     <div class="screen active" id="loginScreen">
-        <div class="screen-label">Client Portal</div>
+        <div class="screen-label">Identity Verification</div>
         <div class="screen-headline">Welcome<br><em>Back.</em></div>
-        <p class="screen-sub">Enter the email address associated with your project to access your portal.</p>
-        <div class="login-input-wrap">
-            <input class="login-input" type="email" id="emailInput" placeholder="your@email.com" autocomplete="email">
-        </div>
-        <button class="login-btn" onclick="handleLogin()">Access My Portal →</button>
-        <p class="login-error" id="loginError">No project found for that email.</p>
+        <input class="login-input" type="email" id="emailInput" placeholder="your@email.com">
+        <button class="login-btn" id="loginBtn" onclick="handleLogin()">Access My Portal →</button>
+        <p class="login-error" id="loginError">No project found for that email address.</p>
     </div>
 
     <div class="screen" id="portalScreen">
         <div class="portal-header">
             <div>
-                <div class="portal-greeting" id="portalGreeting">Hello, <em>Name.</em></div>
-                <div class="portal-business" id="portalBusiness"></div>
+                <div class="portal-greeting" id="portalGreeting">Hello.</div>
+                <div id="portalBusiness" style="font-size:12px; color:var(--fog); margin-top:8px;"></div>
             </div>
             <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
         </div>
 
         <div class="status-card">
-            <div class="status-card-label">Project Status</div>
-            <div class="status-project" id="portalProject"></div>
-            <div class="status-row"><span class="status-key">Status</span><span class="status-val"><span class="status-badge" id="statusBadge"></span></span></div>
-            <div class="status-row"><span class="status-key">Deliverable</span><span class="status-val" id="portalDeliverable">—</span></div>
-            <div class="status-row"><span class="status-key">Notes</span><span class="status-val" id="portalNotes" style="max-width:240px;text-align:right">—</span></div>
+            <div class="status-project" id="portalProject" style="font-family:'DM Serif Display'; font-size:26px; margin-bottom:20px;"></div>
+            <div class="status-row"><span>Status</span><span id="statusBadge" class="status-badge"></span></div>
+            <div class="status-row"><span>Deliverable</span><span id="portalDeliverable"></span></div>
+            <div class="status-row"><span>Notes</span><span id="portalNotes" style="max-width:200px; text-align:right;"></span></div>
         </div>
 
-        <div class="payment-card" id="paymentCard">
-            <div class="payment-card-label">Payment</div>
+        <div class="payment-card">
+            <div style="font-size:9px; text-transform:uppercase; letter-spacing:0.2em; color:rgba(244,244,242,0.25); margin-bottom:15px;">Invoice</div>
             <div class="payment-amount" id="paymentAmount">$0</div>
-            <div class="payment-cadence" id="paymentCadence">One-time engagement</div>
-
-            <div class="paid-state" id="paidState" style="display:none">
-                <i class="fa-solid fa-circle-check paid-icon"></i>
-                <div class="paid-text"><strong>Payment confirmed.</strong> Project is fully underway.</div>
+            <div id="paymentStatus" style="margin-top:15px; font-size:12px; color:#4ade80; display:none;">
+                <i class="fa-solid fa-circle-check"></i> Payment Confirmed
             </div>
-
-            <div id="stripeForm">
-                <div id="stripe-card-element"></div>
-                <div id="stripe-card-errors"></div>
-                <button class="pay-btn" id="payBtn" onclick="handlePayment()">Pay <span id="payBtnLabel">$0</span> — Confirm Project</button>
-                <div class="pay-processing" id="payProcessing">Processing&hellip;</div>
-            </div>
-        </div>
-
-        <div class="contact-card">
-            <div class="contact-card-left">Questions?<br><strong>Reach out directly.</strong></div>
-            <a href="mailto:hello@jwdigital.co" class="contact-link">Email Us →</a>
         </div>
     </div>
 </main>
 
 <footer>
-    <div class="footer-copy">&copy; 2026 JW Digital</div>
-    <a href="/index.html" class="footer-back">← Back to Site</a>
+    <div>&copy; 2026 JW Digital</div>
+    <a href="/index.html" style="color:inherit; text-decoration:none;">← Back to Site</a>
 </footer>
 
-<script src="https://js.stripe.com/v3/"></script>
 <script>
-    // CURSOR
+    // CURSOR LOGIC
     const cursor = document.getElementById('cursor');
     document.addEventListener('mousemove', e => {
         cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
@@ -185,98 +120,68 @@
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
 
-    // STRIPE
-    const stripe = Stripe('pk_live_51TJ5VwFpH0ol4JauvRNgXZk0J11VEOPPgPCKrgLCEGvMlQaujOW2BkXXLGu9pIYT1tDc9TTA539KudNEdRnvX5do00oEZHuCFB');
-    const elements = stripe.elements();
-    const cardElement = elements.create('card', { style: { base: { fontFamily: '"DM Sans", sans-serif', fontSize: '15px', color: '#F4F4F2', '::placeholder': { color: 'rgba(244,244,242,0.2)' } } } });
-    cardElement.mount('#stripe-card-element');
-
-    // DYNAMIC DATA (STEIN)
-    let currentClient = null;
+    // DATABASE LOGIC (STEIN)
+    const STEIN_ID = "69da885bbb16885eb7bcf43d";
+    const SHEET_NAME = "Sheet1"; // Change this if you renamed your tab!
 
     async function handleLogin() {
-        const emailInput = document.getElementById('emailInput').value.trim().toLowerCase();
+        const email = document.getElementById('emailInput').value.trim().toLowerCase();
+        const btn = document.getElementById('loginBtn');
         const errorMsg = document.getElementById('loginError');
-        const btn = document.querySelector('.login-btn');
-        btn.innerText = "Verifying...";
+
+        if(!email) return;
+        btn.innerText = "Searching...";
 
         try {
-            // REPLACE THIS URL WITH YOURS
-            const STEIN_URL = "https://api.steinhq.com/v1/storages/YOUR_ID/Clients";
-            
-            const response = await fetch(STEIN_URL);
-            const clients = await response.json();
-            const client = clients.find(c => c.Email && c.Email.toLowerCase() === emailInput);
+            // This URL combines your ID + Sheet Name to avoid the "Not Found" error
+            const response = await fetch(`https://api.steinhq.com/v1/storages/${STEIN_ID}/${SHEET_NAME}`);
+            const data = await response.json();
 
-            if (!client) {
+            // Find the user
+            const user = data.find(row => row.Email && row.Email.toLowerCase() === email);
+
+            if (!user) {
                 errorMsg.style.display = 'block';
                 btn.innerText = "Access My Portal →";
                 return;
             }
 
             errorMsg.style.display = 'none';
-            currentClient = {
-                name: client.Name,
-                business: client.Business,
-                project: client.Project,
-                status: client.Status,
-                deliverable: client.Deliverable || '—',
-                notes: client.Notes || '—',
-                amount: parseFloat(client.Amount) || 0,
-                paid: String(client.Paid).toUpperCase() === 'TRUE',
-                email: client.Email
-            };
+            showPortal(user);
 
-            sessionStorage.setItem('jw_client_email', currentClient.email);
-            showPortal(currentClient);
-        } catch (err) {
+        } catch (e) {
+            console.error(e);
+            alert("Connection error. Check your Stein ID or Sheet Name.");
             btn.innerText = "Access My Portal →";
-            alert("Database connection error.");
         }
     }
 
-    function showPortal(client) {
+    function showPortal(user) {
         document.getElementById('loginScreen').classList.remove('active');
         document.getElementById('portalScreen').classList.add('active');
-        document.getElementById('portalGreeting').innerHTML = `Hello, <em>${client.name.split(' ')[0]}.</em>`;
-        document.getElementById('portalBusiness').textContent = client.business;
-        document.getElementById('portalProject').textContent = client.project;
-        document.getElementById('portalDeliverable').textContent = client.deliverable;
-        document.getElementById('portalNotes').textContent = client.notes;
-        document.getElementById('paymentAmount').textContent = `$${client.amount.toLocaleString()}`;
-        document.getElementById('payBtnLabel').textContent = `$${client.amount.toLocaleString()}`;
-        
-        renderBadge(client.status);
-        
-        if (client.paid) {
-            document.getElementById('stripeForm').style.display = 'none';
-            document.getElementById('paidState').style.display = 'flex';
-        } else {
-            document.getElementById('stripeForm').style.display = 'block';
-            document.getElementById('paidState').style.display = 'none';
-        }
-    }
 
-    function renderBadge(status) {
-        const badges = { 'Awaiting Payment': 'badge-pending', 'In Progress': 'badge-progress', 'Under Review': 'badge-review', 'Complete': 'badge-complete' };
-        const el = document.getElementById('statusBadge');
-        el.className = `status-badge ${badges[status] || 'badge-pending'}`;
-        el.innerHTML = `<span class="badge-dot"></span>${status}`;
+        document.getElementById('portalGreeting').innerHTML = `Hello, <em>${user.Name.split(' ')[0]}.</em>`;
+        document.getElementById('portalBusiness').innerText = user.Business;
+        document.getElementById('portalProject').innerText = user.Project;
+        document.getElementById('portalDeliverable').innerText = user.Deliverable || "—";
+        document.getElementById('portalNotes').innerText = user.Notes || "—";
+        document.getElementById('paymentAmount').innerText = `$${user.Amount}`;
+
+        // Status Badge color
+        const badge = document.getElementById('statusBadge');
+        badge.innerText = user.Status;
+        if(user.Status === "In Progress") badge.classList.add('badge-progress');
+
+        // Paid Logic
+        if(String(user.Paid).toUpperCase() === "TRUE") {
+            document.getElementById('paymentStatus').style.display = "block";
+        }
     }
 
     function handleLogout() {
-        sessionStorage.removeItem('jw_client_email');
         location.reload();
     }
-
-    // Auto-login if session exists
-    window.onload = async () => {
-        const savedEmail = sessionStorage.getItem('jw_client_email');
-        if (savedEmail) {
-            document.getElementById('emailInput').value = savedEmail;
-            handleLogin();
-        }
-    };
 </script>
+
 </body>
 </html>
