@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Work — JW Digital</title>
-    <meta name="description" content="Selected work from JW Digital. Brand identity, web presence, and digital strategy.">
+    <title>Our Work & Case Studies | JW Digital</title>
+    <meta name="description" content="Explore selected web design and brand identity projects from JW Digital. See how we build digital presences that demand attention.">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
         :root {
             --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
@@ -33,6 +34,7 @@
         .nav-link.active::after { width: 100%; }
         .nav-cta { font-size: 10px; font-weight: 500; color: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid rgba(244,244,242,0.22); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
         .nav-cta:hover { background: var(--platinum); color: var(--ink); border-color: var(--platinum); }
+        
         .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
@@ -53,10 +55,10 @@
 
         /* PAGE HEADER */
         .page-header { padding: 160px 56px 96px; max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
         .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
-        h1 em { font-style: italic; color: var(--silver); }
+        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
+        .page-headline em { font-style: italic; color: var(--silver); }
         .page-header-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 480px; }
 
         /* COMING SOON STATE */
@@ -116,14 +118,14 @@
 <div class="cursor" id="cursor"></div>
 
 <nav>
-    <a href="/index.html" class="nav-logo">
+    <a href="/" class="nav-logo">
         <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/work.html" class="nav-link active">Work</a>
-        <a href="/contact.html" class="nav-link">Contact</a>
-        <a href="/portal.html" class="nav-cta">Login</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/work" class="nav-link active">Work</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -131,66 +133,65 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services.html" onclick="closeMobileMenu()">Services</a>
-    <a href="/work.html" onclick="closeMobileMenu()">Work</a>
-    <a href="/contact.html" onclick="closeMobileMenu()">Contact</a>
-    <a href="/portal.html">Login</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal">Login</a>
 </div>
 
-<!-- PAGE HEADER -->
-<div class="page-header fade-up">
-    <div class="section-label">Selected Work</div>
-    <h1>The Work<br><em>In Progress.</em></h1>
-    <p class="page-header-sub">Case studies and project documentation are being compiled. This page will serve as the record of every engagement — the brief, the build, and the result.</p>
-</div>
+<main>
+    <header class="page-header fade-up">
+        <h1 class="section-label">Selected Work</h1>
+        <div class="page-headline">The Work<br><em>In Progress.</em></div>
+        <p class="page-header-sub">Case studies and project documentation are being compiled. This page will serve as the record of every engagement — the brief, the build, and the result.</p>
+    </header>
 
-<!-- PLACEHOLDER STATE -->
-<div class="coming-wrap">
-    <div class="coming-inner">
-        <div class="coming-rule"></div>
-        <div class="placeholder-grid fade-up">
-            <div class="placeholder-card featured">
-                <div class="placeholder-card-num">01</div>
-                <div class="placeholder-card-label">Coming Soon</div>
-                <div class="placeholder-card-title">Featured Project</div>
-            </div>
-            <div class="placeholder-card">
-                <div class="placeholder-card-num">02</div>
-                <div class="placeholder-card-label">Coming Soon</div>
-                <div class="placeholder-card-title">Brand Identity</div>
-            </div>
-            <div class="placeholder-card">
-                <div class="placeholder-card-num">03</div>
-                <div class="placeholder-card-label">Coming Soon</div>
-                <div class="placeholder-card-title">Web Presence</div>
-            </div>
-            <div class="placeholder-card">
-                <div class="placeholder-card-num">04</div>
-                <div class="placeholder-card-label">Coming Soon</div>
-                <div class="placeholder-card-title">Social Launch</div>
-            </div>
-            <div class="placeholder-card">
-                <div class="placeholder-card-num">05</div>
-                <div class="placeholder-card-label">Coming Soon</div>
-                <div class="placeholder-card-title">Full Launch</div>
+    <section class="coming-wrap">
+        <div class="coming-inner">
+            <div class="coming-rule"></div>
+            <div class="placeholder-grid fade-up">
+                <article class="placeholder-card featured">
+                    <div class="placeholder-card-num" aria-hidden="true">01</div>
+                    <div class="placeholder-card-label">Coming Soon</div>
+                    <h3 class="placeholder-card-title">Featured Project</h3>
+                </article>
+                <article class="placeholder-card">
+                    <div class="placeholder-card-num" aria-hidden="true">02</div>
+                    <div class="placeholder-card-label">Coming Soon</div>
+                    <h3 class="placeholder-card-title">Brand Identity</h3>
+                </article>
+                <article class="placeholder-card">
+                    <div class="placeholder-card-num" aria-hidden="true">03</div>
+                    <div class="placeholder-card-label">Coming Soon</div>
+                    <h3 class="placeholder-card-title">Web Presence</h3>
+                </article>
+                <article class="placeholder-card">
+                    <div class="placeholder-card-num" aria-hidden="true">04</div>
+                    <div class="placeholder-card-label">Coming Soon</div>
+                    <h3 class="placeholder-card-title">Social Launch</h3>
+                </article>
+                <article class="placeholder-card">
+                    <div class="placeholder-card-num" aria-hidden="true">05</div>
+                    <div class="placeholder-card-label">Coming Soon</div>
+                    <h3 class="placeholder-card-title">Full Launch</h3>
+                </article>
             </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- STATEMENT -->
-<div class="statement-wrap fade-up">
-    <div class="statement-inner">
-        <div class="statement-quote">"Every project that ships becomes part of this record. The work is how we're judged — <span>not the pitch.</span>"</div>
-        <div class="statement-right">
-            <p class="statement-body">JW Digital is early in its public chapter. The engagements are underway, the results are accumulating, and this page will reflect that work as it's documented and cleared for publication. Check back — or better yet, be part of what gets added here.</p>
-            <div class="statement-actions">
-                <a href="/contact.html" class="btn-primary">Begin a Project</a>
-                <a href="/services.html" class="btn-ghost">View Services</a>
+    <section class="statement-wrap fade-up">
+        <div class="statement-inner">
+            <div class="statement-quote">"Every project that ships becomes part of this record. The work is how we're judged — <span>not the pitch.</span>"</div>
+            <div class="statement-right">
+                <p class="statement-body">JW Digital is early in its public chapter. The engagements are underway, the results are accumulating, and this page will reflect that work as it's documented and cleared for publication. Check back — or better yet, be part of what gets added here.</p>
+                <div class="statement-actions">
+                    <a href="/contact" class="btn-primary">Begin a Project</a>
+                    <a href="/services" class="btn-ghost">View Services</a>
+                </div>
             </div>
         </div>
-    </div>
-</div>
+    </section>
+</main>
 
 <footer>
     <div class="footer-logo">
@@ -198,10 +199,10 @@
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
-        <a href="/services.html" class="footer-link">Services</a>
-        <a href="/work.html" class="footer-link">Work</a>
-        <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="/portal.html" class="footer-link">Login</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/portal" class="footer-link">Login</a>
     </div>
 </footer>
 
