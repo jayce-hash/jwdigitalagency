@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact — JW Digital</title>
-    <meta name="description" content="Begin a project with JW Digital. Brand identity, web presence, and digital strategy for businesses that take their image seriously.">
+    <title>Contact JW Digital | Start Your Web Design Project</title>
+    <meta name="description" content="Ready to elevate your online presence? Contact JW Digital to start your custom web design, brand identity, or digital strategy project today.">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
         :root {
             --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
@@ -51,10 +52,10 @@
 
         /* LEFT PANEL */
         .contact-left { padding: 96px 72px 96px 56px; display: flex; flex-direction: column; justify-content: space-between; border-right: 0.5px solid rgba(244,244,242,0.07); position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; }
-        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
         .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
-        h1 em { font-style: italic; color: var(--silver); }
+        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
+        .page-headline em { font-style: italic; color: var(--silver); }
         .contact-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; max-width: 360px; }
         .contact-details { display: flex; flex-direction: column; gap: 24px; }
         .contact-detail { display: flex; flex-direction: column; gap: 6px; }
@@ -69,7 +70,7 @@
 
         /* FORM */
         .inquiry-form { display: flex; flex-direction: column; gap: 24px; }
-        .form-section-head { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 4px; margin-top: 16px; }
+        .form-section-head { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 4px; margin-top: 16px; }
         .form-section-head:first-child { margin-top: 0; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-group { display: flex; flex-direction: column; gap: 8px; }
@@ -90,7 +91,7 @@
         /* SERVICE CHECKBOXES */
         .service-checks { display: flex; flex-direction: column; gap: 8px; }
         .service-check { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border: 0.5px solid rgba(244,244,242,0.08); border-radius: 1px; cursor: none; transition: border-color 0.2s, background 0.2s; user-select: none; }
-        .service-check:hover { border-color: rgba(244,244,242,0.18); }
+        .service-check:hover, .service-check:focus { border-color: rgba(244,244,242,0.3); outline: none; }
         .service-check.checked { border-color: rgba(244,244,242,0.25); background: rgba(244,244,242,0.04); }
         .check-box { width: 18px; height: 18px; border: 0.5px solid rgba(244,244,242,0.2); border-radius: 1px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
         .check-box i { font-size: 9px; color: var(--ink); display: none; }
@@ -152,14 +153,14 @@
 <div class="cursor" id="cursor"></div>
 
 <nav>
-    <a href="/index.html" class="nav-logo">
+    <a href="/" class="nav-logo">
         <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/work.html" class="nav-link">Work</a>
-        <a href="/contact.html" class="nav-link">Contact</a>
-        <a href="/portal.html" class="nav-cta">Login</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -167,19 +168,18 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services.html" onclick="closeMobileMenu()">Services</a>
-    <a href="/work.html" onclick="closeMobileMenu()">Work</a>
-    <a href="/contact.html" onclick="closeMobileMenu()">Contact</a>
-    <a href="/portal.html">Login</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal">Login</a>
 </div>
 
-<div class="page-wrap">
+<main class="page-wrap">
 
-    <!-- LEFT PANEL -->
     <div class="contact-left fade-up">
         <div>
-            <div class="section-label">New Inquiry</div>
-            <h1>Begin a<br><em>Project.</em></h1>
+            <h1 class="section-label">New Inquiry</h1>
+            <div class="page-headline">Begin a<br><em>Project.</em></div>
             <p class="contact-desc">Tell us what you're building and what you need. We'll confirm scope and timeline — usually the same day. No discovery calls, no lengthy onboarding.</p>
         </div>
         <div class="contact-details">
@@ -206,7 +206,6 @@
         </div>
     </div>
 
-    <!-- RIGHT PANEL -->
     <div class="contact-right fade-up" style="transition-delay:0.1s">
         <div class="form-wrap">
 
@@ -214,90 +213,91 @@
                 <input type="hidden" name="form-name" value="project-inquiry">
                 <input type="hidden" name="services" id="selectedServices" value="">
 
-                <div class="form-section-head">About You</div>
+                <h2 class="form-section-head">About You</h2>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">First Name *</label>
-                        <input class="form-input" type="text" name="first-name" required placeholder="First">
+                        <label class="form-label" for="first-name">First Name *</label>
+                        <input class="form-input" id="first-name" type="text" name="first-name" required placeholder="First">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Last Name *</label>
-                        <input class="form-input" type="text" name="last-name" required placeholder="Last">
+                        <label class="form-label" for="last-name">Last Name *</label>
+                        <input class="form-input" id="last-name" type="text" name="last-name" required placeholder="Last">
                     </div>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Business Name *</label>
-                    <input class="form-input" type="text" name="business-name" required placeholder="Your business name">
+                    <label class="form-label" for="business-name">Business Name *</label>
+                    <input class="form-input" id="business-name" type="text" name="business-name" required placeholder="Your business name">
                 </div>
 
                 <div class="form-row">
                     <div class="form-group">
-                        <label class="form-label">Email *</label>
-                        <input class="form-input" type="email" name="email" required placeholder="you@yourbusiness.com">
+                        <label class="form-label" for="email">Email *</label>
+                        <input class="form-input" id="email" type="email" name="email" required placeholder="you@yourbusiness.com">
                     </div>
                     <div class="form-group">
-                        <label class="form-label">Phone</label>
-                        <input class="form-input" type="tel" name="phone" placeholder="(555) 000-0000">
+                        <label class="form-label" for="phone">Phone</label>
+                        <input class="form-input" id="phone" type="tel" name="phone" placeholder="(555) 000-0000">
                     </div>
                 </div>
 
-                <div class="form-section-head">The Project</div>
+                <h2 class="form-section-head">The Project</h2>
 
-<div class="form-group">
+                <div class="form-group">
                     <label class="form-label">Services Needed *</label>
                     <p style="font-size: 10px; color: var(--fog); margin-bottom: 8px;">Website builds include one free add-on. Standalone add-ons require a core service or a minimum selection of two.</p>
-                    <div class="service-checks">
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="The Foundation Bundle" data-price="$2,000" data-type="core">
+                    
+                    <div class="service-checks" role="group" aria-label="Services Needed">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="The Foundation Bundle" data-price="$2,000" data-type="core">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">The Foundation Bundle (Site, Logo, Socials)</span>
                             <span class="check-price">$2,000</span>
                         </div>
                         
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Website Build" data-price="$1,500" data-type="core">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Website Build" data-price="$1,500" data-type="core">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Website Build</span>
                             <span class="check-price">$1,500</span>
                         </div>
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Logo & Branding" data-price="$600" data-type="core">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Logo & Branding" data-price="$600" data-type="core">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Logo &amp; Branding</span>
                             <span class="check-price">$600</span>
                         </div>
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Social Launch" data-price="$300" data-type="core">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Social Launch" data-price="$300" data-type="core">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Social Launch</span>
                             <span class="check-price">$300</span>
                         </div>
 
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Google Business Profile" data-price="$200" data-type="addon">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Google Business Profile" data-price="$200" data-type="addon">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Google Business Profile</span>
                             <span class="check-price">$200</span>
                         </div>
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Facebook Business Page" data-price="$150" data-type="addon">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Facebook Business Page" data-price="$150" data-type="addon">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Facebook Business Page</span>
                             <span class="check-price">$150</span>
                         </div>
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="QR Code Business Cards" data-price="$150" data-type="addon">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="QR Code Business Cards" data-price="$150" data-type="addon">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">QR Code Business Cards</span>
                             <span class="check-price">$150</span>
                         </div>
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Email Signature" data-price="$125" data-type="addon">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Email Signature" data-price="$125" data-type="addon">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Email Signature</span>
                             <span class="check-price">$125</span>
                         </div>
 
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Review Response Management" data-price="$100/mo" data-type="retainer">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Review Response Management" data-price="$100/mo" data-type="retainer">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Review Response Management</span>
                             <span class="check-price">$100/mo</span>
                         </div>
-                        <div class="service-check" onclick="toggleCheck(this)" data-service="Monthly Maintenance Retainer" data-price="$125/mo" data-type="retainer">
+                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Monthly Maintenance Retainer" data-price="$125/mo" data-type="retainer">
                             <div class="check-box"><i class="fa-solid fa-check"></i></div>
                             <span class="check-name">Monthly Maintenance Retainer</span>
                             <span class="check-price">$125/mo</span>
@@ -306,18 +306,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">What Does Your Business Do? *</label>
-                    <textarea class="form-textarea" name="business-description" required placeholder="Tell us about your business — what you do, who you serve, and what makes you different. The more specific, the better the result."></textarea>
+                    <label class="form-label" for="business-description">What Does Your Business Do? *</label>
+                    <textarea class="form-textarea" id="business-description" name="business-description" required placeholder="Tell us about your business — what you do, who you serve, and what makes you different. The more specific, the better the result."></textarea>
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Any Style Direction or References?</label>
-                    <input class="form-input" type="text" name="references" placeholder="Sites, brands, or aesthetics you admire — or want to avoid">
+                    <label class="form-label" for="references">Any Style Direction or References?</label>
+                    <input class="form-input" id="references" type="text" name="references" placeholder="Sites, brands, or aesthetics you admire — or want to avoid">
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label">Anything Else?</label>
-                    <textarea class="form-textarea" name="notes" style="min-height:88px" placeholder="Timeline, specific requirements, questions, or context that would help us understand the scope."></textarea>
+                    <label class="form-label" for="notes">Anything Else?</label>
+                    <textarea class="form-textarea" id="notes" name="notes" style="min-height:88px" placeholder="Timeline, specific requirements, questions, or context that would help us understand the scope."></textarea>
                 </div>
 
                 <button type="submit" class="form-submit">Submit Inquiry</button>
@@ -328,12 +328,12 @@
                 <div class="success-mark">&#10003;</div>
                 <div class="success-head">Inquiry Received.</div>
                 <p class="success-body">Your inquiry has been submitted. We'll review the details and reach out within a few hours to confirm scope, timeline, and next steps.</p>
-                <a href="/index.html" class="btn-ghost-sm">Return to Site</a>
+                <a href="/" class="btn-ghost-sm">Return to Site</a>
             </div>
 
         </div>
     </div>
-</div>
+</main>
 
 <footer>
     <div class="footer-logo">
@@ -341,10 +341,10 @@
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
-        <a href="/services.html" class="footer-link">Services</a>
-        <a href="/work.html" class="footer-link">Work</a>
-        <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="/portal.html" class="footer-link">Login</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/portal" class="footer-link">Login</a>
     </div>
 </footer>
 
@@ -354,7 +354,7 @@
     document.addEventListener('mousemove', e => {
         cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
     });
-    document.querySelectorAll('a,button,div[onclick]').forEach(el => {
+    document.querySelectorAll('a,button,div[onclick],div[tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
@@ -379,13 +379,24 @@
         mobileMenu.classList.remove('open');
     }
 
-    /* SERVICE CHECKBOXES */
+    /* SERVICE CHECKBOXES (Including Accessibility Updates) */
     function toggleCheck(el) {
         el.classList.toggle('checked');
+        const isChecked = el.classList.contains('checked');
+        el.setAttribute('aria-checked', isChecked);
+        
         const checked = Array.from(document.querySelectorAll('.service-check.checked'));
         document.getElementById('selectedServices').value = checked
             .map(c => c.dataset.service + ' (' + c.dataset.price + ')')
             .join(', ');
+    }
+    
+    function handleCheckKey(e, el) {
+        // Allows toggling the custom checkbox with Space or Enter key
+        if (e.key === ' ' || e.key === 'Enter') {
+            e.preventDefault();
+            toggleCheck(el);
+        }
     }
 
     /* FORM SUBMISSION */
