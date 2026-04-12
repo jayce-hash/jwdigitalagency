@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JW Digital</title>
-    <meta name="description" content="JW Digital. Brand identity, web presence, and digital strategy for businesses that take their image seriously.">
+    <title>JW Digital | Brand Identity & Web Design Agency</title>
+    <meta name="description" content="JW Digital is a boutique agency delivering custom web design, brand identity, and digital strategy for businesses ready to elevate their online presence.">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
         :root {
             --ink: #1A1A1A;
             --smoke: #2E2E2E;
@@ -63,10 +64,10 @@
         .hero-bg { position: absolute; inset: 0; background: var(--ink); }
         .hero-line { position: absolute; top: 0; left: 56px; right: 56px; height: 0.5px; background: rgba(244,244,242,0.08); }
         .hero-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; }
-        .hero-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
+        .hero-eyebrow { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
         .hero-eyebrow::before { content: ""; width: 32px; height: 0.5px; background: var(--silver); display: block; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(72px, 9vw, 140px); line-height: 0.88; letter-spacing: -0.02em; color: var(--platinum); margin-bottom: 0; font-weight: 400; }
-        h1 em { font-style: italic; color: var(--silver); }
+        .hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(72px, 9vw, 140px); line-height: 0.88; letter-spacing: -0.02em; color: var(--platinum); margin-bottom: 0; font-weight: 400; }
+        .hero-headline em { font-style: italic; color: var(--silver); }
         .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 64px; flex-wrap: wrap; gap: 32px; }
         .hero-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 360px; }
         .hero-actions { display: flex; gap: 16px; align-items: center; }
@@ -87,10 +88,10 @@
         /* SECTION GLOBALS */
         .section { padding: 140px 56px; }
         .section-inner { max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
         .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
-        h2 { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 6vw, 88px); line-height: 0.92; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 24px; }
-        h2 em { font-style: italic; color: var(--silver); }
+        .section-headline { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 6vw, 88px); line-height: 0.92; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 24px; }
+        .section-headline em { font-style: italic; color: var(--silver); }
         .section-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 480px; }
 
         /* PHILOSOPHY / BELIEF */
@@ -120,8 +121,8 @@
         .process-section { background: var(--platinum); }
         .process-section .section-label { color: rgba(26,26,26,0.4); }
         .process-section .section-label::before { background: rgba(26,26,26,0.3); }
-        .process-section h2 { color: var(--ink); }
-        .process-section h2 em { color: rgba(26,26,26,0.4); }
+        .process-section .section-headline { color: var(--ink); }
+        .process-section .section-headline em { color: rgba(26,26,26,0.4); }
         .process-section .section-sub { color: rgba(26,26,26,0.45); }
         .process-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
         .process-steps { border-top: 0.5px solid rgba(26,26,26,0.1); }
@@ -183,7 +184,7 @@
             .hamburger { display: flex; }
             .hero { padding: 0 24px 64px; }
             .hero-line { left: 24px; right: 24px; }
-            h1 { font-size: clamp(56px, 14vw, 80px); }
+            .hero-headline { font-size: clamp(56px, 14vw, 80px); }
             .hero-foot { flex-direction: column; align-items: flex-start; gap: 40px; }
             .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
             .hero-actions a { text-align: center; }
@@ -207,8 +208,8 @@
         }
 
         @media (max-width: 480px) {
-            h1 { font-size: 52px; }
-            h2 { font-size: 44px; }
+            .hero-headline { font-size: 52px; }
+            .section-headline { font-size: 44px; }
             .cta-headline { font-size: 48px; }
             .belief-number { font-size: 120px; }
         }
@@ -223,10 +224,10 @@
         <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
-        <a href="/services.html" class="nav-link">Services</a>
-        <a href="/work.html" class="nav-link">Work</a>
-        <a href="/contact.html" class="nav-link">Contact</a>
-        <a href="/portal.html" class="nav-cta">Login</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -234,191 +235,186 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services.html" onclick="closeMobileMenu()">Services</a>
-    <a href="/work.html" onclick="closeMobileMenu()">Work</a>
-    <a href="/contact.html" onclick="closeMobileMenu()">Contact</a>
-    <a href="/portal.html">Login</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal">Login</a>
 </div>
 
-<!-- ═══ HERO ═══ -->
-<section class="hero">
-    <div class="hero-bg"></div>
-    <div class="hero-line"></div>
-    <div class="hero-inner fade-up">
-        <div class="hero-eyebrow">Brand Identity &nbsp;&middot;&nbsp; Web Presence &nbsp;&middot;&nbsp; Digital Strategy</div>
-        <h1>The Work<br>Speaks <em>for</em><br>Itself.</h1>
-        <div class="hero-foot">
-            <p class="hero-desc">JW Digital builds the digital presence serious businesses deserve — websites, brand identities, and social presence executed with the kind of precision that makes people stop and look twice.</p>
-            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:32px">
-                <div class="hero-actions">
-                    <a href="/contact.html" class="btn-primary">Begin a Project</a>
-                    <a href="#services" class="btn-ghost">View Services</a>
+<main>
+    <section class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-line"></div>
+        <div class="hero-inner fade-up">
+            <h1 class="hero-eyebrow">Brand Identity &nbsp;&middot;&nbsp; Web Presence &nbsp;&middot;&nbsp; Digital Strategy</h1>
+            <div class="hero-headline">The Work<br>Speaks <em>for</em><br>Itself.</div>
+            <div class="hero-foot">
+                <p class="hero-desc">JW Digital builds the digital presence serious businesses deserve — websites, brand identities, and social presence executed with the kind of precision that makes people stop and look twice.</p>
+                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:32px">
+                    <div class="hero-actions">
+                        <a href="/contact" class="btn-primary">Begin a Project</a>
+                        <a href="#services" class="btn-ghost">View Services</a>
+                    </div>
+                    <div class="hero-scroll">
+                        <div></div>Scroll
+                    </div>
                 </div>
-                <div class="hero-scroll">
-                    <div></div>Scroll
+            </div>
+        </div>
+    </section>
+
+    <div class="marquee-wrap">
+        <div class="marquee-track">
+            <span class="marquee-item">Website Build <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Logo &amp; Branding <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Social Launch <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Google Business Profile <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Reputation Management <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Print Collateral <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Ongoing Partnership <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Website Build <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Logo &amp; Branding <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Social Launch <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Google Business Profile <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Reputation Management <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Print Collateral <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Ongoing Partnership <span class="marquee-sep">&middot;</span></span>
+        </div>
+    </div>
+
+    <section class="section belief" id="philosophy">
+        <div class="belief-inner section-inner fade-up">
+            <div class="belief-left">
+                <div class="belief-number">01</div>
+                <div class="belief-quote">"Your digital presence should match the <span>quality</span> of your work."</div>
+                <div class="belief-attr">— The conviction behind JW Digital</div>
+            </div>
+            <div class="belief-right">
+                <div class="belief-point">
+                    <div class="belief-point-num">01</div>
+                    <h3 class="belief-point-title">Precision Over Volume</h3>
+                    <div class="belief-point-body">Every engagement gets full attention. No assembly lines, no junior staff, no templates dressed up as custom work. The detail is the difference.</div>
+                </div>
+                <div class="belief-point">
+                    <div class="belief-point-num">02</div>
+                    <h3 class="belief-point-title">Speed Without Compromise</h3>
+                    <div class="belief-point-body">The best agencies in the world move fast because they know exactly what they're doing. Weeks of revision cycles are a symptom of uncertainty, not thoroughness.</div>
+                </div>
+                <div class="belief-point">
+                    <div class="belief-point-num">03</div>
+                    <h3 class="belief-point-title">One Point of Contact</h3>
+                    <div class="belief-point-body">You work directly with the person doing the work. No account managers, no handoffs, no translation between what you want and what gets built.</div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- MARQUEE -->
-<div class="marquee-wrap">
-    <div class="marquee-track">
-        <span class="marquee-item">Website Build <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Logo &amp; Branding <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Social Launch <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Google Business Profile <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Reputation Management <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Print Collateral <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Ongoing Partnership <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Website Build <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Logo &amp; Branding <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Social Launch <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Google Business Profile <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Reputation Management <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Print Collateral <span class="marquee-sep">&middot;</span></span>
-        <span class="marquee-item">Ongoing Partnership <span class="marquee-sep">&middot;</span></span>
-    </div>
-</div>
+    <section class="section services-section" id="services">
+        <div class="section-inner">
+            <div class="services-header fade-up">
+                <div>
+                    <h2 class="section-label">Services</h2>
+                    <div class="section-headline">What We<br><em>Deliver.</em></div>
+                </div>
+                <p class="section-sub">Every engagement is focused on precision and results. One person, flat rates, and zero agency bloat. <strong>Website builds include one free add-on.</strong></p>
+            </div>
 
-<!-- ═══ PHILOSOPHY ═══ -->
-<section class="section belief" id="philosophy">
-    <div class="belief-inner section-inner fade-up">
-        <div class="belief-left">
-            <div class="belief-number">01</div>
-            <div class="belief-quote">"Your digital presence should match the <span>quality</span> of your work."</div>
-            <div class="belief-attr">— The conviction behind JW Digital</div>
-        </div>
-        <div class="belief-right">
-            <div class="belief-point">
-                <div class="belief-point-num">01</div>
-                <div class="belief-point-title">Precision Over Volume</div>
-                <div class="belief-point-body">Every engagement gets full attention. No assembly lines, no junior staff, no templates dressed up as custom work. The detail is the difference.</div>
+            <div class="fade-up" style="border-top:0.5px solid rgba(244,244,242,0.08)">
+                <div class="svc-row"><span class="svc-row-num">01</span><h3 class="svc-row-name">The Full Foundation (Bundle)</h3><span class="svc-row-price">$2,000</span></div>
+                <div class="svc-row"><span class="svc-row-num">02</span><h3 class="svc-row-name">Website Build</h3><span class="svc-row-price">$1,500</span></div>
+                <div class="svc-row"><span class="svc-row-num">03</span><h3 class="svc-row-name">Logo &amp; Branding</h3><span class="svc-row-price">$600</span></div>
+                <div class="svc-row"><span class="svc-row-num">04</span><h3 class="svc-row-name">Social Launch</h3><span class="svc-row-price">$300</span></div>
+                <div class="svc-row"><span class="svc-row-num">05</span><h3 class="svc-row-name">Google Business Profile</h3><span class="svc-row-price">$200</span></div>
+                <div class="svc-row"><span class="svc-row-num">06</span><h3 class="svc-row-name">Facebook Business Page</h3><span class="svc-row-price">$150</span></div>
+                <div class="svc-row"><span class="svc-row-num">07</span><h3 class="svc-row-name">QR Code Business Cards</h3><span class="svc-row-price">$150</span></div>
+                <div class="svc-row"><span class="svc-row-num">08</span><h3 class="svc-row-name">Email Signature</h3><span class="svc-row-price">$125</span></div>
+                <div class="svc-row"><span class="svc-row-num">09</span><h3 class="svc-row-name">Monthly Maintenance Retainer</h3><span class="svc-row-price">$125 / mo</span></div>
             </div>
-            <div class="belief-point">
-                <div class="belief-point-num">02</div>
-                <div class="belief-point-title">Speed Without Compromise</div>
-                <div class="belief-point-body">The best agencies in the world move fast because they know exactly what they're doing. Weeks of revision cycles are a symptom of uncertainty, not thoroughness.</div>
-            </div>
-            <div class="belief-point">
-                <div class="belief-point-num">03</div>
-                <div class="belief-point-title">One Point of Contact</div>
-                <div class="belief-point-body">You work directly with the person doing the work. No account managers, no handoffs, no translation between what you want and what gets built.</div>
+
+            <div style="margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px" class="fade-up">
+                <div style="font-size:13px;font-weight:300;color:var(--fog); max-width: 500px;">
+                    Website builds include a choice of one free add-on. Standalone add-ons require a core service or a minimum purchase of two.
+                </div>
+                <a href="/services" class="btn-primary">View Full Breakdown</a>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<section class="section services-section" id="services">
-    <div class="section-inner">
-        <div class="services-header fade-up">
-            <div>
-                <div class="section-label">Services</div>
-                <h2>What We<br><em>Deliver.</em></h2>
+    <section class="section process-section" id="process">
+        <div class="section-inner">
+            <div class="process-header fade-up">
+                <div>
+                    <h2 class="section-label">Process</h2>
+                    <div class="section-headline">How It<br><em>Works.</em></div>
+                </div>
+                <p class="section-sub">No discovery decks. No kickoff calls. No waiting three weeks to see a first draft. The process is built around your time, not ours.</p>
             </div>
-            <p class="section-sub">Every engagement is focused on precision and results. One person, flat rates, and zero agency bloat. <strong>Website builds include one free add-on.</strong></p>
-        </div>
-
-        <div class="fade-up" style="border-top:0.5px solid rgba(244,244,242,0.08)">
-            <div class="svc-row"><span class="svc-row-num">01</span><span class="svc-row-name">The Full Foundation (Bundle)</span><span class="svc-row-price">$2,000</span></div>
-            <div class="svc-row"><span class="svc-row-num">02</span><span class="svc-row-name">Website Build</span><span class="svc-row-price">$1,500</span></div>
-            <div class="svc-row"><span class="svc-row-num">03</span><span class="svc-row-name">Logo &amp; Branding</span><span class="svc-row-price">$600</span></div>
-            <div class="svc-row"><span class="svc-row-num">04</span><span class="svc-row-name">Social Launch</span><span class="svc-row-price">$300</span></div>
-            <div class="svc-row"><span class="svc-row-num">05</span><span class="svc-row-name">Google Business Profile</span><span class="svc-row-price">$200</span></div>
-            <div class="svc-row"><span class="svc-row-num">06</span><span class="svc-row-name">Facebook Business Page</span><span class="svc-row-price">$150</span></div>
-            <div class="svc-row"><span class="svc-row-num">07</span><span class="svc-row-name">QR Code Business Cards</span><span class="svc-row-price">$150</span></div>
-            <div class="svc-row"><span class="svc-row-num">08</span><span class="svc-row-name">Email Signature</span><span class="svc-row-price">$125</span></div>
-            <div class="svc-row"><span class="svc-row-num">09</span><span class="svc-row-name">Monthly Maintenance Retainer</span><span class="svc-row-price">$125 / mo</span></div>
-        </div>
-
-        <div style="margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px" class="fade-up">
-            <div style="font-size:13px;font-weight:300;color:var(--fog); max-width: 500px;">
-                Website builds include a choice of one free add-on. Standalone add-ons require a core service or a minimum purchase of two.
-            </div>
-            <a href="/services.html" class="btn-primary">View Full Breakdown</a>
-        </div>
-    </div>
-</section>
-
-<!-- ═══ PROCESS ═══ -->
-<section class="section process-section" id="process">
-    <div class="section-inner">
-        <div class="process-header fade-up">
-            <div>
-                <div class="section-label">Process</div>
-                <h2>How It<br><em>Works.</em></h2>
-            </div>
-            <p class="section-sub">No discovery decks. No kickoff calls. No waiting three weeks to see a first draft. The process is built around your time, not ours.</p>
-        </div>
-        <div class="process-steps fade-up">
-            <div class="process-step">
-                <div class="process-step-num">01</div>
-                <div class="process-step-name">Inquiry &amp;<br>Scope</div>
-                <div class="process-step-desc">You submit a project inquiry. We confirm scope, timeline, and deliverables — usually within the same day. No ambiguity, no surprises.</div>
-            </div>
-            <div class="process-step">
-                <div class="process-step-num">02</div>
-                <div class="process-step-name">The Build</div>
-                <div class="process-step-desc">Work begins immediately. Focused, uninterrupted, and executed by one person who knows exactly what they're doing.</div>
-            </div>
-            <div class="process-step">
-                <div class="process-step-num">03</div>
-                <div class="process-step-name">Review &amp;<br>Refinement</div>
-                <div class="process-step-desc">You receive a complete, functional deliverable — not a mood board, not a wireframe. We refine together until every detail is right.</div>
-            </div>
-            <div class="process-step">
-                <div class="process-step-num">04</div>
-                <div class="process-step-name">Handover</div>
-                <div class="process-step-desc">Full ownership transferred. Every file, every account, every asset — cleanly delivered and entirely yours.</div>
+            <div class="process-steps fade-up">
+                <div class="process-step">
+                    <div class="process-step-num">01</div>
+                    <h3 class="process-step-name">Inquiry &amp;<br>Scope</h3>
+                    <div class="process-step-desc">You submit a project inquiry. We confirm scope, timeline, and deliverables — usually within the same day. No ambiguity, no surprises.</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">02</div>
+                    <h3 class="process-step-name">The Build</h3>
+                    <div class="process-step-desc">Work begins immediately. Focused, uninterrupted, and executed by one person who knows exactly what they're doing.</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">03</div>
+                    <h3 class="process-step-name">Review &amp;<br>Refinement</h3>
+                    <div class="process-step-desc">You receive a complete, functional deliverable — not a mood board, not a wireframe. We refine together until every detail is right.</div>
+                </div>
+                <div class="process-step">
+                    <div class="process-step-num">04</div>
+                    <h3 class="process-step-name">Handover</h3>
+                    <div class="process-step-desc">Full ownership transferred. Every file, every account, every asset — cleanly delivered and entirely yours.</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ═══ ABOUT ═══ -->
-<section class="section about-section" id="about">
-    <div class="section-inner">
-        <div class="about-inner fade-up">
-            <div class="about-sticky">
-                <div class="section-label">About</div>
-                <h2>Built on<br><em>Principle.</em></h2>
-            </div>
-            <div>
-                <p class="about-body">JW Digital is run by <strong>Jayce</strong> — a marketing graduate from Liberty University and founder of Concerto, a live music discovery platform on iOS and Android. The agency came from a problem he kept running into, not a business plan.</p>
-                <p class="about-body">Good businesses were invisible online. Not because the work was bad — because the image was. Owners who'd invested everything into what they built were losing customers daily to competitors whose only advantage was a better website. The work deserved better.</p>
-                <p class="about-body">JW Digital exists to close that gap — with the same level of craft and attention a $500,000 engagement gets, at rates that don't require a Series A to justify. One person. Direct communication. Work that holds up.</p>
-                <div class="about-conviction">"If your business is worth running, it's worth looking the part — without exception and without compromise."</div>
-                <div class="about-location">Serving Businesses Nationwide</div>
+    <section class="section about-section" id="about">
+        <div class="section-inner">
+            <div class="about-inner fade-up">
+                <div class="about-sticky">
+                    <h2 class="section-label">About</h2>
+                    <div class="section-headline">Built on<br><em>Principle.</em></div>
+                </div>
+                <div>
+                    <p class="about-body">JW Digital is run by <strong>Jayce</strong> — a marketing graduate from Liberty University and founder of Concerto, a live music discovery platform on iOS and Android. The agency came from a problem he kept running into, not a business plan.</p>
+                    <p class="about-body">Good businesses were invisible online. Not because the work was bad — because the image was. Owners who'd invested everything into what they built were losing customers daily to competitors whose only advantage was a better website. The work deserved better.</p>
+                    <p class="about-body">JW Digital exists to close that gap — with the same level of craft and attention a $500,000 engagement gets, at rates that don't require a Series A to justify. One person. Direct communication. Work that holds up.</p>
+                    <div class="about-conviction">"If your business is worth running, it's worth looking the part — without exception and without compromise."</div>
+                    <div class="about-location">Serving Businesses Nationwide</div>
+                </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- ═══ CTA ═══ -->
-<section class="cta-section fade-up">
-    <div class="cta-inner">
-        <div class="cta-rule"></div>
-        <div class="cta-headline">Your Next<br>Client Is<br><em>Already</em><br>Looking.</div>
-        <p class="cta-sub">The question is whether what they find represents you the way you deserve. Let's make sure it does.</p>
-        <div class="cta-actions">
-            <a href="/contact.html" class="btn-primary">Begin a Project</a>
-            <a href="#services" class="btn-ghost">View Services</a>
+    <section class="cta-section fade-up">
+        <div class="cta-inner">
+            <div class="cta-rule"></div>
+            <div class="cta-headline">Your Next<br>Client Is<br><em>Already</em><br>Looking.</div>
+            <p class="cta-sub">The question is whether what they find represents you the way you deserve. Let's make sure it does.</p>
+            <div class="cta-actions">
+                <a href="/contact" class="btn-primary">Begin a Project</a>
+                <a href="#services" class="btn-ghost">View Services</a>
+            </div>
         </div>
-    </div>
-</section>
+    </section>
+</main>
 
-<!-- ═══ FOOTER ═══ -->
 <footer>
     <div class="footer-logo">
         <div class="footer-logo-word">JW/DIGITAL</div>
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
-        <a href="/services.html" class="footer-link">Services</a>
-        <a href="/work.html" class="footer-link">Work</a>
-        <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="/portal.html" class="footer-link">Login</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/portal" class="footer-link">Login</a>
     </div>
 </footer>
 
