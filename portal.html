@@ -16,6 +16,9 @@
         html { scroll-behavior: smooth; }
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); min-height: 100vh; display: flex; flex-direction: column; cursor: none; overflow-x: hidden; }
         
+        /* Visually hidden utility class for accessibility */
+        .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
+        
         /* Optimized Grain Effect */
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.04; pointer-events: none; z-index: 9000; }
 
@@ -44,13 +47,14 @@
 
         .portal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
         .portal-greeting { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 0.95; color: var(--platinum); }
-        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); padding: 8px 16px; cursor: none; }
+        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); padding: 8px 16px; cursor: none; transition: color 0.2s, border-color 0.2s; }
+        .logout-btn:hover { color: var(--platinum); border-color: rgba(244,244,242,0.3); }
 
         .status-card { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.08); padding: 36px 40px; margin-bottom: 20px; }
         .status-row { display: flex; justify-content: space-between; padding: 14px 0; border-top: 0.5px solid rgba(244,244,242,0.07); font-size: 13px; }
-        .status-badge { text-transform: uppercase; font-size: 10px; letter-spacing: 0.1em; padding: 4px 12px; border: 0.5px solid rgba(244,244,242,0.2); }
-        .badge-progress { color: #fbbf24; border-color: #fbbf24; }
-        .badge-complete { color: #4ade80; border-color: #4ade80; }
+        .status-badge { text-transform: uppercase; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; padding: 4px 12px; border: 0.5px solid rgba(244,244,242,0.2); }
+        .badge-progress { color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.05); }
+        .badge-complete { color: #4ade80; border-color: rgba(74, 222, 128, 0.4); background: rgba(74, 222, 128, 0.05); }
 
         .payment-card { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.07); padding: 36px 40px; margin-bottom: 20px; }
         .payment-amount { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--platinum); }
@@ -69,30 +73,36 @@
 <div class="cursor" id="cursor"></div>
 
 <nav>
-    <a href="/index.html" class="nav-logo-word">JW/DIGITAL</a>
+    <a href="/index" class="nav-logo-word">JW/DIGITAL</a>
     <div class="nav-right"><i class="fa-solid fa-lock"></i> Client Portal</div>
 </nav>
 
 <main>
     <div class="screen active" id="loginScreen">
         <div class="screen-label">Client Portal</div>
-        <div class="screen-headline">Welcome<br><em>Back.</em></div>
-        <input class="login-input" type="email" id="emailInput" placeholder="your@email.com">
-        <button class="login-btn" id="loginBtn" onclick="handleLogin()">Access My Portal →</button>
-        <p class="login-error" id="loginError">No project found for that email address.</p>
+        <h1 class="screen-headline">Welcome<br><em>Back.</em></h1>
+        
+        <form onsubmit="handleLogin(event)">
+            <label for="emailInput" class="visually-hidden">Email Address</label>
+            <input class="login-input" type="email" id="emailInput" placeholder="your@email.com" required>
+            <button type="submit" class="login-btn" id="loginBtn">Access My Portal →</button>
+            <div aria-live="polite">
+                <p class="login-error" id="loginError">No project found for that email address.</p>
+            </div>
+        </form>
     </div>
 
     <div class="screen" id="portalScreen">
         <div class="portal-header">
             <div>
-                <div class="portal-greeting" id="portalGreeting">Hello.</div>
+                <h1 class="portal-greeting" id="portalGreeting">Hello.</h1>
                 <div id="portalBusiness" style="font-size:12px; color:var(--fog); margin-top:8px;"></div>
             </div>
             <button class="logout-btn" onclick="handleLogout()">Sign Out</button>
         </div>
 
         <div class="status-card">
-            <div class="status-project" id="portalProject" style="font-family:'DM Serif Display'; font-size:26px; margin-bottom:20px;"></div>
+            <div class="status-project" id="portalProject" style="font-family:'DM Serif Display', serif; font-size:26px; margin-bottom:20px;"></div>
             <div class="status-row"><span>Status</span><span id="statusBadge" class="status-badge"></span></div>
             <div class="status-row"><span>Deliverable</span><span id="portalDeliverable"></span></div>
             <div class="status-row"><span>Notes</span><span id="portalNotes" style="max-width:200px; text-align:right;"></span></div>
@@ -105,13 +115,13 @@
             <div id="paymentStatus" style="margin-top:15px; font-size:12px; color:#4ade80; display:none;">
                 <i class="fa-solid fa-circle-check"></i> Payment Confirmed
             </div>
-            </div>
+        </div>
     </div>
 </main>
 
 <footer>
     <div>&copy; 2026 JW Digital</div>
-    <a href="/index.html" style="color:inherit; text-decoration:none;">← Back to Site</a>
+    <a href="/index" style="color:inherit; text-decoration:none; transition: color 0.2s;" onmouseover="this.style.color='var(--platinum)'" onmouseout="this.style.color='rgba(244,244,242,0.18)'">← Back to Site</a>
 </footer>
 
 <script>
@@ -138,7 +148,9 @@
     const STEIN_ID = "69da885bbb16885eb7bcf43d";
     const SHEET_NAME = "Clients"; 
 
-    async function handleLogin() {
+    async function handleLogin(e) {
+        if(e) e.preventDefault(); // Prevents page reload on form submit
+        
         const email = document.getElementById('emailInput').value.trim().toLowerCase();
         const btn = document.getElementById('loginBtn');
         const errorMsg = document.getElementById('loginError');
@@ -161,8 +173,8 @@
             errorMsg.style.display = 'none';
             showPortal(user);
 
-        } catch (e) {
-            console.error(e);
+        } catch (error) {
+            console.error(error);
             alert("Connection error. Check your Stein ID or Sheet Name.");
             btn.innerText = "Access My Portal →";
         }
@@ -172,19 +184,26 @@
         document.getElementById('loginScreen').classList.remove('active');
         document.getElementById('portalScreen').classList.add('active');
 
-        document.getElementById('portalGreeting').innerHTML = `Hello, <em>${user.Name.split(' ')[0]}.</em>`;
-        document.getElementById('portalBusiness').innerText = user.Business;
-        document.getElementById('portalProject').innerText = user.Project;
+        // Extract first name safely
+        const firstName = user.Name ? user.Name.split(' ')[0] : 'Client';
+        document.getElementById('portalGreeting').innerHTML = `Hello, <em>${firstName}.</em>`;
+        
+        document.getElementById('portalBusiness').innerText = user.Business || "";
+        document.getElementById('portalProject').innerText = user.Project || "Project Details";
         document.getElementById('portalDeliverable').innerText = user.Deliverable || "—";
         document.getElementById('portalNotes').innerText = user.Notes || "—";
-        document.getElementById('paymentAmount').innerText = `$${user.Amount}`;
+        
+        // Format amount with commas if necessary
+        const amount = user.Amount ? Number(user.Amount).toLocaleString() : "0";
+        document.getElementById('paymentAmount').innerText = `$${amount}`;
 
         const badge = document.getElementById('statusBadge');
-        badge.innerText = user.Status;
+        const status = user.Status || "Pending";
+        badge.innerText = status;
         
         badge.className = "status-badge"; 
-        if(user.Status === "In Progress") badge.classList.add('badge-progress');
-        if(user.Status === "Complete") badge.classList.add('badge-complete');
+        if(status === "In Progress") badge.classList.add('badge-progress');
+        if(status === "Complete") badge.classList.add('badge-complete');
 
         // --- SMART PAYMENT LOGIC ---
         const isPaid = String(user.Paid).toUpperCase() === "TRUE";
@@ -210,6 +229,11 @@
             newBtn.style.textAlign = "center";
             newBtn.style.marginTop = "20px";
             newBtn.innerText = "Complete Payment →";
+            
+            // Add custom cursor events for dynamically created element
+            newBtn.addEventListener('mouseenter', () => cursor.classList.add('active'));
+            newBtn.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+            
             paymentCard.appendChild(newBtn);
         }
     }
