@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Services — JW Digital</title>
-    <meta name="description" content="Nine offerings. Flat rates. No hidden scope. JW Digital builds the digital presence serious businesses deserve.">
+    <title>Web Design & Branding Services | JW Digital</title>
+    <meta name="description" content="Nine custom offerings. Flat rates. No hidden scope. Explore web design, brand identity, and digital strategy packages from JW Digital.">
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
         :root {
             --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
@@ -58,10 +59,10 @@
         /* PAGE HEADER */
         .page-header { padding: 160px 56px 80px; max-width: 1200px; margin: 0 auto; }
         .page-header-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; }
-        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
         .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
-        h1 { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; }
-        h1 em { font-style: italic; color: var(--silver); }
+        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 7vw, 96px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; }
+        .page-headline em { font-style: italic; color: var(--silver); }
         .page-header-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; }
 
         /* SERVICES GRID */
@@ -86,10 +87,10 @@
         .bundle-inner { max-width: 1200px; margin: 0 auto; }
         .bundle-card { background: var(--platinum); border-radius: 2px; overflow: hidden; display: grid; grid-template-columns: 1fr 1fr; }
         .bundle-left { padding: 72px 64px; }
-        .bundle-eyebrow { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--fog); display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
+        .bundle-eyebrow { font-family: 'DM Sans', sans-serif; font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--fog); display: flex; align-items: center; gap: 12px; margin-bottom: 32px; }
         .bundle-eyebrow::before { content: ""; width: 24px; height: 0.5px; background: var(--fog); display: block; }
-        .bundle-left h2 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 56px); color: var(--ink); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 20px; font-weight: 400; }
-        .bundle-left h2 em { font-style: italic; }
+        .bundle-left .bundle-headline { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4vw, 56px); color: var(--ink); line-height: 0.95; letter-spacing: -0.01em; margin-bottom: 20px; font-weight: 400; }
+        .bundle-left .bundle-headline em { font-style: italic; }
         .bundle-left p { font-size: 14px; font-weight: 300; color: rgba(26,26,26,0.5); line-height: 1.85; margin-bottom: 40px; max-width: 380px; }
         .btn-ink { font-size: 11px; font-weight: 500; color: var(--platinum); background: var(--ink); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; }
         .btn-ink:hover { background: var(--smoke); }
@@ -109,8 +110,8 @@
         /* CTA */
         .cta-strip { background: var(--smoke); padding: 120px 56px; border-top: 0.5px solid rgba(244,244,242,0.07); }
         .cta-strip-inner { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 48px; }
-        .cta-strip h2 { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 64px); color: var(--platinum); line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; }
-        .cta-strip h2 em { font-style: italic; color: var(--silver); }
+        .cta-headline { font-family: 'DM Serif Display', serif; font-size: clamp(36px, 4.5vw, 64px); color: var(--platinum); line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; }
+        .cta-headline em { font-style: italic; color: var(--silver); }
         .cta-strip-right { display: flex; flex-direction: column; gap: 16px; align-items: flex-end; }
         .cta-strip-sub { font-size: 13px; font-weight: 300; color: var(--fog); text-align: right; max-width: 280px; line-height: 1.8; }
 
@@ -159,7 +160,7 @@
             .cursor { display: none; }
         }
         @media (max-width: 480px) {
-            h1 { font-size: 48px; }
+            .page-headline { font-size: 48px; }
             .service-card { padding: 36px 24px; }
             .service-icon { top: 36px; right: 24px; }
         }
@@ -170,14 +171,14 @@
 <div class="cursor" id="cursor"></div>
 
 <nav>
-    <a href="/index.html" class="nav-logo">
+    <a href="/" class="nav-logo">
         <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
-        <a href="/services.html" class="nav-link active">Services</a>
-        <a href="/work.html" class="nav-link">Work</a>
-        <a href="/contact.html" class="nav-link">Contact</a>
-        <a href="/portal.html" class="nav-cta">Login</a>
+        <a href="/services" class="nav-link active">Services</a>
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -185,222 +186,221 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services.html" onclick="closeMobileMenu()">Services</a>
-    <a href="/work.html" onclick="closeMobileMenu()">Work</a>
-    <a href="/contact.html" onclick="closeMobileMenu()">Contact</a>
-    <a href="/portal.html">Login</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal">Login</a>
 </div>
 
-<!-- PAGE HEADER -->
-<div class="page-header">
-    <div class="page-header-inner fade-up">
-        <div>
-            <div class="section-label">Services</div>
-            <h1>Nine Offerings.<br><em>One Standard.</em></h1>
+<main>
+    <header class="page-header">
+        <div class="page-header-inner fade-up">
+            <div>
+                <h1 class="section-label">Services</h1>
+                <div class="page-headline">Nine Offerings.<br><em>One Standard.</em></div>
+            </div>
+            <p class="page-header-sub">Every engagement is scoped precisely, priced transparently, and executed without exception. Select what your business needs — individually or as a complete launch.</p>
         </div>
-        <p class="page-header-sub">Every engagement is scoped precisely, priced transparently, and executed without exception. Select what your business needs — individually or as a complete launch.</p>
-    </div>
-</div>
+    </header>
 
-<div class="services-wrap">
-    <div class="services-inner">
-        <div class="services-grid fade-up">
+    <div class="services-wrap">
+        <div class="services-inner">
+            <div class="services-grid fade-up">
 
-            <div class="service-card">
-                <div class="service-num">01</div>
-                <i class="fa-solid fa-globe service-icon"></i>
-                <div class="service-name">Website Build</div>
-                <div class="service-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO and **one premium add-on of your choice** (Google Profile, Email Sig, etc) at no extra cost.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$1,500</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">02</div>
-                <i class="fa-solid fa-pen-nib service-icon"></i>
-                <div class="service-name">Logo &amp; Branding</div>
-                <div class="service-desc">A complete brand identity system. Custom mark, color palette, typography, and a brand guide. Built to ensure your business looks the part across every physical and digital surface.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$600</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">03</div>
-                <i class="fa-brands fa-instagram service-icon"></i>
-                <div class="service-name">Social Launch</div>
-                <div class="service-desc">Strategic setup of two platforms. Includes branded bios, optimized settings, and three custom launch graphics to ensure you're day-one ready.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$300</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">04</div>
-                <i class="fa-brands fa-google service-icon"></i>
-                <div class="service-name">Google Business Profile</div>
-                <div class="service-desc">Full local SEO optimization. We set up your keywords, services, and photos so you appear when local customers are searching. *Requires core service or 2+ add-ons.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$200</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">05</div>
-                <i class="fa-brands fa-facebook service-icon"></i>
-                <div class="service-name">Facebook Business Page</div>
-                <div class="service-desc">Complete professional setup and branding. Fully linked to your site and Instagram to ensure a cohesive digital footprint. *Requires core service or 2+ add-ons.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$150</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">06</div>
-                <i class="fa-solid fa-envelope service-icon"></i>
-                <div class="service-name">Email Signature</div>
-                <div class="service-desc">A custom-designed, coded signature that works across Gmail, Outlook, and Apple Mail. Every email becomes a professional brand impression. *Requires core service or 2+ add-ons.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$125</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">07</div>
-                <i class="fa-solid fa-qrcode service-icon"></i>
-                <div class="service-name">QR Code Business Cards</div>
-                <div class="service-desc">Modern, print-ready cards that bridge the gap between physical and digital. Links directly to your site or contact card. *Requires core service or 2+ add-ons.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$150</div>
-                        <div class="service-cadence">One-time engagement</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">08</div>
-                <i class="fa-solid fa-star service-icon"></i>
-                <div class="service-name">Review Management</div>
-                <div class="service-desc">Monthly reputation monitoring and professional responses written on your behalf. Keep your Google and Yelp presence active without the effort.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$100</div>
-                        <div class="service-cadence">Monthly retainer</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-            <div class="service-card">
-                <div class="service-num">09</div>
-                <i class="fa-solid fa-arrows-rotate service-icon"></i>
-                <div class="service-name">Monthly Maintenance</div>
-                <div class="service-desc">Priority site updates and proactive check-ins. We handle the technical upkeep so your site stays fast, secure, and accurate.</div>
-                <div class="service-footer">
-                    <div>
-                        <div class="service-price">$125</div>
-                        <div class="service-cadence">Monthly retainer</div>
-                    </div>
-                    <a href="/contact.html" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-                </div>
-            </div>
-
-        </div>
-    </div>
-</div>
-
-<div class="bundle-wrap">
-    <div class="bundle-inner fade-up">
-        <div class="bundle-card">
-            <div class="bundle-left">
-                <div class="bundle-eyebrow">The Foundation Bundle</div>
-                <h2>The Complete<br><em>Launch.</em></h2>
-                <p>The total digital package for businesses that take their image seriously. Commissioning the three core pillars together ensures a unified brand voice and saves $400 in the process. Includes one premium add-on of your choice.</p>
-                <a href="/contact.html" class="btn-ink">Begin the Foundation</a>
-            </div>
-            <div class="bundle-right">
-                <ul class="bundle-items">
-                    <li class="bundle-item">
-                        <span class="bundle-item-name">Website Build</span>
-                        <span class="bundle-item-price">$1,500</span>
-                    </li>
-                    <li class="bundle-item">
-                        <span class="bundle-item-name">Logo &amp; Branding</span>
-                        <span class="bundle-item-price">$600</span>
-                    </li>
-                    <li class="bundle-item">
-                        <span class="bundle-item-name">Social Launch</span>
-                        <span class="bundle-item-price">$300</span>
-                    </li>
-                    <li class="bundle-item">
-                        <span class="bundle-item-name">Choice of Add-on</span>
-                        <span class="bundle-item-free">Included</span>
-                    </li>
-                </ul>
-                <div class="bundle-total">
-                    <div>
-                        <div class="bundle-total-label">Total Investment</div>
-                        <div class="bundle-savings">$400 saved</div>
-                    </div>
-                    <div>
-                        <div class="bundle-was">$2,400</div>
-                        <div class="bundle-price">$2,000</div>
+                <div class="service-card">
+                    <div class="service-num">01</div>
+                    <i class="fa-solid fa-globe service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Website Build</h3>
+                    <div class="service-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO and **one premium add-on of your choice** (Google Profile, Email Sig, etc) at no extra cost.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$1,500</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
                     </div>
                 </div>
+
+                <div class="service-card">
+                    <div class="service-num">02</div>
+                    <i class="fa-solid fa-pen-nib service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Logo &amp; Branding</h3>
+                    <div class="service-desc">A complete brand identity system. Custom mark, color palette, typography, and a brand guide. Built to ensure your business looks the part across every physical and digital surface.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$600</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">03</div>
+                    <i class="fa-brands fa-instagram service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Social Launch</h3>
+                    <div class="service-desc">Strategic setup of two platforms. Includes branded bios, optimized settings, and three custom launch graphics to ensure you're day-one ready.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$300</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">04</div>
+                    <i class="fa-brands fa-google service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Google Business Profile</h3>
+                    <div class="service-desc">Full local SEO optimization. We set up your keywords, services, and photos so you appear when local customers are searching. *Requires core service or 2+ add-ons.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$200</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">05</div>
+                    <i class="fa-brands fa-facebook service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Facebook Business Page</h3>
+                    <div class="service-desc">Complete professional setup and branding. Fully linked to your site and Instagram to ensure a cohesive digital footprint. *Requires core service or 2+ add-ons.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$150</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">06</div>
+                    <i class="fa-solid fa-envelope service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Email Signature</h3>
+                    <div class="service-desc">A custom-designed, coded signature that works across Gmail, Outlook, and Apple Mail. Every email becomes a professional brand impression. *Requires core service or 2+ add-ons.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$125</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">07</div>
+                    <i class="fa-solid fa-qrcode service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">QR Code Business Cards</h3>
+                    <div class="service-desc">Modern, print-ready cards that bridge the gap between physical and digital. Links directly to your site or contact card. *Requires core service or 2+ add-ons.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$150</div>
+                            <div class="service-cadence">One-time engagement</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">08</div>
+                    <i class="fa-solid fa-star service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Review Management</h3>
+                    <div class="service-desc">Monthly reputation monitoring and professional responses written on your behalf. Keep your Google and Yelp presence active without the effort.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$100</div>
+                            <div class="service-cadence">Monthly retainer</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
+                <div class="service-card">
+                    <div class="service-num">09</div>
+                    <i class="fa-solid fa-arrows-rotate service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Monthly Maintenance</h3>
+                    <div class="service-desc">Priority site updates and proactive check-ins. We handle the technical upkeep so your site stays fast, secure, and accurate.</div>
+                    <div class="service-footer">
+                        <div>
+                            <div class="service-price">$125</div>
+                            <div class="service-cadence">Monthly retainer</div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
+
             </div>
         </div>
     </div>
-</div>
 
-<!-- CTA STRIP -->
-<div class="cta-strip fade-up">
-    <div class="cta-strip-inner">
-        <h2>Ready to<br><em>Begin?</em></h2>
-        <div class="cta-strip-right">
-            <p class="cta-strip-sub">Every project starts with a brief inquiry. No discovery calls, no lengthy onboarding — just a conversation about what you need.</p>
-            <a href="/contact.html" class="btn-primary">Begin a Project</a>
+    <section class="bundle-wrap">
+        <div class="bundle-inner fade-up">
+            <div class="bundle-card">
+                <div class="bundle-left">
+                    <h2 class="bundle-eyebrow">The Foundation Bundle</h2>
+                    <div class="bundle-headline">The Complete<br><em>Launch.</em></div>
+                    <p>The total digital package for businesses that take their image seriously. Commissioning the three core pillars together ensures a unified brand voice and saves $400 in the process. Includes one premium add-on of your choice.</p>
+                    <a href="/contact" class="btn-ink">Begin the Foundation</a>
+                </div>
+                <div class="bundle-right">
+                    <ul class="bundle-items">
+                        <li class="bundle-item">
+                            <span class="bundle-item-name">Website Build</span>
+                            <span class="bundle-item-price">$1,500</span>
+                        </li>
+                        <li class="bundle-item">
+                            <span class="bundle-item-name">Logo &amp; Branding</span>
+                            <span class="bundle-item-price">$600</span>
+                        </li>
+                        <li class="bundle-item">
+                            <span class="bundle-item-name">Social Launch</span>
+                            <span class="bundle-item-price">$300</span>
+                        </li>
+                        <li class="bundle-item">
+                            <span class="bundle-item-name">Choice of Add-on</span>
+                            <span class="bundle-item-free">Included</span>
+                        </li>
+                    </ul>
+                    <div class="bundle-total">
+                        <div>
+                            <div class="bundle-total-label">Total Investment</div>
+                            <div class="bundle-savings">$400 saved</div>
+                        </div>
+                        <div>
+                            <div class="bundle-was">$2,400</div>
+                            <div class="bundle-price">$2,000</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
-    </div>
-</div>
+    </section>
 
-<!-- FOOTER -->
+    <section class="cta-strip fade-up">
+        <div class="cta-strip-inner">
+            <h2 class="cta-headline">Ready to<br><em>Begin?</em></h2>
+            <div class="cta-strip-right">
+                <p class="cta-strip-sub">Every project starts with a brief inquiry. No discovery calls, no lengthy onboarding — just a conversation about what you need.</p>
+                <a href="/contact" class="btn-primary">Begin a Project</a>
+            </div>
+        </div>
+    </section>
+</main>
+
 <footer>
     <div class="footer-logo">
         <div class="footer-logo-word">JW/DIGITAL</div>
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
-        <a href="/services.html" class="footer-link">Services</a>
-        <a href="/work.html" class="footer-link">Work</a>
-        <a href="/contact.html" class="footer-link">Contact</a>
-        <a href="/portal.html" class="footer-link">Login</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/portal" class="footer-link">Login</a>
     </div>
 </footer>
 
