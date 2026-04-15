@@ -23,7 +23,6 @@
 
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
         .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
-        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
         .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
         .nav-links { display: flex; align-items: center; gap: 40px; }
         .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
@@ -37,21 +36,11 @@
         
         .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
-        .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
         .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
         .mobile-menu.open { display: flex; }
-        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
-        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
 
         .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-
-        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
-        .btn-primary:hover { background: var(--white); }
-        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
-        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
 
         /* PAGE HEADER */
         .page-header { padding: 160px 56px 96px; max-width: 1200px; margin: 0 auto; }
@@ -61,20 +50,77 @@
         .page-headline em { font-style: italic; color: var(--silver); }
         .page-header-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 480px; }
 
-        /* COMING SOON STATE */
+        /* NEW PROJECT GRID STYLES */
         .coming-wrap { padding: 0 56px 160px; }
         .coming-inner { max-width: 1200px; margin: 0 auto; }
         .coming-rule { height: 0.5px; background: rgba(244,244,242,0.08); margin-bottom: 80px; }
 
-        /* PLACEHOLDER GRID */
-        .placeholder-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1px; background: rgba(244,244,242,0.06); border: 0.5px solid rgba(244,244,242,0.06); border-radius: 2px; overflow: hidden; margin-bottom: 80px; }
-        .placeholder-card { background: var(--smoke); aspect-ratio: 4/3; display: flex; flex-direction: column; justify-content: flex-end; padding: 36px; position: relative; overflow: hidden; transition: background 0.4s; }
-        .placeholder-card:hover { background: #383838; }
-        .placeholder-card::before { content: ""; position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
-        .placeholder-card-num { font-family: 'DM Serif Display', serif; font-size: 120px; color: rgba(244,244,242,0.03); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); line-height: 1; pointer-events: none; }
-        .placeholder-card-label { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.15); margin-bottom: 8px; position: relative; z-index: 1; }
-        .placeholder-card-title { font-family: 'DM Serif Display', serif; font-size: 18px; color: rgba(244,244,242,0.2); position: relative; z-index: 1; }
-        .placeholder-card.featured { grid-column: span 2; aspect-ratio: 16/7; }
+        .placeholder-grid { 
+            display: grid; 
+            grid-template-columns: 1fr 1fr; 
+            gap: 1px; 
+            background: rgba(244,244,242,0.06); 
+            border: 0.5px solid rgba(244,244,242,0.06); 
+        }
+
+        .placeholder-card { 
+            background: var(--smoke); 
+            aspect-ratio: 4/3; 
+            position: relative; 
+            overflow: hidden; 
+            display: block; 
+            text-decoration: none;
+            cursor: none; 
+        }
+
+        .placeholder-card.featured { grid-column: span 2; aspect-ratio: 21/9; }
+
+        .project-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.5;
+            filter: grayscale(20%) blur(1px);
+            transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .project-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(26,26,26,0.9) 0%, rgba(26,26,26,0.1) 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            z-index: 2;
+        }
+
+        .project-location {
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            color: var(--silver);
+            margin-bottom: 8px;
+            opacity: 0.7;
+        }
+
+        .project-title {
+            font-family: 'DM Serif Display', serif;
+            font-size: 24px;
+            color: var(--white);
+        }
+
+        /* Hover Animation */
+        .placeholder-card:hover .project-img {
+            opacity: 0.9;
+            filter: grayscale(0%) blur(0px);
+            transform: scale(1.04);
+        }
+
+        /* Empty/Coming Soon State */
+        .placeholder-card.empty .project-title { opacity: 0.2; }
+        .placeholder-card.empty .project-location { opacity: 0.2; }
 
         /* STATEMENT */
         .statement-wrap { background: var(--smoke); padding: 120px 56px; border-top: 0.5px solid rgba(244,244,242,0.07); }
@@ -83,33 +129,25 @@
         .statement-quote span { color: var(--silver); }
         .statement-right { display: flex; flex-direction: column; gap: 32px; }
         .statement-body { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; }
-        .statement-actions { display: flex; flex-direction: column; gap: 12px; align-items: flex-start; }
+        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; display: inline-block; cursor: none; }
 
         /* FOOTER */
         footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
-        .footer-logo { display: inline-flex; flex-direction: column; }
-        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
-        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
-        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
-        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
-        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
-        .footer-link:hover { color: var(--platinum); }
+        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); }
+        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.2); text-align: center; }
+        .footer-links { display: flex; gap: 28px; justify-content: flex-end; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; text-transform: uppercase; }
 
         @media (max-width: 768px) {
-            nav { padding: 0 24px; height: 64px; }
+            nav { padding: 0 24px; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
             .page-header { padding: 100px 24px 64px; }
             .coming-wrap { padding: 0 24px 96px; }
             .placeholder-grid { grid-template-columns: 1fr; }
             .placeholder-card.featured { grid-column: span 1; aspect-ratio: 4/3; }
-            .statement-wrap { padding: 80px 24px; }
             .statement-inner { grid-template-columns: 1fr; gap: 48px; }
-            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
-            .footer-links { justify-content: flex-start; }
-            .footer-copy { text-align: left; }
-            body { cursor: auto; }
-            .cursor { display: none; }
+            footer { grid-template-columns: 1fr; padding: 40px 24px; }
         }
     </style>
 </head>
@@ -133,9 +171,9 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services" onclick="closeMobileMenu()">Services</a>
-    <a href="/work" onclick="closeMobileMenu()">Work</a>
-    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/services">Services</a>
+    <a href="/work">Work</a>
+    <a href="/contact">Contact</a>
     <a href="/portal">Login</a>
 </div>
 
@@ -149,32 +187,47 @@
     <section class="coming-wrap">
         <div class="coming-inner">
             <div class="coming-rule"></div>
+            
             <div class="placeholder-grid fade-up">
-                <article class="placeholder-card featured">
-                    <div class="placeholder-card-num" aria-hidden="true">01</div>
-                    <div class="placeholder-card-label">Coming Soon</div>
-                    <h3 class="placeholder-card-title">Featured Project</h3>
-                </article>
-                <article class="placeholder-card">
-                    <div class="placeholder-card-num" aria-hidden="true">02</div>
-                    <div class="placeholder-card-label">Coming Soon</div>
-                    <h3 class="placeholder-card-title">Brand Identity</h3>
-                </article>
-                <article class="placeholder-card">
-                    <div class="placeholder-card-num" aria-hidden="true">03</div>
-                    <div class="placeholder-card-label">Coming Soon</div>
-                    <h3 class="placeholder-card-title">Web Presence</h3>
-                </article>
-                <article class="placeholder-card">
-                    <div class="placeholder-card-num" aria-hidden="true">04</div>
-                    <div class="placeholder-card-label">Coming Soon</div>
-                    <h3 class="placeholder-card-title">Social Launch</h3>
-                </article>
-                <article class="placeholder-card">
-                    <div class="placeholder-card-num" aria-hidden="true">05</div>
-                    <div class="placeholder-card-label">Coming Soon</div>
-                    <h3 class="placeholder-card-title">Full Launch</h3>
-                </article>
+
+                <a href="https://heartenhomeinteriors.netlify.app" target="_blank" class="placeholder-card featured">
+                    <img src="HeartenHomeInteriors.jpg" class="project-img" alt="Project Name">
+                    <div class="project-overlay">
+                        <div class="project-location">Keller, TX</div>
+                        <h3 class="project-title">Hearten Home Interiors</h3>
+                    </div>
+                </a>
+
+                <a href="https://rochiercontracting.netlify.app" target="_blank" class="placeholder-card">
+                    <img src="RochierContracting.jpg" class="project-img" alt="Project Name">
+                    <div class="project-overlay">
+                        <div class="project-location">Rockwall, TX</div>
+                        <h3 class="project-title">Rochier Contracting</h3>
+                    </div>
+                </a>
+
+                <a href="https://makincakeco.netlify.app" target="_blank" class="placeholder-card">
+                    <img src="MakinCakeCo.jpg" class="project-img" alt="Project Name">
+                    <div class="project-overlay">
+                        <div class="project-location">North Richland Hills, TX</div>
+                        <h3 class="project-title">MAKINCAKECo.</h3>
+                    </div>
+                </a>
+
+                <div class="placeholder-card empty">
+                    <div class="project-overlay">
+                        <div class="project-location">Coming Soon</div>
+                        <h3 class="project-title">Project 04</h3>
+                    </div>
+                </div>
+
+                <div class="placeholder-card empty">
+                    <div class="project-overlay">
+                        <div class="project-location">Coming Soon</div>
+                        <h3 class="project-title">Project 05</h3>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
@@ -183,10 +236,9 @@
         <div class="statement-inner">
             <div class="statement-quote">"Every project that ships becomes part of this record. The work is how we're judged — <span>not the pitch.</span>"</div>
             <div class="statement-right">
-                <p class="statement-body">JW Digital is early in its public chapter. The engagements are underway, the results are accumulating, and this page will reflect that work as it's documented and cleared for publication. Check back — or better yet, be part of what gets added here.</p>
+                <p class="statement-body">JW Digital is early in its public chapter. The engagements are underway, the results are accumulating, and this page will reflect that work as it's documented and cleared for publication.</p>
                 <div class="statement-actions">
                     <a href="/contact" class="btn-primary">Begin a Project</a>
-                    <a href="/services" class="btn-ghost">View Services</a>
                 </div>
             </div>
         </div>
@@ -202,7 +254,6 @@
         <a href="/services" class="footer-link">Services</a>
         <a href="/work" class="footer-link">Work</a>
         <a href="/contact" class="footer-link">Contact</a>
-        <a href="/portal" class="footer-link">Login</a>
     </div>
 </footer>
 
@@ -220,7 +271,6 @@
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
-    function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
 </script>
 </body>
 </html>
