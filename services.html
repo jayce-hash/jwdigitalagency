@@ -47,6 +47,7 @@
         .mobile-menu.open { display: flex; }
         .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
         .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
+        .mobile-menu a:hover { color: var(--platinum); }
 
         /* ANIMATIONS */
         .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
@@ -55,7 +56,7 @@
         /* BUTTONS */
         .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
         .btn-primary:hover { background: var(--white); }
-        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; text-align: center; }
         .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
 
         /* PAGE HEADER */
@@ -71,7 +72,7 @@
         .services-wrap { padding: 0 56px 80px; }
         .services-inner { max-width: 1200px; margin: 0 auto; }
         .services-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; border-top: 0.5px solid rgba(244,244,242,0.08); }
-        .service-card { padding: 52px 44px; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); position: relative; transition: background 0.4s; }
+        .service-card { padding: 52px 44px; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); position: relative; transition: background 0.4s; display: flex; flex-direction: column; justify-content: space-between; }
         .service-card:hover { background: var(--smoke); }
         .service-card:nth-child(3n) { border-right: none; }
         .service-card:nth-last-child(-n+3) { border-bottom: none; }
@@ -84,11 +85,12 @@
         .service-price { font-family: 'DM Serif Display', serif; font-size: 40px; color: var(--platinum); line-height: 1; }
         .service-cadence { font-size: 9px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.25); }
 
-        /* TIERED PRICING */
-        .pricing-tiers { display: flex; flex-direction: column; gap: 8px; margin-bottom: 4px; }
-        .pricing-tier { display: flex; align-items: baseline; gap: 10px; }
-        .pricing-tier-price { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); line-height: 1; }
-        .pricing-tier-label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.4); }
+        /* TIERED PRICING SPECIFIC FOR SERVICES CARD */
+        .services-tier-row { display: flex; justify-content: space-between; align-items: center; border-bottom: 0.5px solid rgba(244,244,242,0.07); padding-bottom: 12px; margin-bottom: 12px; width: 100%; }
+        .services-tier-row:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .services-tier-left { display: flex; align-items: baseline; gap: 10px; }
+        .services-tier-price { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--platinum); line-height: 1; }
+        .services-tier-label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.4); }
         
         /* BUNDLE */
         .bundle-wrap { padding: 0 56px 160px; }
@@ -162,7 +164,7 @@
             .bundle-left, .bundle-right { padding: 48px 32px; }
             .bundle-price { font-size: 56px; }
             footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
-            .footer-links { justify-content: flex-start; }
+            .footer-links { justify-content: flex-start; flex-wrap: wrap; }
             .footer-copy { text-align: left; }
             body { cursor: auto; }
             .cursor { display: none; }
@@ -218,138 +220,162 @@
             <div class="services-grid fade-up">
 
                 <div class="service-card">
-                    <div class="service-num">01</div>
-                    <i class="fa-solid fa-globe service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Website Build</h3>
-                    <div class="service-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO and **one premium add-on of your choice** (Google Profile, Email Sig, etc) at no extra cost.</div>
-                    <div class="service-footer" style="align-items: center;">
-                        <div class="pricing-tiers">
-                            <div class="pricing-tier">
-                                <span class="pricing-tier-price">$750</span>
-                                <span class="pricing-tier-label">1 Page</span>
+                    <div>
+                        <div class="service-num">01</div>
+                        <i class="fa-solid fa-globe service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Website Build</h3>
+                        <div class="service-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO and **one premium add-on of your choice** (Google Profile, Email Sig, etc) at no extra cost.</div>
+                    </div>
+                    <div class="service-footer" style="flex-direction: column; align-items: flex-start; width: 100%;">
+                        <div class="services-tier-row">
+                            <div class="services-tier-left">
+                                <span class="services-tier-price">$750</span>
+                                <span class="services-tier-label">1 Page</span>
                             </div>
-                            <div class="pricing-tier">
-                                <span class="pricing-tier-price">$1,250</span>
-                                <span class="pricing-tier-label">3 Pages</span>
-                            </div>
-                            <div class="pricing-tier">
-                                <span class="pricing-tier-price">$1,500</span>
-                                <span class="pricing-tier-label">5+ Pages</span>
-                            </div>
+                            <a href="https://buy.stripe.com/3cI14nej68ji0pl56BfQI0f" class="btn-ghost" style="padding:8px 16px;font-size:9px">Purchase</a>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <div class="services-tier-row">
+                            <div class="services-tier-left">
+                                <span class="services-tier-price">$1,250</span>
+                                <span class="services-tier-label">3 Pages</span>
+                            </div>
+                            <a href="https://buy.stripe.com/9B628rdf21UUdc78iNfQI0g" class="btn-ghost" style="padding:8px 16px;font-size:9px">Purchase</a>
+                        </div>
+                        <div class="services-tier-row">
+                            <div class="services-tier-left">
+                                <span class="services-tier-price">$1,500</span>
+                                <span class="services-tier-label">5+ Pages</span>
+                            </div>
+                            <a href="https://buy.stripe.com/dRm28rej6gPO2xtfLffQI0h" class="btn-ghost" style="padding:8px 16px;font-size:9px">Purchase</a>
+                        </div>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">02</div>
-                    <i class="fa-solid fa-pen-nib service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Logo &amp; Branding</h3>
-                    <div class="service-desc">A complete brand identity system. Custom mark, color palette, typography, and a brand guide. Built to ensure your business looks the part across every physical and digital surface.</div>
+                    <div>
+                        <div class="service-num">02</div>
+                        <i class="fa-solid fa-pen-nib service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Logo &amp; Branding</h3>
+                        <div class="service-desc">A complete brand identity system. Custom mark, color palette, typography, and a brand guide. Built to ensure your business looks the part across every physical and digital surface.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$600</div>
-                            <div class="service-cadence">One-time engagement</div>
+                            <div class="service-cadence">One-time</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/9B68wPcaY6ba9ZV42xfQI0i" class="btn-ghost" style="padding:10px 20px;font-size:10px">Purchase →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">03</div>
-                    <i class="fa-brands fa-instagram service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Social Launch</h3>
-                    <div class="service-desc">Strategic setup of two platforms. Includes branded bios, optimized settings, and three custom launch graphics to ensure you're day-one ready.</div>
+                    <div>
+                        <div class="service-num">03</div>
+                        <i class="fa-brands fa-instagram service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Social Launch</h3>
+                        <div class="service-desc">Strategic setup of two platforms. Includes branded bios, optimized settings, and three custom launch graphics to ensure you're day-one ready.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$300</div>
-                            <div class="service-cadence">One-time engagement</div>
+                            <div class="service-cadence">One-time</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/6oU4gzb6U4327RNaqVfQI0j" class="btn-ghost" style="padding:10px 20px;font-size:10px">Purchase →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">04</div>
-                    <i class="fa-brands fa-google service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Google Business Profile</h3>
-                    <div class="service-desc">Full local SEO optimization. We set up your keywords, services, and photos so you appear when local customers are searching. *Requires core service or 2+ add-ons.</div>
+                    <div>
+                        <div class="service-num">04</div>
+                        <i class="fa-brands fa-google service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Google Business Profile</h3>
+                        <div class="service-desc">Full local SEO optimization. We set up your keywords, services, and photos so you appear when local customers are searching. *Requires core service.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$200</div>
-                            <div class="service-cadence">One-time engagement</div>
+                            <div class="service-cadence">One-time</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/6oU4gz6QE6bac839mRfQI0q" class="btn-ghost" style="padding:10px 20px;font-size:10px">Purchase →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">05</div>
-                    <i class="fa-brands fa-facebook service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Facebook Business Page</h3>
-                    <div class="service-desc">Complete professional setup and branding. Fully linked to your site and Instagram to ensure a cohesive digital footprint. *Requires core service or 2+ add-ons.</div>
+                    <div>
+                        <div class="service-num">05</div>
+                        <i class="fa-brands fa-facebook service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Facebook Business Page</h3>
+                        <div class="service-desc">Complete professional setup and branding. Fully linked to your site and Instagram to ensure a cohesive digital footprint. *Requires core service.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$150</div>
-                            <div class="service-cadence">One-time engagement</div>
+                            <div class="service-cadence">One-time</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/5kQ6oHb6U9nm3BxdD7fQI0p" class="btn-ghost" style="padding:10px 20px;font-size:10px">Purchase →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">06</div>
-                    <i class="fa-solid fa-envelope service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Email Signature</h3>
-                    <div class="service-desc">A custom-designed, coded signature that works across Gmail, Outlook, and Apple Mail. Every email becomes a professional brand impression. *Requires core service or 2+ add-ons.</div>
+                    <div>
+                        <div class="service-num">06</div>
+                        <i class="fa-solid fa-envelope service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Email Signature</h3>
+                        <div class="service-desc">A custom-designed, coded signature that works across Gmail, Outlook, and Apple Mail. Every email becomes a professional brand impression. *Requires core service.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$125</div>
-                            <div class="service-cadence">One-time engagement</div>
+                            <div class="service-cadence">One-time</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/fZuaEXfna1UU4FB2YtfQI0o" class="btn-ghost" style="padding:10px 20px;font-size:10px">Purchase →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">07</div>
-                    <i class="fa-solid fa-qrcode service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">QR Code Business Cards</h3>
-                    <div class="service-desc">Modern, print-ready cards that bridge the gap between physical and digital. Links directly to your site or contact card. *Requires core service or 2+ add-ons.</div>
+                    <div>
+                        <div class="service-num">07</div>
+                        <i class="fa-solid fa-qrcode service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">QR Code Business Cards</h3>
+                        <div class="service-desc">Modern, print-ready cards that bridge the gap between physical and digital. Links directly to your site or contact card. *Requires core service.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$150</div>
-                            <div class="service-cadence">One-time engagement</div>
+                            <div class="service-cadence">One-time</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/fZu4gz2Ao8ji9ZV8iNfQI0n" class="btn-ghost" style="padding:10px 20px;font-size:10px">Purchase →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">08</div>
-                    <i class="fa-solid fa-star service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Review Management</h3>
-                    <div class="service-desc">Monthly reputation monitoring and professional responses written on your behalf. Keep your Google and Yelp presence active without the effort.</div>
+                    <div>
+                        <div class="service-num">08</div>
+                        <i class="fa-solid fa-star service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Review Management</h3>
+                        <div class="service-desc">Monthly reputation monitoring and professional responses written on your behalf. Keep your Google and Yelp presence active without the effort.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$100</div>
-                            <div class="service-cadence">Monthly retainer</div>
+                            <div class="service-cadence">/ Monthly</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/cNiaEXdf20QQ8VR2YtfQI0m" class="btn-ghost" style="padding:10px 20px;font-size:10px">Subscribe →</a>
                     </div>
                 </div>
 
                 <div class="service-card">
-                    <div class="service-num">09</div>
-                    <i class="fa-solid fa-arrows-rotate service-icon" aria-hidden="true"></i>
-                    <h3 class="service-name">Monthly Maintenance</h3>
-                    <div class="service-desc">Priority site updates and proactive check-ins. We handle the technical upkeep so your site stays fast, secure, and accurate.</div>
+                    <div>
+                        <div class="service-num">09</div>
+                        <i class="fa-solid fa-arrows-rotate service-icon" aria-hidden="true"></i>
+                        <h3 class="service-name">Monthly Maintenance</h3>
+                        <div class="service-desc">Priority site updates and proactive check-ins. We handle the technical upkeep so your site stays fast, secure, and accurate.</div>
+                    </div>
                     <div class="service-footer">
                         <div>
                             <div class="service-price">$125</div>
-                            <div class="service-cadence">Monthly retainer</div>
+                            <div class="service-cadence">/ Monthly</div>
                         </div>
-                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                        <a href="https://buy.stripe.com/4gM6oHcaYdDC4FB9mRfQI0l" class="btn-ghost" style="padding:10px 20px;font-size:10px">Subscribe →</a>
                     </div>
                 </div>
 
@@ -364,7 +390,7 @@
                     <h2 class="bundle-eyebrow">The Foundation Bundle</h2>
                     <div class="bundle-headline">The Complete<br><em>Launch.</em></div>
                     <p>The total digital package for businesses that take their image seriously. Commissioning the three core pillars together ensures a unified brand voice and saves $400 in the process. Includes one premium add-on of your choice.</p>
-                    <a href="/contact" class="btn-ink">Begin the Foundation</a>
+                    <a href="https://buy.stripe.com/3cIaEXb6Uarqb3ZeHbfQI0k" class="btn-ink">Purchase the Foundation</a>
                 </div>
                 <div class="bundle-right">
                     <ul class="bundle-items">
@@ -404,8 +430,8 @@
         <div class="cta-strip-inner">
             <h2 class="cta-headline">Ready to<br><em>Begin?</em></h2>
             <div class="cta-strip-right">
-                <p class="cta-strip-sub">Every project starts with a brief inquiry. No discovery calls, no lengthy onboarding — just a conversation about what you need.</p>
-                <a href="/contact" class="btn-primary">Begin a Project</a>
+                <p class="cta-strip-sub">Need a custom scope or have specific requirements outside of our packages? Tell us about your project.</p>
+                <a href="/contact" class="btn-primary">Submit an Inquiry</a>
             </div>
         </div>
     </section>
