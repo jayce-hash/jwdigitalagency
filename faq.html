@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ | JW Digital</title>
+    <meta name="description" content="Frequently asked questions about JW Digital's web design, timelines, and processes.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
+        :root {
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; }
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+
+        /* CURSOR */
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+        a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
+        input, textarea { cursor: text !important; }
+
+        /* NAV */
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
+        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
+        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
+        .nav-link:hover { color: var(--platinum); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: var(--platinum); }
+        .nav-link.active::after { width: 100%; }
+        .nav-cta { font-size: 10px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid var(--platinum); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
+        .nav-cta:hover { background: var(--white); border-color: var(--white); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
+        .mobile-menu a:hover { color: var(--platinum); }
+
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* SPLIT LAYOUT (CONTACT/LEGAL) */
+        .page-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 72px; }
+        .contact-left { padding: 96px 72px 96px 56px; display: flex; flex-direction: column; border-right: 0.5px solid rgba(244,244,242,0.07); position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
+        .page-headline em { font-style: italic; color: var(--silver); }
+        .contact-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; max-width: 360px; }
+        .contact-right { padding: 96px 56px 96px 72px; overflow-y: auto; }
+
+        /* LEGAL CONTENT STYLES */
+        .legal-wrap { max-width: 560px; }
+        .legal-wrap h2 { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin: 48px 0 16px; font-weight: 400; }
+        .legal-wrap h2:first-child { margin-top: 0; }
+        .legal-wrap p, .legal-wrap ul { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; margin-bottom: 16px; list-style-position: outside; margin-left: 16px; }
+        .legal-wrap p { margin-left: 0; }
+        .legal-wrap li { margin-bottom: 8px; }
+        .legal-wrap strong { color: var(--silver); font-weight: 500; }
+        .legal-wrap a { color: var(--silver); text-decoration: underline; text-decoration-color: rgba(244,244,242,0.2); text-underline-offset: 4px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .legal-wrap a:hover { color: var(--platinum); text-decoration-color: var(--platinum); }
+
+        /* FAQ STYLES */
+        .faq-wrap { max-width: 600px; }
+        .faq-item { border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 32px 0; }
+        .faq-item:first-child { padding-top: 0; }
+        .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
+        .faq-question { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin-bottom: 16px; }
+        .faq-answer { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; }
+
+        /* FORM STYLES */
+        .form-wrap { max-width: 520px; }
+        .inquiry-form { display: flex; flex-direction: column; gap: 24px; }
+        .form-section-head { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 4px; margin-top: 16px; }
+        .form-section-head:first-child { margin-top: 0; }
+        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+        .form-group { display: flex; flex-direction: column; gap: 8px; }
+        .form-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.35); }
+        .form-input, .form-textarea {
+            background: rgba(244,244,242,0.04);
+            border: 0.5px solid rgba(244,244,242,0.1);
+            border-radius: 1px; padding: 14px 16px;
+            font-size: 16px; color: var(--platinum);
+            font-family: 'DM Sans', sans-serif; font-weight: 300;
+            transition: border-color 0.2s, background 0.2s;
+            outline: none; width: 100%;
+        }
+        .form-input::placeholder, .form-textarea::placeholder { color: rgba(244,244,242,0.18); }
+        .form-input:focus, .form-textarea:focus { border-color: rgba(244,244,242,0.3); background: rgba(244,244,242,0.06); }
+        .form-textarea { resize: vertical; min-height: 120px; }
+        .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
+        .form-submit:hover { background: var(--white); }
+        .form-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.25); line-height: 1.7; text-align: center; margin-top: 8px; }
+
+        .success-wrap { display: none; text-align: center; padding: 80px 0; }
+        .success-wrap.visible { display: block; }
+        .success-mark { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 80px; color: var(--silver); line-height: 1; margin-bottom: 32px; }
+        .success-head { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--platinum); margin-bottom: 16px; }
+        .success-body { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 360px; margin: 0 auto 40px; }
+        .btn-ghost-sm { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 14px 32px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost-sm:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
+
+        /* FOOTER */
+        footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
+        .footer-logo { display: inline-flex; flex-direction: column; }
+        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
+        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
+        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-link:hover { color: var(--platinum); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .page-wrap { grid-template-columns: 1fr; }
+            .contact-left { position: static; height: auto; padding: 96px 32px 64px; border-right: none; border-bottom: 0.5px solid rgba(244,244,242,0.07); }
+            .contact-right { padding: 64px 32px 96px; }
+            .form-wrap, .legal-wrap, .faq-wrap { max-width: 100%; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; height: 64px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .contact-left { padding: 80px 24px 48px; }
+            .contact-right { padding: 48px 24px 80px; }
+            .form-row { grid-template-columns: 1fr; }
+            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
+            .footer-links { justify-content: flex-start; flex-wrap: wrap; }
+            .footer-copy { text-align: left; }
+            body { cursor: auto; }
+            .cursor { display: none; }
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+    <a href="/" class="nav-logo">
+        <div class="nav-logo-word">JW/DIGITAL</div>
+    </a>
+    <div class="nav-links">
+        <a href="/shop" class="nav-link">Shop</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/shop" onclick="closeMobileMenu()">Shop</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal">Login</a>
+</div>
+
+<main class="page-wrap">
+    <div class="contact-left fade-up">
+
+        <h1 class="section-label">Knowledge Base</h1>
+        <div class="page-headline">Common<br><em>Questions.</em></div>
+        <p class="contact-desc">Everything you need to know about how we work, what we build, and what you get.</p>
+
+    </div>
+    <div class="contact-right fade-up" style="transition-delay:0.1s">
+
+        <div class="faq-wrap">
+            <div class="faq-item">
+                <h3 class="faq-question">What platforms do you build websites on?</h3>
+                <p class="faq-answer">We are platform-agnostic, meaning we choose the tool that fits your business. Most of our high-performance marketing sites are built using Webflow or custom HTML/CSS for lightning-fast load times. For e-commerce, we primarily use Shopify.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What if I don't like the first draft?</h3>
+                <p class="faq-answer">That's what the revision rounds are for! We include structural revision rounds with every web build and branding package. We refine the work together until the aesthetic and function match your vision.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Do I have to pay for hosting?</h3>
+                <p class="faq-answer">Yes. JW Digital charges a flat-rate for the design and build of your site, but standard domain registration and website hosting (e.g., Webflow hosting, Shopify plans) are billed directly to your credit card by those platforms. We will help you set these accounts up during handover so you have 100% ownership.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">How long does a website build take?</h3>
+                <p class="faq-answer">Unlike traditional agencies that drag projects out for months, we move fast. A standard 1-to-3 page website build typically takes a few days to a week from the moment we receive your assets. Larger builds may take 2-3 weeks. We will confirm your specific timeline within 48 hours of purchase.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Why don't you do discovery calls?</h3>
+                <p class="faq-answer">We respect your time. Traditional discovery calls often end up being hour-long sales pitches. We prefer you to review our transparent pricing, make a direct purchase, and fill out our intake form so we can immediately get to work building your business.</p>
+            </div>
+        </div>
+
+    </div>
+</main>
+
+<footer>
+    <div class="footer-logo">
+        <div class="footer-logo-word">JW/DIGITAL</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
+    <div class="footer-links">
+        <a href="/shop" class="footer-link">Shop</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/tos" class="footer-link">Terms</a>
+        <a href="/privacy" class="footer-link">Privacy</a>
+        <a href="/faq" class="footer-link">FAQ</a>
+    </div>
+</footer>
+
+<script>
+    /* CURSOR */
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0;
+    let mouseY = 0;
+
+    document.addEventListener('mousemove', e => {
+        mouseX = e.clientX;
+        mouseY = e.clientY;
+    });
+
+    function updateCursor() {
+        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    requestAnimationFrame(updateCursor);
+
+    document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+
+    /* FADE UP */
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
+        });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* MOBILE MENU */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+    }
+
+    /* FORM SCRIPT (ONLY USED IF FORM EXISTS) */
+    function handleInquiry(e) {
+        e.preventDefault();
+        const form = e.target;
+        fetch('https://formspree.io/f/mdayrzzd', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('inquiryForm').style.display = 'none';
+                document.getElementById('successWrap').classList.add('visible');
+                window.scrollTo(0, 0);
+            } else {
+                alert("Oops! There was a problem submitting your form.");
+            }
+        }).catch(error => {
+            alert("Oops! There was a problem submitting your form.");
+        });
+    }
+</script>
+</body>
+</html>
