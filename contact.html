@@ -88,20 +88,6 @@
         .form-input:focus, .form-textarea:focus { border-color: rgba(244,244,242,0.3); background: rgba(244,244,242,0.06); }
         .form-textarea { resize: vertical; min-height: 120px; }
 
-        /* SERVICE CHECKBOXES */
-        .service-checks { display: flex; flex-direction: column; gap: 8px; }
-        .service-check { display: flex; align-items: center; gap: 14px; padding: 12px 16px; border: 0.5px solid rgba(244,244,242,0.08); border-radius: 1px; cursor: none; transition: border-color 0.2s, background 0.2s; user-select: none; }
-        .service-check:hover, .service-check:focus { border-color: rgba(244,244,242,0.3); outline: none; }
-        .service-check.checked { border-color: rgba(244,244,242,0.25); background: rgba(244,244,242,0.04); }
-        .check-box { width: 18px; height: 18px; border: 0.5px solid rgba(244,244,242,0.2); border-radius: 1px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
-        .check-box i { font-size: 9px; color: var(--ink); display: none; }
-        .service-check.checked .check-box { background: var(--platinum); border-color: var(--platinum); }
-        .service-check.checked .check-box i { display: block; }
-        .check-name { font-size: 13px; font-weight: 300; color: rgba(244,244,242,0.6); flex: 1; transition: color 0.2s; }
-        .service-check.checked .check-name { color: var(--platinum); }
-        .check-price { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.3); letter-spacing: 0.08em; }
-        .service-check.checked .check-price { color: var(--silver); }
-
         /* SUBMIT */
         .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
         .form-submit:hover { background: var(--white); }
@@ -157,9 +143,10 @@
         <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
+        <a href="/shop" class="nav-link">Shop</a>
         <a href="/services" class="nav-link">Services</a>
         <a href="/work" class="nav-link">Work</a>
-        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/contact" class="nav-link active">Contact</a>
         <a href="/portal" class="nav-cta">Login</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
@@ -168,6 +155,7 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+    <a href="/shop" onclick="closeMobileMenu()">Shop</a>
     <a href="/services" onclick="closeMobileMenu()">Services</a>
     <a href="/work" onclick="closeMobileMenu()">Work</a>
     <a href="/contact" onclick="closeMobileMenu()">Contact</a>
@@ -178,9 +166,9 @@
 
     <div class="contact-left fade-up">
         <div>
-            <h1 class="section-label">New Inquiry</h1>
-            <div class="page-headline">Begin a<br><em>Project.</em></div>
-            <p class="contact-desc">Tell us what you're building and what you need. We'll confirm scope and timeline — usually the same day. No discovery calls, no lengthy onboarding.</p>
+            <h1 class="section-label">Custom Request</h1>
+            <div class="page-headline">Start a<br><em>Conversation.</em></div>
+            <p class="contact-desc">Need something tailored outside our standard shop offerings? Tell us what you're building. We'll confirm scope and timeline — usually the same day.</p>
         </div>
         <div class="contact-details">
             <div class="contact-detail">
@@ -190,17 +178,9 @@
                 </div>
             </div>
             <div class="contact-detail">
-                <div class="contact-detail-label">Response Time</div>
-                <div class="contact-detail-value">Same day, typically within a few hours</div>
-            </div>
-            <div class="contact-detail">
-                <div class="contact-detail-label">Location</div>
-                <div class="contact-detail-value">Based in Colleyville, TX &mdash; Serving Nationwide</div>
-            </div>
-            <div class="contact-detail">
-                <div class="contact-detail-label">Instagram</div>
+                <div class="contact-detail-label">Direct Purchase</div>
                 <div class="contact-detail-value">
-                    <a href="https://instagram.com/jwdigitaltx" target="_blank">@jwdigitaltx</a>
+                    <a href="/shop">Browse & Buy Direct →</a>
                 </div>
             </div>
         </div>
@@ -211,7 +191,6 @@
 
             <form class="inquiry-form" id="inquiryForm" name="project-inquiry" method="POST" data-netlify="true" onsubmit="handleInquiry(event)">
                 <input type="hidden" name="form-name" value="project-inquiry">
-                <input type="hidden" name="services" id="selectedServices" value="">
 
                 <h2 class="form-section-head">About You</h2>
 
@@ -245,69 +224,8 @@
                 <h2 class="form-section-head">The Project</h2>
 
                 <div class="form-group">
-                    <label class="form-label">Services Needed *</label>
-                    <p style="font-size: 10px; color: var(--fog); margin-bottom: 8px;">Website builds include one free add-on. Standalone add-ons require a core service or a minimum selection of two.</p>
-                    
-                    <div class="service-checks" role="group" aria-label="Services Needed">
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="The Foundation Bundle" data-price="$2,000" data-type="core">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">The Foundation Bundle (Site, Logo, Socials)</span>
-                            <span class="check-price">$2,000</span>
-                        </div>
-                        
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Website Build" data-price="$1,500" data-type="core">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Website Build</span>
-                            <span class="check-price">$1,500</span>
-                        </div>
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Logo & Branding" data-price="$600" data-type="core">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Logo &amp; Branding</span>
-                            <span class="check-price">$600</span>
-                        </div>
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Social Launch" data-price="$300" data-type="core">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Social Launch</span>
-                            <span class="check-price">$300</span>
-                        </div>
-
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Google Business Profile" data-price="$200" data-type="addon">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Google Business Profile</span>
-                            <span class="check-price">$200</span>
-                        </div>
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Facebook Business Page" data-price="$150" data-type="addon">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Facebook Business Page</span>
-                            <span class="check-price">$150</span>
-                        </div>
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="QR Code Business Cards" data-price="$150" data-type="addon">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">QR Code Business Cards</span>
-                            <span class="check-price">$150</span>
-                        </div>
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Email Signature" data-price="$125" data-type="addon">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Email Signature</span>
-                            <span class="check-price">$125</span>
-                        </div>
-
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Review Response Management" data-price="$100/mo" data-type="retainer">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Review Response Management</span>
-                            <span class="check-price">$100/mo</span>
-                        </div>
-                        <div class="service-check" role="checkbox" aria-checked="false" tabindex="0" onclick="toggleCheck(this)" onkeydown="handleCheckKey(event, this)" data-service="Monthly Maintenance Retainer" data-price="$125/mo" data-type="retainer">
-                            <div class="check-box"><i class="fa-solid fa-check"></i></div>
-                            <span class="check-name">Monthly Maintenance Retainer</span>
-                            <span class="check-price">$125/mo</span>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="form-group">
                     <label class="form-label" for="business-description">What Does Your Business Do? *</label>
-                    <textarea class="form-textarea" id="business-description" name="business-description" required placeholder="Tell us about your business — what you do, who you serve, and what makes you different. The more specific, the better the result."></textarea>
+                    <textarea class="form-textarea" id="business-description" name="business-description" required placeholder="Tell us about your business — what you do, who you serve, and what makes you different."></textarea>
                 </div>
 
                 <div class="form-group">
@@ -316,12 +234,12 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="notes">Anything Else?</label>
-                    <textarea class="form-textarea" id="notes" name="notes" style="min-height:88px" placeholder="Timeline, specific requirements, questions, or context that would help us understand the scope."></textarea>
+                    <label class="form-label" for="notes">Scope & Specific Needs</label>
+                    <textarea class="form-textarea" id="notes" name="notes" style="min-height:88px" placeholder="Timeline, specific requirements, questions, or context that would help us understand what you need built."></textarea>
                 </div>
 
                 <button type="submit" class="form-submit">Submit Inquiry</button>
-                <p class="form-note">We'll review your inquiry and respond within a few hours to confirm scope and next steps.</p>
+                <p class="form-note">We'll review your inquiry and respond within a few hours to confirm next steps.</p>
             </form>
 
             <div class="success-wrap" id="successWrap">
@@ -341,8 +259,8 @@
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
+        <a href="/shop" class="footer-link">Shop</a>
         <a href="/services" class="footer-link">Services</a>
-        <a href="/work" class="footer-link">Work</a>
         <a href="/contact" class="footer-link">Contact</a>
         <a href="/portal" class="footer-link">Login</a>
     </div>
@@ -379,54 +297,9 @@
         mobileMenu.classList.remove('open');
     }
 
-    /* SERVICE CHECKBOXES (Including Accessibility Updates) */
-    function toggleCheck(el) {
-        el.classList.toggle('checked');
-        const isChecked = el.classList.contains('checked');
-        el.setAttribute('aria-checked', isChecked);
-        
-        const checked = Array.from(document.querySelectorAll('.service-check.checked'));
-        document.getElementById('selectedServices').value = checked
-            .map(c => c.dataset.service + ' (' + c.dataset.price + ')')
-            .join(', ');
-    }
-    
-    function handleCheckKey(e, el) {
-        // Allows toggling the custom checkbox with Space or Enter key
-        if (e.key === ' ' || e.key === 'Enter') {
-            e.preventDefault();
-            toggleCheck(el);
-        }
-    }
-
     /* FORM SUBMISSION */
     function handleInquiry(e) {
         e.preventDefault();
-        const checked = document.querySelectorAll('.service-check.checked');
-        
-        if (checked.length === 0) {
-            alert('Please select at least one service to continue.');
-            return;
-        }
-
-        // Logic to enforce the Minimum Engagement Rule
-        let hasCoreOrRetainer = false;
-        let addOnCount = 0;
-
-        checked.forEach(c => {
-            const type = c.dataset.type;
-            if (type === 'addon') {
-                addOnCount++;
-            } else {
-                hasCoreOrRetainer = true;
-            }
-        });
-
-        if (!hasCoreOrRetainer && addOnCount === 1) {
-            alert('Standalone add-ons require a minimum selection of two to begin an engagement. Please select another service or add-on.');
-            return;
-        }
-
         const form = e.target;
         fetch('/', {
             method: 'POST',
