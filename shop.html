@@ -18,9 +18,13 @@
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; }
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
+        /* CURSOR */
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+        a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
+        input, textarea { cursor: text !important; }
 
+        /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
         .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
         .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
@@ -92,6 +96,16 @@
         .btn-buy { display: inline-flex; justify-content: center; align-items: center; background: var(--platinum); color: var(--ink); padding: 16px 32px; border-radius: 1px; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; cursor: none; transition: background 0.2s; width: 100%; border: none; }
         .btn-buy:hover { background: var(--white); }
 
+        /* SHOP TIERS */
+        .shop-tier-list { display: flex; flex-direction: column; gap: 8px; width: 100%; margin-top: 8px; }
+        .shop-tier-row { display: flex; justify-content: space-between; align-items: center; background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.06); padding: 16px 24px; border-radius: 1px; transition: border-color 0.2s, background 0.2s; }
+        .shop-tier-row:hover { border-color: rgba(244,244,242,0.2); background: rgba(244,244,242,0.04); }
+        .shop-tier-left { display: flex; align-items: baseline; gap: 12px; }
+        .shop-tier-price { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--platinum); line-height: 1; }
+        .shop-tier-label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: rgba(244,244,242,0.4); }
+        .btn-buy-sm { background: var(--platinum); color: var(--ink); padding: 12px 24px; border-radius: 1px; font-size: 9px; font-weight: 600; letter-spacing: 0.16em; text-transform: uppercase; text-decoration: none; cursor: none; transition: background 0.2s; }
+        .btn-buy-sm:hover { background: var(--white); }
+
         /* FOOTER */
         footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
         .footer-logo { display: inline-flex; flex-direction: column; }
@@ -123,6 +137,10 @@
             .footer-copy { text-align: left; }
             body { cursor: auto; }
             .cursor { display: none; }
+        }
+        @media (max-width: 480px) {
+            .shop-tier-row { padding: 16px; }
+            .shop-tier-left { flex-direction: column; gap: 4px; }
         }
     </style>
 </head>
@@ -207,14 +225,35 @@
                 <div class="shop-item-top">
                     <div>
                         <h3 class="shop-item-title">Website Build</h3>
-                        <p class="shop-item-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO.</p>
-                    </div>
-                    <div class="shop-item-price-wrap">
-                        <div class="shop-item-price">$1,500</div>
-                        <div class="shop-item-cadence">One-time</div>
+                        <p class="shop-item-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO. Choose your size below.</p>
                     </div>
                 </div>
-                 <a href="#" class="btn-buy">Purchase Website</a>
+                
+                <div class="shop-tier-list">
+                    <div class="shop-tier-row">
+                        <div class="shop-tier-left">
+                            <span class="shop-tier-price">$750</span>
+                            <span class="shop-tier-label">1 Page</span>
+                        </div>
+                        <a href="#" class="btn-buy-sm">Purchase</a>
+                    </div>
+                    
+                    <div class="shop-tier-row">
+                        <div class="shop-tier-left">
+                            <span class="shop-tier-price">$1,250</span>
+                            <span class="shop-tier-label">3 Pages</span>
+                        </div>
+                        <a href="#" class="btn-buy-sm">Purchase</a>
+                    </div>
+                    
+                    <div class="shop-tier-row">
+                        <div class="shop-tier-left">
+                            <span class="shop-tier-price">$1,500</span>
+                            <span class="shop-tier-label">5+ Pages</span>
+                        </div>
+                        <a href="#" class="btn-buy-sm">Purchase</a>
+                    </div>
+                </div>
             </div>
 
             <div class="shop-item">
@@ -287,6 +326,7 @@
     <div class="footer-links">
         <a href="/shop" class="footer-link">Shop</a>
         <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
         <a href="/contact" class="footer-link">Contact</a>
         <a href="/portal" class="footer-link">Login</a>
     </div>
@@ -295,10 +335,21 @@
 <script>
     /* CURSOR */
     const cursor = document.getElementById('cursor');
+    let mouseX = 0;
+    let mouseY = 0;
+
     document.addEventListener('mousemove', e => {
-        cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
-    document.querySelectorAll('a,button').forEach(el => {
+
+    function updateCursor() {
+        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    requestAnimationFrame(updateCursor);
+
+    document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
