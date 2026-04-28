@@ -21,6 +21,8 @@
         /* CURSOR */
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+        a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
+        input, textarea { cursor: text !important; }
 
         /* NAV */
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
@@ -181,6 +183,7 @@
         <div class="nav-logo-word">JW/DIGITAL</div>
     </a>
     <div class="nav-links">
+        <a href="/shop" class="nav-link">Shop</a>
         <a href="/services" class="nav-link active">Services</a>
         <a href="/work" class="nav-link">Work</a>
         <a href="/contact" class="nav-link">Contact</a>
@@ -192,6 +195,7 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
+    <a href="/shop" onclick="closeMobileMenu()">Shop</a>
     <a href="/services" onclick="closeMobileMenu()">Services</a>
     <a href="/work" onclick="closeMobileMenu()">Work</a>
     <a href="/contact" onclick="closeMobileMenu()">Contact</a>
@@ -214,28 +218,28 @@
             <div class="services-grid fade-up">
 
                 <div class="service-card">
-    <div class="service-num">01</div>
-    <i class="fa-solid fa-globe service-icon" aria-hidden="true"></i>
-    <h3 class="service-name">Website Build</h3>
-    <div class="service-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO and **one premium add-on of your choice** (Google Profile, Email Sig, etc) at no extra cost.</div>
-    <div class="service-footer" style="align-items: center;">
-        <div class="pricing-tiers">
-            <div class="pricing-tier">
-                <span class="pricing-tier-price">$750</span>
-                <span class="pricing-tier-label">1 Page</span>
-            </div>
-            <div class="pricing-tier">
-                <span class="pricing-tier-price">$1,250</span>
-                <span class="pricing-tier-label">3 Pages</span>
-            </div>
-            <div class="pricing-tier">
-                <span class="pricing-tier-price">$1,500</span>
-                <span class="pricing-tier-label">5+ Pages</span>
-            </div>
-        </div>
-        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
-    </div>
-</div>
+                    <div class="service-num">01</div>
+                    <i class="fa-solid fa-globe service-icon" aria-hidden="true"></i>
+                    <h3 class="service-name">Website Build</h3>
+                    <div class="service-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO and **one premium add-on of your choice** (Google Profile, Email Sig, etc) at no extra cost.</div>
+                    <div class="service-footer" style="align-items: center;">
+                        <div class="pricing-tiers">
+                            <div class="pricing-tier">
+                                <span class="pricing-tier-price">$750</span>
+                                <span class="pricing-tier-label">1 Page</span>
+                            </div>
+                            <div class="pricing-tier">
+                                <span class="pricing-tier-price">$1,250</span>
+                                <span class="pricing-tier-label">3 Pages</span>
+                            </div>
+                            <div class="pricing-tier">
+                                <span class="pricing-tier-price">$1,500</span>
+                                <span class="pricing-tier-label">5+ Pages</span>
+                            </div>
+                        </div>
+                        <a href="/contact" class="btn-ghost" style="padding:10px 20px;font-size:10px">Begin →</a>
+                    </div>
+                </div>
 
                 <div class="service-card">
                     <div class="service-num">02</div>
@@ -365,7 +369,7 @@
                 <div class="bundle-right">
                     <ul class="bundle-items">
                         <li class="bundle-item">
-                            <span class="bundle-item-name">Website Build</span>
+                            <span class="bundle-item-name">Website Build (5+ Pages)</span>
                             <span class="bundle-item-price">$1,500</span>
                         </li>
                         <li class="bundle-item">
@@ -413,6 +417,7 @@
     </div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
+        <a href="/shop" class="footer-link">Shop</a>
         <a href="/services" class="footer-link">Services</a>
         <a href="/work" class="footer-link">Work</a>
         <a href="/contact" class="footer-link">Contact</a>
@@ -421,14 +426,27 @@
 </footer>
 
 <script>
+    /* CURSOR */
     const cursor = document.getElementById('cursor');
+    let mouseX = 0;
+    let mouseY = 0;
+
     document.addEventListener('mousemove', e => {
-        cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
+        mouseX = e.clientX;
+        mouseY = e.clientY;
     });
-    document.querySelectorAll('a,button').forEach(el => {
+
+    function updateCursor() {
+        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    requestAnimationFrame(updateCursor);
+
+    document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
+
     const obs = new IntersectionObserver(entries => {
         entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
     }, { threshold: 0.06 });
