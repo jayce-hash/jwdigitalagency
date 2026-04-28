@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shop Services | JW Digital</title>
+    <meta name="description" content="Purchase web design and branding packages directly from JW Digital. Transparent pricing, fast turnarounds.">
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
+        :root {
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; }
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
+        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
+        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
+        .nav-link:hover { color: var(--platinum); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-link.active { color: var(--platinum); }
+        .nav-link.active::after { width: 100%; }
+        .nav-cta { font-size: 10px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid var(--platinum); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
+        .nav-cta:hover { background: var(--white); border-color: var(--white); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px,-5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
+        .mobile-menu a:hover { color: var(--platinum); }
+
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        /* LAYOUT */
+        .page-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 72px; }
+
+        /* LEFT PANEL (POLICIES) */
+        .contact-left { padding: 96px 72px 96px 56px; display: flex; flex-direction: column; justify-content: space-between; border-right: 0.5px solid rgba(244,244,242,0.07); position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
+        .page-headline em { font-style: italic; color: var(--silver); }
+        .contact-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; max-width: 360px; margin-bottom: 32px;}
+        
+        .policy-box { background: rgba(244,244,242,0.03); border: 0.5px solid rgba(244,244,242,0.1); padding: 24px; border-radius: 1px; max-width: 360px; }
+        .policy-title { font-size: 11px; font-weight: 500; color: var(--platinum); letter-spacing: 0.16em; text-transform: uppercase; margin-bottom: 12px; display: flex; align-items: center; gap: 8px; }
+        .policy-text { font-size: 13px; font-weight: 300; color: rgba(244,244,242,0.6); line-height: 1.7; }
+        
+        .contact-details { display: flex; flex-direction: column; gap: 24px; margin-top: 40px;}
+        .contact-detail { display: flex; flex-direction: column; gap: 6px; }
+        .contact-detail-label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); }
+        .contact-detail-value { font-size: 14px; font-weight: 300; color: rgba(244,244,242,0.55); }
+        .contact-detail-value a { color: rgba(244,244,242,0.55); text-decoration: underline; text-decoration-color: rgba(244,244,242,0.2); text-underline-offset: 4px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .contact-detail-value a:hover { color: var(--platinum); text-decoration-color: var(--platinum); }
+
+        /* RIGHT PANEL (PRODUCTS) */
+        .contact-right { padding: 96px 56px 96px 72px; overflow-y: auto; }
+        .shop-wrap { max-width: 600px; display: flex; flex-direction: column; gap: 20px; }
+        
+        .shop-category { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 8px; margin-top: 24px; }
+        .shop-category:first-child { margin-top: 0; }
+
+        .shop-item { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.08); padding: 32px; border-radius: 1px; display: flex; flex-direction: column; gap: 24px; transition: border-color 0.3s, background 0.3s; }
+        .shop-item:hover { border-color: rgba(244,244,242,0.25); background: rgba(244,244,242,0.05); }
+        
+        .shop-item-top { display: flex; justify-content: space-between; align-items: flex-start; gap: 24px; }
+        .shop-item-title { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--platinum); line-height: 1.1; margin-bottom: 8px; }
+        .shop-item-desc { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.7; }
+        
+        .shop-item-price-wrap { text-align: right; flex-shrink: 0; }
+        .shop-item-price { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--silver); line-height: 1; }
+        .shop-item-cadence { font-size: 9px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: rgba(244,244,242,0.3); margin-top: 4px; }
+
+        .btn-buy { display: inline-flex; justify-content: center; align-items: center; background: var(--platinum); color: var(--ink); padding: 16px 32px; border-radius: 1px; font-size: 10px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; text-decoration: none; cursor: none; transition: background 0.2s; width: 100%; border: none; }
+        .btn-buy:hover { background: var(--white); }
+
+        /* FOOTER */
+        footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
+        .footer-logo { display: inline-flex; flex-direction: column; }
+        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
+        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
+        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-link:hover { color: var(--platinum); }
+
+        /* RESPONSIVE */
+        @media (max-width: 1024px) {
+            .page-wrap { grid-template-columns: 1fr; }
+            .contact-left { position: static; height: auto; padding: 96px 32px 64px; border-right: none; border-bottom: 0.5px solid rgba(244,244,242,0.07); }
+            .contact-right { padding: 64px 32px 96px; }
+            .shop-wrap { max-width: 100%; }
+            .policy-box { max-width: 100%; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; height: 64px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .contact-left { padding: 80px 24px 48px; }
+            .contact-right { padding: 48px 24px 80px; }
+            .shop-item-top { flex-direction: column; gap: 16px; }
+            .shop-item-price-wrap { text-align: left; }
+            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
+            .footer-links { justify-content: flex-start; }
+            .footer-copy { text-align: left; }
+            body { cursor: auto; }
+            .cursor { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+    <a href="/" class="nav-logo">
+        <div class="nav-logo-word">JW/DIGITAL</div>
+    </a>
+    <div class="nav-links">
+        <a href="/shop" class="nav-link active">Shop</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/shop" onclick="closeMobileMenu()">Shop</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/contact" onclick="closeMobileMenu()">Contact</a>
+    <a href="/portal">Login</a>
+</div>
+
+<main class="page-wrap">
+
+    <div class="contact-left fade-up">
+        <div>
+            <h1 class="section-label">Direct Checkout</h1>
+            <div class="page-headline">Buy<br><em>Direct.</em></div>
+            <p class="contact-desc">Select your service, process payment, and let's get to work. No lengthy discovery calls required.</p>
+            
+            <div class="policy-box">
+                <div class="policy-title"><i class="fa-solid fa-shield-halved"></i> The 48-Hour Guarantee</div>
+                <div class="policy-text">If we cannot fulfill your order or confirm your scope within 48 hours of purchase, you will receive a 100% refund to your original payment method. No questions asked.</div>
+            </div>
+        </div>
+        
+        <div class="contact-details">
+            <div class="contact-detail">
+                <div class="contact-detail-label">Legal</div>
+                <div class="contact-detail-value">
+                    By purchasing, you agree to our <a href="/tos">Terms of Service</a>.
+                </div>
+            </div>
+            <div class="contact-detail">
+                <div class="contact-detail-label">Need a Custom Scope?</div>
+                <div class="contact-detail-value">
+                    <a href="/contact">Submit an Inquiry →</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="contact-right fade-up" style="transition-delay:0.1s">
+        <div class="shop-wrap">
+
+            <h2 class="shop-category">Core Packages</h2>
+
+            <div class="shop-item">
+                <div class="shop-item-top">
+                    <div>
+                        <h3 class="shop-item-title">The Foundation Bundle</h3>
+                        <p class="shop-item-desc">Website Build, Logo & Branding, and Social Launch. Includes one premium add-on of your choice.</p>
+                    </div>
+                    <div class="shop-item-price-wrap">
+                        <div class="shop-item-price">$2,000</div>
+                        <div class="shop-item-cadence">One-time</div>
+                    </div>
+                </div>
+                <a href="#" class="btn-buy">Purchase Bundle</a>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-top">
+                    <div>
+                        <h3 class="shop-item-title">Website Build</h3>
+                        <p class="shop-item-desc">A custom, fast-loading, mobile-first website built to convert. Includes on-page SEO.</p>
+                    </div>
+                    <div class="shop-item-price-wrap">
+                        <div class="shop-item-price">$1,500</div>
+                        <div class="shop-item-cadence">One-time</div>
+                    </div>
+                </div>
+                 <a href="#" class="btn-buy">Purchase Website</a>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-top">
+                    <div>
+                        <h3 class="shop-item-title">Logo & Branding</h3>
+                        <p class="shop-item-desc">A complete brand identity system. Custom mark, color palette, typography, and a brand guide.</p>
+                    </div>
+                    <div class="shop-item-price-wrap">
+                        <div class="shop-item-price">$600</div>
+                        <div class="shop-item-cadence">One-time</div>
+                    </div>
+                </div>
+                 <a href="#" class="btn-buy">Purchase Branding</a>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-top">
+                    <div>
+                        <h3 class="shop-item-title">Social Launch</h3>
+                        <p class="shop-item-desc">Strategic setup of two platforms. Includes branded bios, optimized settings, and three custom launch graphics.</p>
+                    </div>
+                    <div class="shop-item-price-wrap">
+                        <div class="shop-item-price">$300</div>
+                        <div class="shop-item-cadence">One-time</div>
+                    </div>
+                </div>
+                 <a href="#" class="btn-buy">Purchase Socials</a>
+            </div>
+
+            <h2 class="shop-category">Retainers & Add-ons</h2>
+
+            <div class="shop-item">
+                <div class="shop-item-top">
+                    <div>
+                        <h3 class="shop-item-title">Review Response Management</h3>
+                        <p class="shop-item-desc">Monthly reputation monitoring and professional responses written on your behalf.</p>
+                    </div>
+                    <div class="shop-item-price-wrap">
+                        <div class="shop-item-price">$100</div>
+                        <div class="shop-item-cadence">/ Monthly</div>
+                    </div>
+                </div>
+                 <a href="#" class="btn-buy">Subscribe</a>
+            </div>
+
+            <div class="shop-item">
+                <div class="shop-item-top">
+                    <div>
+                        <h3 class="shop-item-title">Monthly Maintenance</h3>
+                        <p class="shop-item-desc">Priority site updates, proactive check-ins, and technical upkeep.</p>
+                    </div>
+                    <div class="shop-item-price-wrap">
+                        <div class="shop-item-price">$125</div>
+                        <div class="shop-item-cadence">/ Monthly</div>
+                    </div>
+                </div>
+                 <a href="#" class="btn-buy">Subscribe</a>
+            </div>
+
+        </div>
+    </div>
+</main>
+
+<footer>
+    <div class="footer-logo">
+        <div class="footer-logo-word">JW/DIGITAL</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
+    <div class="footer-links">
+        <a href="/shop" class="footer-link">Shop</a>
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/portal" class="footer-link">Login</a>
+    </div>
+</footer>
+
+<script>
+    /* CURSOR */
+    const cursor = document.getElementById('cursor');
+    document.addEventListener('mousemove', e => {
+        cursor.style.transform = `translate(${e.clientX}px,${e.clientY}px) translate(-50%,-50%)`;
+    });
+    document.querySelectorAll('a,button').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+
+    /* FADE UP */
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => {
+            if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
+        });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* MOBILE MENU */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('open');
+    });
+    function closeMobileMenu() {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('open');
+    }
+</script>
+</body>
+</html>
