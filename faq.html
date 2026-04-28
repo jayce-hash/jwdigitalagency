@@ -8,7 +8,6 @@
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
-
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         h1, h2, h3 { font-weight: inherit; margin: 0; }
         :root {
@@ -56,7 +55,7 @@
 
         /* SPLIT LAYOUT (CONTACT/LEGAL) */
         .page-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 72px; }
-        .contact-left { padding: 96px 72px 96px 56px; display: flex; flex-direction: column; border-right: 0.5px solid rgba(244,244,242,0.07); position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; }
+        .contact-left { padding: 96px 72px 96px 56px; display: flex; flex-direction: column; justify-content: space-between; border-right: 0.5px solid rgba(244,244,242,0.07); position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; }
         .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
         .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
         .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
@@ -64,16 +63,12 @@
         .contact-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; max-width: 360px; }
         .contact-right { padding: 96px 56px 96px 72px; overflow-y: auto; }
 
-        /* LEGAL CONTENT STYLES */
-        .legal-wrap { max-width: 560px; }
-        .legal-wrap h2 { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin: 48px 0 16px; font-weight: 400; }
-        .legal-wrap h2:first-child { margin-top: 0; }
-        .legal-wrap p, .legal-wrap ul { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; margin-bottom: 16px; list-style-position: outside; margin-left: 16px; }
-        .legal-wrap p { margin-left: 0; }
-        .legal-wrap li { margin-bottom: 8px; }
-        .legal-wrap strong { color: var(--silver); font-weight: 500; }
-        .legal-wrap a { color: var(--silver); text-decoration: underline; text-decoration-color: rgba(244,244,242,0.2); text-underline-offset: 4px; transition: color 0.2s, text-decoration-color 0.2s; }
-        .legal-wrap a:hover { color: var(--platinum); text-decoration-color: var(--platinum); }
+        .contact-details { display: flex; flex-direction: column; gap: 24px; margin-top: 40px;}
+        .contact-detail { display: flex; flex-direction: column; gap: 6px; }
+        .contact-detail-label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); }
+        .contact-detail-value { font-size: 14px; font-weight: 300; color: rgba(244,244,242,0.55); }
+        .contact-detail-value a { color: rgba(244,244,242,0.55); text-decoration: underline; text-decoration-color: rgba(244,244,242,0.2); text-underline-offset: 4px; transition: color 0.2s, text-decoration-color 0.2s; }
+        .contact-detail-value a:hover { color: var(--platinum); text-decoration-color: var(--platinum); }
 
         /* FAQ STYLES */
         .faq-wrap { max-width: 600px; }
@@ -82,38 +77,6 @@
         .faq-item:last-child { border-bottom: none; padding-bottom: 0; }
         .faq-question { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin-bottom: 16px; }
         .faq-answer { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; }
-
-        /* FORM STYLES */
-        .form-wrap { max-width: 520px; }
-        .inquiry-form { display: flex; flex-direction: column; gap: 24px; }
-        .form-section-head { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 4px; margin-top: 16px; }
-        .form-section-head:first-child { margin-top: 0; }
-        .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
-        .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.35); }
-        .form-input, .form-textarea {
-            background: rgba(244,244,242,0.04);
-            border: 0.5px solid rgba(244,244,242,0.1);
-            border-radius: 1px; padding: 14px 16px;
-            font-size: 16px; color: var(--platinum);
-            font-family: 'DM Sans', sans-serif; font-weight: 300;
-            transition: border-color 0.2s, background 0.2s;
-            outline: none; width: 100%;
-        }
-        .form-input::placeholder, .form-textarea::placeholder { color: rgba(244,244,242,0.18); }
-        .form-input:focus, .form-textarea:focus { border-color: rgba(244,244,242,0.3); background: rgba(244,244,242,0.06); }
-        .form-textarea { resize: vertical; min-height: 120px; }
-        .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
-        .form-submit:hover { background: var(--white); }
-        .form-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.25); line-height: 1.7; text-align: center; margin-top: 8px; }
-
-        .success-wrap { display: none; text-align: center; padding: 80px 0; }
-        .success-wrap.visible { display: block; }
-        .success-mark { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 80px; color: var(--silver); line-height: 1; margin-bottom: 32px; }
-        .success-head { font-family: 'DM Serif Display', serif; font-size: 36px; color: var(--platinum); margin-bottom: 16px; }
-        .success-body { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 360px; margin: 0 auto 40px; }
-        .btn-ghost-sm { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 14px 32px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
-        .btn-ghost-sm:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
 
         /* FOOTER */
         footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
@@ -130,7 +93,7 @@
             .page-wrap { grid-template-columns: 1fr; }
             .contact-left { position: static; height: auto; padding: 96px 32px 64px; border-right: none; border-bottom: 0.5px solid rgba(244,244,242,0.07); }
             .contact-right { padding: 64px 32px 96px; }
-            .form-wrap, .legal-wrap, .faq-wrap { max-width: 100%; }
+            .faq-wrap { max-width: 100%; }
         }
         @media (max-width: 768px) {
             nav { padding: 0 24px; height: 64px; }
@@ -138,14 +101,12 @@
             .hamburger { display: flex; }
             .contact-left { padding: 80px 24px 48px; }
             .contact-right { padding: 48px 24px 80px; }
-            .form-row { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
             .footer-links { justify-content: flex-start; flex-wrap: wrap; }
             .footer-copy { text-align: left; }
             body { cursor: auto; }
             .cursor { display: none; }
         }
-
     </style>
 </head>
 <body>
@@ -176,37 +137,58 @@
 
 <main class="page-wrap">
     <div class="contact-left fade-up">
-
-        <h1 class="section-label">Knowledge Base</h1>
-        <div class="page-headline">Common<br><em>Questions.</em></div>
-        <p class="contact-desc">Everything you need to know about how we work, what we build, and what you get.</p>
-
+        <div>
+            <h1 class="section-label">Knowledge Base</h1>
+            <div class="page-headline">Common<br><em>Questions.</em></div>
+            <p class="contact-desc">Everything you need to know about how we work, what we build, and what you receive.</p>
+        </div>
+        
+        <div class="contact-details">
+            <div class="contact-detail">
+                <div class="contact-detail-label">Still Need Clarity?</div>
+                <div class="contact-detail-value">
+                    Email us directly at <br>
+                    <a href="mailto:jwdigitaltx@gmail.com">jwdigitaltx@gmail.com</a>
+                </div>
+            </div>
+        </div>
     </div>
+    
     <div class="contact-right fade-up" style="transition-delay:0.1s">
-
         <div class="faq-wrap">
             <div class="faq-item">
-                <h3 class="faq-question">What platforms do you build websites on?</h3>
-                <p class="faq-answer">We are platform-agnostic, meaning we choose the tool that fits your business. Most of our high-performance marketing sites are built using Webflow or custom HTML/CSS for lightning-fast load times. For e-commerce, we primarily use Shopify.</p>
+                <h3 class="faq-question">Why don't you do discovery calls?</h3>
+                <p class="faq-answer">We respect your time. Traditional discovery calls often end up being an hour-long sales pitch for a customized proposal that takes another week to receive. We prefer you to review our transparent pricing, select your specific service, and check out directly so we can begin engineering your brand immediately.</p>
             </div>
             <div class="faq-item">
-                <h3 class="faq-question">What if I don't like the first draft?</h3>
-                <p class="faq-answer">That's what the revision rounds are for! We include structural revision rounds with every web build and branding package. We refine the work together until the aesthetic and function match your vision.</p>
-            </div>
-            <div class="faq-item">
-                <h3 class="faq-question">Do I have to pay for hosting?</h3>
-                <p class="faq-answer">Yes. JW Digital charges a flat-rate for the design and build of your site, but standard domain registration and website hosting (e.g., Webflow hosting, Shopify plans) are billed directly to your credit card by those platforms. We will help you set these accounts up during handover so you have 100% ownership.</p>
+                <h3 class="faq-question">If we don't do calls, how do we communicate?</h3>
+                <p class="faq-answer">Efficiency is our priority. Once you secure a service, all project communication, asset collection, and revision feedback is handled asynchronously via email and your dedicated Client Portal. This keeps everything in writing, prevents miscommunications, and allows us to dedicate our time to actually building your business.</p>
             </div>
             <div class="faq-item">
                 <h3 class="faq-question">How long does a website build take?</h3>
-                <p class="faq-answer">Unlike traditional agencies that drag projects out for months, we move fast. A standard 1-to-3 page website build typically takes a few days to a week from the moment we receive your assets. Larger builds may take 2-3 weeks. We will confirm your specific timeline within 48 hours of purchase.</p>
+                <p class="faq-answer">Unlike traditional agencies that drag projects out for months, we move fast. A standard 1-to-3 page website build typically takes a few days to a week from the moment we receive your assets. Larger builds may take 2-3 weeks. We will confirm your specific timeline within 48 hours of your purchase.</p>
             </div>
             <div class="faq-item">
-                <h3 class="faq-question">Why don't you do discovery calls?</h3>
-                <p class="faq-answer">We respect your time. Traditional discovery calls often end up being hour-long sales pitches. We prefer you to review our transparent pricing, make a direct purchase, and fill out our intake form so we can immediately get to work building your business.</p>
+                <h3 class="faq-question">Do I need to provide the copywriting and photos?</h3>
+                <p class="faq-answer">Yes. To maintain our rapid turnaround times, we require you to provide the text and brand imagery for your site. During the onboarding process, we will guide you on exactly what we need. If you do not have photos, we can source premium, royalty-free stock imagery that aligns with your brand aesthetic.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Do I need to buy my domain name first?</h3>
+                <p class="faq-answer">Yes. You should own your domain name outright. We recommend purchasing it through a registrar like Google Domains or GoDaddy. During onboarding, we will ask for secure access so we can point your domain to your new website once it is ready to launch.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What platforms do you build websites on?</h3>
+                <p class="faq-answer">We are platform-agnostic, meaning we choose the tool that best fits your business. Most of our high-performance marketing sites are built using Webflow or custom HTML/CSS for lightning-fast load times. For e-commerce builds, we primarily utilize Shopify.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">What if I don't like the first draft?</h3>
+                <p class="faq-answer">That's what the revision rounds are for. We include structural revision rounds with every web build and branding package. We refine the work together until the aesthetic and function align with your vision.</p>
+            </div>
+            <div class="faq-item">
+                <h3 class="faq-question">Do I have to pay for hosting?</h3>
+                <p class="faq-answer">Yes. JW Digital charges a flat-rate for the design and build of your site, but standard domain registration and website hosting (e.g., Webflow hosting, Shopify plans) are billed directly to your credit card by those platforms. We will assist you in setting these accounts up during handover so you have 100% ownership.</p>
             </div>
         </div>
-
     </div>
 </main>
 
@@ -266,27 +248,6 @@
     function closeMobileMenu() {
         hamburger.classList.remove('open');
         mobileMenu.classList.remove('open');
-    }
-
-    /* FORM SCRIPT (ONLY USED IF FORM EXISTS) */
-    function handleInquiry(e) {
-        e.preventDefault();
-        const form = e.target;
-        fetch('https://formspree.io/f/mdayrzzd', {
-            method: 'POST',
-            body: new FormData(form),
-            headers: { 'Accept': 'application/json' }
-        }).then(response => {
-            if (response.ok) {
-                document.getElementById('inquiryForm').style.display = 'none';
-                document.getElementById('successWrap').classList.add('visible');
-                window.scrollTo(0, 0);
-            } else {
-                alert("Oops! There was a problem submitting your form.");
-            }
-        }).catch(error => {
-            alert("Oops! There was a problem submitting your form.");
-        });
     }
 </script>
 </body>
