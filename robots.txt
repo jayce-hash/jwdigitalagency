@@ -1,0 +1,16 @@
+# robots.txt for jwdigital.ink
+# Allow all crawlers, exclude client-only and payment pages
+
+User-agent: *
+Allow: /
+
+# Block client portal and payment pages from indexing
+Disallow: /portal
+Disallow: /pay
+Disallow: /onboarding
+
+# Block Netlify functions
+Disallow: /.netlify/
+
+# Sitemap location
+Sitemap: https://jwdigital.ink/sitemap.xml
