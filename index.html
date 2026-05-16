@@ -3,16 +3,43 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JW Digital | Brand Identity & Web Design Agency</title>
-    <meta name="description" content="JW Digital is a boutique agency delivering custom web design, brand identity, and digital strategy for businesses ready to elevate their online presence.">
-    
+    <title>JW Digital | Websites for Service Businesses — Flat Rate, Under 14 Days</title>
+    <meta name="description" content="JW Digital builds high-converting websites, brand identity, and local SEO for plumbers, contractors, roofers, restaurants, and other service businesses. Flat rates from $750. Most projects delivered in under 14 days.">
+    <meta name="keywords" content="web design for service businesses, contractor website, plumber website, roofing website, restaurant website, small business web design, local SEO, Google Business Profile, affordable web design">
+
+    <link rel="canonical" href="https://jwdigital.ink/">
     <link rel="icon" href="https://jwdigital.ink/favicon.ico" type="image/x-icon">
 
-    <meta property="og:title" content="JW Digital | High-Performance Web Design">
-    <meta property="og:description" content="Productized agency solutions for DFW businesses. Custom web design, brand identity, and local SEO. Flat rates. No discovery calls.">
+    <meta property="og:title" content="JW Digital | Websites That Bring Customers In">
+    <meta property="og:description" content="Flat-rate web design, branding & local SEO for service businesses. From $750. Most projects shipped in under 14 days.">
     <meta property="og:image" content="https://jwdigital.ink/social-preview.jpg">
     <meta property="og:url" content="https://jwdigital.ink">
     <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="JW Digital | Websites That Bring Customers In">
+    <meta name="twitter:description" content="Flat-rate web design, branding & local SEO for service businesses. From $750.">
+    <meta name="twitter:image" content="https://jwdigital.ink/social-preview.jpg">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "ProfessionalService",
+      "name": "JW Digital",
+      "image": "https://jwdigital.ink/social-preview.jpg",
+      "url": "https://jwdigital.ink",
+      "description": "Boutique web design, brand identity, and local SEO agency serving service businesses nationwide.",
+      "priceRange": "$$",
+      "founder": { "@type": "Person", "name": "Jayce" },
+      "areaServed": "United States",
+      "serviceType": ["Web Design", "Brand Identity", "Local SEO", "Google Business Profile Optimization", "Logo Design"],
+      "offers": [
+        { "@type": "Offer", "name": "Full Foundation Bundle", "price": "2000", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Website Build (1 Page)", "price": "750", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Website Build (5+ Pages)", "price": "1500", "priceCurrency": "USD" },
+        { "@type": "Offer", "name": "Logo & Branding", "price": "300", "priceCurrency": "USD" }
+      ]
+    }
+    </script>
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -20,94 +47,136 @@
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
         h1, h2, h3 { font-weight: inherit; margin: 0; }
         :root {
-            --ink: #1A1A1A;
-            --smoke: #2E2E2E;
-            --fog: #7A7A7A;
-            --silver: #C2C2C2;
-            --platinum: #F4F4F2;
-            --white: #ffffff;
-        }
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+            }
         html { scroll-behavior: smooth; }
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
-
-        /* GRAIN */
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
-        /* CURSOR */
-        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s, opacity 0.2s; }
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
-        a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
-        input, textarea { cursor: text !important; }
+        a, button, input, textarea, select, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
+        input, textarea, select { cursor: text !important; }
 
-        /* NAV */
-        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; transition: background 0.5s, border-color 0.5s; }
+        .trust-bar { background: var(--smoke); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 8px 56px; display: flex; justify-content: center; align-items: center; gap: 24px; font-size: 10px; font-weight: 500; color: var(--silver); letter-spacing: 0.16em; text-transform: uppercase; position: fixed; top: 0; left: 0; right: 0; z-index: 101; }
+        .trust-bar-item { display: flex; align-items: center; gap: 8px; }
+        .trust-bar-item i { color: var(--silver); font-size: 9px; }
+        .trust-bar-sep { width: 0.5px; height: 12px; background: rgba(244,244,242,0.15); }
+
+        nav { position: fixed; top: 32px; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; transition: background 0.5s, border-color 0.5s; }
         nav.scrolled { background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
         .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
-        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
         .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
         .nav-links { display: flex; align-items: center; gap: 40px; }
-        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
         .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
         .nav-link:hover { color: var(--platinum); }
         .nav-link:hover::after { width: 100%; }
-        .nav-cta { font-size: 10px; font-weight: 500; color: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid rgba(244,244,242,0.22); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
-        .nav-cta:hover { background: var(--platinum); color: var(--ink); border-color: var(--platinum); }
+        .nav-cta { font-size: 10px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 24px; background: var(--platinum); border-radius: 1px; transition: background 0.2s, transform 0.15s; cursor: none; }
+        .nav-cta:hover { background: var(--white); transform: translateY(-1px); }
 
-        /* HAMBURGER */
         .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
         .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 96px; left: 0; right: 0; z-index: 99; }
         .mobile-menu.open { display: flex; }
         .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
         .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
         .mobile-menu a:hover { color: var(--platinum); }
 
-        /* ANIMATIONS */
         .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
-        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.3} }
 
-        /* HERO */
-        .hero { min-height: 100vh; display: flex; flex-direction: column; justify-content: flex-end; padding: 0 56px 80px; position: relative; overflow: hidden; }
+        .hero { min-height: 100vh; padding-top: 104px; display: flex; flex-direction: column; justify-content: center; padding-left: 56px; padding-right: 56px; padding-bottom: 60px; position: relative; overflow: hidden; }
         .hero-bg { position: absolute; inset: 0; background: var(--ink); }
-        .hero-line { position: absolute; top: 0; left: 56px; right: 56px; height: 0.5px; background: rgba(244,244,242,0.08); }
-        .hero-inner { position: relative; z-index: 2; max-width: 1200px; width: 100%; }
-        .hero-eyebrow { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); margin-bottom: 40px; display: flex; align-items: center; gap: 16px; }
-        .hero-eyebrow::before { content: ""; width: 32px; height: 0.5px; background: var(--silver); display: block; }
-        .hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(72px, 9vw, 140px); line-height: 0.88; letter-spacing: -0.02em; color: var(--platinum); margin-bottom: 0; font-weight: 400; }
+        .hero-inner { position: relative; z-index: 2; max-width: 1280px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: center; }
+        .hero-content { display: flex; flex-direction: column; }
+        .hero-eyebrow { font-size: 10px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
+        .hero-eyebrow::before { content: ""; width: 32px; height: 0.5px; background: var(--platinum); display: block; }
+        .hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 6.5vw, 96px); line-height: 0.95; letter-spacing: -0.02em; color: var(--platinum); margin-bottom: 28px; font-weight: 400; }
         .hero-headline em { font-style: italic; color: var(--silver); }
-        .hero-foot { display: flex; justify-content: space-between; align-items: flex-end; margin-top: 64px; flex-wrap: wrap; gap: 32px; }
-        .hero-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 360px; }
-        .hero-actions { display: flex; gap: 16px; align-items: center; }
-        .btn-primary { font-size: 11px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
-        .btn-primary:hover { background: var(--white); transform: translateY(-1px); }
-        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 16px 40px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
-        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
-        .hero-scroll { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.2); display: flex; align-items: center; gap: 12px; }
-        .hero-scroll::before { content: ""; width: 0.5px; height: 48px; background: rgba(244,244,242,0.15); display: block; }
+        .hero-headline u { text-decoration: none; background-image: linear-gradient(transparent 65%, rgba(244,244,242,0.15) 65%); }
+        .hero-sub { font-size: 17px; font-weight: 300; color: var(--silver); line-height: 1.7; max-width: 520px; margin-bottom: 36px; }
+        .hero-sub strong { color: var(--platinum); font-weight: 400; }
+        .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
+        .hero-proofs { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 32px; border-top: 0.5px solid rgba(244,244,242,0.08); }
+        .hero-proof { display: flex; flex-direction: column; gap: 4px; }
+        .hero-proof-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--platinum); line-height: 1; }
+        .hero-proof-num em { color: var(--silver); font-style: normal; }
+        .hero-proof-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.4); }
 
-        /* MARQUEE */
+        .btn-primary { font-size: 11px; font-weight: 600; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 17px 36px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
+        .btn-primary:hover { background: var(--white); transform: translateY(-1px); }
+        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.7); background: transparent; text-decoration: none; padding: 17px 36px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.2); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.4); }
+
+        .hero-form { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.1); padding: 40px 36px; border-radius: 1px; position: relative; }
+        .hero-form-badge { position: absolute; top: -12px; left: 24px; background: var(--platinum); color: var(--ink); font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 12px; border-radius: 1px; }
+        .hero-form-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin-bottom: 8px; line-height: 1.2; }
+        .hero-form-sub { font-size: 12px; font-weight: 300; color: var(--fog); line-height: 1.6; margin-bottom: 24px; }
+        .form-field { display: flex; flex-direction: column; margin-bottom: 14px; }
+        .form-field label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 6px; }
+        .form-field input, .form-field select, .form-field textarea { background: transparent; border: none; border-bottom: 0.5px solid rgba(244,244,242,0.2); padding: 8px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--platinum); transition: border-color 0.2s; outline: none; }
+        .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--platinum); }
+        .form-field select option { background: var(--smoke); color: var(--platinum); }
+        .form-submit { width: 100%; margin-top: 12px; padding: 15px; border: none; cursor: none; }
+        .form-fine { font-size: 10px; color: rgba(244,244,242,0.35); margin-top: 12px; text-align: center; letter-spacing: 0.04em; }
+        .form-success { display: none; text-align: center; padding: 24px 0; }
+        .form-success.visible { display: block; }
+        .form-success-mark { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 56px; color: var(--silver); line-height: 1; margin-bottom: 16px; }
+        .form-success-head { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); margin-bottom: 12px; }
+        .form-success-body { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.7; }
+
         .marquee-wrap { border-top: 0.5px solid rgba(244,244,242,0.07); border-bottom: 0.5px solid rgba(244,244,242,0.07); overflow: hidden; padding: 18px 0; background: var(--smoke); }
         .marquee-track { display: flex; white-space: nowrap; animation: marquee 36s linear infinite; width: max-content; }
         @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
         .marquee-item { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: rgba(244,244,242,0.25); padding: 0 40px; letter-spacing: 0.04em; }
-        .marquee-sep { color: var(--silver); opacity: 0.3; font-style: normal; }
+        .marquee-sep { color: var(--silver); opacity: 0.5; font-style: normal; }
 
-        /* SECTION GLOBALS */
         .section { padding: 140px 56px; }
-        .section-inner { max-width: 1200px; margin: 0 auto; }
-        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
-        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
-        .section-headline { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 6vw, 88px); line-height: 0.92; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 24px; }
+        .section-inner { max-width: 1280px; margin: 0 auto; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--platinum); display: block; }
+        .section-headline { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 5.5vw, 80px); line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 24px; }
         .section-headline em { font-style: italic; color: var(--silver); }
         .section-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 480px; }
 
-        /* PHILOSOPHY / BELIEF */
+        .niche-section { background: var(--ink); }
+        .niche-header { text-align: center; margin-bottom: 64px; }
+        .niche-header .section-label { justify-content: center; }
+        .niche-header .section-label::before { display: none; }
+        .niche-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-left: 0.5px solid rgba(244,244,242,0.08); }
+        .niche-item { padding: 36px 20px; text-align: center; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); transition: background 0.3s; }
+        .niche-item:hover { background: var(--smoke); }
+        .niche-item i { font-size: 24px; color: var(--silver); margin-bottom: 16px; opacity: 0.8; }
+        .niche-item-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--platinum); line-height: 1.3; }
+
+        .portfolio-section { background: var(--smoke); }
+        .portfolio-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
+        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(244,244,242,0.08); border: 0.5px solid rgba(244,244,242,0.08); }
+        .portfolio-card { background: var(--smoke); aspect-ratio: 4/3; position: relative; overflow: hidden; display: block; text-decoration: none; cursor: none; }
+        .portfolio-card.wide { grid-column: span 2; aspect-ratio: 8/3; }
+        .portfolio-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; filter: grayscale(15%); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
+        .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.15) 65%); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; z-index: 2; }
+        .portfolio-location { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; opacity: 0.85; }
+        .portfolio-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); line-height: 1.2; }
+        .portfolio-card:hover .portfolio-img { opacity: 0.92; filter: grayscale(0%); transform: scale(1.04); }
+
+        .results-section { background: var(--ink); }
+        .results-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-left: 0.5px solid rgba(244,244,242,0.08); }
+        .testimonial { padding: 40px 32px; border-bottom: 0.5px solid rgba(244,244,242,0.08); border-right: 0.5px solid rgba(244,244,242,0.08); }
+        .testimonial-stars { color: var(--silver); font-size: 11px; letter-spacing: 0.3em; margin-bottom: 20px; }
+        .testimonial-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; color: var(--platinum); line-height: 1.55; margin-bottom: 28px; }
+        .testimonial-attr { display: flex; flex-direction: column; gap: 4px; }
+        .testimonial-name { font-size: 13px; font-weight: 500; color: var(--platinum); letter-spacing: 0.04em; }
+        .testimonial-meta { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+
         .belief { background: var(--smoke); }
-        .belief-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
+        .belief-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
         .belief-left { border-right: 0.5px solid rgba(244,244,242,0.07); padding-right: 120px; }
         .belief-number { font-family: 'DM Serif Display', serif; font-size: 180px; color: rgba(244,244,242,0.03); line-height: 1; margin-bottom: -40px; letter-spacing: -0.04em; }
         .belief-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(24px, 2.5vw, 34px); color: var(--platinum); line-height: 1.45; }
@@ -119,96 +188,103 @@
         .belief-point-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--platinum); margin-bottom: 10px; }
         .belief-point-body { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.8; }
 
-        /* SERVICES TEASER */
         .services-section { background: var(--ink); }
-        .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
+        .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
         .svc-row { display: flex; align-items: baseline; gap: 24px; padding: 22px 0; border-bottom: 0.5px solid rgba(244,244,242,0.07); transition: background 0.2s; }
         .svc-row:hover .svc-row-name { color: var(--platinum); }
         .svc-row-num { font-family: 'DM Serif Display', serif; font-size: 11px; color: rgba(244,244,242,0.2); min-width: 28px; }
         .svc-row-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: rgba(244,244,242,0.7); flex: 1; transition: color 0.2s; letter-spacing: 0.01em; }
         .svc-row-price { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; color: var(--silver); letter-spacing: 0.1em; }
+        .svc-row-best { background: var(--platinum); color: var(--ink); font-size: 8px; font-weight: 600; padding: 3px 8px; letter-spacing: 0.2em; margin-left: 12px; border-radius: 1px; }
 
-        /* PROCESS */
         .process-section { background: var(--platinum); }
-        .process-section .section-label { color: rgba(26,26,26,0.4); }
-        .process-section .section-label::before { background: rgba(26,26,26,0.3); }
+        .process-section .section-label { color: rgba(26,26,26,0.6); }
+        .process-section .section-label::before { background: rgba(26,26,26,0.4); }
         .process-section .section-headline { color: var(--ink); }
         .process-section .section-headline em { color: rgba(26,26,26,0.4); }
-        .process-section .section-sub { color: rgba(26,26,26,0.45); }
-        .process-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
+        .process-section .section-sub { color: rgba(26,26,26,0.6); }
+        .process-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
         .process-steps { border-top: 0.5px solid rgba(26,26,26,0.1); }
         .process-step { display: grid; grid-template-columns: 80px 1fr 1fr; gap: 60px; align-items: start; padding: 48px 0; border-bottom: 0.5px solid rgba(26,26,26,0.08); }
         .process-step:last-child { border-bottom: none; }
-        .process-step-num { font-family: 'DM Serif Display', serif; font-size: 13px; color: rgba(26,26,26,0.3); padding-top: 4px; }
+        .process-step-num { font-family: 'DM Serif Display', serif; font-size: 13px; color: rgba(26,26,26,0.4); padding-top: 4px; }
         .process-step-name { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--ink); line-height: 1.1; }
-        .process-step-desc { font-size: 13px; font-weight: 300; color: rgba(26,26,26,0.5); line-height: 1.85; }
+        .process-step-desc { font-size: 13px; font-weight: 300; color: rgba(26,26,26,0.6); line-height: 1.85; }
 
-        /* ABOUT */
         .about-section { background: var(--ink); }
         .about-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 120px; align-items: start; }
-        .about-sticky { position: sticky; top: 120px; }
+        .about-sticky { position: sticky; top: 140px; }
         .about-body { font-size: 16px; font-weight: 300; color: var(--fog); line-height: 1.9; margin-bottom: 28px; }
         .about-body strong { color: var(--platinum); font-weight: 400; }
-        .about-conviction { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 26px; color: var(--platinum); line-height: 1.45; padding: 40px 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); margin: 40px 0; }
+        .about-conviction { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 24px; color: var(--platinum); line-height: 1.45; padding: 36px 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); margin: 36px 0; }
         .about-location { font-size: 9px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 12px; }
-        .about-location::before { content: ""; width: 24px; height: 0.5px; background: var(--silver); }
+        .about-location::before { content: ""; width: 24px; height: 0.5px; background: var(--platinum); }
 
-        /* CTA */
-        .cta-section { background: var(--smoke); padding: 160px 56px; }
-        .cta-inner { max-width: 900px; margin: 0 auto; }
-        .cta-rule { height: 0.5px; background: rgba(244,244,242,0.08); margin-bottom: 80px; }
-        .cta-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 7vw, 100px); color: var(--platinum); line-height: 0.9; letter-spacing: -0.02em; margin-bottom: 48px; font-weight: 400; }
+        .faq-section { background: var(--smoke); }
+        .faq-list { border-top: 0.5px solid rgba(244,244,242,0.08); max-width: 880px; margin: 0 auto; }
+        .faq-item { border-bottom: 0.5px solid rgba(244,244,242,0.08); }
+        .faq-q { width: 100%; background: none; border: none; padding: 28px 0; display: flex; justify-content: space-between; align-items: center; cursor: none; font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--platinum); text-align: left; transition: color 0.2s; }
+        .faq-q:hover { color: var(--silver); }
+        .faq-q-icon { font-size: 18px; color: var(--silver); transition: transform 0.3s; flex-shrink: 0; margin-left: 24px; }
+        .faq-item.open .faq-q-icon { transform: rotate(45deg); }
+        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; }
+        .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
+
+        .cta-section { background: var(--ink); padding: 160px 56px; border-top: 0.5px solid rgba(244,244,242,0.08); }
+        .cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
+        .cta-headline { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 5.5vw, 84px); color: var(--platinum); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 32px; font-weight: 400; }
         .cta-headline em { font-style: italic; color: var(--silver); }
-        .cta-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 440px; margin-bottom: 56px; }
+        .cta-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 440px; margin-bottom: 36px; }
+        .cta-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
+        .cta-list-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--silver); }
+        .cta-list-item i { color: var(--silver); font-size: 10px; }
         .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
 
-        /* FOOTER */
         footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
-        .footer-logo { display: inline-flex; flex-direction: column; }
-        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
         .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
-        .footer-copy { font-size: 10px; font-weight: 400; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
-        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
-        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-copy { font-size: 10px; font-weight: 400; color: rgba(244,244,242,0.25); letter-spacing: 0.08em; text-align: center; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.4); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
         .footer-link:hover { color: var(--platinum); }
 
-        /* RESPONSIVE */
-        @media (max-width: 1024px) {
+        @media (max-width: 1100px) {
+            .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+            .hero-form { max-width: 540px; }
+            .portfolio-header, .results-header, .services-header, .process-header { grid-template-columns: 1fr; gap: 32px; }
+            .cta-inner { grid-template-columns: 1fr; gap: 48px; }
             .belief-inner { grid-template-columns: 1fr; gap: 64px; }
             .belief-left { border-right: none; padding-right: 0; border-bottom: 0.5px solid rgba(244,244,242,0.07); padding-bottom: 64px; }
-            .services-header { grid-template-columns: 1fr; gap: 32px; }
-            .services-grid { grid-template-columns: 1fr 1fr; }
-            .service-card:nth-child(3n) { border-right: 0.5px solid rgba(244,244,242,0.08); }
-            .service-card:nth-child(2n) { border-right: none; }
-            .process-header { grid-template-columns: 1fr; gap: 32px; }
-            .process-step { grid-template-columns: 60px 1fr; gap: 32px; }
-            .process-step-desc { grid-column: 2; }
             .about-inner { grid-template-columns: 1fr; gap: 48px; }
             .about-sticky { position: static; }
+            .niche-grid { grid-template-columns: repeat(3, 1fr); }
+            .testimonials-grid { grid-template-columns: 1fr; }
+            .process-step { grid-template-columns: 60px 1fr; gap: 32px; }
+            .process-step-desc { grid-column: 2; }
             footer { grid-template-columns: 1fr 1fr; }
             .footer-copy { text-align: left; }
         }
 
         @media (max-width: 768px) {
-            nav { padding: 0 24px; height: 64px; }
+            .trust-bar { padding: 8px 16px; gap: 12px; font-size: 9px; }
+            .trust-bar-item:nth-child(5), .trust-bar-sep:nth-child(4) { display: none; }
+            nav { padding: 0 24px; height: 64px; top: 32px; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .hero { padding: 0 24px 64px; }
-            .hero-line { left: 24px; right: 24px; }
-            .hero-headline { font-size: clamp(56px, 14vw, 80px); }
-            .hero-foot { flex-direction: column; align-items: flex-start; gap: 40px; }
+            .hero { padding: 88px 24px 64px; }
+            .hero-headline { font-size: clamp(44px, 12vw, 64px); }
             .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
             .hero-actions a { text-align: center; }
-            .hero-scroll { display: none; }
-            .section { padding: 96px 24px; }
-            .services-grid { grid-template-columns: 1fr; }
-            .service-card { border-right: none; }
-            .service-card:nth-child(n) { border-right: none; }
-            .service-card:nth-last-child(-n+3) { border-bottom: 0.5px solid rgba(244,244,242,0.08); }
-            .service-card:last-child { border-bottom: none; }
+            .hero-proofs { gap: 24px; }
+            .hero-proof-num { font-size: 24px; }
+            .hero-form { padding: 32px 24px; }
+            .section { padding: 88px 24px; }
+            .niche-grid { grid-template-columns: repeat(2, 1fr); }
+            .portfolio-grid { grid-template-columns: 1fr; }
+            .portfolio-card.wide { grid-column: span 1; aspect-ratio: 4/3; }
+            .testimonial { padding: 32px 24px; }
             .process-step { grid-template-columns: 1fr; gap: 16px; }
             .process-step-desc { grid-column: 1; }
-            .cta-section { padding: 96px 24px; }
+            .cta-section { padding: 88px 24px; }
             .cta-actions { flex-direction: column; align-items: stretch; }
             .cta-actions a { text-align: center; }
             footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
@@ -219,9 +295,11 @@
         }
 
         @media (max-width: 480px) {
-            .hero-headline { font-size: 52px; }
-            .section-headline { font-size: 44px; }
-            .cta-headline { font-size: 48px; }
+            .trust-bar { font-size: 8px; gap: 8px; }
+            .trust-bar-item:nth-child(3), .trust-bar-sep:nth-child(2) { display: none; }
+            .hero-headline { font-size: 42px; }
+            .section-headline { font-size: 38px; }
+            .cta-headline { font-size: 42px; }
             .belief-number { font-size: 120px; }
         }
     </style>
@@ -230,15 +308,22 @@
 
 <div class="cursor" id="cursor"></div>
 
+<div class="trust-bar">
+    <div class="trust-bar-item"><i class="fa-solid fa-check"></i> Flat-rate pricing</div>
+    <div class="trust-bar-sep"></div>
+    <div class="trust-bar-item"><i class="fa-solid fa-check"></i> Delivered in under 14 days</div>
+    <div class="trust-bar-sep"></div>
+    <div class="trust-bar-item"><i class="fa-solid fa-check"></i> 15+ businesses launched</div>
+</div>
+
 <nav id="mainNav">
-    <a href="/" class="nav-logo">
-        <div class="nav-logo-word">JW/DIGITAL</div>
-    </a>
+    <a href="/" class="nav-logo"><div class="nav-logo-word">JW/DIGITAL</div></a>
     <div class="nav-links">
-        <a href="/services" class="nav-link">Services</a>
         <a href="/work" class="nav-link">Work</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="#faq" class="nav-link">FAQ</a>
         <a href="/contact" class="nav-link">Contact</a>
-        <a href="/portal" class="nav-cta">Login</a>
+        <a href="#start" class="nav-cta">Start a Project</a>
     </div>
     <button class="hamburger" id="hamburger" aria-label="Menu">
         <span></span><span></span><span></span>
@@ -246,29 +331,81 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services" onclick="closeMobileMenu()">Services</a>
     <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
     <a href="/contact" onclick="closeMobileMenu()">Contact</a>
-    <a href="/portal">Login</a>
+    <a href="#start" onclick="closeMobileMenu()">Start a Project</a>
 </div>
 
 <main>
     <section class="hero">
         <div class="hero-bg"></div>
-        <div class="hero-line"></div>
-        <div class="hero-inner fade-up">
-            <h1 class="hero-eyebrow">Brand Identity &nbsp;&middot;&nbsp; Web Presence &nbsp;&middot;&nbsp; Digital Strategy</h1>
-            <div class="hero-headline">The Work<br>Speaks <em>for</em><br>Itself.</div>
-            <div class="hero-foot">
-                <p class="hero-desc">JW Digital builds the digital presence serious businesses deserve — websites, brand identities, and social presence executed with the kind of precision that makes people stop and look twice.</p>
-                <div style="display:flex;flex-direction:column;align-items:flex-end;gap:32px">
-                    <div class="hero-actions">
-                        <a href="/contact" class="btn-primary">Begin a Project</a>
-                        <a href="#services" class="btn-ghost">View Services</a>
+        <div class="hero-inner">
+            <div class="hero-content fade-up">
+                <div class="hero-eyebrow">Websites for service businesses</div>
+                <h1 class="hero-headline">Your <em>next</em> customer is <u>already searching</u>.</h1>
+                <p class="hero-sub">We build high-converting websites for plumbers, contractors, roofers, restaurants, and other service businesses. <strong>Sites that rank on Google, look the part, and turn searches into calls</strong> — flat rates, no retainers.</p>
+                <div class="hero-actions">
+                    <a href="#start" class="btn-primary">Get a Free Audit</a>
+                    <a href="/work" class="btn-ghost">See Our Work</a>
+                </div>
+                <div class="hero-proofs">
+                    <div class="hero-proof">
+                        <div class="hero-proof-num"><em>15+</em></div>
+                        <div class="hero-proof-label">Businesses launched</div>
                     </div>
-                    <div class="hero-scroll">
-                        <div></div>Scroll
+                    <div class="hero-proof">
+                        <div class="hero-proof-num">From <em>$750</em></div>
+                        <div class="hero-proof-label">Flat-rate websites</div>
                     </div>
+                    <div class="hero-proof">
+                        <div class="hero-proof-num"><em>&lt;14</em> days</div>
+                        <div class="hero-proof-label">Average delivery</div>
+                    </div>
+                </div>
+            </div>
+            <div class="hero-form fade-up" id="start">
+                <div class="hero-form-badge">Free Audit</div>
+                <div id="formContent">
+                    <h2 class="hero-form-title">Get a free site audit in 24 hours.</h2>
+                    <p class="hero-form-sub">Tell us about your business. We'll send back a no-strings breakdown of what's costing you customers — and what would fix it.</p>
+                    <form id="auditForm" onsubmit="handleAuditForm(event)">
+                        <div class="form-field">
+                            <label for="name">Your Name</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="business">Business Name</label>
+                            <input type="text" id="business" name="business" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        <div class="form-field">
+                            <label for="website">Current Website (or "none")</label>
+                            <input type="text" id="website" name="website" placeholder="example.com">
+                        </div>
+                        <div class="form-field">
+                            <label for="goal">What's the goal?</label>
+                            <select id="goal" name="goal" required>
+                                <option value="">Select one…</option>
+                                <option>More leads / customers</option>
+                                <option>Brand new website</option>
+                                <option>Rebrand / logo</option>
+                                <option>Rank on Google locally</option>
+                                <option>Not sure — need advice</option>
+                            </select>
+                        </div>
+                        <button type="submit" class="btn-primary form-submit">Send My Free Audit</button>
+                        <p class="form-fine">No spam. No sales calls. Just an honest breakdown.</p>
+                    </form>
+                </div>
+                <div class="form-success" id="formSuccess">
+                    <div class="form-success-mark">&#10003;</div>
+                    <div class="form-success-head">Inquiry received.</div>
+                    <p class="form-success-body">We'll review your business and send your audit within 24 hours.</p>
                 </div>
             </div>
         </div>
@@ -276,25 +413,141 @@
 
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <span class="marquee-item">Website Build <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Logo &amp; Branding <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Social Launch <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Google Business Profile <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Reputation Management <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Print Collateral <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Ongoing Partnership <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Website Build <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Logo &amp; Branding <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Social Launch <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Google Business Profile <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Reputation Management <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Print Collateral <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Ongoing Partnership <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Plumbers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Contractors <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Roofers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Restaurants <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Bakeries <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Barbers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Landscapers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Interior Designers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Plumbers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Contractors <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Roofers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Restaurants <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Bakeries <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Barbers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Landscapers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Interior Designers <span class="marquee-sep">&middot;</span></span>
         </div>
     </div>
 
+    <section class="section niche-section">
+        <div class="section-inner">
+            <div class="niche-header fade-up">
+                <h2 class="section-label">Built for the trades &amp; beyond</h2>
+                <div class="section-headline">Real businesses.<br><em>Real work.</em></div>
+                <p class="section-sub" style="margin: 24px auto 0;">If you run a service business and your website is hurting more than helping, we've built for you before.</p>
+            </div>
+            <div class="niche-grid fade-up">
+                <div class="niche-item"><i class="fa-solid fa-wrench"></i><div class="niche-item-name">Plumbing</div></div>
+                <div class="niche-item"><i class="fa-solid fa-helmet-safety"></i><div class="niche-item-name">Contracting</div></div>
+                <div class="niche-item"><i class="fa-solid fa-house-chimney"></i><div class="niche-item-name">Roofing</div></div>
+                <div class="niche-item"><i class="fa-solid fa-utensils"></i><div class="niche-item-name">Restaurants</div></div>
+                <div class="niche-item"><i class="fa-solid fa-scissors"></i><div class="niche-item-name">Barbers &amp; Salons</div></div>
+                <div class="niche-item"><i class="fa-solid fa-leaf"></i><div class="niche-item-name">Landscaping</div></div>
+                <div class="niche-item"><i class="fa-solid fa-cookie-bite"></i><div class="niche-item-name">Bakeries &amp; Cafés</div></div>
+                <div class="niche-item"><i class="fa-solid fa-couch"></i><div class="niche-item-name">Interior Design</div></div>
+                <div class="niche-item"><i class="fa-solid fa-truck"></i><div class="niche-item-name">Logistics</div></div>
+                <div class="niche-item"><i class="fa-solid fa-screwdriver-wrench"></i><div class="niche-item-name">HVAC &amp; Repair</div></div>
+                <div class="niche-item"><i class="fa-solid fa-paint-roller"></i><div class="niche-item-name">Painters</div></div>
+                <div class="niche-item"><i class="fa-solid fa-circle-plus"></i><div class="niche-item-name">And more</div></div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section portfolio-section">
+        <div class="section-inner">
+            <div class="portfolio-header fade-up">
+                <div>
+                    <h2 class="section-label">Recent Work</h2>
+                    <div class="section-headline">Sites that are<br><em>earning their keep.</em></div>
+                </div>
+                <p class="section-sub">A snapshot of recent builds. From a contractor in Texas to a garden service in Surrey — every one is live and working.</p>
+            </div>
+            <div class="portfolio-grid fade-up">
+                <a href="https://lmplumblingllc.netlify.app" target="_blank" rel="noopener" class="portfolio-card wide">
+                    <img src="L&M.jpg" class="portfolio-img" alt="L&M Plumbing website">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-location">Keller, Texas · Plumbing</div>
+                        <div class="portfolio-title">L&amp;M Plumbing</div>
+                    </div>
+                </a>
+                <a href="https://lionessroofing.netlify.app" target="_blank" rel="noopener" class="portfolio-card">
+                    <img src="Lioness.jpg" class="portfolio-img" alt="Lioness Roofing website">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-location">Powder Springs, GA · Roofing</div>
+                        <div class="portfolio-title">Lioness Roofing</div>
+                    </div>
+                </a>
+                <a href="https://rochiercontracting.netlify.app" target="_blank" rel="noopener" class="portfolio-card">
+                    <img src="RochierContracting.jpg" class="portfolio-img" alt="Rochier Contracting website">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-location">Rockwall, TX · Contracting</div>
+                        <div class="portfolio-title">Rochier Contracting</div>
+                    </div>
+                </a>
+                <a href="https://sagradococina.netlify.app" target="_blank" rel="noopener" class="portfolio-card">
+                    <img src="Sagrado.jpg" class="portfolio-img" alt="Sagrado Cocina website">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-location">Waco, TX · Restaurant</div>
+                        <div class="portfolio-title">Sagrado Cocina</div>
+                    </div>
+                </a>
+                <a href="https://thereservebarbershop.netlify.app" target="_blank" rel="noopener" class="portfolio-card wide">
+                    <img src="Reserve.jpg" class="portfolio-img" alt="The Reserve Barber Lounge website">
+                    <div class="portfolio-overlay">
+                        <div class="portfolio-location">Keller, TX · Barber Lounge</div>
+                        <div class="portfolio-title">The Reserve Barber Lounge</div>
+                    </div>
+                </a>
+            </div>
+            <div style="text-align: center; margin-top: 56px;" class="fade-up">
+                <a href="/work" class="btn-primary">View All 15+ Projects</a>
+            </div>
+        </div>
+    </section>
+
+    <section class="section results-section">
+        <div class="section-inner">
+            <div class="results-header fade-up">
+                <div>
+                    <h2 class="section-label">What Clients Say</h2>
+                    <div class="section-headline">Words from <em>real</em><br>business owners.</div>
+                </div>
+                <p class="section-sub">The names and locations are real. Drop in their actual quotes as you collect them — even one or two transforms this section.</p>
+            </div>
+            <div class="testimonials-grid fade-up">
+                <div class="testimonial">
+                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                    <p class="testimonial-quote">"[REPLACE WITH CLIENT QUOTE — focus on leads. e.g. 'Within a month of launching the site we had a steady stream of new calls. Hands down the best money I've spent on the business.']"</p>
+                    <div class="testimonial-attr">
+                        <div class="testimonial-name">L&amp;M Plumbing</div>
+                        <div class="testimonial-meta">Keller, Texas</div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                    <p class="testimonial-quote">"[REPLACE WITH CLIENT QUOTE — focus on speed and relationship. e.g. 'Two weeks from start to finish. The site looks better than the $7k quote we got from another agency.']"</p>
+                    <div class="testimonial-attr">
+                        <div class="testimonial-name">Rochier Contracting</div>
+                        <div class="testimonial-meta">Rockwall, Texas</div>
+                    </div>
+                </div>
+                <div class="testimonial">
+                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
+                    <p class="testimonial-quote">"[REPLACE WITH CLIENT QUOTE — focus on rankings. e.g. 'We started showing up at the top of Google for our area. The site has paid for itself many times over.']"</p>
+                    <div class="testimonial-attr">
+                        <div class="testimonial-name">Lioness Roofing</div>
+                        <div class="testimonial-meta">Powder Springs, Georgia</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <section class="section belief" id="philosophy">
-        <div class="belief-inner section-inner fade-up">
+        <div class="belief-inner fade-up">
             <div class="belief-left">
                 <div class="belief-number">01</div>
                 <div class="belief-quote">"Your digital presence should match the <span>quality</span> of your work."</div>
@@ -324,25 +577,23 @@
         <div class="section-inner">
             <div class="services-header fade-up">
                 <div>
-                    <h2 class="section-label">Services</h2>
-                    <div class="section-headline">What We<br><em>Deliver.</em></div>
+                    <h2 class="section-label">Services &amp; Pricing</h2>
+                    <div class="section-headline">No quotes. No <em>retainers.</em><br>Just flat rates.</div>
                 </div>
                 <p class="section-sub">Every engagement is focused on precision and results. One person, flat rates, and zero agency bloat. <strong>Website builds include one free add-on.</strong></p>
             </div>
 
             <div class="fade-up" style="border-top:0.5px solid rgba(244,244,242,0.08)">
-                <div class="svc-row"><span class="svc-row-num">01</span><h3 class="svc-row-name">The Full Foundation (Bundle)</h3><span class="svc-row-price">$2,000</span></div>
-                <div class="svc-row"><span class="svc-row-num">02</span><h3 class="svc-row-name">Website Build</h3><span class="svc-row-price">$1,500</span></div>
-                <div class="svc-row"><span class="svc-row-num">03</span><h3 class="svc-row-name">Logo &amp; Branding</h3><span class="svc-row-price">$300</span></div>
-                <div class="svc-row"><span class="svc-row-num">04</span><h3 class="svc-row-name">Social Launch</h3><span class="svc-row-price">$600</span></div>
-                <div class="svc-row"><span class="svc-row-num">05</span><h3 class="svc-row-name">Google Business Profile</h3><span class="svc-row-price">$200</span></div>
-                <div class="svc-row"><span class="svc-row-num">06</span><h3 class="svc-row-name">Facebook Business Page</h3><span class="svc-row-price">$150</span></div>
-                <div class="svc-row"><span class="svc-row-num">07</span><h3 class="svc-row-name">QR Code Business Cards</h3><span class="svc-row-price">$150</span></div>
-                <div class="svc-row"><span class="svc-row-num">08</span><h3 class="svc-row-name">Email Signature</h3><span class="svc-row-price">$125</span></div>
-                <div class="svc-row"><span class="svc-row-num">09</span><h3 class="svc-row-name">Monthly Maintenance Retainer</h3><span class="svc-row-price">$125 / mo</span></div>
+                <div class="svc-row"><span class="svc-row-num">01</span><h3 class="svc-row-name">The Full Foundation (Bundle) <span class="svc-row-best">Most Popular</span></h3><span class="svc-row-price">$2,000</span></div>
+                <div class="svc-row"><span class="svc-row-num">02</span><h3 class="svc-row-name">Website Build (1 Page)</h3><span class="svc-row-price">$750</span></div>
+                <div class="svc-row"><span class="svc-row-num">03</span><h3 class="svc-row-name">Website Build (5+ Pages)</h3><span class="svc-row-price">$1,500</span></div>
+                <div class="svc-row"><span class="svc-row-num">04</span><h3 class="svc-row-name">Logo &amp; Branding</h3><span class="svc-row-price">$300</span></div>
+                <div class="svc-row"><span class="svc-row-num">05</span><h3 class="svc-row-name">Social Launch</h3><span class="svc-row-price">$600</span></div>
+                <div class="svc-row"><span class="svc-row-num">06</span><h3 class="svc-row-name">Google Business Profile</h3><span class="svc-row-price">$200</span></div>
+                <div class="svc-row"><span class="svc-row-num">07</span><h3 class="svc-row-name">Monthly Maintenance Retainer</h3><span class="svc-row-price">$125 / mo</span></div>
             </div>
 
-            <div style="margin-top:56px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px" class="fade-up">
+            <div style="margin-top:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px" class="fade-up">
                 <div style="font-size:13px;font-weight:300;color:var(--fog); max-width: 500px;">
                     Website builds include a choice of one free add-on. Standalone add-ons require a core service or a minimum purchase of two.
                 </div>
@@ -403,72 +654,140 @@
         </div>
     </section>
 
-    <section class="cta-section fade-up">
+    <section class="section faq-section" id="faq">
+        <div class="section-inner">
+            <div class="fade-up" style="text-align: center; margin-bottom: 64px;">
+                <h2 class="section-label" style="justify-content: center;">FAQ</h2>
+                <div class="section-headline">Common <em>questions.</em></div>
+            </div>
+            <div class="faq-list fade-up">
+                <div class="faq-item">
+                    <button class="faq-q" type="button">How is $750–$1,500 even possible? What's the catch?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">No catch. There's no office, no account managers, no junior designers, no sales team. Just one person doing the work directly. Traditional agencies charge $10k+ because they have $10k+ in overhead — we don't.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">How long does a website actually take?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">Most websites are delivered in 7–14 days from project kickoff. Larger builds with custom functionality may take longer, but you'll know the exact timeline before any money changes hands.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">Will my site rank on Google?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">Every site is built with technical SEO best practices: clean code, fast load times, schema markup, mobile-first design, and on-page optimization. For local rankings (the local 3-pack), the Google Business Profile service is what moves the needle most.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">Do I own my site after it's done?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">Yes — fully. Every file, every account, every domain. You can host it anywhere, edit it yourself, or hand it to another developer down the line. No lock-in.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">What if I don't know exactly what I want?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">That's normal. Most service business owners don't. Submit the form with what you do know, and we'll figure out the rest together. We've built for plumbers, roofers, contractors, restaurants, and more — yours probably fits a shape we've seen before.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">Do you do monthly retainers or ongoing work?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">Optional — not required. $125/month covers hosting, updates, small content changes, and ongoing support. Most clients add it after launch. You can cancel anytime.</div>
+                </div>
+                <div class="faq-item">
+                    <button class="faq-q" type="button">Why don't you do discovery calls?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <div class="faq-a">We respect your time. Most discovery calls are an hour-long pitch for a proposal that takes another week to write. We prefer transparent pricing, a quick inquiry form, and getting straight to building. All communication after kickoff happens in writing — keeps everything documented and unambiguous.</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="cta-section">
         <div class="cta-inner">
-            <div class="cta-rule"></div>
-            <div class="cta-headline">Your Next<br>Client Is<br><em>Already</em><br>Looking.</div>
-            <p class="cta-sub">The question is whether what they find represents you the way you deserve. Let's make sure it does.</p>
-            <div class="cta-actions">
-                <a href="/contact" class="btn-primary">Begin a Project</a>
-                <a href="#services" class="btn-ghost">View Services</a>
+            <div class="fade-up">
+                <h2 class="cta-headline">Stop losing<br>customers to a <em>better</em><br>website.</h2>
+                <p class="cta-sub">Tell us about your business. Within 24 hours you'll get an honest assessment of what's costing you leads and exactly what would fix it. No sales call, no pressure.</p>
+                <div class="cta-list">
+                    <div class="cta-list-item"><i class="fa-solid fa-check"></i> Free, no-strings audit</div>
+                    <div class="cta-list-item"><i class="fa-solid fa-check"></i> Honest assessment — even if we're not the right fit</div>
+                    <div class="cta-list-item"><i class="fa-solid fa-check"></i> Response within one business day</div>
+                </div>
+                <div class="cta-actions">
+                    <a href="#start" class="btn-primary">Get My Free Audit</a>
+                    <a href="/services" class="btn-ghost">Or See Pricing</a>
+                </div>
+            </div>
+            <div class="fade-up" style="text-align: center;">
+                <div style="font-family: 'DM Serif Display', serif; font-size: 96px; line-height: 1; color: var(--silver); font-style: italic;">24h</div>
+                <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-top: 16px;">From inquiry to response</div>
+                <div style="height: 0.5px; background: rgba(244,244,242,0.1); margin: 48px auto; max-width: 200px;"></div>
+                <div style="font-family: 'DM Serif Display', serif; font-size: 56px; line-height: 1; color: var(--silver); font-style: italic;">15+</div>
+                <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-top: 16px;">Businesses launched</div>
             </div>
         </div>
     </section>
 </main>
 
 <footer>
-    <div class="footer-logo">
-        <div class="footer-logo-word">JW/DIGITAL</div>
-    </div>
+    <div><div class="footer-logo-word">JW/DIGITAL</div></div>
     <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
     <div class="footer-links">
         <a href="/services" class="footer-link">Services</a>
         <a href="/work" class="footer-link">Work</a>
         <a href="/contact" class="footer-link">Contact</a>
         <a href="/portal" class="footer-link">Login</a>
-        <a href="/faq" class="footer-link" style="margin-left: 24px;">FAQ</a>
+        <a href="/faq" class="footer-link">FAQ</a>
         <a href="/tos" class="footer-link">Terms</a>
         <a href="/privacy" class="footer-link">Privacy</a>
     </div>
 </footer>
 
 <script>
-    /* CURSOR */
+    /* Custom cursor */
     const cursor = document.getElementById('cursor');
-    let mouseX = 0;
-    let mouseY = 0;
-
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
     function updateCursor() {
         cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         requestAnimationFrame(updateCursor);
     }
     requestAnimationFrame(updateCursor);
-
-    document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
+    document.querySelectorAll('a, button, input, textarea, select, div[onclick], div[tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
 
-    /* NAV */
+    /* Nav scroll state */
     const nav = document.getElementById('mainNav');
     window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
 
-    /* FADE UP */
+    /* Fade-up on scroll */
     const obs = new IntersectionObserver(entries => {
-        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
     }, { threshold: 0.06 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-    /* MOBILE MENU */
+    /* Mobile menu */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
     function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
+
+    /* FAQ accordion */
+    document.querySelectorAll('.faq-q').forEach(btn => {
+        btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
+    });
+
+    /* Audit form — posts to Formspree (same endpoint as contact.html) */
+    function handleAuditForm(e) {
+        e.preventDefault();
+        const form = e.target;
+        fetch('https://formspree.io/f/mdayrzzd', {
+            method: 'POST',
+            body: new FormData(form),
+            headers: { 'Accept': 'application/json' }
+        }).then(response => {
+            if (response.ok) {
+                document.getElementById('formContent').style.display = 'none';
+                document.getElementById('formSuccess').classList.add('visible');
+            } else {
+                alert("There was a problem submitting your form. Please email jwdigitaltx@gmail.com directly.");
+            }
+        }).catch(() => {
+            alert("There was a problem submitting your form. Please email jwdigitaltx@gmail.com directly.");
+        });
+    }
 </script>
 </body>
 </html>
