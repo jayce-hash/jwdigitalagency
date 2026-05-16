@@ -3,15 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact & Inquiries | JW Digital</title>
-    <meta name="description" content="JW Digital is a boutique agency delivering custom web design, brand identity, and digital strategy for businesses ready to elevate their online presence.">
-    
+    <title>Start a Project | Free Site Audit Within 24 Hours | JW Digital</title>
+    <meta name="description" content="Tell us about your service business and we'll respond within 24 hours with a free, no-strings site audit. Custom scope, transparent pricing, no sales calls.">
+
+    <link rel="canonical" href="https://jwdigital.ink/contact">
     <link rel="icon" href="https://jwdigital.ink/favicon.ico" type="image/x-icon">
 
-    <meta property="og:title" content="JW Digital | High-Performance Web Design">
-    <meta property="og:description" content="Productized agency solutions for DFW businesses. Custom web design, brand identity, and local SEO. Flat rates. No discovery calls.">
+    <meta property="og:title" content="Start a Project | JW Digital">
+    <meta property="og:description" content="Tell us about your business and we'll respond within 24 hours. Free site audit, no sales calls.">
     <meta property="og:image" content="https://jwdigital.ink/social-preview.jpg">
-    <meta property="og:url" content="https://jwdigital.ink">
+    <meta property="og:url" content="https://jwdigital.ink/contact">
     <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -22,12 +23,11 @@
         :root {
             --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
-        }
+            }
         html { scroll-behavior: smooth; }
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; min-height: 100vh; }
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
-        /* CURSOR */
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
         a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
@@ -35,18 +35,16 @@
 
         nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
         .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
-        .nav-logo-rule { height: 0.5px; background: rgba(244,244,242,0.25); width: 100%; margin-bottom: 5px; }
         .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
         .nav-links { display: flex; align-items: center; gap: 40px; }
-        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.38); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
         .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
         .nav-link:hover { color: var(--platinum); }
         .nav-link:hover::after { width: 100%; }
         .nav-link.active { color: var(--platinum); }
         .nav-link.active::after { width: 100%; }
-        .nav-cta { font-size: 10px; font-weight: 500; color: var(--ink); background: var(--platinum); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; padding: 11px 28px; border: 0.5px solid var(--platinum); border-radius: 1px; transition: background 0.2s, border-color 0.2s; cursor: none; }
-        .nav-cta:hover { background: var(--white); border-color: var(--white); }
-
+        .nav-cta { font-size: 10px; font-weight: 600; color: var(--ink); background: var(--platinum); text-decoration: none; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 24px; border-radius: 1px; transition: background 0.2s; cursor: none; }
+        .nav-cta:hover { background: var(--white); }
         .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
         .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
         .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px,5px); }
@@ -61,34 +59,34 @@
         .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        /* LAYOUT */
         .page-wrap { display: grid; grid-template-columns: 1fr 1fr; min-height: 100vh; padding-top: 72px; }
 
-        /* LEFT PANEL */
         .contact-left { padding: 96px 72px 96px 56px; display: flex; flex-direction: column; justify-content: space-between; border-right: 0.5px solid rgba(244,244,242,0.07); position: sticky; top: 72px; height: calc(100vh - 72px); overflow: hidden; }
-        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 48px; }
-        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
-        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 32px; }
+        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--platinum); display: block; }
+        .page-headline { font-family: 'DM Serif Display', serif; font-size: clamp(52px, 5vw, 80px); line-height: 0.9; letter-spacing: -0.01em; color: var(--platinum); font-weight: 400; margin-bottom: 24px; }
         .page-headline em { font-style: italic; color: var(--silver); }
-        .contact-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; max-width: 360px; }
+        .contact-desc { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.9; max-width: 380px; margin-bottom: 32px; }
+        .contact-desc strong { color: var(--silver); font-weight: 400; }
+        .contact-promise { display: flex; flex-direction: column; gap: 10px; margin-bottom: 36px; }
+        .contact-promise-item { display: flex; align-items: center; gap: 10px; font-size: 12px; color: var(--silver); }
+        .contact-promise-item i { color: var(--silver); font-size: 10px; }
         .contact-details { display: flex; flex-direction: column; gap: 24px; }
         .contact-detail { display: flex; flex-direction: column; gap: 6px; }
-        .contact-detail-label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); }
-        .contact-detail-value { font-size: 14px; font-weight: 300; color: rgba(244,244,242,0.55); }
-        .contact-detail-value a { color: rgba(244,244,242,0.55); text-decoration: none; transition: color 0.2s; }
+        .contact-detail-label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.3); }
+        .contact-detail-value { font-size: 14px; font-weight: 300; color: rgba(244,244,242,0.6); }
+        .contact-detail-value a { color: var(--silver); text-decoration: none; transition: color 0.2s; }
         .contact-detail-value a:hover { color: var(--platinum); }
 
-        /* RIGHT PANEL */
         .contact-right { padding: 96px 56px 96px 72px; overflow-y: auto; }
         .form-wrap { max-width: 520px; }
 
-        /* FORM */
         .inquiry-form { display: flex; flex-direction: column; gap: 24px; }
-        .form-section-head { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 4px; margin-top: 16px; }
+        .form-section-head { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); padding-bottom: 16px; border-bottom: 0.5px solid rgba(244,244,242,0.07); margin-bottom: 4px; margin-top: 16px; }
         .form-section-head:first-child { margin-top: 0; }
         .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
         .form-group { display: flex; flex-direction: column; gap: 8px; }
-        .form-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.35); }
+        .form-label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.4); }
         .form-input, .form-textarea {
             background: rgba(244,244,242,0.04);
             border: 0.5px solid rgba(244,244,242,0.1);
@@ -99,15 +97,13 @@
             outline: none; width: 100%;
         }
         .form-input::placeholder, .form-textarea::placeholder { color: rgba(244,244,242,0.18); }
-        .form-input:focus, .form-textarea:focus { border-color: rgba(244,244,242,0.3); background: rgba(244,244,242,0.06); }
+        .form-input:focus, .form-textarea:focus { border-color: var(--silver); background: rgba(244,244,242,0.06); }
         .form-textarea { resize: vertical; min-height: 120px; }
 
-        /* SUBMIT */
-        .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
+        .form-submit { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 18px; border-radius: 1px; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; font-family: 'DM Sans', sans-serif; transition: background 0.2s; margin-top: 8px; }
         .form-submit:hover { background: var(--white); }
-        .form-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.25); line-height: 1.7; text-align: center; margin-top: 8px; }
+        .form-note { font-size: 11px; font-weight: 300; color: rgba(244,244,242,0.3); line-height: 1.7; text-align: center; margin-top: 8px; }
 
-        /* SUCCESS */
         .success-wrap { display: none; text-align: center; padding: 80px 0; }
         .success-wrap.visible { display: block; }
         .success-mark { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 80px; color: var(--silver); line-height: 1; margin-bottom: 32px; }
@@ -116,17 +112,14 @@
         .btn-ghost-sm { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.5); background: transparent; text-decoration: none; padding: 14px 32px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.15); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
         .btn-ghost-sm:hover { color: var(--platinum); border-color: rgba(244,244,242,0.35); }
 
-        /* FOOTER */
         footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
         .footer-logo { display: inline-flex; flex-direction: column; }
-        .footer-logo-rule { height: 0.5px; background: rgba(244,244,242,0.2); width: 100%; margin-bottom: 5px; }
         .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
-        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.2); letter-spacing: 0.08em; text-align: center; }
-        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; }
-        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.3); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.25); letter-spacing: 0.08em; text-align: center; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.4); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
         .footer-link:hover { color: var(--platinum); }
 
-        /* RESPONSIVE */
         @media (max-width: 1024px) {
             .page-wrap { grid-template-columns: 1fr; }
             .contact-left { position: static; height: auto; padding: 96px 32px 64px; border-right: none; border-bottom: 0.5px solid rgba(244,244,242,0.07); }
@@ -141,7 +134,7 @@
             .contact-right { padding: 48px 24px 80px; }
             .form-row { grid-template-columns: 1fr; }
             footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
-            .footer-links { justify-content: flex-start; }
+            .footer-links { justify-content: flex-start; flex-wrap: wrap; }
             .footer-copy { text-align: left; }
             body { cursor: auto; }
             .cursor { display: none; }
@@ -153,12 +146,11 @@
 <div class="cursor" id="cursor"></div>
 
 <nav>
-    <a href="/" class="nav-logo">
-        <div class="nav-logo-word">JW/DIGITAL</div>
-    </a>
+    <a href="/" class="nav-logo"><div class="nav-logo-word">JW/DIGITAL</div></a>
     <div class="nav-links">
-        <a href="/services" class="nav-link">Services</a>
         <a href="/work" class="nav-link">Work</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/faq" class="nav-link">FAQ</a>
         <a href="/contact" class="nav-link active">Contact</a>
         <a href="/portal" class="nav-cta">Login</a>
     </div>
@@ -168,8 +160,9 @@
 </nav>
 
 <div class="mobile-menu" id="mobileMenu">
-    <a href="/services" onclick="closeMobileMenu()">Services</a>
     <a href="/work" onclick="closeMobileMenu()">Work</a>
+    <a href="/services" onclick="closeMobileMenu()">Services</a>
+    <a href="/faq" onclick="closeMobileMenu()">FAQ</a>
     <a href="/contact" onclick="closeMobileMenu()">Contact</a>
     <a href="/portal">Login</a>
 </div>
@@ -178,21 +171,26 @@
 
     <div class="contact-left fade-up">
         <div>
-            <h1 class="section-label">Custom Request</h1>
-            <div class="page-headline">Start a<br><em>Conversation.</em></div>
-            <p class="contact-desc">Need something tailored outside our standard shop offerings? Tell us what you're building. We'll confirm scope and timeline — usually the same day.</p>
+            <h1 class="section-label">Start a Project</h1>
+            <div class="page-headline">Tell us about<br>your <em>business.</em></div>
+            <p class="contact-desc">Need something tailored beyond our standard shop offerings — or just want a second opinion on what your business actually needs? <strong>Submit the form and we'll respond within 24 hours</strong> with scope, timeline, and an honest assessment.</p>
+            <div class="contact-promise">
+                <div class="contact-promise-item"><i class="fa-solid fa-check"></i> 24-hour response, no sales calls</div>
+                <div class="contact-promise-item"><i class="fa-solid fa-check"></i> Free site audit on request</div>
+                <div class="contact-promise-item"><i class="fa-solid fa-check"></i> Honest answer even if we're not the fit</div>
+            </div>
         </div>
         <div class="contact-details">
             <div class="contact-detail">
-                <div class="contact-detail-label">Email</div>
+                <div class="contact-detail-label">Or Email Direct</div>
                 <div class="contact-detail-value">
                     <a href="mailto:jwdigitaltx@gmail.com">jwdigitaltx@gmail.com</a>
                 </div>
             </div>
             <div class="contact-detail">
-                <div class="contact-detail-label">Direct Purchase</div>
+                <div class="contact-detail-label">Ready to Buy?</div>
                 <div class="contact-detail-value">
-                    <a href="/shop">Browse & Buy Direct →</a>
+                    <a href="/services">Browse Services &amp; Purchase Direct →</a>
                 </div>
             </div>
         </div>
@@ -245,18 +243,18 @@
                 </div>
 
                 <div class="form-group">
-                    <label class="form-label" for="notes">Scope & Specific Needs</label>
+                    <label class="form-label" for="notes">Scope &amp; Specific Needs</label>
                     <textarea class="form-textarea" id="notes" name="notes" style="min-height:88px" placeholder="Timeline, specific requirements, questions, or context that would help us understand what you need built."></textarea>
                 </div>
 
                 <button type="submit" class="form-submit">Submit Inquiry</button>
-                <p class="form-note">We'll review your inquiry and respond within a few hours to confirm next steps.</p>
+                <p class="form-note">We'll review your inquiry and respond within 24 hours to confirm next steps.</p>
             </form>
 
             <div class="success-wrap" id="successWrap">
                 <div class="success-mark">&#10003;</div>
                 <div class="success-head">Inquiry Received.</div>
-                <p class="success-body">Your inquiry has been submitted. We'll review the details and reach out within a few hours to confirm scope, timeline, and next steps.</p>
+                <p class="success-body">Your inquiry has been submitted. We'll review the details and reach out within 24 hours to confirm scope, timeline, and next steps.</p>
                 <a href="/" class="btn-ghost-sm">Return to Site</a>
             </div>
 
@@ -274,7 +272,7 @@
         <a href="/work" class="footer-link">Work</a>
         <a href="/contact" class="footer-link">Contact</a>
         <a href="/portal" class="footer-link">Login</a>
-        <a href="/faq" class="footer-link" style="margin-left: 24px;">FAQ</a>
+        <a href="/faq" class="footer-link">FAQ</a>
         <a href="/tos" class="footer-link">Terms</a>
         <a href="/privacy" class="footer-link">Privacy</a>
     </div>
@@ -283,20 +281,13 @@
 <script>
     /* CURSOR */
     const cursor = document.getElementById('cursor');
-    let mouseX = 0;
-    let mouseY = 0;
-
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
     function updateCursor() {
         cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         requestAnimationFrame(updateCursor);
     }
     requestAnimationFrame(updateCursor);
-
     document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
@@ -304,35 +295,24 @@
 
     /* FADE UP */
     const obs = new IntersectionObserver(entries => {
-        entries.forEach((e, i) => {
-            if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100);
-        });
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
     }, { threshold: 0.06 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
     /* MOBILE MENU */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
-    hamburger.addEventListener('click', () => {
-        hamburger.classList.toggle('open');
-        mobileMenu.classList.toggle('open');
-    });
-    function closeMobileMenu() {
-        hamburger.classList.remove('open');
-        mobileMenu.classList.remove('open');
-    }
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+    function closeMobileMenu() { hamburger.classList.remove('open'); mobileMenu.classList.remove('open'); }
 
-    /* FORM SUBMISSION (FORMSPREE) */
+    /* FORM — Formspree endpoint preserved exactly */
     function handleInquiry(e) {
         e.preventDefault();
         const form = e.target;
-        
         fetch('https://formspree.io/f/mdayrzzd', {
             method: 'POST',
             body: new FormData(form),
-            headers: {
-                'Accept': 'application/json'
-            }
+            headers: { 'Accept': 'application/json' }
         }).then(response => {
             if (response.ok) {
                 document.getElementById('inquiryForm').style.display = 'none';
