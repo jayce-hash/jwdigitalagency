@@ -4,14 +4,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Client Portal | JW Digital</title>
-    <meta name="description" content="JW Digital is a boutique agency delivering custom web design, brand identity, and digital strategy for businesses ready to elevate their online presence.">
-    
+    <meta name="description" content="Secure client portal for active JW Digital projects. Access project status, mockups, and payment details.">
+    <meta name="robots" content="noindex, nofollow">
+
     <link rel="icon" href="https://jwdigital.ink/favicon.ico" type="image/x-icon">
 
-    <meta property="og:title" content="JW Digital | High-Performance Web Design">
-    <meta property="og:description" content="Productized agency solutions for DFW businesses. Custom web design, brand identity, and local SEO. Flat rates. No discovery calls.">
+    <meta property="og:title" content="Client Portal | JW Digital">
+    <meta property="og:description" content="Secure access for active JW Digital clients.">
     <meta property="og:image" content="https://jwdigital.ink/social-preview.jpg">
-    <meta property="og:url" content="https://jwdigital.ink">
+    <meta property="og:url" content="https://jwdigital.ink/portal">
     <meta property="og:type" content="website">
 
     <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -21,17 +22,14 @@
         :root {
             --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
             --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
-        }
+            }
         html { scroll-behavior: smooth; }
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); min-height: 100vh; display: flex; flex-direction: column; cursor: none; overflow-x: hidden; }
-        
-        /* Visually hidden for accessibility */
+
         .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; border: 0; }
-        
-        /* Optimized Grain Effect */
+
         body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.04; pointer-events: none; z-index: 9000; }
 
-        /* CURSOR */
         .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; will-change: transform; }
         .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
         a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
@@ -39,41 +37,44 @@
 
         nav { height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; border-bottom: 0.5px solid rgba(244,244,242,0.07); position: relative; z-index: 10; flex-shrink: 0; }
         .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); text-decoration: none; }
-        .nav-right { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.25); display: flex; align-items: center; gap: 10px; }
+        .nav-right { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: rgba(244,244,242,0.4); display: flex; align-items: center; gap: 10px; }
+        .nav-right i { color: var(--silver); }
 
         main { flex: 1; display: flex; align-items: center; justify-content: center; padding: 64px 24px; position: relative; z-index: 1; }
         .screen { display: none; width: 100%; max-width: 520px; }
         .screen.active { display: block; }
 
         .screen-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 40px; }
-        .screen-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        .screen-label::before { content: ""; width: 28px; height: 0.5px; background: var(--platinum); display: block; }
         .screen-headline { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 6vw, 56px); line-height: 0.92; color: var(--platinum); margin-bottom: 16px; font-weight: 400; }
         .screen-headline em { font-style: italic; color: var(--silver); }
         .screen-sub { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; margin-bottom: 48px; }
 
         .login-input { width: 100%; background: rgba(244,244,242,0.04); border: 0.5px solid rgba(244,244,242,0.14); border-radius: 1px; padding: 18px 20px; font-size: 16px; color: var(--platinum); font-family: 'DM Sans', sans-serif; outline: none; transition: border-color 0.2s; margin-bottom: 12px; }
         .login-input::placeholder { color: rgba(244,244,242,0.2); }
-        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; transition: background 0.2s; text-decoration: none; text-align: center; }
+        .login-input:focus { border-color: var(--silver); }
+        .login-btn { display: block; width: 100%; background: var(--platinum); color: var(--ink); padding: 17px; border-radius: 1px; font-size: 11px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; border: none; cursor: none; transition: background 0.2s; text-decoration: none; text-align: center; }
         .login-btn:hover { background: var(--white); }
-        
+
         .mockup-btn { background: transparent; color: var(--platinum); border: 0.5px solid rgba(244,244,242,0.3); margin-top: 24px; padding: 14px; font-size: 10px; }
-        .mockup-btn:hover { border-color: var(--platinum); background: rgba(244,244,242,0.05); }
+        .mockup-btn:hover { border-color: var(--silver); background: rgba(244,244,242,0.04); }
 
         .portal-header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; }
         .portal-greeting { font-family: 'DM Serif Display', serif; font-size: clamp(32px, 5vw, 48px); line-height: 0.95; color: var(--platinum); }
-        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.25); background: none; border: 0.5px solid rgba(244,244,242,0.1); padding: 8px 16px; cursor: none; transition: color 0.2s, border-color 0.2s; }
+        .portal-greeting em { color: var(--silver); }
+        .logout-btn { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.3); background: none; border: 0.5px solid rgba(244,244,242,0.1); padding: 8px 16px; cursor: none; transition: color 0.2s, border-color 0.2s; }
         .logout-btn:hover { color: var(--platinum); border-color: rgba(244,244,242,0.3); }
 
         .status-card { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.08); padding: 36px 40px; margin-bottom: 20px; }
         .status-row { display: flex; justify-content: space-between; padding: 14px 0; border-top: 0.5px solid rgba(244,244,242,0.07); font-size: 13px; }
         .status-badge { text-transform: uppercase; font-size: 10px; font-weight: 500; letter-spacing: 0.1em; padding: 4px 12px; border: 0.5px solid rgba(244,244,242,0.2); }
-        .badge-progress { color: #fbbf24; border-color: rgba(251, 191, 36, 0.4); background: rgba(251, 191, 36, 0.05); }
+        .badge-progress { color: var(--silver); border-color: rgba(244,244,242,0.2); background: rgba(244,244,242,0.04); }
         .badge-complete { color: #4ade80; border-color: rgba(74, 222, 128, 0.4); background: rgba(74, 222, 128, 0.05); }
 
         .payment-card { background: rgba(244,244,242,0.02); border: 0.5px solid rgba(244,244,242,0.07); padding: 36px 40px; margin-bottom: 20px; }
         .payment-amount { font-family: 'DM Serif Display', serif; font-size: 64px; color: var(--platinum); }
 
-        footer { border-top: 0.5px solid rgba(244,244,242,0.07); padding: 32px 56px; display: flex; justify-content: space-between; font-size: 10px; color: rgba(244,244,242,0.18); }
+        footer { border-top: 0.5px solid rgba(244,244,242,0.07); padding: 32px 56px; display: flex; justify-content: space-between; font-size: 10px; color: rgba(244,244,242,0.2); }
 
         @media (max-width: 640px) {
             nav, footer { padding: 24px; }
@@ -95,7 +96,7 @@
     <div class="screen active" id="loginScreen">
         <div class="screen-label">Identity Verification</div>
         <h1 class="screen-headline">Welcome<br><em>Back.</em></h1>
-        
+
         <form onsubmit="handleLogin(event)">
             <label for="emailInput" class="visually-hidden">Email Address</label>
             <input class="login-input" type="email" id="emailInput" placeholder="your@email.com" required>
@@ -120,7 +121,7 @@
             <div class="status-row"><span>Status</span><span id="statusBadge" class="status-badge"></span></div>
             <div class="status-row"><span>Deliverable</span><span id="portalDeliverable"></span></div>
             <div class="status-row"><span>Notes</span><span id="portalNotes" style="max-width:200px; text-align:right;"></span></div>
-            
+
             <div id="mockupContainer"></div>
         </div>
 
@@ -143,32 +144,27 @@
 <script>
     /* CURSOR */
     const cursor = document.getElementById('cursor');
-    let mouseX = 0;
-    let mouseY = 0;
-
-    document.addEventListener('mousemove', e => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-    });
-
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
     function updateCursor() {
         cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
         requestAnimationFrame(updateCursor);
     }
     requestAnimationFrame(updateCursor);
-
     document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
 
-    // DATABASE LOGIC (STEIN)
+    /* ============================================================
+       DATABASE LOGIC (STEIN) — PRESERVED EXACTLY AS-IS
+       ============================================================ */
     const STEIN_ID = "69da885bbb16885eb7bcf43d";
-    const SHEET_NAME = "Clients"; 
+    const SHEET_NAME = "Clients";
 
     async function handleLogin(e) {
         if(e) e.preventDefault();
-        
+
         const email = document.getElementById('emailInput').value.trim().toLowerCase();
         const btn = document.getElementById('loginBtn');
         const errorMsg = document.getElementById('loginError');
@@ -188,7 +184,7 @@
             }
 
             errorMsg.style.display = 'none';
-            localStorage.setItem('jw_portal_email', email); 
+            localStorage.setItem('jw_portal_email', email);
             showPortal(user);
 
         } catch (error) {
@@ -208,39 +204,37 @@
         document.getElementById('portalProject').innerText = user.Project || "Project Details";
         document.getElementById('portalDeliverable').innerText = user.Deliverable || "—";
         document.getElementById('portalNotes').innerText = user.Notes || "—";
-        
+
         const amount = user.Amount ? Number(user.Amount).toLocaleString() : "0";
         document.getElementById('paymentAmount').innerText = `$${amount}`;
 
-        // Status Badge
         const badge = document.getElementById('statusBadge');
         const status = user.Status || "Pending";
         badge.innerText = status;
-        badge.className = "status-badge"; 
+        badge.className = "status-badge";
         if(status === "In Progress") badge.classList.add('badge-progress');
         if(status === "Complete") badge.classList.add('badge-complete');
 
-        // MOCKUP BUTTON
         const mockupContainer = document.getElementById('mockupContainer');
-        mockupContainer.innerHTML = ''; 
+        mockupContainer.innerHTML = '';
         if(user.Mockup && user.Mockup.includes('http')) {
             const mBtn = document.createElement('a');
             mBtn.href = user.Mockup;
             mBtn.target = "_blank";
             mBtn.className = "login-btn mockup-btn";
             mBtn.innerText = "View Project Mockup →";
-            
+
             mBtn.addEventListener('mouseenter', () => cursor.classList.add('active'));
             mBtn.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-            
+
             mockupContainer.appendChild(mBtn);
         }
 
-        // PAYMENT LOGIC
+        // PAYMENT LOGIC — Stripe fallback link preserved exactly
         const isPaid = String(user.Paid).toUpperCase() === "TRUE";
         const paymentStatus = document.getElementById('paymentStatus');
         const paymentCard = document.getElementById('paymentCard');
-        
+
         const oldBtn = document.getElementById('payBtn');
         if (oldBtn) oldBtn.remove();
 
@@ -255,10 +249,10 @@
             newBtn.className = "login-btn";
             newBtn.style.marginTop = "20px";
             newBtn.innerText = "Complete Payment →";
-            
+
             newBtn.addEventListener('mouseenter', () => cursor.classList.add('active'));
             newBtn.addEventListener('mouseleave', () => cursor.classList.remove('active'));
-            
+
             paymentCard.appendChild(newBtn);
         }
     }
