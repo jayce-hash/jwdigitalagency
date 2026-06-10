@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web Design for Restaurants | Restaurant Websites That Fill Tables | JW Digital</title>
+    <meta name="description" content="Custom websites built for restaurants. Mobile-first, menu-forward, and designed to drive reservations, takeout orders, and foot traffic. Flat rates from $750.">
+
+    <link rel="canonical" href="https://jwdigital.ink/web-design-for-restaurants">
+    <link rel="icon" href="https://jwdigital.ink/favicon.ico" type="image/x-icon">
+
+    <meta property="og:title" content="Web Design for Restaurants | JW Digital">
+    <meta property="og:description" content="Custom websites built for restaurants. Mobile-first, menu-forward, and designed to drive reservations, takeout orders, and foot traffic. Flat rates from $750.">
+    <meta property="og:image" content="https://jwdigital.ink/social-preview.jpg">
+    <meta property="og:url" content="https://jwdigital.ink/web-design-for-restaurants">
+    <meta property="og:type" content="website">
+    <meta name="twitter:card" content="summary_large_image">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Service",
+      "serviceType": "Web Design for Restaurants",
+      "provider": {
+        "@type": "ProfessionalService",
+        "name": "JW Digital",
+        "url": "https://jwdigital.ink"
+      },
+      "areaServed": "United States",
+      "description": "Custom websites built for restaurants. Mobile-first, menu-forward, and designed to drive reservations, takeout orders, and foot traffic. Flat rates from $750.",
+      "offers": {
+        "@type": "Offer",
+        "price": "750",
+        "priceCurrency": "USD"
+      }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=DM+Serif+Display:ital@0;1&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        h1, h2, h3 { font-weight: inherit; margin: 0; }
+        :root {
+            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
+            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
+        }
+        html { scroll-behavior: smooth; }
+        body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
+        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
+
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
+        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+        a, button, input, textarea, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
+        input, textarea { cursor: text !important; }
+
+        nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
+        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; gap: 40px; }
+        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
+        .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
+        .nav-link:hover { color: var(--platinum); }
+        .nav-link:hover::after { width: 100%; }
+        .nav-cta { font-size: 10px; font-weight: 600; color: var(--ink); background: var(--platinum); text-decoration: none; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 24px; border-radius: 1px; transition: background 0.2s; cursor: none; }
+        .nav-cta:hover { background: var(--white); }
+
+        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
+        .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.open span:nth-child(2) { opacity: 0; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 72px; left: 0; right: 0; z-index: 99; }
+        .mobile-menu.open { display: flex; }
+        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
+        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
+
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up.visible { opacity: 1; transform: translateY(0); }
+
+        .btn-primary { font-size: 11px; font-weight: 600; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 17px 36px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
+        .btn-primary:hover { background: var(--white); }
+        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.7); background: transparent; text-decoration: none; padding: 17px 36px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.2); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
+        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.4); }
+
+        /* HERO */
+        .hero { min-height: 90vh; padding: 160px 56px 120px; display: flex; align-items: center; }
+        .hero-inner { max-width: 1100px; margin: 0 auto; width: 100%; }
+        .hero-eyebrow { font-size: 10px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
+        .hero-eyebrow::before { content: ""; width: 32px; height: 0.5px; background: var(--silver); display: block; }
+        .hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(48px, 6vw, 88px); line-height: 0.96; letter-spacing: -0.02em; color: var(--platinum); margin-bottom: 32px; font-weight: 400; }
+        .hero-headline em { font-style: italic; color: var(--silver); }
+        .hero-sub { font-size: 17px; font-weight: 300; color: var(--silver); line-height: 1.75; max-width: 680px; margin-bottom: 40px; }
+        .hero-sub strong { color: var(--platinum); font-weight: 400; }
+        .hero-sub em { font-style: italic; }
+        .hero-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+
+        /* SECTION SHARED */
+        .section { padding: 120px 56px; }
+        .section-inner { max-width: 1100px; margin: 0 auto; }
+        .section-label { font-size: 9px; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
+        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
+        .section-headline { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 5vw, 64px); line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 24px; }
+        .section-headline em { font-style: italic; color: var(--silver); }
+        .section-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 460px; }
+
+        /* PROBLEM SECTION */
+        .problem-section { background: var(--smoke); border-top: 0.5px solid rgba(244,244,242,0.07); border-bottom: 0.5px solid rgba(244,244,242,0.07); }
+        .problem-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+        .problem-grid { display: flex; flex-direction: column; border-top: 0.5px solid rgba(244,244,242,0.08); }
+        .problem-row { display: grid; grid-template-columns: 80px 1fr; gap: 32px; padding: 28px 0; border-bottom: 0.5px solid rgba(244,244,242,0.08); align-items: start; }
+        .problem-num { font-family: 'DM Serif Display', serif; font-size: 18px; color: rgba(244,244,242,0.3); }
+        .problem-text { font-size: 16px; font-weight: 300; color: var(--silver); line-height: 1.7; }
+        .problem-text em { font-style: italic; color: var(--platinum); }
+
+        /* WHAT WE BUILD */
+        .build-section { background: var(--ink); }
+        .build-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 56px; }
+        .build-intro { font-size: 18px; font-weight: 300; color: var(--silver); line-height: 1.75; font-style: italic; font-family: 'DM Serif Display', serif; max-width: 600px; margin-bottom: 56px; padding: 32px 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); }
+        .build-list { list-style: none; padding: 0; display: grid; grid-template-columns: 1fr 1fr; gap: 0; }
+        .build-item { display: flex; align-items: flex-start; gap: 16px; padding: 24px 0; border-bottom: 0.5px solid rgba(244,244,242,0.07); font-size: 14px; color: var(--silver); line-height: 1.7; }
+        .build-item:nth-child(odd) { padding-right: 32px; }
+        .build-item:nth-child(even) { padding-left: 32px; border-left: 0.5px solid rgba(244,244,242,0.07); }
+        .build-item strong { color: var(--platinum); font-weight: 500; }
+        .build-check { color: var(--silver); font-size: 12px; margin-top: 5px; flex-shrink: 0; }
+
+        /* CASE STUDY */
+        .case-section { background: var(--smoke); border-top: 0.5px solid rgba(244,244,242,0.07); }
+        .case-header { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: end; margin-bottom: 64px; }
+        .case-card { display: grid; grid-template-columns: 1fr 1fr; gap: 0; background: var(--ink); border: 0.5px solid rgba(244,244,242,0.08); text-decoration: none; transition: border-color 0.3s; overflow: hidden; cursor: none; }
+        .case-card:hover { border-color: rgba(244,244,242,0.25); }
+        .case-img-wrap { aspect-ratio: 4/3; overflow: hidden; position: relative; background: var(--smoke); }
+        .case-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.7; transition: opacity 0.5s, transform 0.5s; }
+        .case-card:hover .case-img { opacity: 1; transform: scale(1.03); }
+        .case-info { padding: 48px 48px; display: flex; flex-direction: column; justify-content: center; }
+        .case-location { font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 10px; }
+        .case-name { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--platinum); margin-bottom: 20px; line-height: 1.1; }
+        .case-summary { font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; margin-bottom: 28px; }
+        .case-link { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--platinum); }
+
+        /* CASE STUDY ALT (HVAC honest framing) */
+        .case-card-alt { background: var(--ink); border: 0.5px solid rgba(244,244,242,0.08); padding: 64px 56px; }
+        .case-alt-body { font-size: 16px; font-weight: 300; color: var(--silver); line-height: 1.85; margin-bottom: 24px; }
+        .case-alt-body:last-of-type { margin-bottom: 36px; }
+        .case-alt-cta { display: inline-block; }
+
+        /* RELATED */
+        .related-section { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); }
+        .related-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-left: 0.5px solid rgba(244,244,242,0.08); margin-top: 48px; }
+        .related-card { padding: 36px 28px; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); text-decoration: none; transition: background 0.3s; cursor: none; }
+        .related-card:hover { background: var(--smoke); }
+        .related-label { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--silver); margin-bottom: 12px; }
+        .related-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); line-height: 1.2; }
+
+        /* CTA */
+        .cta-section { background: var(--smoke); padding: 140px 56px; border-top: 0.5px solid rgba(244,244,242,0.07); }
+        .cta-inner { max-width: 900px; margin: 0 auto; text-align: center; }
+        .cta-headline { font-family: 'DM Serif Display', serif; font-size: clamp(40px, 5vw, 72px); color: var(--platinum); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 28px; font-weight: 400; }
+        .cta-headline em { font-style: italic; color: var(--silver); }
+        .cta-sub { font-size: 16px; font-weight: 300; color: var(--fog); line-height: 1.8; max-width: 540px; margin: 0 auto 40px; }
+        .cta-actions { display: flex; gap: 16px; justify-content: center; flex-wrap: wrap; }
+
+        /* FOOTER */
+        footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
+        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
+        .footer-copy { font-size: 10px; color: rgba(244,244,242,0.25); text-align: center; letter-spacing: 0.08em; }
+        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
+        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.4); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
+        .footer-link:hover { color: var(--platinum); }
+
+        @media (max-width: 1024px) {
+            .problem-header, .build-header, .case-header { grid-template-columns: 1fr; gap: 32px; }
+            .case-card { grid-template-columns: 1fr; }
+            .case-info { padding: 40px 32px; }
+            .build-list { grid-template-columns: 1fr; }
+            .build-item:nth-child(odd), .build-item:nth-child(even) { padding: 24px 0; border-left: none; }
+            .related-grid { grid-template-columns: repeat(2, 1fr); }
+            footer { grid-template-columns: 1fr 1fr; }
+            .footer-copy { text-align: left; }
+        }
+        @media (max-width: 768px) {
+            nav { padding: 0 24px; height: 64px; }
+            .nav-links { display: none; }
+            .hamburger { display: flex; }
+            .hero { padding: 100px 24px 80px; }
+            .section { padding: 80px 24px; }
+            .cta-section { padding: 80px 24px; }
+            .hero-actions, .cta-actions { flex-direction: column; align-items: stretch; }
+            .hero-actions a, .cta-actions a { text-align: center; }
+            .problem-row { grid-template-columns: 50px 1fr; gap: 16px; }
+            .case-card-alt { padding: 40px 28px; }
+            .related-grid { grid-template-columns: 1fr 1fr; }
+            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
+            .footer-links { justify-content: flex-start; }
+            .footer-copy { text-align: left; }
+            body { cursor: auto; }
+            .cursor { display: none; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="cursor" id="cursor"></div>
+
+<nav>
+    <a href="/" class="nav-logo"><div class="nav-logo-word">JW/DIGITAL</div></a>
+    <div class="nav-links">
+        <a href="/work" class="nav-link">Work</a>
+        <a href="/services" class="nav-link">Services</a>
+        <a href="/faq" class="nav-link">FAQ</a>
+        <a href="/contact" class="nav-link">Contact</a>
+        <a href="/portal" class="nav-cta">Login</a>
+    </div>
+    <button class="hamburger" id="hamburger" aria-label="Menu">
+        <span></span><span></span><span></span>
+    </button>
+</nav>
+
+<div class="mobile-menu" id="mobileMenu">
+    <a href="/work">Work</a>
+    <a href="/services">Services</a>
+    <a href="/faq">FAQ</a>
+    <a href="/contact">Contact</a>
+    <a href="/portal">Login</a>
+</div>
+
+<main>
+    <!-- HERO -->
+    <section class="hero">
+        <div class="hero-inner fade-up">
+            <div class="hero-eyebrow">Web Design for Restaurants</div>
+            <h1 class="hero-headline">Websites for restaurants<br><em>that fill the tables.</em></h1>
+            <p class="hero-sub">When someone's hungry and pulls out their phone, the decision happens in 30 seconds. They look at your menu, your hours, your reviews, and your location. If any of those are buried or broken, they're eating somewhere else. We build restaurant websites that make the choice obvious.</p>
+            <div class="hero-actions">
+                <a href="/contact" class="btn-primary">Start a Project</a>
+                <a href="/services" class="btn-ghost">View Pricing</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROBLEM -->
+    <section class="section problem-section">
+        <div class="section-inner">
+            <div class="problem-header fade-up">
+                <div>
+                    <h2 class="section-label">The Problem</h2>
+                    <div class="section-headline">What's wrong with<br><em>most restaurant sites.</em></div>
+                </div>
+                <p class="section-sub">If your website is hurting more than helping, it's almost always one of these five things. We see them in nearly every restaurants site we audit.</p>
+            </div>
+            <div class="problem-grid fade-up">
+                <div class="problem-row">
+                    <div class="problem-num">01</div>
+                    <div class="problem-text">Menu is buried as a PDF download instead of viewable instantly on a phone</div>
+                </div>
+                <div class="problem-row">
+                    <div class="problem-num">02</div>
+                    <div class="problem-text">Hours and location aren't above the fold — the two things every customer needs first</div>
+                </div>
+                <div class="problem-row">
+                    <div class="problem-num">03</div>
+                    <div class="problem-text">No online ordering or reservation link — customers leave to find one that does</div>
+                </div>
+                <div class="problem-row">
+                    <div class="problem-num">04</div>
+                    <div class="problem-text">Stock photos of generic food instead of real photos of <em>your</em> dishes</div>
+                </div>
+                <div class="problem-row">
+                    <div class="problem-num">05</div>
+                    <div class="problem-text">Slow load times that lose customers before the homepage even renders</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- WHAT WE BUILD -->
+    <section class="section build-section">
+        <div class="section-inner">
+            <div class="build-header fade-up">
+                <div>
+                    <h2 class="section-label">What We Build</h2>
+                    <div class="section-headline">Sites built<br><em>for the job.</em></div>
+                </div>
+                <p class="section-sub">Every restaurant website we build is engineered around what actually drives conversions for your industry — not generic templates.</p>
+            </div>
+            <p class="build-intro fade-up">"A restaurant website's only job is to convert a hungry person into a customer. Menu, hours, location, photos — fast and obvious."</p>
+            <ul class="build-list fade-up">
+                <li class="build-item"><i class="fa-solid fa-check build-check"></i><span><strong>Menu viewable instantly</strong> — no PDF downloads, no broken images</span></li>
+                    <li class="build-item"><i class="fa-solid fa-check build-check"></i><span><strong>Hours and location locked above the fold</strong> on every page</span></li>
+                    <li class="build-item"><i class="fa-solid fa-check build-check"></i><span><strong>Online ordering and reservation links</strong> integrated cleanly</span></li>
+                    <li class="build-item"><i class="fa-solid fa-check build-check"></i><span><strong>Real photos of your actual food</strong> — not stock imagery</span></li>
+                    <li class="build-item"><i class="fa-solid fa-check build-check"></i><span><strong>Click-to-call and click-to-directions</strong> on mobile</span></li>
+                    <li class="build-item"><i class="fa-solid fa-check build-check"></i><span><strong>Google Business Profile optimization</strong> so you show up in local food searches</span></li>
+            </ul>
+        </div>
+    </section>
+
+    
+    <section class="section case-section">
+        <div class="section-inner">
+            <div class="case-header fade-up">
+                <div>
+                    <h2 class="section-label">Recent Restaurants Project</h2>
+                    <div class="section-headline">Built for the<br><em>Texas market.</em></div>
+                </div>
+                <p class="section-sub">Every page on this site is built around real work. Here's a restaurant business we built for recently.</p>
+            </div>
+            <a href="https://sagradococina.netlify.app" target="_blank" rel="noopener" class="case-card fade-up">
+                <div class="case-img-wrap">
+                    <img src="Sagrado.jpg" alt="Sagrado Cocina website" class="case-img">
+                </div>
+                <div class="case-info">
+                    <div class="case-location">Waco, Texas</div>
+                    <div class="case-name">Sagrado Cocina</div>
+                    <p class="case-summary">Built for an independent restaurant in Waco. Menu-forward design, real food photography, integrated reservation and directions on mobile. Delivered at flat rate, live in under 2 weeks.</p>
+                    <div class="case-link">View live site →</div>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- RELATED INDUSTRIES -->
+    <section class="section related-section">
+        <div class="section-inner">
+            <div class="fade-up" style="text-align: center;">
+                <h2 class="section-label" style="justify-content: center;">Other Industries</h2>
+                <div class="section-headline">Also <em>built for.</em></div>
+            </div>
+            <div class="related-grid fade-up">
+                <a href="/web-design-for-plumbers" class="related-card">
+                    <div class="related-label">Also for</div>
+                    <div class="related-name">Plumbers</div>
+                </a>
+                <a href="/web-design-for-roofers" class="related-card">
+                    <div class="related-label">Also for</div>
+                    <div class="related-name">Roofers</div>
+                </a>
+                <a href="/web-design-for-contractors" class="related-card">
+                    <div class="related-label">Also for</div>
+                    <div class="related-name">General Contractors</div>
+                </a>
+                <a href="/web-design-for-barbershops" class="related-card">
+                    <div class="related-label">Also for</div>
+                    <div class="related-name">Barbershops & Salons</div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+        <div class="cta-inner fade-up">
+            <h2 class="cta-headline">Ready to build a site<br>that actually <em>works?</em></h2>
+            <p class="cta-sub">Flat-rate pricing from $750. Most projects delivered in under 14 days. Tell us about your business and we'll respond within 24 hours.</p>
+            <div class="cta-actions">
+                <a href="/contact" class="btn-primary">Start a Project</a>
+                <a href="/work" class="btn-ghost">See Our Work</a>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div>
+        <div class="footer-logo-word">JW/DIGITAL</div>
+    </div>
+    <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
+    <div class="footer-links">
+        <a href="/services" class="footer-link">Services</a>
+        <a href="/work" class="footer-link">Work</a>
+        <a href="/contact" class="footer-link">Contact</a>
+        <a href="/portal" class="footer-link">Login</a>
+        <a href="/faq" class="footer-link">FAQ</a>
+        <a href="/tos" class="footer-link">Terms</a>
+        <a href="/privacy" class="footer-link">Privacy</a>
+    </div>
+</footer>
+
+<script>
+    /* CURSOR */
+    const cursor = document.getElementById('cursor');
+    let mouseX = 0, mouseY = 0;
+    document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
+    function updateCursor() {
+        cursor.style.transform = `translate3d(${mouseX}px, ${mouseY}px, 0) translate(-50%, -50%)`;
+        requestAnimationFrame(updateCursor);
+    }
+    requestAnimationFrame(updateCursor);
+    document.querySelectorAll('a, button, input, textarea, div[onclick], div[tabindex]').forEach(el => {
+        el.addEventListener('mouseenter', () => cursor.classList.add('active'));
+        el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
+    });
+
+    /* FADE UP */
+    const obs = new IntersectionObserver(entries => {
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 100); });
+    }, { threshold: 0.06 });
+    document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
+
+    /* MOBILE MENU */
+    const hamburger = document.getElementById('hamburger');
+    const mobileMenu = document.getElementById('mobileMenu');
+    hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
+</script>
+</body>
+</html>

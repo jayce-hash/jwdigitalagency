@@ -149,10 +149,12 @@
         .niche-header .section-label { justify-content: center; }
         .niche-header .section-label::before { display: none; }
         .niche-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-left: 0.5px solid rgba(244,244,242,0.08); }
-        .niche-item { padding: 36px 20px; text-align: center; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); transition: background 0.3s; }
+        .niche-item { padding: 36px 20px; text-align: center; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); transition: background 0.3s; text-decoration: none; display: block; cursor: none; }
         .niche-item:hover { background: var(--smoke); }
-        .niche-item i { font-size: 24px; color: var(--silver); margin-bottom: 16px; opacity: 0.8; }
-        .niche-item-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--platinum); line-height: 1.3; }
+        .niche-item:hover i { opacity: 1; transform: translateY(-2px); }
+        .niche-item:hover .niche-item-name { color: var(--white); }
+        .niche-item i { font-size: 24px; color: var(--silver); margin-bottom: 16px; opacity: 0.8; transition: opacity 0.3s, transform 0.3s; display: block; }
+        .niche-item-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--platinum); line-height: 1.3; transition: color 0.2s; }
 
         .portfolio-section { background: var(--smoke); }
         .portfolio-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
@@ -435,23 +437,23 @@
     <section class="section niche-section">
         <div class="section-inner">
             <div class="niche-header fade-up">
-                <h2 class="section-label">Built for the trades &amp; beyond</h2>
+                <h2 class="section-label">Industries We Build For</h2>
                 <div class="section-headline">Real businesses.<br><em>Real work.</em></div>
-                <p class="section-sub" style="margin: 24px auto 0;">If you run a service business and your website is hurting more than helping, we've built for you before.</p>
+                <p class="section-sub" style="margin: 24px auto 0;">Tap your industry below for specifics on what we build, what we charge, and proof of the work we've done for businesses like yours.</p>
             </div>
             <div class="niche-grid fade-up">
-                <div class="niche-item"><i class="fa-solid fa-wrench"></i><div class="niche-item-name">Plumbing</div></div>
-                <div class="niche-item"><i class="fa-solid fa-helmet-safety"></i><div class="niche-item-name">Contracting</div></div>
-                <div class="niche-item"><i class="fa-solid fa-house-chimney"></i><div class="niche-item-name">Roofing</div></div>
-                <div class="niche-item"><i class="fa-solid fa-utensils"></i><div class="niche-item-name">Restaurants</div></div>
-                <div class="niche-item"><i class="fa-solid fa-scissors"></i><div class="niche-item-name">Barbers &amp; Salons</div></div>
-                <div class="niche-item"><i class="fa-solid fa-leaf"></i><div class="niche-item-name">Landscaping</div></div>
-                <div class="niche-item"><i class="fa-solid fa-cookie-bite"></i><div class="niche-item-name">Bakeries &amp; Cafés</div></div>
-                <div class="niche-item"><i class="fa-solid fa-couch"></i><div class="niche-item-name">Interior Design</div></div>
-                <div class="niche-item"><i class="fa-solid fa-truck"></i><div class="niche-item-name">Logistics</div></div>
-                <div class="niche-item"><i class="fa-solid fa-screwdriver-wrench"></i><div class="niche-item-name">HVAC &amp; Repair</div></div>
-                <div class="niche-item"><i class="fa-solid fa-paint-roller"></i><div class="niche-item-name">Painters</div></div>
-                <div class="niche-item"><i class="fa-solid fa-circle-plus"></i><div class="niche-item-name">And more</div></div>
+                <a href="/web-design-for-plumbers" class="niche-item"><i class="fa-solid fa-wrench"></i><div class="niche-item-name">Plumbing</div></a>
+                <a href="/web-design-for-contractors" class="niche-item"><i class="fa-solid fa-helmet-safety"></i><div class="niche-item-name">Contracting</div></a>
+                <a href="/web-design-for-roofers" class="niche-item"><i class="fa-solid fa-house-chimney"></i><div class="niche-item-name">Roofing</div></a>
+                <a href="/web-design-for-restaurants" class="niche-item"><i class="fa-solid fa-utensils"></i><div class="niche-item-name">Restaurants</div></a>
+                <a href="/web-design-for-barbershops" class="niche-item"><i class="fa-solid fa-scissors"></i><div class="niche-item-name">Barbers &amp; Salons</div></a>
+                <a href="/web-design-for-landscapers" class="niche-item"><i class="fa-solid fa-leaf"></i><div class="niche-item-name">Landscaping</div></a>
+                <a href="/web-design-for-bakeries" class="niche-item"><i class="fa-solid fa-cookie-bite"></i><div class="niche-item-name">Bakeries</div></a>
+                <a href="/web-design-for-cafes" class="niche-item"><i class="fa-solid fa-mug-hot"></i><div class="niche-item-name">Cafes</div></a>
+                <a href="/web-design-for-interior-designers" class="niche-item"><i class="fa-solid fa-couch"></i><div class="niche-item-name">Interior Design</div></a>
+                <a href="/web-design-for-hvac" class="niche-item"><i class="fa-solid fa-screwdriver-wrench"></i><div class="niche-item-name">HVAC &amp; Repair</div></a>
+                <a href="/contact" class="niche-item"><i class="fa-solid fa-paint-roller"></i><div class="niche-item-name">Painters</div></a>
+                <a href="/contact" class="niche-item"><i class="fa-solid fa-circle-plus"></i><div class="niche-item-name">And more</div></a>
             </div>
         </div>
     </section>
