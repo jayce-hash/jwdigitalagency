@@ -45,264 +45,701 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <style>
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-        h1, h2, h3 { font-weight: inherit; margin: 0; }
+        h1, h2, h3, h4 { font-weight: inherit; margin: 0; }
         :root {
-            --ink: #1A1A1A; --smoke: #2E2E2E; --fog: #7A7A7A;
-            --silver: #C2C2C2; --platinum: #F4F4F2; --white: #ffffff;
-            }
-        html { scroll-behavior: smooth; }
+            --ink: #1A1A1A;
+            --smoke: #2E2E2E;
+            --fog: #7A7A7A;
+            --silver: #C2C2C2;
+            --platinum: #F4F4F2;
+            --white: #ffffff;
+            --ease: cubic-bezier(0.25, 0.1, 0.25, 1);
+            --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
         body { font-family: 'DM Sans', sans-serif; background: var(--ink); color: var(--platinum); overflow-x: hidden; cursor: none; }
-        body::after { content: ""; position: fixed; inset: 0; background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E"); opacity: 0.03; pointer-events: none; z-index: 9000; }
 
-        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.2s, height 0.2s, background 0.2s; }
-        .cursor.active { width: 12px; height: 12px; background: var(--platinum); }
+        /* GRAIN */
+        body::after {
+            content: ""; position: fixed; inset: 0; pointer-events: none; z-index: 9000;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+            opacity: 0.035;
+        }
+
+        /* CURSOR — preserved from existing site */
+        .cursor { width: 8px; height: 8px; background: var(--silver); border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate(-50%,-50%); transition: width 0.25s var(--ease), height 0.25s var(--ease), background 0.25s var(--ease); }
+        .cursor.active { width: 28px; height: 28px; background: rgba(244,244,242,0.12); border: 0.5px solid rgba(244,244,242,0.4); }
         a, button, input, textarea, select, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
         input, textarea, select { cursor: text !important; }
 
-        .trust-bar { background: var(--smoke); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 8px 56px; display: flex; justify-content: center; align-items: center; gap: 24px; font-size: 10px; font-weight: 500; color: var(--silver); letter-spacing: 0.16em; text-transform: uppercase; position: fixed; top: 0; left: 0; right: 0; z-index: 101; }
-        .trust-bar-item { display: flex; align-items: center; gap: 8px; }
-        .trust-bar-item i { color: var(--silver); font-size: 9px; }
-        .trust-bar-sep { width: 0.5px; height: 12px; background: rgba(244,244,242,0.15); }
+        /* ───────────────────────────────────────────────────────────────
+           STATUS STRIP — top of page
+           ─────────────────────────────────────────────────────────────── */
+        .status-strip {
+            position: fixed; top: 0; left: 0; right: 0; z-index: 90;
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 14px 32px; font-size: 11px; letter-spacing: 0.04em;
+            color: var(--fog); background: rgba(26,26,26,0.7);
+            backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+            border-bottom: 0.5px solid rgba(244,244,242,0.06);
+        }
+        .status-left, .status-right { display: flex; align-items: center; gap: 20px; }
+        .status-pill { display: inline-flex; align-items: center; gap: 8px; }
+        .status-dot { width: 6px; height: 6px; background: #7FDBA9; border-radius: 50%; box-shadow: 0 0 0 0 rgba(127,219,169,0.6); animation: pulse 2.4s var(--ease) infinite; }
+        @keyframes pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(127,219,169,0.6); }
+            50% { box-shadow: 0 0 0 6px rgba(127,219,169,0); }
+        }
+        .status-divider { width: 0.5px; height: 11px; background: rgba(244,244,242,0.12); }
+        .status-mono { font-variant-numeric: tabular-nums; }
 
-        nav { position: fixed; top: 32px; left: 0; right: 0; z-index: 100; height: 72px; display: flex; align-items: center; justify-content: space-between; padding: 0 56px; transition: background 0.5s, border-color 0.5s; }
-        nav.scrolled { background: rgba(26,26,26,0.96); border-bottom: 0.5px solid rgba(244,244,242,0.07); backdrop-filter: blur(20px); }
-        .nav-logo { display: inline-flex; flex-direction: column; text-decoration: none; width: max-content; }
-        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 20px; letter-spacing: 0.08em; color: var(--platinum); line-height: 1; white-space: nowrap; }
-        .nav-links { display: flex; align-items: center; gap: 40px; }
-        .nav-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; letter-spacing: 0.16em; text-transform: uppercase; transition: color 0.2s; position: relative; }
-        .nav-link::after { content: ""; position: absolute; bottom: -3px; left: 0; width: 0; height: 0.5px; background: var(--silver); transition: width 0.3s; }
-        .nav-link:hover { color: var(--platinum); }
-        .nav-link:hover::after { width: 100%; }
-        .nav-cta { font-size: 10px; font-weight: 600; color: var(--ink); text-decoration: none; letter-spacing: 0.14em; text-transform: uppercase; padding: 11px 24px; background: var(--platinum); border-radius: 1px; transition: background 0.2s, transform 0.15s; cursor: none; }
-        .nav-cta:hover { background: var(--white); transform: translateY(-1px); }
+        /* ───────────────────────────────────────────────────────────────
+           NAV — floating pill inside container
+           ─────────────────────────────────────────────────────────────── */
+        .nav-wrap { position: fixed; top: 56px; left: 0; right: 0; z-index: 89; padding: 0 32px; pointer-events: none; }
+        .nav-inner { max-width: 1320px; margin: 0 auto; pointer-events: auto; }
+        nav {
+            display: flex; align-items: center; justify-content: space-between;
+            padding: 8px 8px 8px 24px;
+            background: rgba(46,46,46,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(244,244,242,0.08);
+            border-radius: 9999px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+        }
+        .nav-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
+        .nav-logo-mark {
+            width: 32px; height: 32px; border-radius: 50%;
+            background: var(--platinum); color: var(--ink);
+            display: flex; align-items: center; justify-content: center;
+            font-family: 'DM Serif Display', serif; font-style: italic;
+            font-size: 14px; font-weight: 400; line-height: 1;
+        }
+        .nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.04em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+        .nav-links { display: flex; align-items: center; gap: 8px; }
+        .nav-link { font-size: 12px; font-weight: 400; color: rgba(244,244,242,0.65); text-decoration: none; padding: 8px 14px; border-radius: 9999px; transition: color 0.3s var(--ease), background 0.3s var(--ease); letter-spacing: 0.02em; }
+        .nav-link:hover { color: var(--platinum); background: rgba(244,244,242,0.05); }
 
-        .hamburger { display: none; flex-direction: column; gap: 6px; background: none; border: none; cursor: none; padding: 4px; }
-        .hamburger span { display: block; width: 24px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
-        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        /* Hover text-roll CTA — the Axion-style button */
+        .roll-btn {
+            display: inline-flex; align-items: center; gap: 4px;
+            padding: 6px 6px 6px 18px;
+            background: var(--platinum); color: var(--ink);
+            border-radius: 9999px; text-decoration: none;
+            font-size: 12px; font-weight: 500; letter-spacing: 0.02em;
+            border: none; font-family: 'DM Sans', sans-serif;
+            transition: background 0.3s var(--ease);
+            position: relative;
+        }
+        .roll-btn:hover { background: var(--white); }
+        .roll-text {
+            display: inline-flex; flex-direction: column; overflow: hidden;
+            line-height: 20px; height: 20px;
+        }
+        .roll-text-inner {
+            transition: transform 0.5s var(--ease);
+            display: flex; flex-direction: column;
+        }
+        .roll-text-inner span { display: block; line-height: 20px; }
+        .roll-btn:hover .roll-text-inner { transform: translateY(-50%); }
+        .roll-arrow {
+            display: inline-flex; align-items: center; justify-content: center;
+            width: 26px; height: 26px; background: var(--ink); color: var(--platinum);
+            border-radius: 50%; font-size: 11px;
+            transition: transform 0.5s var(--ease);
+        }
+        .roll-btn:hover .roll-arrow { transform: rotate(-45deg); }
+
+        /* Bigger version of the roll button for hero CTAs */
+        .roll-btn-lg {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 8px 8px 22px;
+            background: var(--platinum); color: var(--ink);
+            border-radius: 9999px; text-decoration: none;
+            font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+            border: none; font-family: 'DM Sans', sans-serif;
+            transition: background 0.3s var(--ease);
+        }
+        .roll-btn-lg:hover { background: var(--white); }
+        .roll-btn-lg .roll-text { line-height: 22px; height: 22px; }
+        .roll-btn-lg .roll-text-inner span { line-height: 22px; }
+        .roll-btn-lg .roll-arrow { width: 32px; height: 32px; font-size: 12px; }
+
+        .roll-btn-ghost {
+            display: inline-flex; align-items: center; gap: 8px;
+            padding: 8px 8px 8px 22px;
+            background: transparent; color: var(--platinum);
+            border-radius: 9999px; text-decoration: none;
+            font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+            border: 0.5px solid rgba(244,244,242,0.2);
+            font-family: 'DM Sans', sans-serif;
+            transition: border-color 0.3s var(--ease), background 0.3s var(--ease);
+        }
+        .roll-btn-ghost:hover { border-color: rgba(244,244,242,0.5); background: rgba(244,244,242,0.04); }
+        .roll-btn-ghost .roll-text { line-height: 22px; height: 22px; }
+        .roll-btn-ghost .roll-text-inner span { line-height: 22px; }
+        .roll-btn-ghost .roll-arrow { width: 32px; height: 32px; font-size: 12px; background: rgba(244,244,242,0.1); color: var(--platinum); }
+        .roll-btn-ghost:hover .roll-arrow { background: rgba(244,244,242,0.18); transform: rotate(-45deg); }
+
+        .hamburger { display: none; flex-direction: column; gap: 5px; background: none; border: none; padding: 8px; }
+        .hamburger span { display: block; width: 18px; height: 0.5px; background: var(--platinum); transition: all 0.3s; }
+        .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
         .hamburger.open span:nth-child(2) { opacity: 0; }
-        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
-        .mobile-menu { display: none; flex-direction: column; background: var(--ink); border-bottom: 0.5px solid rgba(244,244,242,0.07); padding: 24px 32px; gap: 0; position: fixed; top: 96px; left: 0; right: 0; z-index: 99; }
+        .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
+        .mobile-menu { display: none; flex-direction: column; background: rgba(26,26,26,0.97); backdrop-filter: blur(20px); border: 0.5px solid rgba(244,244,242,0.08); padding: 12px; gap: 4px; position: fixed; top: 110px; left: 16px; right: 16px; z-index: 88; border-radius: 20px; }
         .mobile-menu.open { display: flex; }
-        .mobile-menu a { font-size: 12px; font-weight: 500; color: rgba(244,244,242,0.5); text-decoration: none; padding: 16px 0; border-bottom: 0.5px solid rgba(244,244,242,0.06); letter-spacing: 0.14em; text-transform: uppercase; transition: color 0.2s; }
-        .mobile-menu a:last-child { border-bottom: none; color: var(--platinum); }
-        .mobile-menu a:hover { color: var(--platinum); }
+        .mobile-menu a { font-size: 14px; font-weight: 400; color: var(--platinum); text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.2s; }
+        .mobile-menu a:hover { background: rgba(244,244,242,0.05); }
 
-        .fade-up { opacity: 0; transform: translateY(32px); transition: opacity 0.9s cubic-bezier(0.16,1,0.3,1), transform 0.9s cubic-bezier(0.16,1,0.3,1); }
+        .fade-up { opacity: 0; transform: translateY(28px); transition: opacity 1s var(--ease-out), transform 1s var(--ease-out); }
         .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-        .hero { min-height: 100vh; padding-top: 104px; display: flex; flex-direction: column; justify-content: center; padding-left: 56px; padding-right: 56px; padding-bottom: 60px; position: relative; overflow: hidden; }
-        .hero-bg { position: absolute; inset: 0; background: var(--ink); }
-        .hero-inner { position: relative; z-index: 2; max-width: 1280px; width: 100%; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr; gap: 80px; align-items: center; }
-        .hero-content { display: flex; flex-direction: column; }
-        .hero-eyebrow { font-size: 10px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); margin-bottom: 32px; display: flex; align-items: center; gap: 16px; }
-        .hero-eyebrow::before { content: ""; width: 32px; height: 0.5px; background: var(--platinum); display: block; }
-        .hero-headline { font-family: 'DM Serif Display', serif; font-size: clamp(56px, 6.5vw, 96px); line-height: 0.95; letter-spacing: -0.02em; color: var(--platinum); margin-bottom: 28px; font-weight: 400; }
-        .hero-headline em { font-style: italic; color: var(--silver); }
-        .hero-headline u { text-decoration: none; background-image: linear-gradient(transparent 65%, rgba(244,244,242,0.15) 65%); }
-        .hero-sub { font-size: 17px; font-weight: 300; color: var(--silver); line-height: 1.7; max-width: 520px; margin-bottom: 36px; }
+        /* ───────────────────────────────────────────────────────────────
+           HERO
+           ─────────────────────────────────────────────────────────────── */
+        .hero {
+            min-height: 100vh;
+            padding: 168px 32px 80px;
+            position: relative;
+            display: flex; align-items: center;
+            overflow: hidden;
+        }
+        /* Ambient drifting gradients — replaces a WebGL shader */
+        .hero-ambient { position: absolute; inset: 0; z-index: 0; pointer-events: none; overflow: hidden; }
+        .hero-ambient::before, .hero-ambient::after {
+            content: ""; position: absolute;
+            width: 800px; height: 800px;
+            border-radius: 50%;
+            filter: blur(80px);
+            opacity: 0.18;
+        }
+        .hero-ambient::before {
+            background: radial-gradient(circle, rgba(194,194,194,0.18) 0%, transparent 70%);
+            top: -200px; left: -200px;
+            animation: drift1 28s ease-in-out infinite;
+        }
+        .hero-ambient::after {
+            background: radial-gradient(circle, rgba(244,244,242,0.1) 0%, transparent 70%);
+            bottom: -200px; right: -200px;
+            animation: drift2 32s ease-in-out infinite;
+        }
+        @keyframes drift1 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(200px, 150px); }
+        }
+        @keyframes drift2 {
+            0%, 100% { transform: translate(0, 0); }
+            50% { transform: translate(-180px, -120px); }
+        }
+
+        .hero-inner { max-width: 1320px; margin: 0 auto; width: 100%; position: relative; z-index: 2; display: grid; grid-template-columns: 1.5fr 1fr; gap: 64px; align-items: end; }
+
+        .hero-eyebrow {
+            display: inline-flex; align-items: center; gap: 12px;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase;
+            color: var(--silver); margin-bottom: 40px;
+        }
+        .hero-eyebrow-rule { width: 28px; height: 0.5px; background: var(--silver); }
+
+        .hero-headline {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(56px, 7.5vw, 116px);
+            line-height: 0.94;
+            letter-spacing: -0.035em;
+            color: var(--platinum);
+            margin-bottom: 32px;
+            font-weight: 400;
+        }
+        .hero-headline em {
+            font-style: italic;
+            color: var(--silver);
+        }
+        .hero-headline u {
+            text-decoration: none;
+            position: relative;
+            display: inline-block;
+        }
+        .hero-headline u::after {
+            content: "";
+            position: absolute;
+            left: 0; right: 0; bottom: 0.08em;
+            height: 0.18em;
+            background: rgba(244,244,242,0.14);
+            z-index: -1;
+        }
+
+        .hero-sub {
+            font-size: 17px;
+            font-weight: 300;
+            color: var(--silver);
+            line-height: 1.65;
+            max-width: 540px;
+            margin-bottom: 40px;
+        }
         .hero-sub strong { color: var(--platinum); font-weight: 400; }
-        .hero-actions { display: flex; gap: 16px; align-items: center; flex-wrap: wrap; margin-bottom: 40px; }
-        .hero-proofs { display: flex; gap: 32px; flex-wrap: wrap; padding-top: 32px; border-top: 0.5px solid rgba(244,244,242,0.08); }
-        .hero-proof { display: flex; flex-direction: column; gap: 4px; }
-        .hero-proof-num { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--platinum); line-height: 1; }
-        .hero-proof-num em { color: var(--silver); font-style: normal; }
-        .hero-proof-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: rgba(244,244,242,0.4); }
 
-        .btn-primary { font-size: 11px; font-weight: 600; color: var(--ink); background: var(--platinum); text-decoration: none; padding: 17px 36px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; transition: background 0.2s, transform 0.15s; display: inline-block; cursor: none; border: none; font-family: 'DM Sans', sans-serif; }
-        .btn-primary:hover { background: var(--white); transform: translateY(-1px); }
-        .btn-ghost { font-size: 11px; font-weight: 500; color: rgba(244,244,242,0.7); background: transparent; text-decoration: none; padding: 17px 36px; border-radius: 1px; letter-spacing: 0.16em; text-transform: uppercase; border: 0.5px solid rgba(244,244,242,0.2); transition: color 0.2s, border-color 0.2s; display: inline-block; cursor: none; }
-        .btn-ghost:hover { color: var(--platinum); border-color: rgba(244,244,242,0.4); }
+        .hero-actions { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin-bottom: 48px; }
 
-        .hero-form { background: var(--smoke); border: 0.5px solid rgba(244,244,242,0.1); padding: 40px 36px; border-radius: 1px; position: relative; }
-        .hero-form-badge { position: absolute; top: -12px; left: 24px; background: var(--platinum); color: var(--ink); font-size: 9px; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; padding: 5px 12px; border-radius: 1px; }
-        .hero-form-title { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin-bottom: 8px; line-height: 1.2; }
-        .hero-form-sub { font-size: 12px; font-weight: 300; color: var(--fog); line-height: 1.6; margin-bottom: 24px; }
-        .form-field { display: flex; flex-direction: column; margin-bottom: 14px; }
-        .form-field label { font-size: 9px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--silver); margin-bottom: 6px; }
-        .form-field input, .form-field select, .form-field textarea { background: transparent; border: none; border-bottom: 0.5px solid rgba(244,244,242,0.2); padding: 8px 0; font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--platinum); transition: border-color 0.2s; outline: none; }
-        .form-field input:focus, .form-field select:focus, .form-field textarea:focus { border-bottom-color: var(--platinum); }
+        .hero-proofs {
+            display: flex; gap: 0;
+            padding-top: 32px;
+            border-top: 0.5px solid rgba(244,244,242,0.08);
+        }
+        .hero-proof {
+            display: flex; flex-direction: column; gap: 6px;
+            padding-right: 40px; margin-right: 40px;
+            border-right: 0.5px solid rgba(244,244,242,0.08);
+        }
+        .hero-proof:last-child { padding-right: 0; margin-right: 0; border-right: none; }
+        .hero-proof-num { font-family: 'DM Serif Display', serif; font-size: 32px; color: var(--platinum); line-height: 1; letter-spacing: -0.02em; }
+        .hero-proof-num em { font-style: italic; color: var(--silver); }
+        .hero-proof-label { font-size: 10px; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--fog); }
+
+        /* AUDIT FORM CARD */
+        .hero-form {
+            background: rgba(46,46,46,0.6); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px);
+            border: 0.5px solid rgba(244,244,242,0.08);
+            padding: 36px 32px;
+            border-radius: 20px;
+            position: relative;
+        }
+        .hero-form-badge {
+            position: absolute; top: -10px; left: 24px;
+            background: var(--platinum); color: var(--ink);
+            font-size: 9px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase;
+            padding: 5px 11px; border-radius: 9999px;
+        }
+        .hero-form-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--platinum); margin-bottom: 8px; line-height: 1.15; letter-spacing: -0.01em; }
+        .hero-form-sub { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.6; margin-bottom: 24px; }
+        .form-field { display: flex; flex-direction: column; margin-bottom: 16px; }
+        .form-field label { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; }
+        .form-field input, .form-field select {
+            background: transparent;
+            border: none; border-bottom: 0.5px solid rgba(244,244,242,0.18);
+            padding: 8px 0;
+            font-family: 'DM Sans', sans-serif; font-size: 14px; color: var(--platinum);
+            transition: border-color 0.3s var(--ease);
+            outline: none; width: 100%;
+        }
+        .form-field input:focus, .form-field select:focus { border-bottom-color: var(--platinum); }
         .form-field select option { background: var(--smoke); color: var(--platinum); }
-        .form-submit { width: 100%; margin-top: 12px; padding: 15px; border: none; cursor: none; }
-        .form-fine { font-size: 10px; color: rgba(244,244,242,0.35); margin-top: 12px; text-align: center; letter-spacing: 0.04em; }
-        .form-success { display: none; text-align: center; padding: 24px 0; }
+
+        .form-submit {
+            width: 100%; margin-top: 14px;
+            padding: 15px 20px;
+            background: var(--platinum); color: var(--ink);
+            border: none; border-radius: 9999px;
+            font-family: 'DM Sans', sans-serif;
+            font-size: 13px; font-weight: 600; letter-spacing: 0.04em;
+            transition: background 0.3s var(--ease);
+            display: flex; align-items: center; justify-content: center; gap: 10px;
+        }
+        .form-submit:hover { background: var(--white); }
+        .form-submit i { transition: transform 0.4s var(--ease); }
+        .form-submit:hover i { transform: translateX(4px); }
+        .form-fine { font-size: 10.5px; color: var(--fog); margin-top: 14px; text-align: center; letter-spacing: 0.02em; }
+
+        .form-success { display: none; text-align: center; padding: 28px 0; }
         .form-success.visible { display: block; }
-        .form-success-mark { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 56px; color: var(--silver); line-height: 1; margin-bottom: 16px; }
-        .form-success-head { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); margin-bottom: 12px; }
+        .form-success-mark { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 64px; color: var(--silver); line-height: 1; margin-bottom: 16px; }
+        .form-success-head { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); margin-bottom: 12px; letter-spacing: -0.01em; }
         .form-success-body { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.7; }
 
-        .marquee-wrap { border-top: 0.5px solid rgba(244,244,242,0.07); border-bottom: 0.5px solid rgba(244,244,242,0.07); overflow: hidden; padding: 18px 0; background: var(--smoke); }
-        .marquee-track { display: flex; white-space: nowrap; animation: marquee 36s linear infinite; width: max-content; }
+        /* ───────────────────────────────────────────────────────────────
+           MARQUEE
+           ─────────────────────────────────────────────────────────────── */
+        .marquee-wrap {
+            position: relative;
+            border-top: 0.5px solid rgba(244,244,242,0.06);
+            border-bottom: 0.5px solid rgba(244,244,242,0.06);
+            overflow: hidden;
+            padding: 22px 0;
+        }
+        .marquee-track { display: flex; white-space: nowrap; animation: marquee 48s linear infinite; width: max-content; }
         @keyframes marquee { from{transform:translateX(0)} to{transform:translateX(-50%)} }
-        .marquee-item { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: rgba(244,244,242,0.25); padding: 0 40px; letter-spacing: 0.04em; }
-        .marquee-sep { color: var(--silver); opacity: 0.5; font-style: normal; }
+        .marquee-item { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: rgba(244,244,242,0.3); padding: 0 36px; letter-spacing: -0.01em; line-height: 1; }
+        .marquee-dot { display: inline-block; width: 4px; height: 4px; background: rgba(244,244,242,0.18); border-radius: 50%; margin: 0 4px; vertical-align: middle; }
 
-        .section { padding: 140px 56px; }
-        .section-inner { max-width: 1280px; margin: 0 auto; }
-        .section-label { font-size: 9px; font-family: 'DM Sans', sans-serif; font-weight: 500; letter-spacing: 0.28em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 14px; margin-bottom: 32px; }
-        .section-label::before { content: ""; width: 28px; height: 0.5px; background: var(--platinum); display: block; }
-        .section-headline { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 5.5vw, 80px); line-height: 0.95; letter-spacing: -0.01em; font-weight: 400; margin-bottom: 24px; }
+        /* ───────────────────────────────────────────────────────────────
+           SECTION SYSTEM
+           ─────────────────────────────────────────────────────────────── */
+        .section { padding: 140px 32px; position: relative; }
+        .section-inner { max-width: 1320px; margin: 0 auto; }
+
+        .section-badge {
+            display: inline-flex; align-items: center; gap: 12px;
+            margin-bottom: 28px;
+        }
+        .section-badge-num {
+            width: 28px; height: 28px;
+            background: var(--smoke);
+            border: 0.5px solid rgba(244,244,242,0.12);
+            color: var(--platinum);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
+            font-variant-numeric: tabular-nums;
+        }
+        .section-badge-label {
+            font-size: 11px; font-weight: 500; letter-spacing: 0.04em;
+            color: var(--silver);
+            border: 0.5px solid rgba(244,244,242,0.12);
+            padding: 6px 14px; border-radius: 9999px;
+        }
+
+        .section-headline {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(40px, 5vw, 76px);
+            line-height: 0.98;
+            letter-spacing: -0.025em;
+            color: var(--platinum);
+            font-weight: 400;
+            margin-bottom: 24px;
+        }
         .section-headline em { font-style: italic; color: var(--silver); }
-        .section-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 480px; }
+        .section-sub { font-size: 16px; font-weight: 300; color: var(--silver); line-height: 1.65; max-width: 520px; }
 
-        .niche-section { background: var(--ink); }
-        .niche-header { text-align: center; margin-bottom: 64px; }
-        .niche-header .section-label { justify-content: center; }
-        .niche-header .section-label::before { display: none; }
-        .niche-grid { display: grid; grid-template-columns: repeat(6, 1fr); gap: 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-left: 0.5px solid rgba(244,244,242,0.08); }
-        .niche-item { padding: 36px 20px; text-align: center; border-right: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); transition: background 0.3s; text-decoration: none; display: block; cursor: none; }
-        .niche-item:hover { background: var(--smoke); }
-        .niche-item:hover i { opacity: 1; transform: translateY(-2px); }
-        .niche-item:hover .niche-item-name { color: var(--white); }
-        .niche-item i { font-size: 24px; color: var(--silver); margin-bottom: 16px; opacity: 0.8; transition: opacity 0.3s, transform 0.3s; display: block; }
-        .niche-item-name { font-family: 'DM Serif Display', serif; font-size: 15px; color: var(--platinum); line-height: 1.3; transition: color 0.2s; }
+        .section-head {
+            display: grid; grid-template-columns: 1.4fr 1fr;
+            gap: 64px; align-items: end;
+            margin-bottom: 64px;
+        }
 
-        .portfolio-section { background: var(--smoke); }
-        .portfolio-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
-        .portfolio-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px; background: rgba(244,244,242,0.08); border: 0.5px solid rgba(244,244,242,0.08); }
-        .portfolio-card { background: var(--smoke); aspect-ratio: 4/3; position: relative; overflow: hidden; display: block; text-decoration: none; cursor: none; }
-        .portfolio-card.wide { grid-column: span 2; aspect-ratio: 8/3; }
-        .portfolio-img { width: 100%; height: 100%; object-fit: cover; opacity: 0.55; filter: grayscale(15%); transition: all 0.7s cubic-bezier(0.16, 1, 0.3, 1); }
-        .portfolio-overlay { position: absolute; inset: 0; background: linear-gradient(to top, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.15) 65%); display: flex; flex-direction: column; justify-content: flex-end; padding: 32px; z-index: 2; }
-        .portfolio-location { font-size: 9px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-bottom: 8px; opacity: 0.85; }
-        .portfolio-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--white); line-height: 1.2; }
-        .portfolio-card:hover .portfolio-img { opacity: 0.92; filter: grayscale(0%); transform: scale(1.04); }
+        /* ───────────────────────────────────────────────────────────────
+           INDUSTRIES — asymmetric grid
+           ─────────────────────────────────────────────────────────────── */
+        .industries-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            gap: 12px;
+        }
+        .industry-card {
+            background: rgba(46,46,46,0.4);
+            border: 0.5px solid rgba(244,244,242,0.07);
+            border-radius: 16px;
+            padding: 28px 24px;
+            text-decoration: none; color: inherit; display: flex; flex-direction: column; justify-content: space-between;
+            min-height: 160px;
+            transition: background 0.4s var(--ease), border-color 0.4s var(--ease), transform 0.4s var(--ease);
+            position: relative; overflow: hidden;
+        }
+        .industry-card:hover {
+            background: rgba(46,46,46,0.8);
+            border-color: rgba(244,244,242,0.18);
+            transform: translateY(-4px);
+        }
+        .industry-card .industry-arrow {
+            position: absolute; top: 20px; right: 20px;
+            width: 28px; height: 28px;
+            border: 0.5px solid rgba(244,244,242,0.15);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px; color: var(--silver);
+            transition: transform 0.5s var(--ease), background 0.4s var(--ease), color 0.4s var(--ease);
+        }
+        .industry-card:hover .industry-arrow {
+            transform: rotate(-45deg);
+            background: var(--platinum); color: var(--ink); border-color: var(--platinum);
+        }
+        .industry-icon { font-size: 22px; color: var(--silver); margin-bottom: 36px; opacity: 0.85; }
+        .industry-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); line-height: 1.15; letter-spacing: -0.01em; }
+        .industry-name em { font-style: italic; color: var(--silver); }
 
-        .results-section { background: var(--ink); }
-        .results-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 80px; }
-        .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-left: 0.5px solid rgba(244,244,242,0.08); }
-        .testimonial { padding: 40px 32px; border-bottom: 0.5px solid rgba(244,244,242,0.08); border-right: 0.5px solid rgba(244,244,242,0.08); }
-        .testimonial-stars { color: var(--silver); font-size: 11px; letter-spacing: 0.3em; margin-bottom: 20px; }
-        .testimonial-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; color: var(--platinum); line-height: 1.55; margin-bottom: 28px; }
-        .testimonial-attr { display: flex; flex-direction: column; gap: 4px; }
-        .testimonial-name { font-size: 13px; font-weight: 500; color: var(--platinum); letter-spacing: 0.04em; }
-        .testimonial-meta { font-size: 10px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+        /* Asymmetric column spans */
+        .industry-card.span-4 { grid-column: span 4; }
+        .industry-card.span-3 { grid-column: span 3; }
+        .industry-card.span-5 { grid-column: span 5; }
+        .industry-card.span-6 { grid-column: span 6; }
+        .industry-card.featured {
+            background: linear-gradient(135deg, rgba(46,46,46,0.9) 0%, rgba(26,26,26,0.95) 100%);
+            min-height: 220px;
+            justify-content: space-between;
+        }
+        .industry-card.featured .industry-icon { font-size: 28px; }
+        .industry-card.featured .industry-name { font-size: 28px; }
 
-        .belief { background: var(--smoke); }
-        .belief-inner { max-width: 1280px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 120px; align-items: center; }
-        .belief-left { border-right: 0.5px solid rgba(244,244,242,0.07); padding-right: 120px; }
-        .belief-number { font-family: 'DM Serif Display', serif; font-size: 180px; color: rgba(244,244,242,0.03); line-height: 1; margin-bottom: -40px; letter-spacing: -0.04em; }
-        .belief-quote { font-family: 'DM Serif Display', serif; font-style: italic; font-size: clamp(24px, 2.5vw, 34px); color: var(--platinum); line-height: 1.45; }
-        .belief-quote span { color: var(--silver); }
-        .belief-attr { font-size: 9px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: rgba(244,244,242,0.25); margin-top: 28px; }
-        .belief-right { display: flex; flex-direction: column; gap: 48px; }
-        .belief-point { border-top: 0.5px solid rgba(244,244,242,0.07); padding-top: 28px; }
-        .belief-point-num { font-family: 'DM Serif Display', serif; font-size: 12px; color: var(--silver); margin-bottom: 12px; }
-        .belief-point-title { font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--platinum); margin-bottom: 10px; }
-        .belief-point-body { font-size: 13px; font-weight: 300; color: var(--fog); line-height: 1.8; }
+        /* ───────────────────────────────────────────────────────────────
+           PORTFOLIO — asymmetric grid with hover-expand pills
+           ─────────────────────────────────────────────────────────────── */
+        .portfolio-section { background: var(--ink); }
+        .portfolio-grid {
+            display: grid; grid-template-columns: repeat(12, 1fr);
+            gap: 14px;
+        }
+        .portfolio-card {
+            position: relative; overflow: hidden;
+            border-radius: 16px;
+            background: var(--smoke);
+            text-decoration: none; display: block;
+            border: 0.5px solid rgba(244,244,242,0.06);
+        }
+        .portfolio-card.wide { grid-column: span 7; aspect-ratio: 16/10; }
+        .portfolio-card.narrow { grid-column: span 5; aspect-ratio: 4/3; }
+        .portfolio-card.half { grid-column: span 6; aspect-ratio: 4/3; }
 
-        .services-section { background: var(--ink); }
-        .services-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 56px; }
-        .svc-row { display: flex; align-items: baseline; gap: 24px; padding: 22px 0; border-bottom: 0.5px solid rgba(244,244,242,0.07); transition: background 0.2s; }
-        .svc-row:hover .svc-row-name { color: var(--platinum); }
-        .svc-row-num { font-family: 'DM Serif Display', serif; font-size: 11px; color: rgba(244,244,242,0.2); min-width: 28px; }
-        .svc-row-name { font-family: 'DM Serif Display', serif; font-size: 20px; color: rgba(244,244,242,0.7); flex: 1; transition: color 0.2s; letter-spacing: 0.01em; }
-        .svc-row-price { font-family: 'DM Sans', sans-serif; font-size: 11px; font-weight: 500; color: var(--silver); letter-spacing: 0.1em; }
-        .svc-row-best { background: var(--platinum); color: var(--ink); font-size: 8px; font-weight: 600; padding: 3px 8px; letter-spacing: 0.2em; margin-left: 12px; border-radius: 1px; }
+        .portfolio-img {
+            width: 100%; height: 100%; object-fit: cover;
+            opacity: 0.62; filter: grayscale(8%);
+            transition: opacity 0.7s var(--ease), filter 0.7s var(--ease), transform 0.7s var(--ease);
+        }
+        .portfolio-card:hover .portfolio-img { opacity: 0.95; filter: grayscale(0%); transform: scale(1.04); }
 
-        .process-section { background: var(--platinum); }
-        .process-section .section-label { color: rgba(26,26,26,0.6); }
-        .process-section .section-label::before { background: rgba(26,26,26,0.4); }
-        .process-section .section-headline { color: var(--ink); }
-        .process-section .section-headline em { color: rgba(26,26,26,0.4); }
-        .process-section .section-sub { color: rgba(26,26,26,0.6); }
-        .process-header { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: end; margin-bottom: 64px; }
-        .process-steps { border-top: 0.5px solid rgba(26,26,26,0.1); }
-        .process-step { display: grid; grid-template-columns: 80px 1fr 1fr; gap: 60px; align-items: start; padding: 48px 0; border-bottom: 0.5px solid rgba(26,26,26,0.08); }
-        .process-step:last-child { border-bottom: none; }
-        .process-step-num { font-family: 'DM Serif Display', serif; font-size: 13px; color: rgba(26,26,26,0.4); padding-top: 4px; }
-        .process-step-name { font-family: 'DM Serif Display', serif; font-size: 28px; color: var(--ink); line-height: 1.1; }
-        .process-step-desc { font-size: 13px; font-weight: 300; color: rgba(26,26,26,0.6); line-height: 1.85; }
+        .portfolio-overlay {
+            position: absolute; inset: 0; z-index: 2;
+            background: linear-gradient(to top, rgba(26,26,26,0.92) 0%, rgba(26,26,26,0.05) 60%);
+            display: flex; flex-direction: column; justify-content: space-between;
+            padding: 28px;
+        }
+        .portfolio-meta { display: flex; flex-direction: column; gap: 6px; }
+        .portfolio-location {
+            font-size: 10px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase;
+            color: var(--silver); opacity: 0.85;
+        }
+        .portfolio-title { font-family: 'DM Serif Display', serif; font-size: 26px; color: var(--white); line-height: 1.1; letter-spacing: -0.01em; }
+        .portfolio-card.wide .portfolio-title { font-size: 36px; }
 
-        .about-section { background: var(--ink); }
-        .about-inner { display: grid; grid-template-columns: 1fr 2fr; gap: 120px; align-items: start; }
+        /* Hover-expand pill on portfolio cards */
+        .portfolio-pill {
+            align-self: flex-start;
+            display: inline-flex; align-items: center;
+            background: var(--platinum); color: var(--ink);
+            border-radius: 9999px;
+            height: 32px; min-width: 32px; width: 32px;
+            padding: 0 4px 0 0; overflow: hidden;
+            transition: width 0.4s var(--ease), padding 0.4s var(--ease);
+            box-shadow: 0 6px 18px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .portfolio-card:hover .portfolio-pill {
+            width: 140px;
+            padding: 0 4px 0 16px;
+        }
+        .portfolio-pill-text {
+            font-size: 11px; font-weight: 500; letter-spacing: 0.02em;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s 0.15s var(--ease);
+            margin-right: 8px; flex: 1;
+        }
+        .portfolio-card:hover .portfolio-pill-text { opacity: 1; }
+        .portfolio-pill-arrow {
+            width: 24px; height: 24px;
+            background: var(--ink); color: var(--platinum);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 9px; flex-shrink: 0;
+            transition: transform 0.5s var(--ease);
+            margin-left: auto;
+        }
+        .portfolio-card:hover .portfolio-pill-arrow { transform: rotate(-45deg); }
+
+        /* ───────────────────────────────────────────────────────────────
+           BELIEF (Principle)
+           ─────────────────────────────────────────────────────────────── */
+        .belief-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 96px; align-items: start; }
+        .belief-left { position: sticky; top: 140px; }
+        .belief-pull {
+            font-family: 'DM Serif Display', serif;
+            font-style: italic;
+            font-size: clamp(28px, 3vw, 44px);
+            color: var(--platinum);
+            line-height: 1.25;
+            letter-spacing: -0.015em;
+        }
+        .belief-pull span { color: var(--silver); }
+        .belief-attr { font-size: 10px; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; color: var(--fog); margin-top: 32px; }
+        .belief-right { display: flex; flex-direction: column; gap: 0; }
+        .belief-point {
+            padding: 36px 0;
+            border-bottom: 0.5px solid rgba(244,244,242,0.07);
+            display: grid; grid-template-columns: 48px 1fr; gap: 24px;
+        }
+        .belief-point:last-child { border-bottom: none; }
+        .belief-point-num { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; color: var(--silver); line-height: 1; padding-top: 4px; }
+        .belief-point-title { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); margin-bottom: 12px; letter-spacing: -0.01em; }
+        .belief-point-body { font-size: 14px; font-weight: 300; color: var(--silver); line-height: 1.75; }
+
+        /* ───────────────────────────────────────────────────────────────
+           SERVICES
+           ─────────────────────────────────────────────────────────────── */
+        .services-list { border-top: 0.5px solid rgba(244,244,242,0.08); }
+        .svc-row {
+            display: grid; grid-template-columns: 48px 1fr auto;
+            align-items: center; gap: 24px;
+            padding: 28px 0;
+            border-bottom: 0.5px solid rgba(244,244,242,0.08);
+            transition: padding 0.3s var(--ease);
+        }
+        .svc-row:hover { padding-left: 12px; }
+        .svc-row-num { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 16px; color: var(--silver); opacity: 0.6; font-variant-numeric: tabular-nums; }
+        .svc-row-name { font-family: 'DM Serif Display', serif; font-size: 24px; color: var(--platinum); letter-spacing: -0.01em; line-height: 1.2; }
+        .svc-row-name em { font-style: italic; color: var(--silver); }
+        .svc-row-best {
+            display: inline-block;
+            background: var(--platinum); color: var(--ink);
+            font-family: 'DM Sans', sans-serif;
+            font-size: 9px; font-weight: 600; padding: 3px 8px; letter-spacing: 0.18em;
+            margin-left: 12px; border-radius: 9999px; vertical-align: middle;
+            text-transform: uppercase;
+        }
+        .svc-row-price { font-family: 'DM Sans', sans-serif; font-size: 13px; font-weight: 500; color: var(--silver); letter-spacing: 0.06em; font-variant-numeric: tabular-nums; }
+        .svc-footer { margin-top: 48px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 24px; }
+        .svc-footer-note { font-size: 13px; font-weight: 300; color: var(--silver); max-width: 500px; line-height: 1.65; }
+
+        /* ───────────────────────────────────────────────────────────────
+           PROCESS
+           ─────────────────────────────────────────────────────────────── */
+        .process-section { background: var(--smoke); border-top: 0.5px solid rgba(244,244,242,0.06); border-bottom: 0.5px solid rgba(244,244,242,0.06); }
+        .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; }
+        .process-step {
+            background: rgba(26,26,26,0.5);
+            border: 0.5px solid rgba(244,244,242,0.06);
+            border-radius: 16px;
+            padding: 28px;
+            min-height: 240px;
+            display: flex; flex-direction: column; justify-content: space-between;
+            position: relative;
+        }
+        .process-step-num {
+            font-family: 'DM Serif Display', serif; font-style: italic;
+            font-size: 36px; color: var(--silver);
+            line-height: 1; opacity: 0.8;
+            letter-spacing: -0.02em;
+        }
+        .process-step-body { display: flex; flex-direction: column; gap: 10px; }
+        .process-step-name { font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); line-height: 1.15; letter-spacing: -0.01em; }
+        .process-step-desc { font-size: 13px; font-weight: 300; color: var(--silver); line-height: 1.7; }
+
+        /* ───────────────────────────────────────────────────────────────
+           ABOUT
+           ─────────────────────────────────────────────────────────────── */
+        .about-inner { display: grid; grid-template-columns: 1fr 1.6fr; gap: 96px; align-items: start; }
         .about-sticky { position: sticky; top: 140px; }
-        .about-body { font-size: 16px; font-weight: 300; color: var(--fog); line-height: 1.9; margin-bottom: 28px; }
+        .about-body { font-size: 17px; font-weight: 300; color: var(--silver); line-height: 1.85; margin-bottom: 28px; }
         .about-body strong { color: var(--platinum); font-weight: 400; }
-        .about-conviction { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 24px; color: var(--platinum); line-height: 1.45; padding: 36px 0; border-top: 0.5px solid rgba(244,244,242,0.08); border-bottom: 0.5px solid rgba(244,244,242,0.08); margin: 36px 0; }
-        .about-location { font-size: 9px; font-weight: 500; letter-spacing: 0.24em; text-transform: uppercase; color: var(--silver); display: flex; align-items: center; gap: 12px; }
-        .about-location::before { content: ""; width: 24px; height: 0.5px; background: var(--platinum); }
+        .about-conviction {
+            font-family: 'DM Serif Display', serif; font-style: italic;
+            font-size: 28px; color: var(--platinum); line-height: 1.35;
+            padding: 40px 0; margin: 36px 0;
+            border-top: 0.5px solid rgba(244,244,242,0.08);
+            border-bottom: 0.5px solid rgba(244,244,242,0.08);
+            letter-spacing: -0.015em;
+        }
+        .about-meta { display: flex; align-items: center; gap: 14px; margin-top: 28px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); }
+        .about-meta::before { content: ""; width: 28px; height: 0.5px; background: var(--silver); display: block; }
 
-        .faq-section { background: var(--smoke); }
-        .faq-list { border-top: 0.5px solid rgba(244,244,242,0.08); max-width: 880px; margin: 0 auto; }
+        /* ───────────────────────────────────────────────────────────────
+           FAQ
+           ─────────────────────────────────────────────────────────────── */
+        .faq-list { border-top: 0.5px solid rgba(244,244,242,0.08); max-width: 920px; margin: 0 auto; }
         .faq-item { border-bottom: 0.5px solid rgba(244,244,242,0.08); }
-        .faq-q { width: 100%; background: none; border: none; padding: 28px 0; display: flex; justify-content: space-between; align-items: center; cursor: none; font-family: 'DM Serif Display', serif; font-size: 20px; color: var(--platinum); text-align: left; transition: color 0.2s; }
+        .faq-q { width: 100%; background: none; border: none; padding: 32px 0; display: flex; justify-content: space-between; align-items: center; font-family: 'DM Serif Display', serif; font-size: 22px; color: var(--platinum); text-align: left; transition: color 0.3s var(--ease); letter-spacing: -0.01em; }
         .faq-q:hover { color: var(--silver); }
-        .faq-q-icon { font-size: 18px; color: var(--silver); transition: transform 0.3s; flex-shrink: 0; margin-left: 24px; }
-        .faq-item.open .faq-q-icon { transform: rotate(45deg); }
-        .faq-a { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.4s ease; font-size: 14px; font-weight: 300; color: var(--fog); line-height: 1.85; }
-        .faq-item.open .faq-a { max-height: 400px; padding-bottom: 28px; }
+        .faq-q-icon {
+            width: 32px; height: 32px;
+            border: 0.5px solid rgba(244,244,242,0.18);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 11px; color: var(--silver);
+            transition: transform 0.4s var(--ease), background 0.3s var(--ease);
+            flex-shrink: 0; margin-left: 24px;
+        }
+        .faq-item.open .faq-q-icon { transform: rotate(135deg); background: rgba(244,244,242,0.08); }
+        .faq-a {
+            max-height: 0; overflow: hidden;
+            transition: max-height 0.5s var(--ease), padding 0.5s var(--ease), opacity 0.4s var(--ease);
+            font-size: 15px; font-weight: 300; color: var(--silver); line-height: 1.8;
+            opacity: 0;
+        }
+        .faq-item.open .faq-a { max-height: 500px; padding-bottom: 32px; opacity: 1; }
 
-        .cta-section { background: var(--ink); padding: 160px 56px; border-top: 0.5px solid rgba(244,244,242,0.08); }
-        .cta-inner { max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: 1.2fr 1fr; gap: 80px; align-items: center; }
-        .cta-headline { font-family: 'DM Serif Display', serif; font-size: clamp(44px, 5.5vw, 84px); color: var(--platinum); line-height: 0.95; letter-spacing: -0.02em; margin-bottom: 32px; font-weight: 400; }
+        /* ───────────────────────────────────────────────────────────────
+           CTA
+           ─────────────────────────────────────────────────────────────── */
+        .cta-section { padding: 180px 32px; border-top: 0.5px solid rgba(244,244,242,0.06); position: relative; overflow: hidden; }
+        .cta-section .hero-ambient { position: absolute; inset: 0; z-index: 0; }
+        .cta-inner { max-width: 1100px; margin: 0 auto; text-align: center; position: relative; z-index: 2; }
+        .cta-headline {
+            font-family: 'DM Serif Display', serif;
+            font-size: clamp(48px, 6vw, 96px);
+            line-height: 0.96;
+            letter-spacing: -0.035em;
+            color: var(--platinum);
+            margin-bottom: 28px;
+            font-weight: 400;
+        }
         .cta-headline em { font-style: italic; color: var(--silver); }
-        .cta-sub { font-size: 15px; font-weight: 300; color: var(--fog); line-height: 1.85; max-width: 440px; margin-bottom: 36px; }
-        .cta-list { display: flex; flex-direction: column; gap: 14px; margin-bottom: 40px; }
-        .cta-list-item { display: flex; align-items: center; gap: 12px; font-size: 13px; color: var(--silver); }
-        .cta-list-item i { color: var(--silver); font-size: 10px; }
-        .cta-actions { display: flex; gap: 16px; flex-wrap: wrap; }
+        .cta-sub { font-size: 17px; font-weight: 300; color: var(--silver); line-height: 1.7; max-width: 560px; margin: 0 auto 40px; }
+        .cta-actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
 
-        footer { background: var(--ink); border-top: 0.5px solid rgba(244,244,242,0.07); padding: 48px 56px; display: grid; grid-template-columns: 1fr 1fr 1fr; align-items: center; gap: 32px; }
-        .footer-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.06em; color: var(--platinum); white-space: nowrap; }
-        .footer-copy { font-size: 10px; font-weight: 400; color: rgba(244,244,242,0.25); letter-spacing: 0.08em; text-align: center; }
-        .footer-links { display: flex; gap: 28px; align-items: center; justify-content: flex-end; flex-wrap: wrap; }
-        .footer-link { font-size: 10px; font-weight: 500; color: rgba(244,244,242,0.4); text-decoration: none; letter-spacing: 0.12em; text-transform: uppercase; transition: color 0.2s; }
-        .footer-link:hover { color: var(--platinum); }
+        /* ───────────────────────────────────────────────────────────────
+           FOOTER
+           ─────────────────────────────────────────────────────────────── */
+        footer {
+            border-top: 0.5px solid rgba(244,244,242,0.07);
+            padding: 56px 32px 32px;
+        }
+        .footer-inner { max-width: 1320px; margin: 0 auto; display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 48px; padding-bottom: 48px; border-bottom: 0.5px solid rgba(244,244,242,0.06); }
+        .footer-brand { display: flex; flex-direction: column; gap: 16px; }
+        .footer-logo { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 22px; letter-spacing: 0.02em; color: var(--platinum); }
+        .footer-tagline { font-size: 13px; font-weight: 300; color: var(--silver); line-height: 1.7; max-width: 280px; }
+        .footer-col-title { font-size: 10px; font-weight: 600; letter-spacing: 0.2em; text-transform: uppercase; color: var(--fog); margin-bottom: 16px; }
+        .footer-col-link { display: block; font-size: 13px; color: var(--silver); text-decoration: none; padding: 4px 0; transition: color 0.2s; }
+        .footer-col-link:hover { color: var(--platinum); }
+        .footer-bottom { max-width: 1320px; margin: 0 auto; padding-top: 28px; display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 16px; font-size: 11px; color: var(--fog); letter-spacing: 0.04em; }
+        .footer-bottom a { color: var(--fog); text-decoration: none; transition: color 0.2s; }
+        .footer-bottom a:hover { color: var(--platinum); }
 
+        /* ───────────────────────────────────────────────────────────────
+           RESPONSIVE
+           ─────────────────────────────────────────────────────────────── */
         @media (max-width: 1100px) {
-            .hero-inner { grid-template-columns: 1fr; gap: 56px; }
+            .hero-inner { grid-template-columns: 1fr; gap: 48px; }
             .hero-form { max-width: 540px; }
-            .portfolio-header, .results-header, .services-header, .process-header { grid-template-columns: 1fr; gap: 32px; }
-            .cta-inner { grid-template-columns: 1fr; gap: 48px; }
-            .belief-inner { grid-template-columns: 1fr; gap: 64px; }
-            .belief-left { border-right: none; padding-right: 0; border-bottom: 0.5px solid rgba(244,244,242,0.07); padding-bottom: 64px; }
-            .about-inner { grid-template-columns: 1fr; gap: 48px; }
-            .about-sticky { position: static; }
-            .niche-grid { grid-template-columns: repeat(3, 1fr); }
-            .testimonials-grid { grid-template-columns: 1fr; }
-            .process-step { grid-template-columns: 60px 1fr; gap: 32px; }
-            .process-step-desc { grid-column: 2; }
-            footer { grid-template-columns: 1fr 1fr; }
-            .footer-copy { text-align: left; }
+            .section-head { grid-template-columns: 1fr; gap: 24px; }
+            .belief-inner, .about-inner { grid-template-columns: 1fr; gap: 64px; }
+            .belief-left, .about-sticky { position: static; }
+            .industries-grid { grid-template-columns: repeat(6, 1fr); }
+            .industry-card.span-4 { grid-column: span 3; }
+            .industry-card.span-3 { grid-column: span 3; }
+            .industry-card.span-5 { grid-column: span 3; }
+            .industry-card.span-6 { grid-column: span 3; }
+            .industry-card.featured { grid-column: span 6; }
+            .process-steps { grid-template-columns: 1fr; }
+            .footer-inner { grid-template-columns: 1fr 1fr; }
         }
 
         @media (max-width: 768px) {
-            .trust-bar { padding: 8px 16px; gap: 12px; font-size: 9px; }
-            .trust-bar-item:nth-child(5), .trust-bar-sep:nth-child(4) { display: none; }
-            nav { padding: 0 24px; height: 64px; top: 32px; }
+            .status-strip { padding: 10px 16px; font-size: 10px; }
+            .status-left .status-pill:nth-child(3), .status-divider:nth-child(2) { display: none; }
+            .nav-wrap { top: 48px; padding: 0 16px; }
+            nav { padding: 6px 6px 6px 16px; }
+            .nav-logo-mark { width: 28px; height: 28px; font-size: 12px; }
+            .nav-logo-word { font-size: 14px; }
             .nav-links { display: none; }
             .hamburger { display: flex; }
-            .hero { padding: 88px 24px 64px; }
-            .hero-headline { font-size: clamp(44px, 12vw, 64px); }
+            .hero { padding: 140px 20px 64px; }
+            .hero-headline { font-size: clamp(44px, 11vw, 64px); }
+            .hero-proofs { flex-direction: column; gap: 20px; }
+            .hero-proof { padding-right: 0; margin-right: 0; border-right: none; padding-bottom: 20px; border-bottom: 0.5px solid rgba(244,244,242,0.08); }
+            .hero-proof:last-child { padding-bottom: 0; border-bottom: none; }
             .hero-actions { flex-direction: column; align-items: stretch; width: 100%; }
-            .hero-actions a { text-align: center; }
-            .hero-proofs { gap: 24px; }
-            .hero-proof-num { font-size: 24px; }
-            .hero-form { padding: 32px 24px; }
-            .section { padding: 88px 24px; }
-            .niche-grid { grid-template-columns: repeat(2, 1fr); }
+            .hero-actions a { justify-content: space-between; }
+            .section { padding: 80px 20px; }
+            .industries-grid { grid-template-columns: repeat(2, 1fr); }
+            .industry-card.span-4, .industry-card.span-3, .industry-card.span-5, .industry-card.span-6 { grid-column: span 1; }
+            .industry-card.featured { grid-column: span 2; }
             .portfolio-grid { grid-template-columns: 1fr; }
-            .portfolio-card.wide { grid-column: span 1; aspect-ratio: 4/3; }
-            .testimonial { padding: 32px 24px; }
-            .process-step { grid-template-columns: 1fr; gap: 16px; }
-            .process-step-desc { grid-column: 1; }
-            .cta-section { padding: 88px 24px; }
+            .portfolio-card.wide, .portfolio-card.narrow, .portfolio-card.half { grid-column: span 1; aspect-ratio: 4/3; }
+            .svc-row { grid-template-columns: 32px 1fr auto; gap: 12px; }
+            .svc-row-name { font-size: 18px; }
+            .svc-row-best { display: block; margin-left: 0; margin-top: 6px; }
+            .cta-section { padding: 100px 20px; }
             .cta-actions { flex-direction: column; align-items: stretch; }
-            .cta-actions a { text-align: center; }
-            footer { grid-template-columns: 1fr; gap: 24px; padding: 40px 24px; }
-            .footer-links { justify-content: flex-start; }
-            .footer-copy { text-align: left; }
+            .footer-inner { grid-template-columns: 1fr; gap: 36px; }
+            footer { padding: 48px 20px 24px; }
+            .footer-bottom { flex-direction: column; align-items: flex-start; }
             body { cursor: auto; }
             .cursor { display: none; }
-        }
-
-        @media (max-width: 480px) {
-            .trust-bar { font-size: 8px; gap: 8px; }
-            .trust-bar-item:nth-child(3), .trust-bar-sep:nth-child(2) { display: none; }
-            .hero-headline { font-size: 42px; }
-            .section-headline { font-size: 38px; }
-            .cta-headline { font-size: 42px; }
-            .belief-number { font-size: 120px; }
         }
     </style>
 </head>
@@ -310,47 +747,100 @@
 
 <div class="cursor" id="cursor"></div>
 
-<div class="trust-bar">
-    <div class="trust-bar-item"><i class="fa-solid fa-check"></i> Flat-rate pricing</div>
-    <div class="trust-bar-sep"></div>
-    <div class="trust-bar-item"><i class="fa-solid fa-check"></i> Delivered in under 14 days</div>
-    <div class="trust-bar-sep"></div>
-    <div class="trust-bar-item"><i class="fa-solid fa-check"></i> 15+ businesses launched</div>
+<!-- STATUS STRIP -->
+<div class="status-strip">
+    <div class="status-left">
+        <div class="status-pill">
+            <span class="status-dot"></span>
+            <span>Currently taking on projects</span>
+        </div>
+        <div class="status-divider"></div>
+        <div class="status-pill">
+            <i class="fa-regular fa-clock" style="font-size: 11px;"></i>
+            <span class="status-mono" id="liveTime">--:--</span>
+            <span>in Bedford, TX</span>
+        </div>
+    </div>
+    <div class="status-right">
+        <div class="status-pill">
+            <span>15+ businesses launched</span>
+        </div>
+        <div class="status-divider"></div>
+        <div class="status-pill">
+            <span>From $750 · &lt;14 day delivery</span>
+        </div>
+    </div>
 </div>
 
-<nav id="mainNav">
-    <a href="/" class="nav-logo"><div class="nav-logo-word">JW/DIGITAL</div></a>
-    <div class="nav-links">
-        <a href="/work" class="nav-link">Work</a>
-        <a href="/services" class="nav-link">Services</a>
-        <a href="#faq" class="nav-link">FAQ</a>
-        <a href="/contact" class="nav-link">Contact</a>
-        <a href="#start" class="nav-cta">Start a Project</a>
+<!-- FLOATING NAV -->
+<div class="nav-wrap">
+    <div class="nav-inner">
+        <nav>
+            <a href="/" class="nav-logo">
+                <span class="nav-logo-mark">jw</span>
+                <span class="nav-logo-word">JW/DIGITAL</span>
+            </a>
+            <div class="nav-links">
+                <a href="/work" class="nav-link">Work</a>
+                <a href="/services" class="nav-link">Services</a>
+                <a href="#faq" class="nav-link">FAQ</a>
+                <a href="/contact" class="nav-link">Contact</a>
+                <a href="#start" class="roll-btn">
+                    <span class="roll-text">
+                        <span class="roll-text-inner">
+                            <span>Start a project</span>
+                            <span>Start a project</span>
+                        </span>
+                    </span>
+                    <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+            </div>
+            <button class="hamburger" id="hamburger" aria-label="Menu">
+                <span></span><span></span><span></span>
+            </button>
+        </nav>
     </div>
-    <button class="hamburger" id="hamburger" aria-label="Menu">
-        <span></span><span></span><span></span>
-    </button>
-</nav>
+</div>
 
 <div class="mobile-menu" id="mobileMenu">
     <a href="/work" onclick="closeMobileMenu()">Work</a>
     <a href="/services" onclick="closeMobileMenu()">Services</a>
     <a href="#faq" onclick="closeMobileMenu()">FAQ</a>
     <a href="/contact" onclick="closeMobileMenu()">Contact</a>
-    <a href="#start" onclick="closeMobileMenu()">Start a Project</a>
+    <a href="#start" onclick="closeMobileMenu()" style="background: var(--platinum); color: var(--ink); text-align: center;">Start a project →</a>
 </div>
 
 <main>
+    <!-- HERO -->
     <section class="hero">
-        <div class="hero-bg"></div>
+        <div class="hero-ambient"></div>
         <div class="hero-inner">
             <div class="hero-content fade-up">
-                <div class="hero-eyebrow">Websites for service businesses</div>
+                <div class="hero-eyebrow">
+                    <span class="hero-eyebrow-rule"></span>
+                    <span>Websites for service businesses</span>
+                </div>
                 <h1 class="hero-headline">Your <em>next</em> customer is <u>already searching</u>.</h1>
                 <p class="hero-sub">We build high-converting websites for plumbers, contractors, roofers, restaurants, and other service businesses. <strong>Sites that rank on Google, look the part, and turn searches into calls</strong> — flat rates, no retainers.</p>
                 <div class="hero-actions">
-                    <a href="#start" class="btn-primary">Get a Free Audit</a>
-                    <a href="/work" class="btn-ghost">See Our Work</a>
+                    <a href="#start" class="roll-btn-lg">
+                        <span class="roll-text">
+                            <span class="roll-text-inner">
+                                <span>Get a free audit</span>
+                                <span>Get a free audit</span>
+                            </span>
+                        </span>
+                        <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
+                    <a href="/work" class="roll-btn-ghost">
+                        <span class="roll-text">
+                            <span class="roll-text-inner">
+                                <span>See our work</span>
+                                <span>See our work</span>
+                            </span>
+                        </span>
+                        <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                    </a>
                 </div>
                 <div class="hero-proofs">
                     <div class="hero-proof">
@@ -358,16 +848,17 @@
                         <div class="hero-proof-label">Businesses launched</div>
                     </div>
                     <div class="hero-proof">
-                        <div class="hero-proof-num">From <em>$750</em></div>
-                        <div class="hero-proof-label">Flat-rate websites</div>
+                        <div class="hero-proof-num">$750</div>
+                        <div class="hero-proof-label">Starting price</div>
                     </div>
                     <div class="hero-proof">
-                        <div class="hero-proof-num"><em>&lt;14</em> days</div>
+                        <div class="hero-proof-num">&lt;14<em>d</em></div>
                         <div class="hero-proof-label">Average delivery</div>
                     </div>
                 </div>
             </div>
-            <div class="hero-form fade-up" id="start">
+
+            <div class="hero-form fade-up" id="start" style="transition-delay: 0.15s;">
                 <div class="hero-form-badge">Free Audit</div>
                 <div id="formContent">
                     <h2 class="hero-form-title">Get a free site audit in 24 hours.</h2>
@@ -400,7 +891,7 @@
                                 <option>Not sure — need advice</option>
                             </select>
                         </div>
-                        <button type="submit" class="btn-primary form-submit">Send My Free Audit</button>
+                        <button type="submit" class="form-submit">Send my free audit <i class="fa-solid fa-arrow-right"></i></button>
                         <p class="form-fine">No spam. No sales calls. Just an honest breakdown.</p>
                     </form>
                 </div>
@@ -413,330 +904,509 @@
         </div>
     </section>
 
+    <!-- MARQUEE -->
     <div class="marquee-wrap">
         <div class="marquee-track">
-            <span class="marquee-item">Plumbers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Contractors <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Roofers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Restaurants <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Bakeries <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Barbers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Landscapers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Interior Designers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Plumbers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Contractors <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Roofers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Restaurants <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Bakeries <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Barbers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Landscapers <span class="marquee-sep">&middot;</span></span>
-            <span class="marquee-item">Interior Designers <span class="marquee-sep">&middot;</span></span>
+            <span class="marquee-item">Plumbers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Contractors <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Roofers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Restaurants <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Bakeries <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Barbers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Landscapers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Interior Designers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">HVAC <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Cafes <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Plumbers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Contractors <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Roofers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Restaurants <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Bakeries <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Barbers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Landscapers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Interior Designers <span class="marquee-dot"></span></span>
+            <span class="marquee-item">HVAC <span class="marquee-dot"></span></span>
+            <span class="marquee-item">Cafes <span class="marquee-dot"></span></span>
         </div>
     </div>
 
-    <section class="section niche-section">
+    <!-- INDUSTRIES -->
+    <section class="section">
         <div class="section-inner">
-            <div class="niche-header fade-up">
-                <h2 class="section-label">Industries We Build For</h2>
-                <div class="section-headline">Real businesses.<br><em>Real work.</em></div>
-                <p class="section-sub" style="margin: 24px auto 0;">Tap your industry below for specifics on what we build, what we charge, and proof of the work we've done for businesses like yours.</p>
+            <div class="section-head fade-up">
+                <div>
+                    <div class="section-badge">
+                        <div class="section-badge-num">01</div>
+                        <div class="section-badge-label">Industries We Build For</div>
+                    </div>
+                    <h2 class="section-headline">Real businesses.<br><em>Real work.</em></h2>
+                </div>
+                <p class="section-sub">Tap your industry below for specifics on what we build, what we charge, and proof of the work we've done for businesses like yours.</p>
             </div>
-            <div class="niche-grid fade-up">
-                <a href="/web-design-for-plumbers" class="niche-item"><i class="fa-solid fa-wrench"></i><div class="niche-item-name">Plumbing</div></a>
-                <a href="/web-design-for-contractors" class="niche-item"><i class="fa-solid fa-helmet-safety"></i><div class="niche-item-name">Contracting</div></a>
-                <a href="/web-design-for-roofers" class="niche-item"><i class="fa-solid fa-house-chimney"></i><div class="niche-item-name">Roofing</div></a>
-                <a href="/web-design-for-restaurants" class="niche-item"><i class="fa-solid fa-utensils"></i><div class="niche-item-name">Restaurants</div></a>
-                <a href="/web-design-for-barbershops" class="niche-item"><i class="fa-solid fa-scissors"></i><div class="niche-item-name">Barbers &amp; Salons</div></a>
-                <a href="/web-design-for-landscapers" class="niche-item"><i class="fa-solid fa-leaf"></i><div class="niche-item-name">Landscaping</div></a>
-                <a href="/web-design-for-bakeries" class="niche-item"><i class="fa-solid fa-cookie-bite"></i><div class="niche-item-name">Bakeries</div></a>
-                <a href="/web-design-for-cafes" class="niche-item"><i class="fa-solid fa-mug-hot"></i><div class="niche-item-name">Cafes</div></a>
-                <a href="/web-design-for-interior-designers" class="niche-item"><i class="fa-solid fa-couch"></i><div class="niche-item-name">Interior Design</div></a>
-                <a href="/web-design-for-hvac" class="niche-item"><i class="fa-solid fa-screwdriver-wrench"></i><div class="niche-item-name">HVAC &amp; Repair</div></a>
-                <a href="/contact" class="niche-item"><i class="fa-solid fa-paint-roller"></i><div class="niche-item-name">Painters</div></a>
-                <a href="/contact" class="niche-item"><i class="fa-solid fa-circle-plus"></i><div class="niche-item-name">And more</div></a>
+
+            <div class="industries-grid fade-up">
+                <a href="/web-design-for-plumbers" class="industry-card featured span-6">
+                    <i class="fa-solid fa-wrench industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Plumbing &amp;<br><em>emergency service</em></div>
+                    </div>
+                </a>
+                <a href="/web-design-for-roofers" class="industry-card featured span-6">
+                    <i class="fa-solid fa-house-chimney industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Roofing &amp;<br><em>storm response</em></div>
+                    </div>
+                </a>
+                <a href="/web-design-for-contractors" class="industry-card span-4">
+                    <i class="fa-solid fa-helmet-safety industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Contracting</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-restaurants" class="industry-card span-4">
+                    <i class="fa-solid fa-utensils industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Restaurants</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-hvac" class="industry-card span-4">
+                    <i class="fa-solid fa-screwdriver-wrench industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">HVAC</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-barbershops" class="industry-card span-3">
+                    <i class="fa-solid fa-scissors industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Barbers</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-landscapers" class="industry-card span-3">
+                    <i class="fa-solid fa-leaf industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Landscaping</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-bakeries" class="industry-card span-3">
+                    <i class="fa-solid fa-cookie-bite industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Bakeries</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-cafes" class="industry-card span-3">
+                    <i class="fa-solid fa-mug-hot industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Cafes</div>
+                    </div>
+                </a>
+                <a href="/web-design-for-interior-designers" class="industry-card span-6">
+                    <i class="fa-solid fa-couch industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Interior design &amp;<br><em>home staging</em></div>
+                    </div>
+                </a>
+                <a href="/contact" class="industry-card span-6">
+                    <i class="fa-solid fa-circle-plus industry-icon"></i>
+                    <div>
+                        <span class="industry-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        <div class="industry-name">Something else?<br><em>Tell us about it.</em></div>
+                    </div>
+                </a>
             </div>
         </div>
     </section>
 
+    <!-- PORTFOLIO -->
     <section class="section portfolio-section">
         <div class="section-inner">
-            <div class="portfolio-header fade-up">
+            <div class="section-head fade-up">
                 <div>
-                    <h2 class="section-label">Recent Work</h2>
-                    <div class="section-headline">Sites that are<br><em>earning their keep.</em></div>
+                    <div class="section-badge">
+                        <div class="section-badge-num">02</div>
+                        <div class="section-badge-label">Recent Work</div>
+                    </div>
+                    <h2 class="section-headline">Sites that are<br><em>earning their keep.</em></h2>
                 </div>
                 <p class="section-sub">A snapshot of recent builds. From a contractor in Texas to a garden service in Surrey — every one is live and working.</p>
             </div>
+
             <div class="portfolio-grid fade-up">
                 <a href="https://lmplumblingllc.netlify.app" target="_blank" rel="noopener" class="portfolio-card wide">
                     <img src="L&M.jpg" class="portfolio-img" alt="L&M Plumbing website">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-location">Keller, Texas · Plumbing</div>
-                        <div class="portfolio-title">L&amp;M Plumbing</div>
+                        <span class="portfolio-pill">
+                            <span class="portfolio-pill-text">View live site</span>
+                            <span class="portfolio-pill-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                        <div class="portfolio-meta">
+                            <div class="portfolio-location">Keller, Texas · Plumbing</div>
+                            <div class="portfolio-title">L&amp;M Plumbing</div>
+                        </div>
                     </div>
                 </a>
-                <a href="https://lionessroofing.netlify.app" target="_blank" rel="noopener" class="portfolio-card">
+                <a href="https://lionessroofing.netlify.app" target="_blank" rel="noopener" class="portfolio-card narrow">
                     <img src="Lioness.jpg" class="portfolio-img" alt="Lioness Roofing website">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-location">Powder Springs, GA · Roofing</div>
-                        <div class="portfolio-title">Lioness Roofing</div>
+                        <span class="portfolio-pill">
+                            <span class="portfolio-pill-text">View live site</span>
+                            <span class="portfolio-pill-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                        <div class="portfolio-meta">
+                            <div class="portfolio-location">Powder Springs, GA · Roofing</div>
+                            <div class="portfolio-title">Lioness Roofing</div>
+                        </div>
                     </div>
                 </a>
-                <a href="https://rochiercontracting.netlify.app" target="_blank" rel="noopener" class="portfolio-card">
+                <a href="https://rochiercontracting.netlify.app" target="_blank" rel="noopener" class="portfolio-card half">
                     <img src="RochierContracting.jpg" class="portfolio-img" alt="Rochier Contracting website">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-location">Rockwall, TX · Contracting</div>
-                        <div class="portfolio-title">Rochier Contracting</div>
+                        <span class="portfolio-pill">
+                            <span class="portfolio-pill-text">View live site</span>
+                            <span class="portfolio-pill-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                        <div class="portfolio-meta">
+                            <div class="portfolio-location">Rockwall, TX · Contracting</div>
+                            <div class="portfolio-title">Rochier Contracting</div>
+                        </div>
                     </div>
                 </a>
-                <a href="https://sagradococina.netlify.app" target="_blank" rel="noopener" class="portfolio-card">
+                <a href="https://sagradococina.netlify.app" target="_blank" rel="noopener" class="portfolio-card half">
                     <img src="Sagrado.jpg" class="portfolio-img" alt="Sagrado Cocina website">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-location">Waco, TX · Restaurant</div>
-                        <div class="portfolio-title">Sagrado Cocina</div>
+                        <span class="portfolio-pill">
+                            <span class="portfolio-pill-text">View live site</span>
+                            <span class="portfolio-pill-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                        <div class="portfolio-meta">
+                            <div class="portfolio-location">Waco, TX · Restaurant</div>
+                            <div class="portfolio-title">Sagrado Cocina</div>
+                        </div>
                     </div>
                 </a>
                 <a href="https://thereservebarbershop.netlify.app" target="_blank" rel="noopener" class="portfolio-card wide">
                     <img src="Reserve.jpg" class="portfolio-img" alt="The Reserve Barber Lounge website">
                     <div class="portfolio-overlay">
-                        <div class="portfolio-location">Keller, TX · Barber Lounge</div>
-                        <div class="portfolio-title">The Reserve Barber Lounge</div>
+                        <span class="portfolio-pill">
+                            <span class="portfolio-pill-text">View live site</span>
+                            <span class="portfolio-pill-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                        </span>
+                        <div class="portfolio-meta">
+                            <div class="portfolio-location">Keller, TX · Barber Lounge</div>
+                            <div class="portfolio-title">The Reserve Barber Lounge</div>
+                        </div>
                     </div>
                 </a>
             </div>
             <div style="text-align: center; margin-top: 56px;" class="fade-up">
-                <a href="/work" class="btn-primary">View All 15+ Projects</a>
+                <a href="/work" class="roll-btn-lg">
+                    <span class="roll-text">
+                        <span class="roll-text-inner">
+                            <span>View all 15+ projects</span>
+                            <span>View all 15+ projects</span>
+                        </span>
+                    </span>
+                    <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="section results-section">
-        <div class="section-inner">
-            <div class="results-header fade-up">
-                <div>
-                    <h2 class="section-label">What Clients Say</h2>
-                    <div class="section-headline">Words from <em>real</em><br>business owners.</div>
+    <!-- BELIEF / PRINCIPLE -->
+    <section class="section">
+        <div class="belief-inner">
+            <div class="belief-left fade-up">
+                <div class="section-badge">
+                    <div class="section-badge-num">03</div>
+                    <div class="section-badge-label">Conviction</div>
                 </div>
-                <p class="section-sub">The names and locations are real. Drop in their actual quotes as you collect them — even one or two transforms this section.</p>
-            </div>
-            <div class="testimonials-grid fade-up">
-                <div class="testimonial">
-                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-                    <p class="testimonial-quote">"[REPLACE WITH CLIENT QUOTE — focus on leads. e.g. 'Within a month of launching the site we had a steady stream of new calls. Hands down the best money I've spent on the business.']"</p>
-                    <div class="testimonial-attr">
-                        <div class="testimonial-name">L&amp;M Plumbing</div>
-                        <div class="testimonial-meta">Keller, Texas</div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-                    <p class="testimonial-quote">"[REPLACE WITH CLIENT QUOTE — focus on speed and relationship. e.g. 'Two weeks from start to finish. The site looks better than the $7k quote we got from another agency.']"</p>
-                    <div class="testimonial-attr">
-                        <div class="testimonial-name">Rochier Contracting</div>
-                        <div class="testimonial-meta">Rockwall, Texas</div>
-                    </div>
-                </div>
-                <div class="testimonial">
-                    <div class="testimonial-stars">★ ★ ★ ★ ★</div>
-                    <p class="testimonial-quote">"[REPLACE WITH CLIENT QUOTE — focus on rankings. e.g. 'We started showing up at the top of Google for our area. The site has paid for itself many times over.']"</p>
-                    <div class="testimonial-attr">
-                        <div class="testimonial-name">Lioness Roofing</div>
-                        <div class="testimonial-meta">Powder Springs, Georgia</div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="section belief" id="philosophy">
-        <div class="belief-inner fade-up">
-            <div class="belief-left">
-                <div class="belief-number">01</div>
-                <div class="belief-quote">"Your digital presence should match the <span>quality</span> of your work."</div>
+                <div class="belief-pull">"Your digital presence should match the <span>quality</span> of your work."</div>
                 <div class="belief-attr">— The conviction behind JW Digital</div>
             </div>
-            <div class="belief-right">
+            <div class="belief-right fade-up" style="transition-delay: 0.1s;">
                 <div class="belief-point">
-                    <div class="belief-point-num">01</div>
-                    <h3 class="belief-point-title">Precision Over Volume</h3>
-                    <div class="belief-point-body">Every engagement gets full attention. No assembly lines, no junior staff, no templates dressed up as custom work. The detail is the difference.</div>
+                    <div class="belief-point-num">i.</div>
+                    <div>
+                        <h3 class="belief-point-title">Precision over volume</h3>
+                        <div class="belief-point-body">Every engagement gets full attention. No assembly lines, no junior staff, no templates dressed up as custom work. The detail is the difference.</div>
+                    </div>
                 </div>
                 <div class="belief-point">
-                    <div class="belief-point-num">02</div>
-                    <h3 class="belief-point-title">Speed Without Compromise</h3>
-                    <div class="belief-point-body">The best agencies in the world move fast because they know exactly what they're doing. Weeks of revision cycles are a symptom of uncertainty, not thoroughness.</div>
+                    <div class="belief-point-num">ii.</div>
+                    <div>
+                        <h3 class="belief-point-title">Speed without compromise</h3>
+                        <div class="belief-point-body">The best agencies in the world move fast because they know exactly what they're doing. Weeks of revision cycles are a symptom of uncertainty, not thoroughness.</div>
+                    </div>
                 </div>
                 <div class="belief-point">
-                    <div class="belief-point-num">03</div>
-                    <h3 class="belief-point-title">One Point of Contact</h3>
-                    <div class="belief-point-body">You work directly with the person doing the work. No account managers, no handoffs, no translation between what you want and what gets built.</div>
+                    <div class="belief-point-num">iii.</div>
+                    <div>
+                        <h3 class="belief-point-title">One point of contact</h3>
+                        <div class="belief-point-body">You work directly with the person doing the work. No account managers, no handoffs, no translation between what you want and what gets built.</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section services-section" id="services">
+    <!-- SERVICES -->
+    <section class="section">
         <div class="section-inner">
-            <div class="services-header fade-up">
+            <div class="section-head fade-up">
                 <div>
-                    <h2 class="section-label">Services &amp; Pricing</h2>
-                    <div class="section-headline">No quotes. No <em>retainers.</em><br>Just flat rates.</div>
+                    <div class="section-badge">
+                        <div class="section-badge-num">04</div>
+                        <div class="section-badge-label">Services &amp; Pricing</div>
+                    </div>
+                    <h2 class="section-headline">No quotes. No <em>retainers.</em><br>Just flat rates.</h2>
                 </div>
-                <p class="section-sub">Every engagement is focused on precision and results. One person, flat rates, and zero agency bloat. <strong>Website builds include one free add-on.</strong></p>
+                <p class="section-sub">Every engagement is focused on precision and results. One person, flat rates, and zero agency bloat. <strong style="color: var(--platinum); font-weight: 400;">Website builds include one free add-on.</strong></p>
             </div>
 
-            <div class="fade-up" style="border-top:0.5px solid rgba(244,244,242,0.08)">
-                <div class="svc-row"><span class="svc-row-num">01</span><h3 class="svc-row-name">The Full Foundation (Bundle) <span class="svc-row-best">Most Popular</span></h3><span class="svc-row-price">$2,000</span></div>
-                <div class="svc-row"><span class="svc-row-num">02</span><h3 class="svc-row-name">Website Build (1 Page)</h3><span class="svc-row-price">$750</span></div>
-                <div class="svc-row"><span class="svc-row-num">03</span><h3 class="svc-row-name">Website Build (5+ Pages)</h3><span class="svc-row-price">$1,500</span></div>
-                <div class="svc-row"><span class="svc-row-num">04</span><h3 class="svc-row-name">Logo &amp; Branding</h3><span class="svc-row-price">$300</span></div>
-                <div class="svc-row"><span class="svc-row-num">05</span><h3 class="svc-row-name">Social Launch</h3><span class="svc-row-price">$600</span></div>
-                <div class="svc-row"><span class="svc-row-num">06</span><h3 class="svc-row-name">Google Business Profile</h3><span class="svc-row-price">$200</span></div>
-                <div class="svc-row"><span class="svc-row-num">07</span><h3 class="svc-row-name">Monthly Maintenance Retainer</h3><span class="svc-row-price">$125 / mo</span></div>
+            <div class="services-list fade-up">
+                <div class="svc-row">
+                    <span class="svc-row-num">i.</span>
+                    <h3 class="svc-row-name">The Full <em>Foundation</em> bundle <span class="svc-row-best">Most Popular</span></h3>
+                    <span class="svc-row-price">$2,000</span>
+                </div>
+                <div class="svc-row">
+                    <span class="svc-row-num">ii.</span>
+                    <h3 class="svc-row-name">Website Build <em>(1 page)</em></h3>
+                    <span class="svc-row-price">$750</span>
+                </div>
+                <div class="svc-row">
+                    <span class="svc-row-num">iii.</span>
+                    <h3 class="svc-row-name">Website Build <em>(5+ pages)</em></h3>
+                    <span class="svc-row-price">$1,500</span>
+                </div>
+                <div class="svc-row">
+                    <span class="svc-row-num">iv.</span>
+                    <h3 class="svc-row-name">Logo &amp; <em>brand identity</em></h3>
+                    <span class="svc-row-price">$300</span>
+                </div>
+                <div class="svc-row">
+                    <span class="svc-row-num">v.</span>
+                    <h3 class="svc-row-name">Social <em>launch</em></h3>
+                    <span class="svc-row-price">$600</span>
+                </div>
+                <div class="svc-row">
+                    <span class="svc-row-num">vi.</span>
+                    <h3 class="svc-row-name">Google Business <em>Profile</em></h3>
+                    <span class="svc-row-price">$200</span>
+                </div>
+                <div class="svc-row">
+                    <span class="svc-row-num">vii.</span>
+                    <h3 class="svc-row-name">Monthly maintenance <em>retainer</em></h3>
+                    <span class="svc-row-price">$125 / mo</span>
+                </div>
             </div>
 
-            <div style="margin-top:48px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:24px" class="fade-up">
-                <div style="font-size:13px;font-weight:300;color:var(--fog); max-width: 500px;">
-                    Website builds include a choice of one free add-on. Standalone add-ons require a core service or a minimum purchase of two.
-                </div>
-                <a href="/services" class="btn-primary">View Full Breakdown</a>
+            <div class="svc-footer fade-up">
+                <div class="svc-footer-note">Website builds include a choice of one free add-on. Standalone add-ons require a core service or a minimum purchase of two.</div>
+                <a href="/services" class="roll-btn-lg">
+                    <span class="roll-text">
+                        <span class="roll-text-inner">
+                            <span>View full breakdown</span>
+                            <span>View full breakdown</span>
+                        </span>
+                    </span>
+                    <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
             </div>
         </div>
     </section>
 
-    <section class="section process-section" id="process">
+    <!-- PROCESS -->
+    <section class="section process-section">
         <div class="section-inner">
-            <div class="process-header fade-up">
+            <div class="section-head fade-up">
                 <div>
-                    <h2 class="section-label">Process</h2>
-                    <div class="section-headline">How It<br><em>Works.</em></div>
+                    <div class="section-badge">
+                        <div class="section-badge-num">05</div>
+                        <div class="section-badge-label">Process</div>
+                    </div>
+                    <h2 class="section-headline">How it<br><em>works.</em></h2>
                 </div>
                 <p class="section-sub">No discovery decks. No kickoff calls. No waiting three weeks to see a first draft. The process is built around your time, not ours.</p>
             </div>
+
             <div class="process-steps fade-up">
                 <div class="process-step">
-                    <div class="process-step-num">01</div>
-                    <h3 class="process-step-name">Inquiry &amp;<br>Scope</h3>
-                    <div class="process-step-desc">You submit a project inquiry. We confirm scope, timeline, and deliverables — usually within the same day. No ambiguity, no surprises.</div>
+                    <div class="process-step-num">i.</div>
+                    <div class="process-step-body">
+                        <div class="process-step-name">Inquiry &amp; scope</div>
+                        <div class="process-step-desc">You submit a project inquiry. We confirm scope, timeline, and deliverables — usually within the same day.</div>
+                    </div>
                 </div>
                 <div class="process-step">
-                    <div class="process-step-num">02</div>
-                    <h3 class="process-step-name">The Build</h3>
-                    <div class="process-step-desc">Work begins immediately. Focused, uninterrupted, and executed by one person who knows exactly what they're doing.</div>
+                    <div class="process-step-num">ii.</div>
+                    <div class="process-step-body">
+                        <div class="process-step-name">The build</div>
+                        <div class="process-step-desc">Work begins immediately. Focused, uninterrupted, and executed by one person who knows exactly what they're doing.</div>
+                    </div>
                 </div>
                 <div class="process-step">
-                    <div class="process-step-num">03</div>
-                    <h3 class="process-step-name">Review &amp;<br>Refinement</h3>
-                    <div class="process-step-desc">You receive a complete, functional deliverable — not a mood board, not a wireframe. We refine together until every detail is right.</div>
+                    <div class="process-step-num">iii.</div>
+                    <div class="process-step-body">
+                        <div class="process-step-name">Review &amp; refinement</div>
+                        <div class="process-step-desc">You receive a complete, functional deliverable — not a mood board, not a wireframe. We refine until every detail is right.</div>
+                    </div>
                 </div>
                 <div class="process-step">
-                    <div class="process-step-num">04</div>
-                    <h3 class="process-step-name">Handover</h3>
-                    <div class="process-step-desc">Full ownership transferred. Every file, every account, every asset — cleanly delivered and entirely yours.</div>
+                    <div class="process-step-num">iv.</div>
+                    <div class="process-step-body">
+                        <div class="process-step-name">Handover</div>
+                        <div class="process-step-desc">Full ownership transferred. Every file, every account, every asset — cleanly delivered and entirely yours.</div>
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section about-section" id="about">
+    <!-- ABOUT -->
+    <section class="section" id="about">
         <div class="section-inner">
-            <div class="about-inner fade-up">
-                <div class="about-sticky">
-                    <h2 class="section-label">About</h2>
-                    <div class="section-headline">Built on<br><em>Principle.</em></div>
+            <div class="about-inner">
+                <div class="about-sticky fade-up">
+                    <div class="section-badge">
+                        <div class="section-badge-num">06</div>
+                        <div class="section-badge-label">About</div>
+                    </div>
+                    <h2 class="section-headline">Built on<br><em>principle.</em></h2>
                 </div>
-                <div>
+                <div class="fade-up" style="transition-delay: 0.1s;">
                     <p class="about-body">JW Digital is run by <strong>Jayce</strong> — a marketing graduate from Liberty University and founder of Concerto, a live music discovery platform on iOS and Android. The agency came from a problem he kept running into, not a business plan.</p>
                     <p class="about-body">Good businesses were invisible online. Not because the work was bad — because the image was. Owners who'd invested everything into what they built were losing customers daily to competitors whose only advantage was a better website. The work deserved better.</p>
                     <p class="about-body">JW Digital exists to close that gap — with the same level of craft and attention a $500,000 engagement gets, at rates that don't require a Series A to justify. One person. Direct communication. Work that holds up.</p>
                     <div class="about-conviction">"If your business is worth running, it's worth looking the part — without exception and without compromise."</div>
-                    <div class="about-location">Serving Businesses Nationwide</div>
+                    <div class="about-meta">Serving businesses nationwide</div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section class="section faq-section" id="faq">
+    <!-- FAQ -->
+    <section class="section" id="faq">
         <div class="section-inner">
             <div class="fade-up" style="text-align: center; margin-bottom: 64px;">
-                <h2 class="section-label" style="justify-content: center;">FAQ</h2>
-                <div class="section-headline">Common <em>questions.</em></div>
+                <div class="section-badge" style="justify-content: center;">
+                    <div class="section-badge-num">07</div>
+                    <div class="section-badge-label">FAQ</div>
+                </div>
+                <h2 class="section-headline" style="text-align: center;">Common <em>questions.</em></h2>
             </div>
             <div class="faq-list fade-up">
                 <div class="faq-item">
-                    <button class="faq-q" type="button">How is $750–$1,500 even possible? What's the catch?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">How is $750–$1,500 even possible? What's the catch?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">No catch. There's no office, no account managers, no junior designers, no sales team. Just one person doing the work directly. Traditional agencies charge $10k+ because they have $10k+ in overhead — we don't.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-q" type="button">How long does a website actually take?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">How long does a website actually take?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">Most websites are delivered in 7–14 days from project kickoff. Larger builds with custom functionality may take longer, but you'll know the exact timeline before any money changes hands.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-q" type="button">Will my site rank on Google?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">Will my site rank on Google?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">Every site is built with technical SEO best practices: clean code, fast load times, schema markup, mobile-first design, and on-page optimization. For local rankings (the local 3-pack), the Google Business Profile service is what moves the needle most.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-q" type="button">Do I own my site after it's done?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">Do I own my site after it's done?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">Yes — fully. Every file, every account, every domain. You can host it anywhere, edit it yourself, or hand it to another developer down the line. No lock-in.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-q" type="button">What if I don't know exactly what I want?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">What if I don't know exactly what I want?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">That's normal. Most service business owners don't. Submit the form with what you do know, and we'll figure out the rest together. We've built for plumbers, roofers, contractors, restaurants, and more — yours probably fits a shape we've seen before.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-q" type="button">Do you do monthly retainers or ongoing work?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">Do you do monthly retainers or ongoing work?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">Optional — not required. $125/month covers hosting, updates, small content changes, and ongoing support. Most clients add it after launch. You can cancel anytime.</div>
                 </div>
                 <div class="faq-item">
-                    <button class="faq-q" type="button">Why don't you do discovery calls?<i class="fa-solid fa-plus faq-q-icon"></i></button>
+                    <button class="faq-q" type="button">Why don't you do discovery calls?<span class="faq-q-icon"><i class="fa-solid fa-plus"></i></span></button>
                     <div class="faq-a">We respect your time. Most discovery calls are an hour-long pitch for a proposal that takes another week to write. We prefer transparent pricing, a quick inquiry form, and getting straight to building. All communication after kickoff happens in writing — keeps everything documented and unambiguous.</div>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- CTA -->
     <section class="cta-section">
-        <div class="cta-inner">
-            <div class="fade-up">
-                <h2 class="cta-headline">Stop losing<br>customers to a <em>better</em><br>website.</h2>
-                <p class="cta-sub">Tell us about your business. Within 24 hours you'll get an honest assessment of what's costing you leads and exactly what would fix it. No sales call, no pressure.</p>
-                <div class="cta-list">
-                    <div class="cta-list-item"><i class="fa-solid fa-check"></i> Free, no-strings audit</div>
-                    <div class="cta-list-item"><i class="fa-solid fa-check"></i> Honest assessment — even if we're not the right fit</div>
-                    <div class="cta-list-item"><i class="fa-solid fa-check"></i> Response within one business day</div>
-                </div>
-                <div class="cta-actions">
-                    <a href="#start" class="btn-primary">Get My Free Audit</a>
-                    <a href="/services" class="btn-ghost">Or See Pricing</a>
-                </div>
-            </div>
-            <div class="fade-up" style="text-align: center;">
-                <div style="font-family: 'DM Serif Display', serif; font-size: 96px; line-height: 1; color: var(--silver); font-style: italic;">24h</div>
-                <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-top: 16px;">From inquiry to response</div>
-                <div style="height: 0.5px; background: rgba(244,244,242,0.1); margin: 48px auto; max-width: 200px;"></div>
-                <div style="font-family: 'DM Serif Display', serif; font-size: 56px; line-height: 1; color: var(--silver); font-style: italic;">15+</div>
-                <div style="font-size: 11px; font-weight: 500; letter-spacing: 0.2em; text-transform: uppercase; color: var(--silver); margin-top: 16px;">Businesses launched</div>
+        <div class="hero-ambient"></div>
+        <div class="cta-inner fade-up">
+            <h2 class="cta-headline">Stop losing customers<br>to a <em>better</em> website.</h2>
+            <p class="cta-sub">Tell us about your business. Within 24 hours you'll get an honest assessment of what's costing you leads and exactly what would fix it. No sales call, no pressure.</p>
+            <div class="cta-actions">
+                <a href="#start" class="roll-btn-lg">
+                    <span class="roll-text">
+                        <span class="roll-text-inner">
+                            <span>Get my free audit</span>
+                            <span>Get my free audit</span>
+                        </span>
+                    </span>
+                    <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
+                <a href="/services" class="roll-btn-ghost">
+                    <span class="roll-text">
+                        <span class="roll-text-inner">
+                            <span>Or see pricing</span>
+                            <span>Or see pricing</span>
+                        </span>
+                    </span>
+                    <span class="roll-arrow"><i class="fa-solid fa-arrow-right"></i></span>
+                </a>
             </div>
         </div>
     </section>
 </main>
 
 <footer>
-    <div><div class="footer-logo-word">JW/DIGITAL</div></div>
-    <div class="footer-copy">&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
-    <div class="footer-links">
-        <a href="/services" class="footer-link">Services</a>
-        <a href="/work" class="footer-link">Work</a>
-        <a href="/contact" class="footer-link">Contact</a>
-        <a href="/portal" class="footer-link">Login</a>
-        <a href="/faq" class="footer-link">FAQ</a>
-        <a href="/tos" class="footer-link">Terms</a>
-        <a href="/privacy" class="footer-link">Privacy</a>
+    <div class="footer-inner">
+        <div class="footer-brand">
+            <div class="footer-logo">JW/Digital</div>
+            <p class="footer-tagline">Boutique web design, brand identity, and local SEO for service businesses. Flat rates. Real work.</p>
+        </div>
+        <div>
+            <div class="footer-col-title">Studio</div>
+            <a href="/work" class="footer-col-link">Work</a>
+            <a href="/services" class="footer-col-link">Services</a>
+            <a href="#about" class="footer-col-link">About</a>
+            <a href="/contact" class="footer-col-link">Contact</a>
+        </div>
+        <div>
+            <div class="footer-col-title">Industries</div>
+            <a href="/web-design-for-plumbers" class="footer-col-link">Plumbers</a>
+            <a href="/web-design-for-roofers" class="footer-col-link">Roofers</a>
+            <a href="/web-design-for-contractors" class="footer-col-link">Contractors</a>
+            <a href="/web-design-for-restaurants" class="footer-col-link">Restaurants</a>
+            <a href="/web-design-for-hvac" class="footer-col-link">HVAC</a>
+        </div>
+        <div>
+            <div class="footer-col-title">Connect</div>
+            <a href="mailto:jwdigitaltx@gmail.com" class="footer-col-link">jwdigitaltx@gmail.com</a>
+            <a href="https://instagram.com/jwdigitaltx" target="_blank" rel="noopener" class="footer-col-link">@jwdigitaltx</a>
+            <a href="/portal" class="footer-col-link">Client Login</a>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div>&copy; 2026 JW Digital, a DBA of Concerto LLC</div>
+        <div style="display: flex; gap: 24px;">
+            <a href="/faq">FAQ</a>
+            <a href="/tos">Terms</a>
+            <a href="/privacy">Privacy</a>
+        </div>
     </div>
 </footer>
 
 <script>
-    /* Custom cursor */
+    /* CUSTOM CURSOR — preserved */
     const cursor = document.getElementById('cursor');
     let mouseX = 0, mouseY = 0;
     document.addEventListener('mousemove', e => { mouseX = e.clientX; mouseY = e.clientY; });
@@ -745,22 +1415,30 @@
         requestAnimationFrame(updateCursor);
     }
     requestAnimationFrame(updateCursor);
-    document.querySelectorAll('a, button, input, textarea, select, div[onclick], div[tabindex]').forEach(el => {
+    document.querySelectorAll('a, button, input, textarea, select, [onclick], [tabindex]').forEach(el => {
         el.addEventListener('mouseenter', () => cursor.classList.add('active'));
         el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
     });
 
-    /* Nav scroll state */
-    const nav = document.getElementById('mainNav');
-    window.addEventListener('scroll', () => nav.classList.toggle('scrolled', window.scrollY > 60));
+    /* LIVE TIME — Bedford, TX (Central Time) */
+    function updateTime() {
+        const now = new Date();
+        const formatter = new Intl.DateTimeFormat('en-US', {
+            timeZone: 'America/Chicago',
+            hour: '2-digit', minute: '2-digit', hour12: false
+        });
+        document.getElementById('liveTime').textContent = formatter.format(now);
+    }
+    updateTime();
+    setInterval(updateTime, 1000);
 
-    /* Fade-up on scroll */
+    /* FADE-UP on scroll */
     const obs = new IntersectionObserver(entries => {
-        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 80); });
-    }, { threshold: 0.06 });
+        entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70); });
+    }, { threshold: 0.08 });
     document.querySelectorAll('.fade-up').forEach(el => obs.observe(el));
 
-    /* Mobile menu */
+    /* MOBILE MENU */
     const hamburger = document.getElementById('hamburger');
     const mobileMenu = document.getElementById('mobileMenu');
     hamburger.addEventListener('click', () => { hamburger.classList.toggle('open'); mobileMenu.classList.toggle('open'); });
@@ -771,7 +1449,7 @@
         btn.addEventListener('click', () => btn.parentElement.classList.toggle('open'));
     });
 
-    /* Audit form — posts to Formspree (same endpoint as contact.html) */
+    /* AUDIT FORM — Formspree endpoint preserved exactly */
     function handleAuditForm(e) {
         e.preventDefault();
         const form = e.target;
