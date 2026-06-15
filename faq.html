@@ -34,22 +34,12 @@ body::after { content: ""; position: fixed; inset: 0; pointer-events: none; z-in
 a, button, input, textarea, select, [role="checkbox"], [onclick], [tabindex] { cursor: none !important; }
 input, textarea, select { cursor: text !important; }
 
-/* STATUS STRIP */
-.status-strip { position: fixed; top: 0; left: 0; right: 0; z-index: 90; display: flex; align-items: center; justify-content: space-between; padding: 14px 32px; font-size: 11px; letter-spacing: 0.04em; color: var(--fog); background: rgba(26,26,26,0.7); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); border-bottom: 0.5px solid rgba(244,244,242,0.06); }
-.status-left, .status-right { display: flex; align-items: center; gap: 20px; }
-.status-pill { display: inline-flex; align-items: center; gap: 8px; }
-.status-dot { width: 6px; height: 6px; background: #7FDBA9; border-radius: 50%; box-shadow: 0 0 0 0 rgba(127,219,169,0.6); animation: pulse 2.4s var(--ease) infinite; }
-@keyframes pulse { 0%, 100% { box-shadow: 0 0 0 0 rgba(127,219,169,0.6); } 50% { box-shadow: 0 0 0 6px rgba(127,219,169,0); } }
-.status-divider { width: 0.5px; height: 11px; background: rgba(244,244,242,0.12); }
-.status-mono { font-variant-numeric: tabular-nums; }
-
 /* NAV */
-.nav-wrap { position: fixed; top: 56px; left: 0; right: 0; z-index: 89; padding: 0 32px; pointer-events: none; }
+.nav-wrap { position: fixed; top: 24px; left: 0; right: 0; z-index: 89; padding: 0 32px; pointer-events: none; }
 .nav-inner { max-width: 1320px; margin: 0 auto; pointer-events: auto; }
 nav { display: flex; align-items: center; justify-content: space-between; padding: 8px 8px 8px 24px; background: rgba(46,46,46,0.85); backdrop-filter: blur(20px); -webkit-backdrop-filter: blur(20px); border: 0.5px solid rgba(244,244,242,0.08); border-radius: 9999px; box-shadow: 0 8px 32px rgba(0,0,0,0.3); }
 .nav-logo { display: inline-flex; align-items: center; gap: 10px; text-decoration: none; }
-.nav-logo-mark { width: 32px; height: 32px; border-radius: 50%; background: var(--platinum); color: var(--ink); display: flex; align-items: center; justify-content: center; font-family: 'DM Serif Display', serif; font-style: italic; font-size: 14px; font-weight: 400; line-height: 1; }
-.nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 17px; letter-spacing: 0.04em; color: var(--platinum); line-height: 1; white-space: nowrap; }
+.nav-logo-word { font-family: 'DM Serif Display', serif; font-style: italic; font-size: 18px; letter-spacing: 0.04em; color: var(--platinum); line-height: 1; white-space: nowrap; }
 .nav-links { display: flex; align-items: center; gap: 8px; }
 .nav-link { font-size: 12px; font-weight: 400; color: rgba(244,244,242,0.65); text-decoration: none; padding: 8px 14px; border-radius: 9999px; transition: color 0.3s var(--ease), background 0.3s var(--ease); letter-spacing: 0.02em; }
 .nav-link:hover { color: var(--platinum); background: rgba(244,244,242,0.05); }
@@ -83,7 +73,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 .hamburger.open span:nth-child(1) { transform: rotate(45deg) translate(4px,4px); }
 .hamburger.open span:nth-child(2) { opacity: 0; }
 .hamburger.open span:nth-child(3) { transform: rotate(-45deg) translate(4px,-4px); }
-.mobile-menu { display: none; flex-direction: column; background: rgba(26,26,26,0.97); backdrop-filter: blur(20px); border: 0.5px solid rgba(244,244,242,0.08); padding: 12px; gap: 4px; position: fixed; top: 110px; left: 16px; right: 16px; z-index: 88; border-radius: 20px; }
+.mobile-menu { display: none; flex-direction: column; background: rgba(26,26,26,0.97); backdrop-filter: blur(20px); border: 0.5px solid rgba(244,244,242,0.08); padding: 12px; gap: 4px; position: fixed; top: 80px; left: 16px; right: 16px; z-index: 88; border-radius: 20px; }
 .mobile-menu.open { display: flex; }
 .mobile-menu a { font-size: 14px; font-weight: 400; color: var(--platinum); text-decoration: none; padding: 14px 16px; border-radius: 12px; transition: background 0.2s; }
 .mobile-menu a:hover { background: rgba(244,244,242,0.05); }
@@ -100,7 +90,7 @@ nav { display: flex; align-items: center; justify-content: space-between; paddin
 @keyframes drift2 { 0%, 100% { transform: translate(0, 0); } 50% { transform: translate(-180px, -120px); } }
 
 /* PAGE HERO (subpages) */
-.page-hero { padding: 168px 32px 100px; position: relative; overflow: hidden; }
+.page-hero { padding: 140px 32px 100px; position: relative; overflow: hidden; }
 .page-hero-inner { max-width: 1320px; margin: 0 auto; position: relative; z-index: 2; }
 .page-eyebrow { display: inline-flex; align-items: center; gap: 12px; font-size: 11px; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--silver); margin-bottom: 32px; }
 .page-eyebrow-rule { width: 28px; height: 0.5px; background: var(--silver); }
@@ -149,15 +139,12 @@ footer { border-top: 0.5px solid rgba(244,244,242,0.07); padding: 56px 32px 32px
     .footer-inner { grid-template-columns: 1fr 1fr; }
 }
 @media (max-width: 768px) {
-    .status-strip { padding: 10px 16px; font-size: 10px; }
-    .status-left .status-pill:nth-child(3), .status-divider:nth-child(2) { display: none; }
-    .nav-wrap { top: 48px; padding: 0 16px; }
+    .nav-wrap { top: 16px; padding: 0 16px; }
     nav { padding: 6px 6px 6px 16px; }
-    .nav-logo-mark { width: 28px; height: 28px; font-size: 12px; }
-    .nav-logo-word { font-size: 14px; }
+    .nav-logo-word { font-size: 15px; }
     .nav-links { display: none; }
     .hamburger { display: flex; }
-    .page-hero { padding: 140px 20px 64px; }
+    .page-hero { padding: 100px 20px 64px; }
     .page-headline { font-size: clamp(44px, 11vw, 64px); }
     .section { padding: 80px 20px; }
     .cta-section { padding: 100px 20px; }
@@ -189,35 +176,10 @@ footer { border-top: 0.5px solid rgba(244,244,242,0.07); padding: 56px 32px 32px
 <body>
 <div class="cursor" id="cursor"></div>
 
-<div class="status-strip">
-    <div class="status-left">
-        <div class="status-pill">
-            <span class="status-dot"></span>
-            <span>Currently taking on projects</span>
-        </div>
-        <div class="status-divider"></div>
-        <div class="status-pill">
-            <i class="fa-regular fa-clock" style="font-size: 11px;"></i>
-            <span class="status-mono" id="liveTime">--:--</span>
-            <span>in Bedford, TX</span>
-        </div>
-    </div>
-    <div class="status-right">
-        <div class="status-pill">
-            <span>15+ businesses launched</span>
-        </div>
-        <div class="status-divider"></div>
-        <div class="status-pill">
-            <span>From $750 · &lt;14 day delivery</span>
-        </div>
-    </div>
-</div>
-
 <div class="nav-wrap">
     <div class="nav-inner">
         <nav>
             <a href="/" class="nav-logo">
-                <span class="nav-logo-mark">jw</span>
                 <span class="nav-logo-word">JW/DIGITAL</span>
             </a>
             <div class="nav-links">
@@ -387,14 +349,6 @@ document.querySelectorAll('a, button, input, textarea, select, [onclick], [tabin
     el.addEventListener('mouseenter', () => cursor.classList.add('active'));
     el.addEventListener('mouseleave', () => cursor.classList.remove('active'));
 });
-
-function updateTime() {
-    const now = new Date();
-    const formatter = new Intl.DateTimeFormat('en-US', { timeZone: 'America/Chicago', hour: '2-digit', minute: '2-digit', hour12: false });
-    document.getElementById('liveTime').textContent = formatter.format(now);
-}
-updateTime();
-setInterval(updateTime, 1000);
 
 const obs = new IntersectionObserver(entries => {
     entries.forEach((e, i) => { if (e.isIntersecting) setTimeout(() => e.target.classList.add('visible'), i * 70); });
