@@ -157,7 +157,7 @@
     });
 
     /* ============================================================
-       DATABASE LOGIC (STEIN) — PRESERVED EXACTLY AS-IS
+       DATABASE LOGIC (STEIN) - PRESERVED EXACTLY AS-IS
        ============================================================ */
     const STEIN_ID = "69da885bbb16885eb7bcf43d";
     const SHEET_NAME = "Clients";
@@ -202,8 +202,8 @@
         document.getElementById('portalGreeting').innerHTML = `Hello, <em>${firstName}.</em>`;
         document.getElementById('portalBusiness').innerText = user.Business || "";
         document.getElementById('portalProject').innerText = user.Project || "Project Details";
-        document.getElementById('portalDeliverable').innerText = user.Deliverable || "—";
-        document.getElementById('portalNotes').innerText = user.Notes || "—";
+        document.getElementById('portalDeliverable').innerText = user.Deliverable || "Not set";
+        document.getElementById('portalNotes').innerText = user.Notes || "Not set";
 
         const amount = user.Amount ? Number(user.Amount).toLocaleString() : "0";
         document.getElementById('paymentAmount').innerText = `$${amount}`;
@@ -230,7 +230,7 @@
             mockupContainer.appendChild(mBtn);
         }
 
-        // PAYMENT LOGIC — Stripe fallback link preserved exactly
+        // PAYMENT LOGIC - Stripe fallback link preserved exactly
         const isPaid = String(user.Paid).toUpperCase() === "TRUE";
         const paymentStatus = document.getElementById('paymentStatus');
         const paymentCard = document.getElementById('paymentCard');
