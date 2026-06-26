@@ -1,0 +1,12 @@
+# Old niche landing pages removed in the public-sector rework.
+# 301 to Capabilities so indexed links and inbound traffic don't 404.
+/web-design-for-plumbers        /services  301
+/web-design-for-roofers         /services  301
+/web-design-for-contractors     /services  301
+/web-design-for-restaurants     /services  301
+/web-design-for-barbershops     /services  301
+/web-design-for-hvac            /services  301
+/web-design-for-landscapers     /services  301
+/web-design-for-bakeries        /services  301
+/web-design-for-cafes           /services  301
+/web-design-for-interior-designers  /services  301
